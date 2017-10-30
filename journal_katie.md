@@ -1,4 +1,4 @@
-#Captian's Log  
+# Captian's Log  
 _Oct 24,2017_  
 _Module 8_  
 Made new project, announced I was not responsible.  
@@ -6,7 +6,7 @@ Till next time.
 Katie  
 ---
 
-#Captian's Log   
+# Captian's Log   
 _Oct 29,2017_   
 _Module 8_   
 Added font-family variables and colors.   
