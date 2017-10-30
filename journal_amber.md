@@ -10,3 +10,8 @@
 - played [an emulation of the 1990 version of Oregon Trail](https://classicreload.com/oregon-trail.html) for research purposes
     - all 5 party members lived to see Oregon City with a score of 2286
 - started an outline for the core game elements
+
+## Stardate 2017.10.30
+- Added last night's work to project
+- Organized project 
+- Wrote some flavor text/backstory
