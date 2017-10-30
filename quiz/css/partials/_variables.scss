@@ -1,0 +1,53 @@
+$color-prime: #2dfffe;
+$color-sec: #ffffff;
+$color-tri: #000f1e;
+$color-highlight: #FFE387;
+
+$gutter-size:10px;
+$column-length: 12;
+
+$font-heading:'Jura', sans-serif;
+$font-body:'Alegreya Sans SC', sans-serif;
+
+
+//Sass Map(object)
+$container-width:(
+	xs:0,
+	sm:480px,
+	md:640px,
+	lg:900px,
+	xl:1200px,
+	);
+
+//Sass List(array)
+$size-shortnames:("xs","sm","md","lg","xl");
+
+$side-column:200px;
+
+
+$sizes-map:(
+	l:20px,
+	m:10px,
+	s:5px,
+	n:0
+	);
+
+$positions-map: (
+	t:top,
+	r:right,
+	b:bottom,
+	l:left
+	);
+
+$boxes-map: (
+	p:padding,
+	m:margin
+	);
+
+$positioning-map:(
+	a:absolute,
+	f:fixed,
+	s:static,
+	r:relative,
+	i:inherit
+	);

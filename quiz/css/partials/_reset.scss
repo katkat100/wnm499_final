@@ -1,0 +1,18 @@
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+// ::selection{
+// 	background: $color-highlight;
+// 	color: $color-sec;
+// }
+
+body {
+	margin: 0;
+	// font-family: $font-body;
+	// color: $color-prime;
+	font-size: 100%;
+}
+
