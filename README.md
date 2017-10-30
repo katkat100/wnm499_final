@@ -1,2 +1,2 @@
-# wnm499_final
-Oregon trail IN SPACE
+# Space Trail
+The year is 2148, 300 years after pioneers conquered the Old West. Earth has been overcrowded for years, and Mars is on its way toward filling up as well. It's only been half a century since we made contact with the other races, but since then, humanity has developed Faster-Than-Light travel (with a tiny bit of help from alien scientists). Now it's time for the New Frontier (though definitely not the Final one).
