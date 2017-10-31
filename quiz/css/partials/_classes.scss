@@ -28,17 +28,38 @@
 
 
 
+.card-verticalAlign{
+	vertical-align: middle;
+	display: table-cell;
+}
+
+
+
 
 
 #card-title{
 	text-align: center;
-	vertical-align: middle;
-	display: table-cell;
+	@extend .card-verticalAlign;
 	background-image: url("images/card-title-bkg.png");
 	background-size: cover;
 	background-position: right;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+#card-spaceStation{
+	text-align: center;
+	@extend .card-verticalAlign;
+}
+
+#card-nameLeader{
+	text-align: center;
+	@extend .card-verticalAlign;
+}
+
+#card-nameMembers{
+	text-align: center;
+	@extend .card-verticalAlign;
 }
 
 
@@ -47,8 +68,9 @@
 
 
 
-
-
-@media screen and (max-width: 639px) {
+@media (max-width: 899px) {
+	#card-title{
+		background-image: none;
+	}
 
 }
