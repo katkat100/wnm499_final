@@ -28,40 +28,22 @@
 
 
 
-.card-verticalAlign{
+
+
+
+.card{
 	vertical-align: middle;
 	display: table-cell;
+	text-align: center;
 }
 
-
-
-
-
-#card-title{
-	text-align: center;
-	@extend .card-verticalAlign;
+#title{
 	background-image: url("images/card-title-bkg.png");
 	background-size: cover;
 	background-position: right;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
-
-#card-spaceStation{
-	text-align: center;
-	@extend .card-verticalAlign;
-}
-
-#card-nameLeader{
-	text-align: center;
-	@extend .card-verticalAlign;
-}
-
-#card-nameMembers{
-	text-align: center;
-	@extend .card-verticalAlign;
-}
-
 
 
 

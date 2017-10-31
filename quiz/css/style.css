@@ -86,26 +86,17 @@ section {
 .pos-absolute {
   position: absolute; }
 
-.card-verticalAlign, #card-title, #card-spaceStation, #card-nameLeader, #card-nameMembers {
+.card {
   vertical-align: middle;
-  display: table-cell; }
+  display: table-cell;
+  text-align: center; }
 
-#card-title {
-  text-align: center;
+#title {
   background-image: url("images/card-title-bkg.png");
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
   background-attachment: fixed; }
-
-#card-spaceStation {
-  text-align: center; }
-
-#card-nameLeader {
-  text-align: center; }
-
-#card-nameMembers {
-  text-align: center; }
 
 @media (max-width: 899px) {
   #card-title {
@@ -647,11 +638,5 @@ section {
   background-color: #eee;
   border-radius: 4px;
   height: 100%; }
-
-.card {
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
 
 /*# sourceMappingURL=style.css.map */
