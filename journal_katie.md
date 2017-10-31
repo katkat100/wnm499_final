@@ -15,3 +15,12 @@ Will start figuring out how to move through game soon.
 Tally Ho.   
 Katie   
 ---
+
+# Captian's Log   
+_Oct 30,2017_   
+_Module 8_   
+Coded title card.   
+I think designing by section an hiding all but active section card is the way I will go through the game.   
+Ciao.   
+Katie   
+---
