@@ -24,3 +24,13 @@ I think designing by section an hiding all but active section card is the way I 
 Ciao.   
 Katie   
 ---
+
+# Captian's Log   
+_Oct 31,2017_   
+_Module 9-   
+It's Halloween!   
+SPOOOKY!   
+Night Before Halloween Song Here.   
+Smell Ya Later.   
+Katie   
+---
