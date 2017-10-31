@@ -63,6 +63,21 @@ section {
   height: 100vh;
   width: 100vw; }
 
+input {
+  border: 0;
+  border-bottom: 3px solid #ffffff;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background-color: transparent;
+  font-size: 200%;
+  text-align: center;
+  font-family: "Alegreya Sans SC", sans-serif;
+  margin-top: 1em;
+  color: #ffffff;
+  width: 60%; }
+  input:focus {
+    outline: none; }
+
 .clearix:after {
   clear: both;
   content: '';
