@@ -1,17 +1,17 @@
 # Game Outline
 
 ## Start at Space Station 
-- Choose profession to determine starting cash 
-    - Meteorite Farmer
-    - Spaceship Engineer
-    - Moneybags
+- Choose profession to determine starting cash: 
+    - Meteorite Farmer §1000
+    - Spaceship Engineer §1500
+    - Moneybags §2000
 - Name 5 characters 
 - Choose when to leave
 - Initial purchases  
-    - Spare parts
-    - Food 
-    - Fuel
-    - Weapons 
+    - Spare parts §100
+    - Food §20
+    - Fuel §50
+    - Weapon Energy Pods (10 shots per pod) §20
 
 ## Landmark Locations 
 - Planets and Moons
@@ -31,7 +31,6 @@
 - Xenobug/Space Sickness 
 
 ## Activities (can be done during travel)
-- Trading 
+- Trading (sometimes fails due to no one around)
 - Asteroids mini-game (pew pew) 
-    - you get fuel from shooting asteroids 
-
+    - you get fuel from shooting asteroids
