@@ -24,6 +24,31 @@
 	position: absolute;
 }
 
+
+
+
+
+
+
+#card-title{
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	background-image: url("images/card-title-bkg.png");
+	background-size: cover;
+	background-position: right;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 639px) {
 
 }

@@ -4,15 +4,56 @@ html {
 *, *:before, *:after {
   box-sizing: border-box; }
 
-// ::selection{
-// 	background: $color-highlight;
-// 	color: $color-sec;
-// }
+::selection{
+	background: $color-sec;
+	color: $color-prime;
+}
 
 body {
 	margin: 0;
-	// font-family: $font-body;
-	// color: $color-prime;
+	font-family: $font-body;
+	color: $color-sec;
+	background-color: $color-tri;
 	font-size: 100%;
+	font-weight: 100;
 }
 
+a{
+	color: $color-sec;
+	text-decoration: none;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0;
+}
+
+h1{
+	font-family: $font-heading;
+	color: $color-prime;
+	font-size: 400%;
+	font-weight: 700;
+	border: 5px solid $color-prime;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: .05em .2em;
+	border-radius: .15em;
+	margin-bottom: .3em;
+	margin-bottom: .3em;
+}
+
+h3{
+	font-family: $font-body;
+	font-size: 200%;
+	font-weight: 100;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+section{
+	display: table;
+	height: 100vh;
+	width: 100vw;
+}
