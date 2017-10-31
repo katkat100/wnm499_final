@@ -15,3 +15,7 @@
 - Added last night's work to project
 - Organized project 
 - Wrote some flavor text/backstory
+
+## Stardate 2017.10.31
+- In class work
+- Made a new file
