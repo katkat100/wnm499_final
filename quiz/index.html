@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Document</title>
+	<title>Space Trail</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,400|Jura:700" rel="stylesheet">
 
@@ -13,6 +13,8 @@
 
 	<script>
 		$(function(){
+			var player = [];
+
 			var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
 			var engineer = [job = "Spaceship Engineer", startmoney = 1500];
 			var moneybags = [job = "Moneybags", startmoney = 2000];
@@ -31,14 +33,71 @@
 			// console.log(engineer);
 			// console.log(moneybags);
 
+//next
 			$(".next").click(function(){
 				screenCount++;
 				// console.log(docHeight);
 				mainMargin += docHeight;
 				$(".atMain").css('marginTop',  -mainMargin);
 				console.log(mainMargin);
+			});
+
+//jobs
+			$(".farmer").click(function(){
+				addJob(farmer);
+			});
+			$(".engineer").click(function(){
+				addJob(engineer);
+			});
+			$(".moneybags").click(function(){
+				addJob(moneybags);
+			});
+
+
+//names
+			$(".leaderName").click(function(){
+				var inputLeader = $("input[name = 'captain']").val();
+				var name = [leader = inputLeader];
+				player = $.merge(player,name);
+				console.log(player);
+			});
+
+			$(".memberName").click(function(){
+				var inputMember = $("input[name = 'member1']").val();
+				var name  = [member1 = inputMember];
+				player = $.merge(player,name);
+				inputMember = $("input[name = 'member2']").val();
+				name  = [member2 = inputMember];
+				player = $.merge(player,name);
+				inputMember = $("input[name = 'member3']").val();
+				name  = [member3 = inputMember];
+				player = $.merge(player,name);
+				inputMember = $("input[name = 'member4']").val();
+				name  = [member4 = inputMember];
+				player = $.merge(player,name);
+				console.log(player);
 			})
 
+
+
+
+
+
+
+
+
+//functions
+			function addJob(job){
+				player = $.merge([],job);
+				console.log(player);
+				$("span.money").text(player[1]);
+			};
+
+			function addMembers(num){
+				var inputMember = $("input[name = " + num + "]").val();
+				var name  = [num = inputMember];
+				player = $.merge(player,name);
+			}
 		});
 	</script>
 
@@ -56,32 +115,34 @@
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
-					<a href="#" class="next"><h3>Travel the Galaxy</h3></a>
+					<h4 class="next">Travel the Galaxy</h4>
 				</div>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="spaceStation">
 				<h2>Choose a profession</h2>
-				<h3>Meteorite Farmer</h3>
-				<h3>Spaceship Engineer</h3>
-				<h3>Moneybags</h3>
+				<h4 class="next farmer">Meteorite Farmer</h4>
+				<h4 class="next engineer">Spaceship Engineer</h4>
+				<h4 class="next moneybags">Moneybags</h4>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="nameLeader">
 				<h2>What is the name of the Captain?</h2>
-				<input type="text" name="captain" value="capitano" maxlength="20">
+				<input type="text" name="captain" value="Capitano" maxlength="10">
+				<h4 class="next leaderName">Enter Name</h4>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="nameMembers">
 				<h2>What are the names of the other members?</h2>
 				<ol>
-					<li><input type="text" name="member1" value="clemence" maxlength="20"></li>
-					<li><input type="text" name="member2" value="parnell" maxlength="20"></li>
-					<li><input type="text" name="member3" value="oswyn" maxlength="20"></li>
-					<li><input type="text" name="member4"  value="gilbert" maxlength="20"></li>
+					<li><input type="text" name="member1" value="Clemence" maxlength="10"></li>
+					<li><input type="text" name="member2" value="Parnell" maxlength="10"></li>
+					<li><input type="text" name="member3" value="Oswyn" maxlength="10"></li>
+					<li><input type="text" name="member4"  value="Gilbert" maxlength="10"></li>
+					<h4 class="next memberName">Enter Names</h4>
 				</ol>
 			</div>
 		</section>
@@ -89,16 +150,16 @@
 			<div class="card" id="month">
 				<h2>The year is 4934. Decide on the rotation to leave Space Station Faithful.</h2>
 				<ol>
-					<li>First</li>
-					<li>Second</li>
-					<li>Third</li>
-					<li>Fourth</li>
+					<li><h4 class="next ro1">First</h4></li>
+					<li><h4 class="next ro2">Second</h4></li>
+					<li><h4 class="next ro3">Third</h4></li>
+					<li><h4 class="next ro4">Fourth</h4></li>
 				</ol>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="money">
-				<h3>Before your departure it's wise to stock up on supplies. You have $<span class="money"></span> but there isn't any need to spend it all here.</h3>
+				<h3>Before you depart it is wise to stock up on supplies. You have $<span class="money"></span> to spend. Do not spend it all in one place.</h3>
 			</div>
 		</section>
 		<section>
