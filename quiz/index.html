@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Document</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:100,400|Jura:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,400|Jura:700" rel="stylesheet">
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -13,36 +13,53 @@
 
 	<script>
 		$(function(){
+			var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
+			var engineer = [job = "Spaceship Engineer", startmoney = 1500];
+			var moneybags = [job = "Moneybags", startmoney = 2000];
+			var supplies = [
+				fuel = 50,
+				food = 20,
+				ammo = 20,
+				parts = 100
+			];
+
+			// console.log(farmer);
+			// console.log(engineer);
+			// console.log(moneybags);
 
 		});
 	</script>
 
 </head>
 <body>
-	<div class="body">
+	<div class="atMain">
+		<nav>
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Overview</a></li>
+				<li><a href="#">FAQ</a></li>
+			</ul>
+		</nav>
 		<section>
 			<div class="card" id="title">
-				<div class="row">
-					<div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-1">
-						<h1>Space Trail</h1>
-						<a href="#"><h3>Travel the Galaxy</h3></a>
-						<a href="#"><h3>Learn about the game</h3></a>
-					</div>
+				<div class="info">
+					<h1>Space Trail</h1>
+					<a href="#"><h3>Travel the Galaxy</h3></a>
 				</div>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="spaceStation">
 				<h2>Choose a profession</h2>
-				<h3>Meteoriote Farmer</h3>
+				<h3>Meteorite Farmer</h3>
 				<h3>Spaceship Engineer</h3>
 				<h3>Moneybags</h3>
 			</div>
 		</section>
 		<section>
 			<div class="card" id="nameLeader">
-				<h2>What is the name of the Captian?</h2>
-				<input type="text" name="captian" value="capitano" maxlength="20">
+				<h2>What is the name of the Captain?</h2>
+				<input type="text" name="captain" value="capitano" maxlength="20">
 			</div>
 		</section>
 		<section>
