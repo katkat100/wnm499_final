@@ -138,12 +138,13 @@ nav {
   #title .info {
     width: 50%;
     margin-left: 8.33333%; }
-  #title h3 {
-    display: inline-block; }
 
 @media (max-width: 899px) {
   #title {
-    background-image: none; } }
+    background-image: none; }
+    #title .info {
+      width: 83.33333%;
+      margin-left: 8.33333%; } }
 .grid {
   overflow: hidden; }
 
