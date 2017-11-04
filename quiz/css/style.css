@@ -140,7 +140,9 @@ nav {
 .card {
   vertical-align: middle;
   display: table-cell;
-  text-align: center; }
+  text-align: center;
+  margin-right: 5%;
+  margin-left: 5%; }
 
 #title {
   background-image: url("images/card-title-bkg.png");
@@ -153,6 +155,10 @@ nav {
     margin-left: 8.33333%; }
 
 @media (max-width: 899px) {
+  .card {
+    margin-right: 1%;
+    margin-left: 1%; }
+
   #title {
     background-image: none; }
     #title .info {

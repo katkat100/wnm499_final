@@ -35,6 +35,8 @@
 	vertical-align: middle;
 	display: table-cell;
 	text-align: center;
+	margin-right: 5%;
+	margin-left: 5%;
 }
 
 #title{
@@ -57,6 +59,11 @@
 
 
 @media (max-width: 899px) {
+	.card{
+		margin-right: 1%;
+		margin-left: 1%;
+	}
+
 	#title{
 		background-image: none;
 		.info{
