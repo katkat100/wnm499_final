@@ -141,8 +141,8 @@ nav {
   vertical-align: middle;
   display: table-cell;
   text-align: center;
-  margin-right: 5%;
-  margin-left: 5%; }
+  padding-left: 5%;
+  padding-right: 5%; }
 
 #title {
   background-image: url("images/card-title-bkg.png");
