@@ -25,8 +25,9 @@
 				parts = 100
 			];
 			var money = 0;
-			var numOfItems = 0;
+			var numOfParts = 0, numOfFuel = 0, numOfFood = 0, numOfAmmo = 0;
 			var costOfItems = 0;
+			var oldBill = 0;
 			var storeBill = 0;
 			var storeTotal = 0;
 
@@ -107,29 +108,38 @@
 			$("span.money").text(money);
 
 			$("input[name = 'parts']").change(function(){
-				numOfItems = $("input[name = 'parts']").val();
-				costOfItems = 100 * numOfItems;
+				numOfParts = $("input[name = 'parts']").val();
+				costOfItems = 100 * numOfParts;
 				storeBilling();
+				oldBill = costOfItems;
 			});
 			$("input[name = 'fuel']").change(function(){
-				numOfItems = $("input[name = 'fuel']").val();
-				costOfItems = 50 * numOfItems;
+				numOfFuel = $("input[name = 'fuel']").val();
+				costOfItems = 50 * numOfFuel;
 				storeBilling();
+				oldBill = costOfItems;
 			});
 			$("input[name = 'food']").change(function(){
-				numOfItems = $("input[name = 'food']").val();
-				costOfItems = 20 * numOfItems;
+				numOfFood = $("input[name = 'food']").val();
+				costOfItems = 20 * numOfFood;
 				storeBilling();
+				oldBill = costOfItems;
 			});
 			$("input[name = 'ammo']").change(function(){
-				numOfItems = $("input[name = 'ammo']").val();
-				costOfItems = 20 * numOfItems;
+				numOfAmmo = $("input[name = 'ammo']").val();
+				costOfItems = 20 * numOfAmmo;
 				storeBilling();
+				oldBill = costOfItems;
 			});
 			$(".exitStore").click(function(){
 				player[1]= storeTotal;
+				player[7] = numOfParts;
+				player[8] = numOfFuel;
+				player[9] = numOfFood;
+				player[10] = numOfAmmo;
 				money = storeTotal;
 				console.log(player);
+
 			})
 
 
@@ -153,6 +163,7 @@
 			}
 
 			function storeBilling(){
+				storeBill -= oldBill;
 				storeBill += costOfItems;
 				storeTotal = money - storeBill;
 				console.log("bill: " + storeBill);
@@ -264,7 +275,7 @@
 		<section>
 			<div class="card" id="departure">
 				<h3>You have a long journey ahead of you. Good Luck.</h3>
-				<h4 class="next">Depart</h4>
+				<h4 class="next departure">Depart</h4>
 			</div>
 		</section>
 		<section>
