@@ -27,7 +27,7 @@
 			var money = 0;
 			var numOfParts = 0, numOfFuel = 0, numOfFood = 0, numOfAmmo = 0;
 			var costOfItems = 0;
-			var oldBill = 0;
+			var oldBillParts = 0, oldBillFuel = 0, oldBillFood = 0, oldBillAmmo = 0;
 			var storeBill = 0;
 			var storeTotal = 0;
 
@@ -103,33 +103,33 @@
 
 //shop
 //not really working? Wont minus when make accident? like change number from 2 to 3 it will sitll count the 2?
-			// money = 2000;
+			money = 2000;
 			// // money = parseInt(player[1]);
 			$("span.money").text(money);
 
 			$("input[name = 'parts']").change(function(){
 				numOfParts = $("input[name = 'parts']").val();
 				costOfItems = 100 * numOfParts;
-				storeBilling();
-				oldBill = costOfItems;
+				storeBilling(oldBillParts);
+				oldBillParts = costOfItems;
 			});
 			$("input[name = 'fuel']").change(function(){
 				numOfFuel = $("input[name = 'fuel']").val();
 				costOfItems = 50 * numOfFuel;
-				storeBilling();
-				oldBill = costOfItems;
+				storeBilling(oldBillFuel);
+				oldBillFuel = costOfItems;
 			});
 			$("input[name = 'food']").change(function(){
 				numOfFood = $("input[name = 'food']").val();
 				costOfItems = 20 * numOfFood;
-				storeBilling();
-				oldBill = costOfItems;
+				storeBilling(oldBillFood);
+				oldBillFood = costOfItems;
 			});
 			$("input[name = 'ammo']").change(function(){
 				numOfAmmo = $("input[name = 'ammo']").val();
 				costOfItems = 20 * numOfAmmo;
-				storeBilling();
-				oldBill = costOfItems;
+				storeBilling(oldBillAmmo);
+				oldBillAmmo = costOfItems;
 			});
 			$(".exitStore").click(function(){
 				player[1]= storeTotal;
@@ -162,8 +162,8 @@
 				player = $.merge(player,name);
 			}
 
-			function storeBilling(){
-				storeBill -= oldBill;
+			function storeBilling(bill){
+				storeBill -= bill;
 				storeBill += costOfItems;
 				storeTotal = money - storeBill;
 				console.log("bill: " + storeBill);
@@ -177,7 +177,7 @@
 </head>
 <body>
 	<div class="atMain">
-		<nav>
+		<!-- <nav>
 			<ul>
 				<li><a href="#">About</a></li>
 				<li><a href="#">Overview</a></li>
@@ -235,7 +235,7 @@
 				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
 				<h4 class="next enterStore">Enter Store</h4>
 			</div>
-		</section>
+		</section> -->
 		<section>
 			<div class="card store" id="stationShop">
 				<h2>Welcome to my store! Buy the best quality items in the galaxy here!</h2>
