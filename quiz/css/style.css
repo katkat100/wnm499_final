@@ -154,6 +154,9 @@ nav {
     width: 50%;
     margin-left: 8.33333%; }
 
+.item-row input {
+  margin-top: 0; }
+
 @media (max-width: 899px) {
   .card {
     margin-right: 1%;

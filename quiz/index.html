@@ -24,6 +24,11 @@
 				ammo = 20,
 				parts = 100
 			];
+			var money = 0;
+			var numOfItems = 0;
+			var costOfItems = 0;
+			var storeBill = 0;
+			var storeTotal = 0;
 
 			var screenCount = 0;
 			var docHeight = $("body").height();
@@ -92,6 +97,33 @@
 
 			});
 
+//shop
+			money = 2000;
+
+			// money = player[1];
+			$("span.money").text(money);
+
+			$("input[name = 'parts']").change(function(){
+				numOfItems = $("input[name = 'parts']").val();
+				costOfItems = 100 * numOfItems;
+				storeBilling();
+			});
+			$("input[name = 'fuel']").change(function(){
+				numOfItems = $("input[name = 'fuel']").val();
+				costOfItems = 50 * numOfItems;
+				storeBilling();
+			});
+			$("input[name = 'food']").change(function(){
+				numOfItems = $("input[name = 'food']").val();
+				costOfItems = 20 * numOfItems;
+				storeBilling();
+			});
+			$("input[name = 'ammo']").change(function(){
+				numOfItems = $("input[name = 'ammo']").val();
+				costOfItems = 20 * numOfItems;
+				storeBilling();
+			});
+
 
 
 
@@ -111,6 +143,15 @@
 				var name  = [num = inputMember];
 				player = $.merge(player,name);
 			}
+
+			function storeBilling(){
+				storeBill += costOfItems;
+				storeTotal = money - storeBill;
+				console.log("bill: " + storeBill);
+				console.log("total: " + storeTotal);
+				$("span.bill").text(storeBill);
+				$("span.total").text(storeTotal);
+			}
 		});
 	</script>
 
@@ -124,7 +165,7 @@
 				<li><a href="#">FAQ</a></li>
 			</ul>
 		</nav>
-		<section>
+		<!-- <section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -172,13 +213,45 @@
 		</section>
 		<section>
 			<div class="card" id="money">
-				<h3>Before you depart it is wise to stock up on supplies. You have $<span class="money"></span> to spend. Do not spend it all in one place.</h3>
 				<h4 class="next memberName">Enter Store</h4>
+				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
+				<h4 class="next enterStore">Enter Store</h4>
 			</div>
-		</section>
+		</section> -->
 		<section>
 			<div class="card store" id="stationShop">
-				
+				<h2>Welcome to my store! Buy the best quality items in the galaxy here!</h2>
+				<div class="row gutters">
+					<div class="col-xs-12 col-md-6 itemList">
+						<div class="item-row parts row flex">
+							<p class="item col-xs-5">Spare Parts</p>
+							<p class="cost col-xs-5">§100</p>
+							<input class="col-xs-2" type="number" name="parts" maxlength="10" value="0">
+						</div>
+						<div class="item-row fuel">
+							<p class="item col-xs-5">Fuel</p>
+							<p class="cost col-xs-5">§50</p>
+							<input class="col-xs-2" type="number" name="fuel" maxlength="10" value="0">
+						</div>
+						<div class="item-row food">
+							<p class="item col-xs-5">Food</p>
+							<p class="cost col-xs-5">§20</p>
+							<input class="col-xs-2" type="number" name="food" maxlength="10" value="0">
+						</div>
+						<div class="item-row ammo">
+							<p class="item col-xs-5">Ammo</p>
+							<p class="cost col-xs-5">§20</p>
+							<input class="col-xs-2" type="number" name="ammo" maxlength="10" value="0">
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 total">
+						<p>Amount you have: §<span class="money"></span></p>
+						<p>Bill so far: §<span class="bill"></span></p>
+						<p>Ending amount: §<span class="total"></span></p>
+					</div>
+				</div>
+
+				<h4 class="next exitStore">Exit Store</h4>
 			</div>
 		</section>
 	</div>
