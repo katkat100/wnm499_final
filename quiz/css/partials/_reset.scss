@@ -16,11 +16,21 @@ body {
 	background-color: $color-tri;
 	font-size: 100%;
 	font-weight: 100;
+	overflow: hidden;
+	height: 100vh;
 }
 
 a{
 	color: $color-sec;
 	text-decoration: none;
+	// border-bottom: 2px solid $color-tri;
+	border-radius: .15em;
+
+	&:hover{
+		color: $color-prime;
+		text-shadow: 0 0 15px $color-prime;
+		// border-bottom-color:$color-prime;
+	}
 }
 
 
@@ -58,17 +68,30 @@ h2{
 h3{
 	font-family: $font-body;
 	font-size: 200%;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+h4{
+	font-family: $font-body;
+	font-size: 150%;
 	font-weight: 100;
 	text-transform: uppercase;
 	text-align: center;
 	margin-top: 1em;
 	margin-bottom: 1em;
+
+	&:hover{
+		color: $color-prime;
+		text-shadow: 0 0 15px $color-prime;
+		cursor: pointer;
+	}
 }
 
 section{
 	display: table;
 	height: 100vh;
-	width: 100vw;
+	width: 100%;
 }
 
 input{
@@ -77,15 +100,39 @@ input{
 	border-bottom-left-radius:2px;
 	border-bottom-right-radius:2px;
 	background-color: transparent;
-	font-size: 200%;
+	font-size: 150%;
 	text-align: center;
 	font-family: $font-body;
 	margin-top: 1em;
 	color: $color-sec;
-	width: 60%;
-
+	font-weight: 100;
 	&:focus{
 		outline: none;
 	}
+	li>&{
+		width:100%;
+	}
 }
 
+ol{
+	text-align: left;
+	width: 50%;
+	margin-left: 23%;
+	li{
+		width:100%;
+	}
+}
+
+ul{
+	color: $color-prime;
+	li{
+		display: inline-block;
+		padding: .2em .5em;
+	}
+}
+
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+}

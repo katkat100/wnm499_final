@@ -35,6 +35,8 @@
 	vertical-align: middle;
 	display: table-cell;
 	text-align: center;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 #title{
@@ -43,16 +45,41 @@
 	background-position: right;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	
+	.info{
+	width: 50%;
+	margin-left: 8.33333%
+	}
+
+}
+
+.item-list{
+
+}
+
+.item-row{
+	input{
+		margin-top: 0;
+	}
 }
 
 
 
 
 
-
 @media (max-width: 899px) {
-	#card-title{
+	.card{
+		margin-right: 1%;
+		margin-left: 1%;
+	}
+
+	#title{
 		background-image: none;
+		.info{
+			width: 83.33333%;
+			margin-left: 8.33333%	
+		}
+
 	}
 
 }

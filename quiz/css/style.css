@@ -15,11 +15,17 @@ body {
   color: #ffffff;
   background-color: #000f1e;
   font-size: 100%;
-  font-weight: 100; }
+  font-weight: 100;
+  overflow: hidden;
+  height: 100vh; }
 
 a {
   color: #ffffff;
-  text-decoration: none; }
+  text-decoration: none;
+  border-radius: .15em; }
+  a:hover {
+    color: #2dfffe;
+    text-shadow: 0 0 15px #2dfffe; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0; }
@@ -52,16 +58,26 @@ h2 {
 h3 {
   font-family: "Alegreya Sans SC", sans-serif;
   font-size: 200%;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+h4 {
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-size: 150%;
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em; }
+  h4:hover {
+    color: #2dfffe;
+    text-shadow: 0 0 15px #2dfffe;
+    cursor: pointer; }
 
 section {
   display: table;
   height: 100vh;
-  width: 100vw; }
+  width: 100%; }
 
 input {
   border: 0;
@@ -69,14 +85,34 @@ input {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: transparent;
-  font-size: 200%;
+  font-size: 150%;
   text-align: center;
   font-family: "Alegreya Sans SC", sans-serif;
   margin-top: 1em;
   color: #ffffff;
-  width: 60%; }
+  font-weight: 100; }
   input:focus {
     outline: none; }
+  li > input {
+    width: 100%; }
+
+ol {
+  text-align: left;
+  width: 50%;
+  margin-left: 23%; }
+  ol li {
+    width: 100%; }
+
+ul {
+  color: #2dfffe; }
+  ul li {
+    display: inline-block;
+    padding: .2em .5em; }
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0; }
 
 .clearix:after {
   clear: both;
@@ -104,7 +140,9 @@ input {
 .card {
   vertical-align: middle;
   display: table-cell;
-  text-align: center; }
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%; }
 
 #title {
   background-image: url("images/card-title-bkg.png");
@@ -112,10 +150,23 @@ input {
   background-position: right;
   background-repeat: no-repeat;
   background-attachment: fixed; }
+  #title .info {
+    width: 50%;
+    margin-left: 8.33333%; }
+
+.item-row input {
+  margin-top: 0; }
 
 @media (max-width: 899px) {
-  #card-title {
-    background-image: none; } }
+  .card {
+    margin-right: 1%;
+    margin-left: 1%; }
+
+  #title {
+    background-image: none; }
+    #title .info {
+      width: 83.33333%;
+      margin-left: 8.33333%; } }
 .grid {
   overflow: hidden; }
 
