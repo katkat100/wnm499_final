@@ -44,18 +44,21 @@
 				// console.log(docHeight);
 				mainMargin += docHeight;
 				$(".atMain").css('marginTop',  -mainMargin);
-				console.log(mainMargin);
+				// console.log(mainMargin);
 			});
 
 //jobs
 			$(".farmer").click(function(){
 				addJob(farmer);
+				money = 1000;
 			});
 			$(".engineer").click(function(){
 				addJob(engineer);
+				money = 1500;
 			});
 			$(".moneybags").click(function(){
 				addJob(moneybags);
+				money = 2000;
 			});
 
 
@@ -98,9 +101,8 @@
 			});
 
 //shop
-			money = 2000;
-
-			// money = player[1];
+			// money = 2000;
+			// // money = parseInt(player[1]);
 			$("span.money").text(money);
 
 			$("input[name = 'parts']").change(function(){
@@ -123,6 +125,11 @@
 				costOfItems = 20 * numOfItems;
 				storeBilling();
 			});
+			$(".exitStore").click(function(){
+				player[1]= storeTotal;
+				money = storeTotal;
+				console.log(player);
+			})
 
 
 
@@ -165,7 +172,7 @@
 				<li><a href="#">FAQ</a></li>
 			</ul>
 		</nav>
-		<!-- <section>
+		<section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -213,11 +220,10 @@
 		</section>
 		<section>
 			<div class="card" id="money">
-				<h4 class="next memberName">Enter Store</h4>
 				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
 				<h4 class="next enterStore">Enter Store</h4>
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<div class="card store" id="stationShop">
 				<h2>Welcome to my store! Buy the best quality items in the galaxy here!</h2>
