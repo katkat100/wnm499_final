@@ -34,3 +34,13 @@ Night Before Halloween Song Here.
 Smell Ya Later.   
 Katie   
 ---
+
+# Captian's Log   
+_Nov 7, 2017_   
+_Module 10_   
+Late log...   
+Sorry   
+Finished setup this week.   
+Started counter.   
+Fare Thee Well.   
+Katie   
