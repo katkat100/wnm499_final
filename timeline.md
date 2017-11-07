@@ -11,10 +11,11 @@
 
 ## Week 10 (2017.11.08 - 2017.11.14)
 - Non-game page styling
-- Game checkpoints (planets, space stations, etc)
+- Random cycles/misfortunes
 
 ## Week 11 (2017.11.15 - 2017.11.21)
-- Random cycles/misfortunes
+- Game checkpoints (planets, space stations, etc)
+- Vectors
 
 ## Week 12 (2017.11.22 - 2017.11.28)
 - Game ending conditions
