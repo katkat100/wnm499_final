@@ -24,3 +24,6 @@
 - Restructured files
 - Moved game-specific styling into its own id so it wouldn't affect non-game pages
 - Started timeline document
+
+## Stardate 2017.11.07
+- Learned how to create alternate timelines
