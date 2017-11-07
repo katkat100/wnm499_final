@@ -37,17 +37,58 @@
 	text-align: center;
 	padding-left: 5%;
 	padding-right: 5%;
+	height: calc(100vh - 57px);
+	margin-top: 57px;
+}
+
+.program{
+	height: calc(100vh - 57px);
+	margin-top: 57px;
+}
+
+.gameInteraction{
+	margin-left: 5%;
+	margin-right: 5%;
+	border: 1px solid $color-sec;
+	border-radius: .15em;
+	padding: .2em .5em;
+	height: 200px;
+	background-color: darken($color-sec, 85%);
+	h3{
+		text-transform: initial;
+	}
+}
+
+.conditions{
+	
+	p{
+		margin-top: 0;
+		margin-bottom: 0;
+		font-size: 120%;
+	}
+}
+
+.options{
+	margin-top: 50vh;
+	& > h4{
+		border: 1px solid $color-tri;
+		display: block;
+		&:hover{
+			border: 1px solid $color-prime;
+
+		}
+	}
 }
 
 #title{
-	background-image: url("../../images/card-title-bkg.png");
+	background-image: url("../images/card-title-bkg.png");
 	background-size: cover;
 	background-position: right;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	
 	.info{
-		width: 50%;
+		width: 55%;
 		margin-left: 8.33333%
 	}
 
@@ -69,8 +110,8 @@
 
 @media (max-width: 899px) {
 	.card{
-		margin-right: 1%;
-		margin-left: 1%;
+		// margin-right: 1%;
+		// margin-left: 1%;
 	}
 
 	#title{
