@@ -31,6 +31,9 @@
 			var storeBill = 0;
 			var storeTotal = 0;
 
+			var startCounter = false;
+			var counter = 0;
+
 			var screenCount = 0;
 			var docHeight = $("body").height();
 			var mainMargin = 0;
@@ -138,10 +141,40 @@
 				player[10] = numOfAmmo;
 				money = storeTotal;
 				console.log(player);
+			});
 
-			})
+			$(".departure").click(function(){
+				startCounter = true;
+				console.log(startCounter);
+			});
+
+//counter
+			var diceOne = Math.floor( ( Math.random() * 10) + 1 );
+			var diceTwo = Math.floor( ( Math.random() * 10) + 1 );
+			var randomEncounterDice = Math.floor((diceOne + diceTwo)/2);
+			var encounter = 0;
+			console.log(diceOne);
+			console.log(diceTwo);
+			console.log(randomEncounter);
 
 
+			if(startCounter == true){
+				console.log("hello");
+				increment();
+				setInterval(increment, 1000);
+				console.log(counter);
+			}
+			
+			if(randomEncounterDice == diceOne || randomEncounterDice == diceTwo){
+				encounter = Math.floor( ( Math.random() * 10) + 1 );
+
+				if(encounter == 1){
+					//space pirates
+				} else if(encounter == 2){
+					//space whales crossing lose a day?
+				}
+			}
+			
 
 
 
@@ -169,6 +202,10 @@
 				console.log("total: " + storeTotal);
 				$("span.bill").text(storeBill);
 				$("span.total").text(storeTotal);
+			}
+
+			function increment(){
+				counter++;
 			}
 		});
 	</script>
@@ -290,7 +327,7 @@
 					<p>Rations: <span class="rations"></span></p>
 				</div>
 				<div class="options">
-					<h4 class="col-xs-6 col-md-3">Continue Traversing Space</h4>
+					<h4 class="col-xs-6 col-md-3">Continue Traversing</h4>
 					<h4 class="col-xs-6 col-md-3">Check Supplies</h4>
 					<h4 class="col-xs-6 col-md-3">Change Pace</h4>
 					<h4 class="col-xs-6 col-md-3">Change Food Rations</h4>
