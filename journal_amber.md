@@ -1,4 +1,3 @@
-# Module 8
 ## Stardate 2017.10.24
 - initialized project
 - we unanimously decided I should be group leader
@@ -19,3 +18,9 @@
 ## Stardate 2017.10.31
 - In class work
 - Made a new file
+
+## Stardate 2017.11.06
+- Started home page
+- Restructured files
+- Moved game-specific styling into its own id so it wouldn't affect non-game pages
+- Started timeline document
