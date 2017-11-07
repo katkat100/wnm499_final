@@ -4,5 +4,5 @@ The year is 2148, 300 years after pioneers conquered the Old West. SOL-3 (former
 You and your family are planning a mission to help colonize THX-11. The earliest forerunners have already arrived, and it's time for the second wave of colonists. The path is dangerous, however. Will you and your family make it to THX-11 alive?
 
 ## Repositories
-Amber: https://github.com/amberslovick/wnm499_final.git
-Katie: https://github.com/katkat100/wnm499_final.git
+- Amber: https://github.com/amberslovick/wnm499_final.git
+- Katie: https://github.com/katkat100/wnm499_final.git
