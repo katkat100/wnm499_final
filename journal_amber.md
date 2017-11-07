@@ -26,4 +26,4 @@
 - Started timeline document
 
 ## Stardate 2017.11.07
-- Created alternate timelines
+- Learned how to create alternate timelines
