@@ -15,9 +15,10 @@ body {
   color: #ffffff;
   background-color: #000f1e;
   font-size: 100%;
-  font-weight: 100;
-  overflow: hidden;
-  height: 100vh; }
+  font-weight: 100; }
+  body#game {
+    overflow: hidden;
+    height: 100vh; }
 
 a {
   color: #ffffff;
@@ -51,8 +52,8 @@ h2 {
   font-size: 300%;
   font-weight: 700;
   text-shadow: 0 0 15px #2dfffe;
-  margin-bottom: .3em;
-  margin-top: .3em;
+  margin-bottom: .15em;
+  margin-top: .15em;
   text-transform: uppercase; }
 
 h3 {
@@ -112,7 +113,9 @@ ul {
 nav {
   position: fixed;
   top: 0;
-  left: 0; }
+  left: 10px; }
+  nav ul {
+    padding-left: 0; }
 
 .clearix:after {
   clear: both;
@@ -142,26 +145,47 @@ nav {
   display: table-cell;
   text-align: center;
   padding-left: 5%;
-  padding-right: 5%; }
+  padding-right: 5%;
+  height: calc(100vh - 57px);
+  margin-top: 57px; }
+
+.program {
+  height: calc(100vh - 57px);
+  margin-top: 57px; }
+
+.gameInteraction {
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px solid #ffffff;
+  border-radius: .15em;
+  padding: .2em .5em;
+  height: 200px;
+  background-color: #262626; }
+  .gameInteraction h3 {
+    text-transform: initial; }
+
+.options {
+  margin-top: 50vh; }
+  .options > h4 {
+    border: 1px solid #000f1e;
+    display: block; }
+    .options > h4:hover {
+      border: 1px solid #2dfffe; }
 
 #title {
-  background-image: url("images/card-title-bkg.png");
+  background-image: url("../images/card-title-bkg.png");
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
   background-attachment: fixed; }
   #title .info {
-    width: 50%;
+    width: 55%;
     margin-left: 8.33333%; }
 
 .item-row input {
   margin-top: 0; }
 
 @media (max-width: 899px) {
-  .card {
-    margin-right: 1%;
-    margin-left: 1%; }
-
   #title {
     background-image: none; }
     #title .info {

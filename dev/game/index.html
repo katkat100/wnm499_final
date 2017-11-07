@@ -102,7 +102,6 @@
 			});
 
 //shop
-//not really working? Wont minus when make accident? like change number from 2 to 3 it will sitll count the 2?
 			money = 2000;
 			// // money = parseInt(player[1]);
 			$("span.money").text(money);
@@ -184,7 +183,7 @@
 				<li><a href="#">FAQ</a></li>
 			</ul>
 		</nav>
-		<section>
+		<!-- <section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -269,18 +268,36 @@
 					</div>
 				</div>
 
-				<h4 class="next exitStore">Exit Store</h4>
+				<h4 class="next exitStore">Purchase Items & Exit Store</h4>
+			</div>
+		</section> -->
+		<section>
+			<div class="program" id="departure">
+				<div class="gameInteraction">
+					<h3>You have a long journey ahead of you. Good Luck.</h3>
+				</div>
+				<div class="options row flex">
+					<h4 class="next departure col-xs-12">Depart</h4>
+				</div>
 			</div>
 		</section>
 		<section>
-			<div class="card" id="departure">
-				<h3>You have a long journey ahead of you. Good Luck.</h3>
-				<h4 class="next departure">Depart</h4>
-			</div>
-		</section>
-		<section>
-			<div class="card">
-				
+			<div class="program">
+				<div class="gameInteraction conditions">
+					<p>Weather: <span class="weather"></span></p>
+					<p>Pace: <span class="pace"></span></p>
+					<p>Health: <span class="health"></span>/5</p>
+					<p>Rations: <span class="rations"></span></p>
+				</div>
+				<div class="options">
+					<h4 class="col-xs-6 col-md-3">Continue Traversing Space</h4>
+					<h4 class="col-xs-6 col-md-3">Check Supplies</h4>
+					<h4 class="col-xs-6 col-md-3">Change Pace</h4>
+					<h4 class="col-xs-6 col-md-3">Change Food Rations</h4>
+					<!-- <h4 class="col-xs-6">Attempt to Trade</h4> -->
+					<!-- <h4 class="col-xs-6">Buy Supplies</h4> -->
+					
+				</div>
 			</div>
 		</section>
 	</div>
