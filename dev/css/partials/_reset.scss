@@ -16,8 +16,11 @@ body {
 	background-color: $color-tri;
 	font-size: 100%;
 	font-weight: 100;
-	overflow: hidden;
-	height: 100vh;
+
+	&#game {
+		overflow: hidden;
+		height: 100vh;
+	}
 }
 
 a{
