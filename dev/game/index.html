@@ -42,6 +42,40 @@
 			// console.log(engineer);
 			// console.log(moneybags);
 
+//functions
+			function addJob(job){
+				player = $.merge([],job);
+				console.log(player);
+				$("span.money").text(player[1]);
+			};
+
+			function addMembers(num){
+				var inputMember = $("input[name = " + num + "]").val();
+				var name  = [num = inputMember];
+				player = $.merge(player,name);
+			}
+
+			function storeBilling(bill){
+				storeBill -= bill;
+				storeBill += costOfItems;
+				storeTotal = money - storeBill;
+				console.log("bill: " + storeBill);
+				console.log("total: " + storeTotal);
+				$("span.bill").text(storeBill);
+				$("span.total").text(storeTotal);
+			}
+
+			// function step(){
+			// 	console.log(counter);
+			// 	counter++;
+			// 	console.log(counter);
+			// 	if(counter > 129600) t = 0;
+			// 	window.requestAnimationFrame(step);
+
+			// 	//20 chances for randomness
+			// }
+
+
 //next
 			$(".next").click(function(){
 				screenCount++;
@@ -144,36 +178,24 @@
 			});
 
 			$(".departure").click(function(){
+				counter = 0;
 				startCounter = true;
 				console.log(startCounter);
 			});
 
 //counter
-			var diceOne = Math.floor( ( Math.random() * 10) + 1 );
-			var diceTwo = Math.floor( ( Math.random() * 10) + 1 );
+			step();
+			//Math.ceil rounds up
+			var diceOne = Math.ceil( ( Math.random() * 10) );
+			var diceTwo = Math.ceil( ( Math.random() * 10) );
 			var randomEncounterDice = Math.floor((diceOne + diceTwo)/2);
 			var encounter = 0;
 			console.log(diceOne);
 			console.log(diceTwo);
-			console.log(randomEncounter);
+			console.log(randomEncounterDice);
 
-
-			if(startCounter == true){
-				console.log("hello");
-				increment();
-				setInterval(increment, 1000);
-				console.log(counter);
-			}
 			
-			if(randomEncounterDice == diceOne || randomEncounterDice == diceTwo){
-				encounter = Math.floor( ( Math.random() * 10) + 1 );
-
-				if(encounter == 1){
-					//space pirates
-				} else if(encounter == 2){
-					//space whales crossing lose a day?
-				}
-			}
+			
 			
 
 
@@ -181,32 +203,7 @@
 
 
 
-//functions
-			function addJob(job){
-				player = $.merge([],job);
-				console.log(player);
-				$("span.money").text(player[1]);
-			};
 
-			function addMembers(num){
-				var inputMember = $("input[name = " + num + "]").val();
-				var name  = [num = inputMember];
-				player = $.merge(player,name);
-			}
-
-			function storeBilling(bill){
-				storeBill -= bill;
-				storeBill += costOfItems;
-				storeTotal = money - storeBill;
-				console.log("bill: " + storeBill);
-				console.log("total: " + storeTotal);
-				$("span.bill").text(storeBill);
-				$("span.total").text(storeTotal);
-			}
-
-			function increment(){
-				counter++;
-			}
 		});
 	</script>
 
