@@ -86,6 +86,11 @@
 				console.log("total: " + storeTotal);
 				$("span.bill").text(storeBill);
 				$("span.total").text(storeTotal);
+				if(storeTotal >= 0){
+					$(".exitStore").show();
+				} else if(storeTotal < 0){
+					$(".exitStore").hide();
+				}
 			}
 
 			// function step(){
@@ -195,6 +200,7 @@
 				oldBillAmmo = costOfItems;
 			});
 			$(".exitStore").click(function(){
+
 				player[1] = storeTotal;
 				player[8] = numOfParts;
 				player[9] = numOfFuel;
@@ -215,6 +221,7 @@
 				$("span.health").text(health);
 				$("span.rations").text(rations);
 				$("span.ammo").text(ammo);
+				$(".options").show();
 			});
 
 // //counter
@@ -237,6 +244,28 @@ var role = 1;
 				ranEnDice = Math.floor((diceOne + diceTwo)/2);
 				if(ranEnDice == diceOne || ranEnDice == diceTwo){
 					encounter = Math.ceil( ( Math.random() * 10) );
+				}
+
+				if(encounter == 1){
+					$(".progressConsole").append("<p>ARRRRRRRGH! Pirates have stormed the ship!</p>");
+				} else if(encounter == 2){
+					$(".progressConsole").append("<p>Space whales pass by and sooth your soul</p>");
+				} else if(encounter == 3){
+					$(".progressConsole").append("<p>Woaahhh! Woaahhh! Time Warp sends you back three days!</p>");
+				} else if(encounter == 4){
+					$(".progressConsole").append("<p>You see poop in space. That was weird.</p>");
+				} else if(encounter == 5){
+					$(".progressConsole").append("<p>Asteroids fly by but you make it out unscathed! Thank the space lords!</p>");
+				} else if(encounter == 6){
+					$(".progressConsole").append("<p>" + player[4] + " gets space mites and dies!</p>");
+				} else if(encounter == 7){
+					$(".progressConsole").append("<p>Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.</p>");
+				} else if(encounter == 8){
+					$(".progressConsole").append("<p>Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.</p>");
+				} else if(encounter == 9){
+					$(".progressConsole").append("<p>You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!</p>");
+				} else if(encounter == 10){
+					$(".progressConsole").append("<p>You wish on a falling star. What a beautiful time.</p>");
 				}
 
 				conlog("role:" + role);
@@ -270,7 +299,7 @@ var role = 1;
 				<li><a href="#">FAQ</a></li>
 			</ul>
 		</nav>
-		<!-- <section>
+		<section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -367,7 +396,7 @@ var role = 1;
 					<h4 class="next departure col-xs-12">Depart</h4>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<div class="program">
 				<div class="gameInteraction conditions">
@@ -382,7 +411,7 @@ var role = 1;
 				</div>
 				<div class="progressConsole">
 				</div>
-				<div class="options">
+				<div class="options travel">
 					<h4 class="traverse col-xs-6 col-md-3">Continue Traversing</h4>
 					<h4 class="check-supply col-xs-6 col-md-3">Check Supplies</h4>
 					<h4 class="check-pace col-xs-6 col-md-3">Change Pace</h4>
