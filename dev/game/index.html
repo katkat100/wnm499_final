@@ -13,6 +13,9 @@
 
 	<script>
 		$(function(){
+			function conlog(print){
+				console.log(print);
+			}
 			var player = [];
 
 			var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
@@ -38,6 +41,20 @@
 			var docHeight = $("body").height();
 			var mainMargin = 0;
 
+			var weather = "perfect";
+			var weatherOpt = ["heated", "freezing", "fair", "perfect"];
+			var pace = "brisk";
+			var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
+			var health = 5;
+			var rations = 0;
+			var ammo = 0;
+			var day = 1;
+
+			var diceOne = 0;
+			var diceTwo = 0;
+			var ranEnDice = 0;
+			var encounter = 0;
+
 			// console.log(farmer);
 			// console.log(engineer);
 			// console.log(moneybags);
@@ -53,6 +70,12 @@
 				var inputMember = $("input[name = " + num + "]").val();
 				var name  = [num = inputMember];
 				player = $.merge(player,name);
+			}
+
+			function updateMonth(){
+				$("span.month").text(player[7]);
+				$("span.day").text(day);
+				console.log(player[7]);
 			}
 
 			function storeBilling(bill){
@@ -126,16 +149,20 @@
 
 //month
 			$(".april").click(function(){
-
+				player[7] = 'April';
+				updateMonth();
 			});
 			$(".may").click(function(){
-
+				player[7] = 'May';
+				updateMonth();
 			});
 			$(".june").click(function(){
-
+				player[7] = 'June';
+				updateMonth();
 			});
 			$(".july").click(function(){
-
+				player[7] = 'July';
+				updateMonth();
 			});
 
 //shop
@@ -168,11 +195,13 @@
 				oldBillAmmo = costOfItems;
 			});
 			$(".exitStore").click(function(){
-				player[1]= storeTotal;
-				player[7] = numOfParts;
-				player[8] = numOfFuel;
-				player[9] = numOfFood;
-				player[10] = numOfAmmo;
+				player[1] = storeTotal;
+				player[8] = numOfParts;
+				player[9] = numOfFuel;
+				player[10] = numOfFood;
+				rations = player[10] * 100;
+				player[11] = numOfAmmo;
+				ammo = player[11] * 2;
 				money = storeTotal;
 				console.log(player);
 			});
@@ -181,19 +210,43 @@
 				counter = 0;
 				startCounter = true;
 				console.log(startCounter);
+				$("span.weather").text(weather);
+				$("span.pace").text(pace);
+				$("span.health").text(health);
+				$("span.rations").text(rations);
+				$("span.ammo").text(ammo);
 			});
 
-//counter
-			step();
-			//Math.ceil rounds up
-			var diceOne = Math.ceil( ( Math.random() * 10) );
-			var diceTwo = Math.ceil( ( Math.random() * 10) );
-			var randomEncounterDice = Math.floor((diceOne + diceTwo)/2);
-			var encounter = 0;
-			console.log(diceOne);
-			console.log(diceTwo);
-			console.log(randomEncounterDice);
+// //counter
+			
+// 			//Math.ceil rounds up
+// 			var diceOne = Math.ceil( ( Math.random() * 10) );
+// 			var diceTwo = Math.ceil( ( Math.random() * 10) );
+// 			var randomEncounterDice = Math.floor((diceOne + diceTwo)/2);
+// 			var encounter = 0;
+// 			console.log(diceOne);
+// 			console.log(diceTwo);
+// 			console.log(randomEncounterDice);
+var role = 1;
 
+//day
+			$(".traverse").click(function(){
+				day++;
+				diceOne = Math.ceil( ( Math.random() * 10) );
+				diceTwo = Math.ceil( ( Math.random() * 10) );
+				ranEnDice = Math.floor((diceOne + diceTwo)/2);
+				if(ranEnDice == diceOne || ranEnDice == diceTwo){
+					encounter = Math.ceil( ( Math.random() * 10) );
+				}
+
+				conlog("role:" + role);
+				conlog(diceOne);
+				conlog(diceTwo);
+				conlog(ranEnDice);
+				conlog(encounter);
+				encounter = 0;
+				role++;
+			});
 			
 			
 			
@@ -304,7 +357,7 @@
 
 				<h4 class="next exitStore">Purchase Items & Exit Store</h4>
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<div class="program" id="departure">
 				<div class="gameInteraction">
@@ -314,20 +367,26 @@
 					<h4 class="next departure col-xs-12">Depart</h4>
 				</div>
 			</div>
-		</section>
+		</section> -->
 		<section>
 			<div class="program">
 				<div class="gameInteraction conditions">
 					<p>Weather: <span class="weather"></span></p>
 					<p>Pace: <span class="pace"></span></p>
 					<p>Health: <span class="health"></span>/5</p>
-					<p>Rations: <span class="rations"></span></p>
+					<p>Rations: <span class="rations"></span>lbs</p>
+					<p>Ammo: <span class="ammo"></span> Energy Pods</p>
+					<div class="dateCounter">
+						<p><span class="month"></span> <span class="day"></span>
+					</div>
+				</div>
+				<div class="progressConsole">
 				</div>
 				<div class="options">
-					<h4 class="col-xs-6 col-md-3">Continue Traversing</h4>
-					<h4 class="col-xs-6 col-md-3">Check Supplies</h4>
-					<h4 class="col-xs-6 col-md-3">Change Pace</h4>
-					<h4 class="col-xs-6 col-md-3">Change Food Rations</h4>
+					<h4 class="traverse col-xs-6 col-md-3">Continue Traversing</h4>
+					<h4 class="check-supply col-xs-6 col-md-3">Check Supplies</h4>
+					<h4 class="check-pace col-xs-6 col-md-3">Change Pace</h4>
+					<h4 class="check-rations col-xs-6 col-md-3">Change Food Rations</h4>
 					<!-- <h4 class="col-xs-6">Attempt to Trade</h4> -->
 					<!-- <h4 class="col-xs-6">Buy Supplies</h4> -->
 					
