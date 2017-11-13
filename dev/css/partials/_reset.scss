@@ -24,10 +24,17 @@ body {
 }
 
 a{
-	color: $color-sec;
+	color: $color-prime;
 	text-decoration: none;
-	// border-bottom: 2px solid $color-tri;
-	border-radius: .15em;
+	//border-bottom: 1px solid $color-prime;
+	//border-radius: .15em;
+	text-shadow: 0 0 0 transparent;
+	transition: all 300ms;
+
+	nav & {
+		//border-bottom: 0px;
+		color: $color-sec;
+	}
 
 	&:hover{
 		color: $color-prime;
