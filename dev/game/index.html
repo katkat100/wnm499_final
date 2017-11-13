@@ -237,6 +237,20 @@
 var role = 1;
 
 //day
+player = [
+	"Moneybags",
+	1390,
+	"Capitano",
+	"Clemence",
+	"Parnell",
+	"Oswyn",
+	"Gilbert",
+	"July",
+	3,
+	3,
+	3,
+	3
+]
 			$(".traverse").click(function(){
 				day++;
 				diceOne = Math.ceil( ( Math.random() * 10) );
@@ -246,7 +260,9 @@ var role = 1;
 					encounter = Math.ceil( ( Math.random() * 10) );
 				}
 
-				if(encounter == 1){
+				if(encounter == 0){
+					$(".progressConsole").append("<p>You travel a days worth.</p>");
+				} else if(encounter == 1){
 					$(".progressConsole").append("<p>ARRRRRRRGH! Pirates have stormed the ship!</p>");
 				} else if(encounter == 2){
 					$(".progressConsole").append("<p>Space whales pass by and sooth your soul</p>");
@@ -267,6 +283,10 @@ var role = 1;
 				} else if(encounter == 10){
 					$(".progressConsole").append("<p>You wish on a falling star. What a beautiful time.</p>");
 				}
+
+				$(".progressConsole").stop().animate({
+					scrollTop: $(".progressConsole")[0].scrollHeight
+				});
 
 				conlog("role:" + role);
 				conlog(diceOne);
@@ -299,7 +319,7 @@ var role = 1;
 				<li><a href="#">FAQ</a></li>
 			</ul>
 		</nav>
-		<section>
+		<!-- <section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -386,7 +406,7 @@ var role = 1;
 
 				<h4 class="next exitStore">Purchase Items & Exit Store</h4>
 			</div>
-		</section>
+		</section> -->
 		<section>
 			<div class="program" id="departure">
 				<div class="gameInteraction">
@@ -403,14 +423,16 @@ var role = 1;
 					<p>Weather: <span class="weather"></span></p>
 					<p>Pace: <span class="pace"></span></p>
 					<p>Health: <span class="health"></span>/5</p>
-					<p>Rations: <span class="rations"></span>lbs</p>
+					<p>Rations: <span class="rations"></span> lbs</p>
 					<p>Ammo: <span class="ammo"></span> Energy Pods</p>
 					<div class="dateCounter">
 						<p><span class="month"></span> <span class="day"></span>
 					</div>
 				</div>
+
 				<div class="progressConsole">
 				</div>
+				
 				<div class="options travel">
 					<h4 class="traverse col-xs-6 col-md-3">Continue Traversing</h4>
 					<h4 class="check-supply col-xs-6 col-md-3">Check Supplies</h4>

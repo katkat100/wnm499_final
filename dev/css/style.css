@@ -194,6 +194,10 @@ nav {
 .item-row input {
   margin-top: 0; }
 
+.progressConsole {
+  height: 55%;
+  overflow: auto; }
+
 @media (max-width: 899px) {
   #title {
     background-image: none; }
