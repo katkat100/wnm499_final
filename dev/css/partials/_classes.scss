@@ -114,6 +114,17 @@
 	margin-top: 10px;
 	height: 55%;
 	overflow:auto;
+
+	&::-webkit-scrollbar{
+		background-color: lighten($color-tri,10%);
+		width: .3em;
+	}
+
+	&::-webkit-scrollbar-thumb{
+		background-color: $color-prime;
+		border-radius: 5px;
+
+	}
 }
 
 

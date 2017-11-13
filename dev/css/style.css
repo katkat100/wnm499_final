@@ -198,6 +198,12 @@ nav {
   margin-top: 10px;
   height: 55%;
   overflow: auto; }
+  .progressConsole::-webkit-scrollbar {
+    background-color: #002951;
+    width: .3em; }
+  .progressConsole::-webkit-scrollbar-thumb {
+    background-color: #2dfffe;
+    border-radius: 5px; }
 
 @media (max-width: 899px) {
   #title {
