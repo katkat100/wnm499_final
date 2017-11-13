@@ -71,11 +71,50 @@
 				var name  = [num = inputMember];
 				player = $.merge(player,name);
 			}
-
+player[7] = "April";
 			function updateMonth(){
 				$("span.month").text(player[7]);
 				$("span.day").text(day);
-				console.log(player[7]);
+				// console.log(player[7]);
+				day++;
+				if(player[7] == "April" && day > 30){
+					player[7] = "May";
+					day = 1;
+				} else if(player[7] == "May" && day > 31){
+					player[7] = "June";
+					day = 1;
+				} else if(player[7] == "June" && day > 30){
+					player[7] = "July";
+					day = 1;
+				} else if(player[7] == "July" && day > 31){
+					player[7] = "August";
+					day = 1;
+				} else if(player[7] == "August" && day > 31){
+					player[7] = "September";
+					day = 1;
+				} else if(player[7] == "September" && day > 30){
+					player[7] = "October";
+					day = 1;
+				} else if(player[7] == "October" && day > 31){
+					player[7] = "November";
+					day = 1;
+				} else if(player[7] == "November" && day > 30){
+					player[7] = "Decmeber";
+					day = 1;
+				} else if(player[7] == "Decmeber" && day > 31){
+					player[7] = "January";
+					day = 1;
+				} else if(player[7] == "January" && day > 31){
+					player[7] = "Febuary";
+					day = 1;
+				} else if(player[7] == "Febuary" && day > 28){
+					player[7] = "March";
+					day = 1;
+				} else if(player[7] == "March" && day > 31){
+					player[7] = "April";
+					day = 1;
+				} 
+				conlog("day:" + day);
 			}
 
 			function storeBilling(bill){
@@ -102,6 +141,32 @@
 
 			// 	//20 chances for randomness
 			// }
+
+			function encounterSituations(){
+				if(encounter == 0){
+					$(".progressConsole").append("<p>You travel a days worth.</p>");
+				} else if(encounter == 1){
+					$(".progressConsole").append("<p>ARRRRRRRGH! Pirates have stormed the ship!</p>");
+				} else if(encounter == 2){
+					$(".progressConsole").append("<p>Space whales pass by and sooth your soul</p>");
+				} else if(encounter == 3){
+					$(".progressConsole").append("<p>Woaahhh! Woaahhh! Time Warp sends you back three days!</p>");
+				} else if(encounter == 4){
+					$(".progressConsole").append("<p>You see poop in space. That was weird.</p>");
+				} else if(encounter == 5){
+					$(".progressConsole").append("<p>Asteroids fly by but you make it out unscathed! Thank the space lords!</p>");
+				} else if(encounter == 6){
+					$(".progressConsole").append("<p>" + player[4] + " gets space mites and dies!</p>");
+				} else if(encounter == 7){
+					$(".progressConsole").append("<p>Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.</p>");
+				} else if(encounter == 8){
+					$(".progressConsole").append("<p>Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.</p>");
+				} else if(encounter == 9){
+					$(".progressConsole").append("<p>You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!</p>");
+				} else if(encounter == 10){
+					$(".progressConsole").append("<p>You wish on a falling star. What a beautiful time.</p>");
+				}
+			}
 
 
 //next
@@ -237,22 +302,11 @@
 var role = 1;
 
 //day
-player = [
-	"Moneybags",
-	1390,
-	"Capitano",
-	"Clemence",
-	"Parnell",
-	"Oswyn",
-	"Gilbert",
-	"July",
-	3,
-	3,
-	3,
-	3
-]
+player[7] = "April";
 			$(".traverse").click(function(){
-				day++;
+				updateMonth();
+				
+				
 				diceOne = Math.ceil( ( Math.random() * 10) );
 				diceTwo = Math.ceil( ( Math.random() * 10) );
 				ranEnDice = Math.floor((diceOne + diceTwo)/2);
@@ -260,29 +314,7 @@ player = [
 					encounter = Math.ceil( ( Math.random() * 10) );
 				}
 
-				if(encounter == 0){
-					$(".progressConsole").append("<p>You travel a days worth.</p>");
-				} else if(encounter == 1){
-					$(".progressConsole").append("<p>ARRRRRRRGH! Pirates have stormed the ship!</p>");
-				} else if(encounter == 2){
-					$(".progressConsole").append("<p>Space whales pass by and sooth your soul</p>");
-				} else if(encounter == 3){
-					$(".progressConsole").append("<p>Woaahhh! Woaahhh! Time Warp sends you back three days!</p>");
-				} else if(encounter == 4){
-					$(".progressConsole").append("<p>You see poop in space. That was weird.</p>");
-				} else if(encounter == 5){
-					$(".progressConsole").append("<p>Asteroids fly by but you make it out unscathed! Thank the space lords!</p>");
-				} else if(encounter == 6){
-					$(".progressConsole").append("<p>" + player[4] + " gets space mites and dies!</p>");
-				} else if(encounter == 7){
-					$(".progressConsole").append("<p>Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.</p>");
-				} else if(encounter == 8){
-					$(".progressConsole").append("<p>Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.</p>");
-				} else if(encounter == 9){
-					$(".progressConsole").append("<p>You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!</p>");
-				} else if(encounter == 10){
-					$(".progressConsole").append("<p>You wish on a falling star. What a beautiful time.</p>");
-				}
+				encounterSituations();
 
 				$(".progressConsole").stop().animate({
 					scrollTop: $(".progressConsole")[0].scrollHeight

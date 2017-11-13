@@ -195,6 +195,7 @@ nav {
   margin-top: 0; }
 
 .progressConsole {
+  margin-top: 10px;
   height: 55%;
   overflow: auto; }
 
