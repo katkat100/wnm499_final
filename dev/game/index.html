@@ -142,29 +142,79 @@ player[7] = "April";
 			// 	//20 chances for randomness
 			// }
 
+			function addToConsole(text){
+				$(".progressConsole").append("<p>" + text + "</p>");
+			}
+
 			function encounterSituations(){
 				if(encounter == 0){
-					$(".progressConsole").append("<p>You travel a days worth.</p>");
+					addToConsole("You travel a days worth");
+					//when have time do animation of getting closer to location
 				} else if(encounter == 1){
-					$(".progressConsole").append("<p>ARRRRRRRGH! Pirates have stormed the ship!</p>");
+					addToConsole("ARRRRRRRGH! Pirates have stormed the ship!");
+					addToConsole("The space pirates demand §500 or else!");
+					addToConsole("What will you do?");
+					$(".travel").hide();
+					$(".twoChoices .one").text("Attack!");
+					$(".twoChoices .two").text("Give In");
+					$(".twoChoices").show();
+					$(".twoChoices .one").click(function(){
+						if(ammo > 0){
+							diceOne = Math.ceil( ( Math.random() * 10) );
+							conlog("Dice roll:" + diceOne);
+							if(diceOne >= 6){
+								addToConsole("Your gunslinging was superior to the space pirates and they run away!");
+								$(".travel").show();
+								$(".battle").hide();
+							} else {
+								addToConsole("The space pirates draw their laser guns before you're able to!");
+								addToConsole("They loot §500 and 100lbs of food because of the trouble you caused.");
+							}
+						} else {
+							addToConsole("You have no ammo! What will you do?");
+							$(".twoChoices .one").text("Bluff!");
+							$(".twoChoices .one").addClass("bluff");
+							$(".twoChoices .bluff").removeClass("one");
+
+						}
+						$(".twoChoices .bluff").click(function(){
+							diceOne = Math.ceil( ( Math.random() * 10) );
+							if( diceOne < 6){
+								addToConsole("They believe you and back off only taking §100.");
+								
+								$(".twoChoices .bluff").addClass("one").removeClass("bluff");
+								$(".twoChoices").hide();
+								$(".travel").show();
+							} else{
+								addToConsole("They laugh when they realize there's no ammo and take §700 instead.");
+								$(".twoChoices .bluff").addClass("one").removeClass("bluff");
+								$(".twoChoices").hide();
+								$(".travel").show();
+							}
+						});
+
+					});
+
+
+
 				} else if(encounter == 2){
-					$(".progressConsole").append("<p>Space whales pass by and sooth your soul</p>");
+					addToConsole("Space whales pass by and sooth your soul");
 				} else if(encounter == 3){
-					$(".progressConsole").append("<p>Woaahhh! Woaahhh! Time Warp sends you back three days!</p>");
+					addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 				} else if(encounter == 4){
-					$(".progressConsole").append("<p>You see poop in space. That was weird.</p>");
+					addToConsole("You see poop in space. That was weird.");
 				} else if(encounter == 5){
-					$(".progressConsole").append("<p>Asteroids fly by but you make it out unscathed! Thank the space lords!</p>");
+					addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
 				} else if(encounter == 6){
-					$(".progressConsole").append("<p>" + player[4] + " gets space mites and dies!</p>");
+					addToConsole(player[4] + " gets space mites and dies!");
 				} else if(encounter == 7){
-					$(".progressConsole").append("<p>Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.</p>");
+					addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.");
 				} else if(encounter == 8){
-					$(".progressConsole").append("<p>Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.</p>");
+					addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
 				} else if(encounter == 9){
-					$(".progressConsole").append("<p>You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!</p>");
+					addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 				} else if(encounter == 10){
-					$(".progressConsole").append("<p>You wish on a falling star. What a beautiful time.</p>");
+					addToConsole("You wish on a falling star. What a beautiful time.");
 				}
 			}
 
@@ -312,7 +362,7 @@ player[7] = "April";
 				if(ranEnDice == diceOne || ranEnDice == diceTwo){
 					encounter = Math.ceil( ( Math.random() * 10) );
 				}
-
+				encounter = 1;
 				encounterSituations();
 
 				$(".progressConsole").stop().animate({
@@ -454,6 +504,7 @@ player[7] = "April";
 					<p>Weather: <span class="weather"></span></p>
 					<p>Pace: <span class="pace"></span></p>
 					<p>Health: <span class="health"></span>/5</p>
+					<p>Money: §<span class="money"></span></p>
 					<p>Rations: <span class="rations"></span> lbs</p>
 					<p>Ammo: <span class="ammo"></span> Energy Pods</p>
 					<div class="dateCounter">
@@ -472,6 +523,10 @@ player[7] = "April";
 					<!-- <h4 class="col-xs-6">Attempt to Trade</h4> -->
 					<!-- <h4 class="col-xs-6">Buy Supplies</h4> -->
 					
+				</div>
+				<div class="twoChoices options">
+					<h4 class="one col-xs-6"></h4>
+					<h4 class="two col-xs-6"></h4>
 				</div>
 			</div>
 		</section>

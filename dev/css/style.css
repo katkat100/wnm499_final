@@ -181,6 +181,10 @@ nav {
     .options > h4:hover {
       border: 1px solid #2dfffe; }
 
+.twoChoices {
+  display: none;
+  margin-top: 0; }
+
 #title {
   background-image: url("../images/card-title-bkg.png");
   background-size: cover;
