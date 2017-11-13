@@ -42,7 +42,6 @@ h1 {
   padding: .05em .2em;
   border-radius: .15em;
   margin-bottom: .3em;
-  margin-bottom: .3em;
   text-shadow: 0 0 15px #2dfffe;
   box-shadow: 0 0 15px #2dfffe; }
 
@@ -733,5 +732,29 @@ nav {
   background-color: #eee;
   border-radius: 4px;
   height: 100%; }
+
+.content > section {
+  padding-top: 100px;
+  margin-bottom: -100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px; }
+  .content > section > p {
+    max-width: 600px; }
+
+.button {
+  font-family: "Jura", sans-serif;
+  color: #2dfffe;
+  font-size: 200%;
+  font-weight: 700;
+  border: 5px solid #2dfffe;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: .05em .2em;
+  border-radius: .3em;
+  margin-bottom: .3em;
+  margin-bottom: .3em;
+  text-shadow: 0 0 15px #2dfffe;
+  box-shadow: 0 0 15px #2dfffe; }
 
 /*# sourceMappingURL=style.css.map */
