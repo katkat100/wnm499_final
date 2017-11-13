@@ -769,6 +769,7 @@ nav {
   transition: all 500ms; }
   .button:hover {
     text-shadow: 0 0 15px #2dfffe;
-    box-shadow: 0 0 15px #2dfffe; }
+    box-shadow: 0 0 15px #2dfffe;
+    color: #2dfffe; }
 
 /*# sourceMappingURL=style.css.map */
