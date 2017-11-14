@@ -171,11 +171,26 @@ nav {
 
 .options {
   margin-top: 50vh; }
+  .options.travel {
+    position: absolute;
+    bottom: 0;
+    display: none; }
   .options > h4 {
     border: 1px solid #000f1e;
     display: block; }
     .options > h4:hover {
       border: 1px solid #2dfffe; }
+
+.twoChoices, .oneChoices {
+  display: none;
+  margin-top: 0; }
+
+.change-pace, .change-rations {
+  display: none; }
+
+.h4Ignore:hover {
+  color: #ffffff;
+  cursor: inherit; }
 
 #title {
   background-image: url("../images/card-title-bkg.png");
@@ -189,6 +204,17 @@ nav {
 
 .item-row input {
   margin-top: 0; }
+
+.progressConsole {
+  margin-top: 10px;
+  height: 55%;
+  overflow: auto; }
+  .progressConsole::-webkit-scrollbar {
+    background-color: #002951;
+    width: .3em; }
+  .progressConsole::-webkit-scrollbar-thumb {
+    background-color: #2dfffe;
+    border-radius: 5px; }
 
 @media (max-width: 899px) {
   #title {
