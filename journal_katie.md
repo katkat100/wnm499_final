@@ -44,3 +44,12 @@ Finished setup this week.
 Started counter.   
 Fare Thee Well.   
 Katie   
+
+# Captian's Log  
+_Nov 14, 2017_   
+_Module 11_   
+Late Log...   
+Got rations and pace changes working.   
+Got pirate encounter sorta working.   
+Toodle Loo.   
+Katie
