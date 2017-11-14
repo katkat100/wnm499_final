@@ -26,4 +26,8 @@
 - Started timeline document
 
 ## Stardate 2017.11.07
-- Learned how to create and merge alternate timelines
+- Learned how to create and merge alternate timelines in Git
+
+## Stardate 2017.11.13
+- Styled Overview (Index), About, and FAQ pages
+- Began writing content for About page

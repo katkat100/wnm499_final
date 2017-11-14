@@ -24,14 +24,21 @@ body {
 }
 
 a{
-	color: $color-sec;
+	color: $color-prime;
 	text-decoration: none;
-	// border-bottom: 2px solid $color-tri;
-	border-radius: .15em;
+	//border-bottom: 1px solid $color-prime;
+	//border-radius: .15em;
+	text-shadow: 0 0 0 transparent;
+	transition: all 500ms ease-in-out;
 
-	&:hover{
-		color: $color-prime;
-		text-shadow: 0 0 15px $color-prime;
+	nav & {
+		//border-bottom: 0px;
+		//color: $color-sec;
+	}
+
+	&:hover, &:focus {
+		color: $color-highlight;
+		text-shadow: 0 0 20px $color-highlight;
 		// border-bottom-color:$color-prime;
 	}
 }
@@ -52,7 +59,7 @@ h1{
 	padding: .05em .2em;
 	border-radius: .15em;
 	margin-bottom: .3em;
-	margin-bottom: .3em;
+	//margin-bottom: .3em;
 	text-shadow: 0 0 15px $color-prime;
 	box-shadow: 0 0 15px $color-prime;
 }
