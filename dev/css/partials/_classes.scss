@@ -85,10 +85,24 @@
 		}
 	}
 }
+// .travel, .progressConsole{
+// 	display: none;
+// }
 
-.twoChoices{
+.twoChoices, .oneChoices{
 	display: none;
 	margin-top: 0;
+}
+
+.change-pace{
+	display: none;
+}
+
+.h4Ignore{
+	&:hover{
+		color: $color-sec;
+		cursor: inherit;
+	}
 }
 
 #title{
