@@ -169,6 +169,12 @@ nav {
   margin-bottom: 0;
   font-size: 120%; }
 
+.left {
+  float: left; }
+
+.dateCounter {
+  float: right; }
+
 .options {
   margin-top: 50vh; }
   .options.travel {
@@ -215,6 +221,9 @@ nav {
   .progressConsole::-webkit-scrollbar-thumb {
     background-color: #2dfffe;
     border-radius: 5px; }
+
+.travel {
+  width: 100%; }
 
 @media (max-width: 899px) {
   #title {

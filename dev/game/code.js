@@ -207,6 +207,7 @@ player[7] = "April";
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 		} else if(encounter == 4){
 			addToConsole("You see poop in space. That was weird.");
+			//black hole shed weight choose what to dump
 		} else if(encounter == 5){
 			addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
 		} else if(encounter == 6){
@@ -348,7 +349,7 @@ player[7] = "April";
 	});
 
 food = 200;
-ammo = 2;
+ammo = 0;
 fuel = 200;
 
 	$(".departure").click(function(){
@@ -362,6 +363,8 @@ fuel = 200;
 		$("span.food").text(food);
 		$("span.ammo").text(ammo);
 		$("span.fuel").text(fuel);
+		$("span.month").text(player[7]);
+		$("span.day").text(day);
 		$(".options").show();
 	});
 
@@ -404,7 +407,7 @@ player[7] = "April";
 		if(ranEnDice == diceOne || ranEnDice == diceTwo){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
-		// encounter = 2;
+		encounter = 1;
 		encounterSituations();
 
 		$(".progressConsole").stop().animate({
