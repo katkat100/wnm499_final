@@ -191,7 +191,7 @@ nav {
   display: none;
   margin-top: 0; }
 
-.change-pace, .change-rations {
+.change-pace, .change-rations, .restart {
   display: none; }
 
 .h4Ignore:hover {
@@ -221,6 +221,8 @@ nav {
   .progressConsole::-webkit-scrollbar-thumb {
     background-color: #2dfffe;
     border-radius: 5px; }
+  .progressConsole .warning {
+    color: #F2545B; }
 
 .travel {
   width: 100%; }
