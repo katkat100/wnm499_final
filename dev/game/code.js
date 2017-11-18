@@ -2,7 +2,15 @@ $(function(){
 	function conlog(print){
 		console.log(print);
 	}
+	function addToConsole(text){
+		$(".progressConsole").append("<p>" + text + "</p>");
+	}
+	function addWarning(text){
+		$(".progressConsole").append("<p class='warning'>" + text + "</p>");
+	}
 	var player = [];
+	var crew = ["rachel","spencer", "marg", "thom"];
+
 
 	var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
 	var engineer = [job = "Spaceship Engineer", startmoney = 1500];
@@ -31,11 +39,13 @@ $(function(){
 	var weatherOpt = ["heated", "freezing", "fair", "perfect"];
 	var pace = "quick";
 	var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
-	var health = 5;
+	var health = $(crew).length;
 	var rations = "filling";
 	var food = 0;
+	var ffp = 0;
 	var ammo = 0;
 	var fuel = 0;
+	var fuelUsage = 0;
 	var day = 1;
 
 	var diceOne = 0;
@@ -47,7 +57,7 @@ $(function(){
 	// console.log(engineer);
 	// console.log(moneybags);
 
-//functions
+//function
 	function addJob(job){
 		player = $.merge([],job);
 		console.log(player);
@@ -130,9 +140,7 @@ player[7] = "April";
 	// 	//20 chances for randomness
 	// }
 
-	function addToConsole(text){
-		$(".progressConsole").append("<p>" + text + "</p>");
-	}
+	
 
 	function encounterSituations(){
 		if(encounter == 0){
@@ -166,9 +174,7 @@ player[7] = "April";
 					}
 				} else {
 					addToConsole("You have no ammo! What will you do?");
-					$(".twoChoices .one").text("Bluff!");
-					$(".twoChoices .one").addClass("bluff");
-					$(".twoChoices .bluff").removeClass("one");
+					$(".twoChoices .one").text("Bluff!").addClass("bluff").removeClass("one").off("click");
 
 				}
 				$(".twoChoices .bluff").click(function(){
@@ -188,6 +194,9 @@ player[7] = "April";
 						$(".twoChoices").hide();
 						$(".travel").show();
 					}
+					$(".progressConsole").stop().animate({
+						scrollTop: $(".progressConsole")[0].scrollHeight
+					});
 				});
 
 			});
@@ -197,14 +206,18 @@ player[7] = "April";
 				$("span.money").text(money);
 				$(".twoChoices").hide();
 				$(".travel").show();
+				$(".progressConsole").stop().animate({
+					scrollTop: $(".progressConsole")[0].scrollHeight
+				});
 			});
-
 
 
 		} else if(encounter == 2){
 			addToConsole("Space whales pass by and sooth your soul");
 		} else if(encounter == 3){
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
+			day -= 4;
+			$("span.day").text(day);
 		} else if(encounter == 4){
 			addToConsole("You see poop in space. That was weird.");
 			//black hole shed weight choose what to dump
@@ -213,7 +226,16 @@ player[7] = "April";
 		} else if(encounter == 6){
 			addToConsole(player[4] + " gets space mites and dies!");
 		} else if(encounter == 7){
-			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + player[5] + " dies from an infected bite.");
+			var death = Math.floor((Math.random() * health+1));
+
+			conlog("death num: " + death);
+			conlog(crew);
+			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + crew[death - 1] + " dies from an infected bite.");
+			crew.splice(death - 1,1);
+			health = $(crew).length;
+			$("span.health").text(health);
+			conlog(crew);
+			deadCrew();
 		} else if(encounter == 8){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
 		} else if(encounter == 9){
@@ -237,6 +259,17 @@ player[7] = "April";
 			$(".ration-container h4").css({'color':'#ffffff'});
 			$(this).css({'color':'#2dfffe'});
 		});
+	}
+
+	function deadCrew(){
+		if(health <= 0){
+			addToConsole("Your whole crew has passed away.");
+			addToConsole("What is a captain without a good crew by their side?");
+			addToConsole("Shall we try again?");
+			$(".restart").show();
+			$(".travel").hide();
+			encounter = 20;
+		}
 	}
 
 
@@ -285,6 +318,7 @@ player[7] = "April";
 		inputMember = $("input[name = 'member4']").val();
 		name  = [member4 = inputMember];
 		player = $.merge(player,name);
+		crew = $.merge([],name);
 		console.log(player);
 	});
 
@@ -350,7 +384,7 @@ player[7] = "April";
 
 food = 200;
 ammo = 0;
-fuel = 200;
+fuel = 2000;
 
 	$(".departure").click(function(){
 		counter = 0;
@@ -386,19 +420,35 @@ player[7] = "April";
 		updateMonth();
 
 		if(pace == "slow"){
-			fuel -= 5;
+			fuelUsage = 5;
+			fuel -= fuelUsage;
 			$("span.fuel").text(fuel)
 		} else if(pace == "moderate"){
-			fuel -= 15;
+			fuelUsage = 15;
+			fuel -= fuelUsage;
 			$("span.fuel").text(fuel)
 		} else if(pace == "quick"){
-			fuel -= 30;
+			fuelUsage = 30;
+			fuel -= fuelUsage;
 			$("span.fuel").text(fuel)
 		} else if(pace == "fast"){
-			fuel -= 50;
+			fuelUsage = 50;
+			fuel -= fuelUsage;
 			$("span.fuel").text(fuel)
-		} else{
+		}
 
+		if(rations == "bare"){
+			fpp = 5;
+			food -= (fpp * health);
+			$("span.food").text(food);
+		} else if(rations == "meager"){
+			fpp = 10;
+			food -= (fpp * health);
+			$("span.food").text(food);
+		}else if(rations == "filling"){
+			fpp = 20;
+			food -= (fpp * health);
+			$("span.food").text(food);
 		}
 		
 		diceOne = Math.ceil( ( Math.random() * 10) );
@@ -407,7 +457,46 @@ player[7] = "April";
 		if(ranEnDice == diceOne || ranEnDice == diceTwo){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
-		encounter = 1;
+		// encounter = 7;
+		
+
+		if(fuel <= fuelUsage && fuel > 0){
+			// $(".travel").hide();
+
+			addToConsole("You are running low on fuel. Try trading for more fuel or adjusting your pace.");
+		} else if(fuel <=0){
+			addToConsole("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
+			$(".traverse").addClass("noFuel").removeClass("traverse").off('click');
+			encounter = 20;
+		}
+
+		if(food <= (ffp * health) && food > 0){
+			addToConsole("A crew member warns you that food storage is getting low. It's advisable to make a trade for food.");
+		} else if(food <= 0){
+			food = 0;
+			$("span.food").text(food);
+			addWarning("Warning! You have run out of food. If you continue to travel without food your crew members may die.");
+			var hungryDice = Math.ceil( ( Math.random() * 10) );
+			conlog("hungry: " + hungryDice)
+			if(hungryDice == 5 || hungryDice == 3){
+				var death = Math.floor((Math.random() * health+1));
+
+				addToConsole(crew[death - 1] + " has passed away from hunger.");
+
+				crew.splice(death - 1,1);
+				health = $(crew).length;
+				$("span.health").text(health);
+				encounter = 20;
+			}
+		}
+
+		deadCrew();
+		
+
+
+
+
+		
 		encounterSituations();
 
 		$(".progressConsole").stop().animate({
@@ -422,6 +511,10 @@ player[7] = "April";
 		encounter = 0;
 		role++;
 	});
+
+
+
+
 
 //pace
 	$(".check-pace").click(function(){
@@ -458,9 +551,24 @@ player[7] = "April";
 		$(".change-rations").hide();
 		$(".travel").show();
 		$(".progressConsole").show();
+	});
+
+
+//trade
+	$(".attempt-trade").click(function(){
+		$(".noFuel").addClass("traverse").removeClass("noFuel").on('click');
+		addToConsole("trade attempted");
 	})
 
 
+
+
+
+
+//restart
+	$(".restart h4").click(function(){
+		location.reload();
+	});
 
 
 
