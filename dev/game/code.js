@@ -204,6 +204,7 @@ player[7] = "April";
 			$(".twoChoices .two").click(function(){
 				addToConsole("You give the pirates what they want and they saunter off the ship with their pockets full");
 				money -= 500;
+				$(this).off('click');
 				$("span.money").text(money);
 				$(".twoChoices").hide();
 				$(".travel").show();
@@ -287,6 +288,8 @@ player[7] = "April";
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
 			addToConsole("You wish on a falling star. What a beautiful time.");
+		} else if(encounter >= 20){
+
 		} else{
 			addToConsole("You travel a days worth");
 		}
@@ -567,7 +570,13 @@ player[7] = "April";
 				$(".twoChoices .one").text("Touch Down");
 				$(".twoChoices .two").text("Avoid");
 				$(".one").click(function(){
-					conlog("touc down");
+					conlog("touch down");
+				})
+				$(".two").click(function(){
+					addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
+					$(".travel").show();
+					$(".twoChoices").hide();
+					$(this).off("click");
 				})
 			}
 		}
