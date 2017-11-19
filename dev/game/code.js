@@ -328,7 +328,6 @@ player[7] = "April";
 	function trading(traderNum,adding,minusing,itTo,itFrom){
 		$("." + traderNum + " .make-trade").click(function(){
 			if(itTo == "food"){
-				conlog("hello");
 				food += parseInt(adding);
 				$("span.food").text(food);
 			} else if(itTo == "fuel"){
