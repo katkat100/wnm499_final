@@ -11,6 +11,7 @@ $(function(){
 	var player = [];
 	var crew = ["rachel","spencer", "marg", "thom"];
 
+	var location = 0;
 
 	var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
 	var engineer = [job = "Spaceship Engineer", startmoney = 1500];
@@ -214,9 +215,53 @@ player[7] = "April";
 
 		} else if(encounter == 2){
 			addToConsole("Space whales pass by and sooth your soul");
-		} else if(encounter == 3){
+		} else if(encounter == 3 && role > 3){
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 			day -= 4;
+			role -= 4;
+			if(day < 1){
+				if(player[7] == 'April'){
+					player[7] = 'March';
+					day = 31 + day;
+				} else if(player[7] == 'May'){
+					player[7] = 'April';
+					day = 30 + day;
+				} else if(player[7] == 'June'){
+					player[7] = 'May';
+					day = 31 + day;
+				} else if(player[7] == 'July'){
+					player[7] = 'June';
+					day = 30 + day;
+				} else if(player[7] == 'August'){
+					player[7] = 'July';
+					day = 31 + day;
+				} else if(player[7] == 'September'){
+					player[7] = 'August';
+					day = 31 + day;
+				} else if(player[7] == 'October'){
+					player[7] = 'September';
+					day = 30 + day;
+				} else if(player[7] == 'November'){
+					player[7] = 'October';
+					day = 31 + day;
+				} else if(player[7] == 'Decmeber'){
+					player[7] = 'November';
+					day = 30 + day;
+				} else if(player[7] == 'January'){
+					player[7] = 'Decmeber';
+					day = 31 + day;
+				} else if(player[7] == 'February'){
+					player[7] = 'January';
+					day = 31 + day;
+				} else if(player[7] == 'March'){
+					player[7] = 'February';
+					day = 28 + day;
+				}
+
+
+				$("span.month").text(player[7]);
+				$("span.day").text(day);
+			}
 			$("span.day").text(day);
 		} else if(encounter == 4){
 			addToConsole("You see poop in space. That was weird.");
@@ -242,6 +287,8 @@ player[7] = "April";
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
 			addToConsole("You wish on a falling star. What a beautiful time.");
+		} else{
+			addToConsole("You travel a days worth");
 		}
 	}
 
@@ -359,7 +406,7 @@ player[7] = "April";
 	});
 	$("input[name = 'food']").change(function(){
 		numOfFood = $("input[name = 'food']").val();
-		costOfItems = 20 * numOfFood;
+		costOfItems = 10 * numOfFood;
 		storeBilling(oldBillFood);
 		oldBillFood = costOfItems;
 	});
@@ -382,7 +429,7 @@ player[7] = "April";
 		console.log(player);
 	});
 
-food = 200;
+food = 500;
 ammo = 0;
 fuel = 2000;
 
@@ -457,7 +504,7 @@ player[7] = "April";
 		if(ranEnDice == diceOne || ranEnDice == diceTwo){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
-		// encounter = 7;
+		// encounter = 3;
 		
 
 		if(fuel <= fuelUsage && fuel > 0){
@@ -510,6 +557,20 @@ player[7] = "April";
 		conlog(encounter);
 		encounter = 0;
 		role++;
+
+		if(role == 10){
+			location++;
+			if(location == 1){
+				addToConsole("You have neared Planet X, what will you do?");
+				$(".travel").hide();
+				$(".twoChoices").show();
+				$(".twoChoices .one").text("Touch Down");
+				$(".twoChoices .two").text("Avoid");
+				$(".one").click(function(){
+					conlog("touc down");
+				})
+			}
+		}
 	});
 
 
