@@ -85,9 +85,9 @@
 		}
 	}
 }
-// .travel, .progressConsole{
-// 	display: none;
-// }
+.travel, .progressConsole{
+	display: none;
+}
 
 .twoChoices, .oneChoices{
 	display: none;
@@ -96,6 +96,10 @@
 
 .change-pace, .change-rations, .restart{
 	display: none;
+}
+
+.first-item, .second-item{
+	font-weight: 400;
 }
 
 .h4Ignore{

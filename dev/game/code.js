@@ -54,6 +54,19 @@ $(function(){
 	var ranEnDice = 0;
 	var encounter = 0;
 
+	var traderTitle = ["Space Voyager", "Hitchhiker", "Galaxy Vagabond", "Ex-Pirate"];
+	var traderName = ["Bobbert", "Baltazar", "Hosanna", "Huxley", "Ivar", "Nevin", "Caess", "Sourdrop", "Aut"];
+	var tradeItems = [
+		{one:'100 lbs of food', two:'§10', add:'100', to:'food', minus:'10', from:'money'},
+		{one:'200 lbs of food', two:'§10', add:'200', to:'food', minus:'10', from:'money'},
+		{one:'200 lbs of food', two:'§30', add:'200', to:'food', minus:'30', from:'money'},
+		{one:'300 lbs of food', two:'§40', add:'300', to:'food', minus:'40', from:'money'},
+		{one:'100 gallons of fuel', two:'§10', add:'100', to:'fuel', minus:'10', from:'money'},
+	]
+	var itemNum = 0;
+	var traderNum = 0;
+	var titleNum = 0;
+
 	// console.log(farmer);
 	// console.log(engineer);
 	// console.log(moneybags);
@@ -311,6 +324,66 @@ player[7] = "April";
 		});
 	}
 
+
+	function trading(traderNum,adding,minusing,itTo,itFrom){
+		$("." + traderNum + " .make-trade").click(function(){
+			if(itTo == "food"){
+				conlog("hello");
+				food += parseInt(adding);
+				$("span.food").text(food);
+			} else if(itTo == "fuel"){
+				fuel += parseInt(adding);
+				$("span.fuel").text(fuel);
+			} else if(itTo == "money"){
+				money += parseInt(adding);
+				$("span.money").text(money);
+			}
+
+			if(itFrom == "food"){
+				food -= parseInt(minusing);
+				$("span.food").text(food);
+			} else if(itFrom == "fuel"){
+				fuel -= parseInt(minusing);
+				$("span.fuel").text(fuel);
+			} else if(itFrom == "money"){
+				money -= parseInt(minusing);
+				$("span.money").text(money);
+			}
+		});
+	}
+	function trade(traderNum){
+		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
+		nameNum = (Math.floor((Math.random() * $(traderName).length + 1))) - 1;
+		itemNum = (Math.floor((Math.random() * $(tradeItems).length + 1))) - 1;
+		$("." + traderNum + " .traderTitle").text(traderTitle[titleNum]);
+		$("." + traderNum + " .trader").text(traderName[nameNum]);
+		$("." + traderNum + " .first-item").text(tradeItems[itemNum].one);
+		$("." + traderNum + " .second-item").text(tradeItems[itemNum].two);
+
+		if(traderNum == "trade-one"){
+			var oneAdd = tradeItems[itemNum].add;
+			var oneMinus = tradeItems[itemNum].minus;
+			var oneTo = tradeItems[itemNum].to;
+			var oneFrom = tradeItems[itemNum].from;
+			trading(traderNum,oneAdd,oneMinus,oneTo,oneFrom);
+		} else if(traderNum == "trade-two"){
+			var twoAdd = tradeItems[itemNum].add;
+			var twoMinus = tradeItems[itemNum].minus;
+			var twoTo = tradeItems[itemNum].to;
+			var twoFrom = tradeItems[itemNum].from;
+			trading(traderNum,twoAdd,twoMinus,twoTo,twoFrom);
+		} else if(traderNum == "trade-three"){
+			var threeAdd = tradeItems[itemNum].add;
+			var threeMinus = tradeItems[itemNum].minus;
+			var threeTo = tradeItems[itemNum].to;
+			var threeFrom = tradeItems[itemNum].from;
+			trading(traderNum,threeAdd,threeMinus,threeTo,threeFrom);
+		}
+		
+		
+	}
+	
+
 	function deadCrew(){
 		if(health <= 0){
 			addToConsole("Your whole crew has passed away.");
@@ -391,8 +464,7 @@ player[7] = "April";
 	});
 
 //shop
-	money = 2000;
-	// // money = parseInt(player[1]);
+	// money = parseInt(player[1]);
 	$("span.money").text(money);
 
 	$("input[name = 'parts']").change(function(){
@@ -423,7 +495,8 @@ player[7] = "April";
 
 		player[1] = storeTotal;
 		player[8] = numOfParts;
-		player[9] = numOfFuel;
+		player[9] = numOfFuel * 100;
+		fuel = player[9];
 		player[10] = numOfFood;
 		food = player[10] * 100;
 		player[11] = numOfAmmo;
@@ -432,14 +505,13 @@ player[7] = "April";
 		console.log(player);
 	});
 
-food = 500;
-ammo = 0;
-fuel = 2000;
+
 
 	$(".departure").click(function(){
 		counter = 0;
 		startCounter = true;
 		console.log(startCounter);
+		$("span.money").text(money);
 		$("span.weather").text(weather);
 		$("span.pace").text(pace);
 		$("span.health").text(health);
@@ -464,8 +536,21 @@ fuel = 2000;
 // 			console.log(randomEncounterDice);
 var role = 1;
 
-//day
 player[7] = "April";
+food = 500;
+ammo = 0;
+fuel = 2000;
+money = 2000;
+
+
+$("span.money").text(money);
+$("span.food").text(food);
+$("span.fuel").text(fuel);
+
+
+
+
+//day
 	$(".traverse").click(function(){
 		updateMonth();
 
@@ -561,25 +646,25 @@ player[7] = "April";
 		encounter = 0;
 		role++;
 
-		if(role == 10){
-			location++;
-			if(location == 1){
-				addToConsole("You have neared Planet X, what will you do?");
-				$(".travel").hide();
-				$(".twoChoices").show();
-				$(".twoChoices .one").text("Touch Down");
-				$(".twoChoices .two").text("Avoid");
-				$(".one").click(function(){
-					conlog("touch down");
-				})
-				$(".two").click(function(){
-					addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
-					$(".travel").show();
-					$(".twoChoices").hide();
-					$(this).off("click");
-				})
-			}
-		}
+		// if(role == 10){
+		// 	location++;
+		// 	if(location == 1){
+		// 		addToConsole("You have neared Planet X, what will you do?");
+		// 		$(".travel").hide();
+		// 		$(".twoChoices").show();
+		// 		$(".twoChoices .one").text("Touch Down");
+		// 		$(".twoChoices .two").text("Avoid");
+		// 		$(".one").click(function(){
+		// 			conlog("touch down");
+		// 		})
+		// 		$(".two").click(function(){
+		// 			addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
+		// 			$(".travel").show();
+		// 			$(".twoChoices").hide();
+		// 			$(this).off("click");
+		// 		})
+		// 	}
+		// }
 	});
 
 
@@ -626,12 +711,20 @@ player[7] = "April";
 
 //trade
 	$(".attempt-trade").click(function(){
-		$(".noFuel").addClass("traverse").removeClass("noFuel").on('click');
+		$(".progressConsole").hide();
+		$(".travel").hide();
+		$(".trading").show();
+
+		// $(".noFuel").addClass("traverse").removeClass("noFuel").on('click');
 		addToConsole("trade attempted");
-	})
 
+	});
+	
 
-
+	trade("trade-one");
+	trade("trade-two");
+	trade("trade-three");
+	
 
 
 
