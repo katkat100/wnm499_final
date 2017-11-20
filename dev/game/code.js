@@ -5,11 +5,15 @@ $(function(){
 	function addToConsole(text){
 		$(".progressConsole").append("<p>" + text + "</p>");
 		$(".progressConsole").stop().animate({
-					scrollTop: $(".progressConsole")[0].scrollHeight
-				});
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
 	}
 	function addWarning(text){
 		$(".progressConsole").append("<p class='warning'>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
+
 	}
 	var player = [];
 	var crew = ["rachel","spencer", "marg", "thom"];
@@ -60,13 +64,15 @@ $(function(){
 	var traderTitle = ["Space Voyager", "Hitchhiker", "Galaxy Vagabond", "Ex-Pirate"];
 	var traderName = ["Bobbert", "Baltazar", "Hosanna", "Huxley", "Ivar", "Nevin", "Caess", "Sourdrop", "Aut"];
 	var tradeItems = [
-		{one:'100 lbs of food', two:'§10', add:'100', to:'food', minus:'10', from:'money'},
-		{one:'200 lbs of food', two:'§10', add:'200', to:'food', minus:'10', from:'money'},
-		{one:'200 lbs of food', two:'§30', add:'200', to:'food', minus:'30', from:'money'},
-		{one:'300 lbs of food', two:'§40', add:'300', to:'food', minus:'40', from:'money'},
-		{one:'100 gallons of fuel', two:'§10', add:'100', to:'fuel', minus:'10', from:'money'},
-		{one:'200 gallons of fuel', two:'§15', add:'200', to:'fuel', minus:'15', from:'money'},
-		{one:'300 gallons of fuel', two:'§10', add:'300', to:'fuel', minus:'10', from:'money'},
+		{one:'100 lbs of food', two:'§50', add:'100', to:'food', minus:'50', from:'money'},
+		{one:'200 lbs of food', two:'§60', add:'200', to:'food', minus:'60', from:'money'},
+		{one:'200 lbs of food', two:'§70', add:'200', to:'food', minus:'70', from:'money'},
+		{one:'300 lbs of food', two:'§70', add:'300', to:'food', minus:'70', from:'money'},
+
+		{one:'100 gallons of fuel', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
+		{one:'200 gallons of fuel', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
+		{one:'300 gallons of fuel', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+
 		{one:'2 energy pods', two:'200', add:'2', to:'ammo', minus:'200', from:'food'},
 		{one:'5 energy pods', two:'300', add:'2', to:'ammo', minus:'300', from:'food'},
 	]
@@ -74,7 +80,9 @@ $(function(){
 	var traderNum = 0;
 	var titleNum = 0;
 
-	var locationOne = 10;
+	var locationOne = 15;
+	var locationTwo = 25;
+	var locationThree = 40;
 
 	// console.log(farmer);
 	// console.log(engineer);
@@ -95,10 +103,18 @@ $(function(){
 	}
 player[7] = "April";
 	function updateMonth(){
-		$("span.month").text(player[7]);
-		$("span.day").text(day);
 		// console.log(player[7]);
 		day++;
+		// if(pace == "slow"){
+		// 	day++;
+		// } else if(pace == "moderate"){
+		// 	day += 2;
+		// } else if(pace == "quick"){
+		// 	day += 3;
+		// } else if(pace == "fast"){
+		// 	day += 4;
+		// }
+
 		if(player[7] == "April" && day > 30){
 			player[7] = "May";
 			day = 1;
@@ -137,6 +153,9 @@ player[7] = "April";
 			day = 1;
 		} 
 		conlog("day:" + day);
+
+		$("span.month").text(player[7]);
+		$("span.day").text(day);
 	}
 
 	function storeBilling(bill){
@@ -169,6 +188,20 @@ player[7] = "April";
 	function encounterSituations(){
 		if(encounter == 0){
 			addToConsole("You travel a days worth");
+			// if(pace == "slow"){
+			// 	day++;
+			// 	addToConsole("You travel a days worth");
+			// } else if(pace == "moderate"){
+			// 	day += 2;
+			// 	addToConsole("You travel two days worth");
+			// } else if(pace == "quick"){
+			// 	day += 3;
+			// 	addToConsole("You travel three days worth");
+			// } else if(pace == "fast"){
+			// 	day += 4;
+			// 	addToConsole("You travel four days worth");
+			// }
+			
 			//when have time do animation of getting closer to location
 		} else if(encounter == 1){
 			addToConsole("ARRRRRRRGH! Pirates have stormed the ship!");
@@ -185,6 +218,7 @@ player[7] = "April";
 					if(diceOne >= 6){
 						addToConsole("Your gunslinging ways superior to the space pirates and they run away!");
 						ammo--;
+						$("span.ammo").text(ammo);
 						$(".travel").show();
 						$(".twoChoices").hide();
 					} else {
@@ -572,19 +606,23 @@ $("span.fuel").text(fuel);
 		if(pace == "slow"){
 			fuelUsage = 5;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role++;
 		} else if(pace == "moderate"){
 			fuelUsage = 15;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=2
 		} else if(pace == "quick"){
 			fuelUsage = 30;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=3
 		} else if(pace == "fast"){
 			fuelUsage = 50;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=4
 		}
 
 		if(rations == "bare"){
@@ -617,10 +655,13 @@ $("span.fuel").text(fuel);
 
 			addToConsole("You are running low on fuel. Try trading for more fuel or adjusting your pace.");
 		} else if(fuel <=0){
+			fuel = 0;
+			$("span.fuel").text(fuel);
 			addWarning("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
 			// $(".traverse").addClass("noFuel").removeClass("traverse").off('click');
 			$(".traverse").css({'pointerEvents':'none','opacity':'.5'});
 			encounter = 20;
+
 		}
 
 		if(food <= (ffp * health) && food > 0){
@@ -654,13 +695,12 @@ $("span.fuel").text(fuel);
 
 	
 
-		conlog("role:" + role);
-		conlog(diceOne);
-		conlog(diceTwo);
-		conlog(ranEnDice);
-		conlog(encounter);
+		// conlog("role:" + role);
+		// conlog(diceOne);
+		// conlog(diceTwo);
+		// conlog(ranEnDice);
+		// conlog(encounter);
 		encounter = 0;
-		role++;
 
 
 	//Planet X
@@ -739,21 +779,18 @@ $("span.fuel").text(fuel);
 		trade("trade-two");
 		trade("trade-three");
 		
-		addToConsole("trade attempted");
 
 	});
 
 	$(".trade-done").click(function(){
 		if(fuel > fuelUsage){
-			conlog("hello");
 			$(".traverse").css({'pointerEvents':'initial','opacity':1})
 		}
 		$(".progressConsole").show();
 		$(".travel").show();
 		$(".trading").hide();
-		if(fuel >= fuelUsage){
-			$(".noFuel").addClass("traverse").removeClass("noFuel").on('click'); //not working?
-		}
+		
+		addToConsole("trade attempted");
 	})
 	
 //Planet X
@@ -761,6 +798,7 @@ $("span.fuel").text(fuel);
 	$(".local-trade").click(function(){
 		updateMonth();
 		conlog("trade with locals");
+
 	});
 	$(".local-chat").click(function(){
 		updateMonth();
@@ -772,6 +810,7 @@ $("span.fuel").text(fuel);
 		$(".planetX").hide();
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		conlog("leave planet");
+		role = 15;
 	});
 
 
