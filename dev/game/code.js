@@ -4,6 +4,9 @@ $(function(){
 	}
 	function addToConsole(text){
 		$(".progressConsole").append("<p>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+					scrollTop: $(".progressConsole")[0].scrollHeight
+				});
 	}
 	function addWarning(text){
 		$(".progressConsole").append("<p class='warning'>" + text + "</p>");
@@ -64,10 +67,14 @@ $(function(){
 		{one:'100 gallons of fuel', two:'§10', add:'100', to:'fuel', minus:'10', from:'money'},
 		{one:'200 gallons of fuel', two:'§15', add:'200', to:'fuel', minus:'15', from:'money'},
 		{one:'300 gallons of fuel', two:'§10', add:'300', to:'fuel', minus:'10', from:'money'},
+		{one:'2 energy pods', two:'200', add:'2', to:'ammo', minus:'200', from:'food'},
+		{one:'5 energy pods', two:'300', add:'2', to:'ammo', minus:'300', from:'food'},
 	]
 	var itemNum = 0;
 	var traderNum = 0;
 	var titleNum = 0;
+
+	var locationOne = 10;
 
 	// console.log(farmer);
 	// console.log(engineer);
@@ -84,6 +91,7 @@ $(function(){
 		var inputMember = $("input[name = " + num + "]").val();
 		var name  = [num = inputMember];
 		player = $.merge(player,name);
+		crew = $.merge([],name);
 	}
 player[7] = "April";
 	function updateMonth(){
@@ -176,6 +184,7 @@ player[7] = "April";
 					conlog("Dice roll:" + diceOne);
 					if(diceOne >= 6){
 						addToConsole("Your gunslinging ways superior to the space pirates and they run away!");
+						ammo--;
 						$(".travel").show();
 						$(".twoChoices").hide();
 					} else {
@@ -210,9 +219,6 @@ player[7] = "April";
 						$(".twoChoices").hide();
 						$(".travel").show();
 					}
-					$(".progressConsole").stop().animate({
-						scrollTop: $(".progressConsole")[0].scrollHeight
-					});
 				});
 
 			});
@@ -223,9 +229,6 @@ player[7] = "April";
 				$("span.money").text(money);
 				$(".twoChoices").hide();
 				$(".travel").show();
-				$(".progressConsole").stop().animate({
-					scrollTop: $(".progressConsole")[0].scrollHeight
-				});
 			});
 
 
@@ -285,7 +288,16 @@ player[7] = "April";
 		} else if(encounter == 5){
 			addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
 		} else if(encounter == 6){
-			addToConsole(player[4] + " gets space mites and dies!");
+			var death = Math.floor((Math.random() * health+1));
+
+			conlog("death num: " + death);
+			conlog(crew);
+			addToConsole(crew[death - 1] + " gets space mites and dies!");
+			crew.splice(death - 1,1);
+			health = $(crew).length;
+			$("span.health").text(health);
+			conlog(crew);
+			deadCrew();
 		} else if(encounter == 7){
 			var death = Math.floor((Math.random() * health+1));
 
@@ -541,7 +553,7 @@ var role = 1;
 
 player[7] = "April";
 food = 500;
-ammo = 0;
+ammo = 1;
 fuel = 200;
 money = 2000;
 
@@ -640,9 +652,7 @@ $("span.fuel").text(fuel);
 		
 		encounterSituations();
 
-		$(".progressConsole").stop().animate({
-			scrollTop: $(".progressConsole")[0].scrollHeight
-		});
+	
 
 		conlog("role:" + role);
 		conlog(diceOne);
@@ -654,16 +664,19 @@ $("span.fuel").text(fuel);
 
 
 	//Planet X
-		if(role == 10){
+		if(role == locationOne){
 			addToConsole("You have neared Planet X, what will you do?");
 			$(".travel").hide();
 			$(".twoChoices").show();
 			$(".twoChoices .one").text("Touch Down");
 			$(".twoChoices .two").text("Avoid");
 			$(".one").click(function(){
-				addToConsole("You have touched down on Planet X. This a main hub for those who favor themselves as cosmopoliton")
+
+				addToConsole("You have touched down on Planet X. This a main hub for those who favor themselves as cosmopoliton.")
+				
 				$(".twoChoices").hide();
 				$(".planetX").show();
+				updateMonth();
 			});
 			$(".two").click(function(){
 				addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
@@ -743,6 +756,33 @@ $("span.fuel").text(fuel);
 		}
 	})
 	
+//Planet X
+	
+	$(".local-trade").click(function(){
+		updateMonth();
+		conlog("trade with locals");
+	});
+	$(".local-chat").click(function(){
+		updateMonth();
+		conlog("chat with locals");
+	});
+	$(".leave-planet").click(function(){
+		updateMonth();
+		$(".travel").show();
+		$(".planetX").hide();
+		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
+		conlog("leave planet");
+	});
+
+
+
+
+
+
+
+
+
+
 
 
 
