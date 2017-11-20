@@ -187,14 +187,11 @@ nav {
     .options > h4:hover {
       border: 1px solid #2dfffe; }
 
-.travel, .progressConsole {
-  display: none; }
-
 .twoChoices, .oneChoices {
   display: none;
   margin-top: 0; }
 
-.change-pace, .change-rations, .restart {
+.change-pace, .change-rations, .restart, .trading, .planetX {
   display: none; }
 
 .first-item, .second-item {

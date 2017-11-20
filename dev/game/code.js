@@ -11,7 +11,7 @@ $(function(){
 	var player = [];
 	var crew = ["rachel","spencer", "marg", "thom"];
 
-	var location = 0;
+	// var location = 0;
 
 	var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
 	var engineer = [job = "Spaceship Engineer", startmoney = 1500];
@@ -62,6 +62,8 @@ $(function(){
 		{one:'200 lbs of food', two:'§30', add:'200', to:'food', minus:'30', from:'money'},
 		{one:'300 lbs of food', two:'§40', add:'300', to:'food', minus:'40', from:'money'},
 		{one:'100 gallons of fuel', two:'§10', add:'100', to:'fuel', minus:'10', from:'money'},
+		{one:'200 gallons of fuel', two:'§15', add:'200', to:'fuel', minus:'15', from:'money'},
+		{one:'300 gallons of fuel', two:'§10', add:'300', to:'fuel', minus:'10', from:'money'},
 	]
 	var itemNum = 0;
 	var traderNum = 0;
@@ -297,6 +299,8 @@ player[7] = "April";
 			deadCrew();
 		} else if(encounter == 8){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
+			food = 100;
+			$("span.food").text(food);
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
@@ -538,7 +542,7 @@ var role = 1;
 player[7] = "April";
 food = 500;
 ammo = 0;
-fuel = 2000;
+fuel = 200;
 money = 2000;
 
 
@@ -592,6 +596,8 @@ $("span.fuel").text(fuel);
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
 		// encounter = 3;
+
+
 		
 
 		if(fuel <= fuelUsage && fuel > 0){
@@ -599,8 +605,9 @@ $("span.fuel").text(fuel);
 
 			addToConsole("You are running low on fuel. Try trading for more fuel or adjusting your pace.");
 		} else if(fuel <=0){
-			addToConsole("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
-			$(".traverse").addClass("noFuel").removeClass("traverse").off('click');
+			addWarning("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
+			// $(".traverse").addClass("noFuel").removeClass("traverse").off('click');
+			$(".traverse").css({'pointerEvents':'none','opacity':'.5'});
 			encounter = 20;
 		}
 
@@ -645,25 +652,26 @@ $("span.fuel").text(fuel);
 		encounter = 0;
 		role++;
 
-		// if(role == 10){
-		// 	location++;
-		// 	if(location == 1){
-		// 		addToConsole("You have neared Planet X, what will you do?");
-		// 		$(".travel").hide();
-		// 		$(".twoChoices").show();
-		// 		$(".twoChoices .one").text("Touch Down");
-		// 		$(".twoChoices .two").text("Avoid");
-		// 		$(".one").click(function(){
-		// 			conlog("touch down");
-		// 		})
-		// 		$(".two").click(function(){
-		// 			addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
-		// 			$(".travel").show();
-		// 			$(".twoChoices").hide();
-		// 			$(this).off("click");
-		// 		})
-		// 	}
-		// }
+
+	//Planet X
+		if(role == 10){
+			addToConsole("You have neared Planet X, what will you do?");
+			$(".travel").hide();
+			$(".twoChoices").show();
+			$(".twoChoices .one").text("Touch Down");
+			$(".twoChoices .two").text("Avoid");
+			$(".one").click(function(){
+				addToConsole("You have touched down on Planet X. This a main hub for those who favor themselves as cosmopoliton")
+				$(".twoChoices").hide();
+				$(".planetX").show();
+			});
+			$(".two").click(function(){
+				addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
+				$(".travel").show();
+				$(".twoChoices").hide();
+				$(this).off("click");
+			});
+		}
 	});
 
 
@@ -714,15 +722,26 @@ $("span.fuel").text(fuel);
 		$(".travel").hide();
 		$(".trading").show();
 
-		// $(".noFuel").addClass("traverse").removeClass("noFuel").on('click');
+		trade("trade-one");
+		trade("trade-two");
+		trade("trade-three");
+		
 		addToConsole("trade attempted");
 
 	});
-	
 
-	trade("trade-one");
-	trade("trade-two");
-	trade("trade-three");
+	$(".trade-done").click(function(){
+		if(fuel > fuelUsage){
+			conlog("hello");
+			$(".traverse").css({'pointerEvents':'initial','opacity':1})
+		}
+		$(".progressConsole").show();
+		$(".travel").show();
+		$(".trading").hide();
+		if(fuel >= fuelUsage){
+			$(".noFuel").addClass("traverse").removeClass("noFuel").on('click'); //not working?
+		}
+	})
 	
 
 
