@@ -191,7 +191,7 @@ nav {
   display: none;
   margin-top: 0; }
 
-.change-pace, .change-rations, .restart, .trading, .planetX {
+.change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting {
   display: none; }
 
 .first-item, .second-item {
