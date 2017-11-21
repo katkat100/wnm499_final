@@ -5,20 +5,21 @@ $(function(){
 	function addToConsole(text){
 		$(".progressConsole").append("<p>" + text + "</p>");
 		$(".progressConsole").stop().animate({
-					scrollTop: $(".progressConsole")[0].scrollHeight
-				});
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
 	}
 	function addWarning(text){
 		$(".progressConsole").append("<p class='warning'>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
+
 	}
-	var player = [];
+	// var player = [];
+	var captainName = "";
+	var captainJob = "";
 	var crew = ["rachel","spencer", "marg", "thom"];
 
-	// var location = 0;
-
-	var farmer = [job = "Meteorite Farmer", startmoney = 1000, ];
-	var engineer = [job = "Spaceship Engineer", startmoney = 1500];
-	var moneybags = [job = "Moneybags", startmoney = 2000];
 	var supplyCost = [
 		fuel = 50,
 		food = 20,
@@ -39,8 +40,7 @@ $(function(){
 	var docHeight = $("body").height();
 	var mainMargin = 0;
 
-	var weather = "perfect";
-	var weatherOpt = ["heated", "freezing", "fair", "perfect"];
+	
 	var pace = "quick";
 	var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
 	var health = $(crew).length;
@@ -48,9 +48,11 @@ $(function(){
 	var food = 0;
 	var ffp = 0;
 	var ammo = 0;
+	var parts = 0;
 	var fuel = 0;
 	var fuelUsage = 0;
 	var day = 1;
+	var month = "";
 
 	var diceOne = 0;
 	var diceTwo = 0;
@@ -60,83 +62,105 @@ $(function(){
 	var traderTitle = ["Space Voyager", "Hitchhiker", "Galaxy Vagabond", "Ex-Pirate"];
 	var traderName = ["Bobbert", "Baltazar", "Hosanna", "Huxley", "Ivar", "Nevin", "Caess", "Sourdrop", "Aut"];
 	var tradeItems = [
-		{one:'100 lbs of food', two:'§10', add:'100', to:'food', minus:'10', from:'money'},
-		{one:'200 lbs of food', two:'§10', add:'200', to:'food', minus:'10', from:'money'},
-		{one:'200 lbs of food', two:'§30', add:'200', to:'food', minus:'30', from:'money'},
-		{one:'300 lbs of food', two:'§40', add:'300', to:'food', minus:'40', from:'money'},
-		{one:'100 gallons of fuel', two:'§10', add:'100', to:'fuel', minus:'10', from:'money'},
-		{one:'200 gallons of fuel', two:'§15', add:'200', to:'fuel', minus:'15', from:'money'},
-		{one:'300 gallons of fuel', two:'§10', add:'300', to:'fuel', minus:'10', from:'money'},
-		{one:'2 energy pods', two:'200', add:'2', to:'ammo', minus:'200', from:'food'},
-		{one:'5 energy pods', two:'300', add:'2', to:'ammo', minus:'300', from:'food'},
+		{one:'100 lbs of food', two:'§50', add:'100', to:'food', minus:'50', from:'money'},
+		{one:'200 lbs of food', two:'§60', add:'200', to:'food', minus:'60', from:'money'},
+		{one:'200 lbs of food', two:'§70', add:'200', to:'food', minus:'70', from:'money'},
+		{one:'300 lbs of food', two:'§70', add:'300', to:'food', minus:'70', from:'money'},
+
+		{one:'100 gallons of fuel', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
+		{one:'200 gallons of fuel', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
+		{one:'300 gallons of fuel', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+
+		{one:'2 energy pods', two:'200 lbs of food', add:'2', to:'ammo', minus:'200', from:'food'},
+		{one:'5 energy pods', two:'300 lbs of food', add:'5', to:'ammo', minus:'300', from:'food'},
+		{one:'3 energy pods', two:'§220', add:'3', to:'ammo', minus:'220', from:'money'},
 	]
 	var itemNum = 0;
+	var nameNum = 0;
+	var jobNum = 0;
 	var traderNum = 0;
 	var titleNum = 0;
 
-	var locationOne = 10;
+	var locationOne = 15;
+	var locationTwo = 25;
+	var locationThree = 40;
 
+	var ranNum = [0,1,2,3,4,5,6,7,8];
+	
+	var localJob = ['Hooman', 'Erutzanans', 'Teegafane', 'Vleslon', 'Dlahiri', 'Bosolians', 'TuVav', 'Swerzog', 'Catali', 'Heerians', 'Gorganub'];
+	var localName = ['Uemyrea', 'Linola', 'Hystise', 'Airiene', 'Pela', 'Voloya', 'Jozane', 'Boozyad', 'Ukhgahr', 'Squxuoss', 'Kuarcax', 'Algaxath'];
 	// console.log(farmer);
 	// console.log(engineer);
 	// console.log(moneybags);
 
 //function
-	function addJob(job){
-		player = $.merge([],job);
-		console.log(player);
-		$("span.money").text(player[1]);
-	};
+	// function addJob(job){
+	// 	captainJob = $.merge([],job);
+	// 	console.log(player);
+	// 	$("span.money").text(player[1]);
+	// };
 
 	function addMembers(num){
 		var inputMember = $("input[name = " + num + "]").val();
 		var name  = [num = inputMember];
-		player = $.merge(player,name);
+		// player = $.merge(player,name);
 		crew = $.merge([],name);
+		conlog[crew];
 	}
-player[7] = "April";
 	function updateMonth(){
-		$("span.month").text(player[7]);
-		$("span.day").text(day);
-		// console.log(player[7]);
+		// console.log(month);
 		day++;
-		if(player[7] == "April" && day > 30){
-			player[7] = "May";
+		// if(pace == "slow"){
+		// 	day++;
+		// } else if(pace == "moderate"){
+		// 	day += 2;
+		// } else if(pace == "quick"){
+		// 	day += 3;
+		// } else if(pace == "fast"){
+		// 	day += 4;
+		// }
+
+		if(month == "April" && day > 30){
+			month = "May";
 			day = 1;
-		} else if(player[7] == "May" && day > 31){
-			player[7] = "June";
+		} else if(month == "May" && day > 31){
+			month = "June";
 			day = 1;
-		} else if(player[7] == "June" && day > 30){
-			player[7] = "July";
+		} else if(month == "June" && day > 30){
+			month = "July";
 			day = 1;
-		} else if(player[7] == "July" && day > 31){
-			player[7] = "August";
+		} else if(month == "July" && day > 31){
+			month = "August";
 			day = 1;
-		} else if(player[7] == "August" && day > 31){
-			player[7] = "September";
+		} else if(month == "August" && day > 31){
+			month = "September";
 			day = 1;
-		} else if(player[7] == "September" && day > 30){
-			player[7] = "October";
+		} else if(month == "September" && day > 30){
+			month = "October";
 			day = 1;
-		} else if(player[7] == "October" && day > 31){
-			player[7] = "November";
+		} else if(month == "October" && day > 31){
+			month = "November";
 			day = 1;
-		} else if(player[7] == "November" && day > 30){
-			player[7] = "Decmeber";
+		} else if(month == "November" && day > 30){
+			month = "Decmeber";
 			day = 1;
-		} else if(player[7] == "Decmeber" && day > 31){
-			player[7] = "January";
+		} else if(month == "Decmeber" && day > 31){
+			month = "January";
 			day = 1;
-		} else if(player[7] == "January" && day > 31){
-			player[7] = "Febuary";
+		} else if(month == "January" && day > 31){
+			month = "Febuary";
 			day = 1;
-		} else if(player[7] == "Febuary" && day > 28){
-			player[7] = "March";
+		} else if(month == "Febuary" && day > 28){
+			month = "March";
 			day = 1;
-		} else if(player[7] == "March" && day > 31){
-			player[7] = "April";
+		} else if(month == "March" && day > 31){
+			month = "April";
 			day = 1;
 		} 
 		conlog("day:" + day);
+
+		$("span.month").text(month);
+		$("span.day").text(day);
 	}
 
 	function storeBilling(bill){
@@ -169,6 +193,20 @@ player[7] = "April";
 	function encounterSituations(){
 		if(encounter == 0){
 			addToConsole("You travel a days worth");
+			// if(pace == "slow"){
+			// 	day++;
+			// 	addToConsole("You travel a days worth");
+			// } else if(pace == "moderate"){
+			// 	day += 2;
+			// 	addToConsole("You travel two days worth");
+			// } else if(pace == "quick"){
+			// 	day += 3;
+			// 	addToConsole("You travel three days worth");
+			// } else if(pace == "fast"){
+			// 	day += 4;
+			// 	addToConsole("You travel four days worth");
+			// }
+			
 			//when have time do animation of getting closer to location
 		} else if(encounter == 1){
 			addToConsole("ARRRRRRRGH! Pirates have stormed the ship!");
@@ -179,12 +217,14 @@ player[7] = "April";
 			$(".twoChoices .two").text("Give In");
 			$(".twoChoices").show();
 			$(".twoChoices .one").click(function(){
+				$(".twoChoices .one").off("click")
 				if(ammo > 0){
 					diceOne = Math.ceil( ( Math.random() * 10) );
 					conlog("Dice roll:" + diceOne);
 					if(diceOne >= 6){
 						addToConsole("Your gunslinging ways superior to the space pirates and they run away!");
 						ammo--;
+						$("span.ammo").text(ammo);
 						$(".travel").show();
 						$(".twoChoices").hide();
 					} else {
@@ -239,46 +279,46 @@ player[7] = "April";
 			day -= 4;
 			role -= 4;
 			if(day < 1){
-				if(player[7] == 'April'){
-					player[7] = 'March';
+				if(month == 'April'){
+					month = 'March';
 					day = 31 + day;
-				} else if(player[7] == 'May'){
-					player[7] = 'April';
+				} else if(month == 'May'){
+					month = 'April';
 					day = 30 + day;
-				} else if(player[7] == 'June'){
-					player[7] = 'May';
+				} else if(month == 'June'){
+					month = 'May';
 					day = 31 + day;
-				} else if(player[7] == 'July'){
-					player[7] = 'June';
+				} else if(month == 'July'){
+					month = 'June';
 					day = 30 + day;
-				} else if(player[7] == 'August'){
-					player[7] = 'July';
+				} else if(month == 'August'){
+					month = 'July';
 					day = 31 + day;
-				} else if(player[7] == 'September'){
-					player[7] = 'August';
+				} else if(month == 'September'){
+					month = 'August';
 					day = 31 + day;
-				} else if(player[7] == 'October'){
-					player[7] = 'September';
+				} else if(month == 'October'){
+					month = 'September';
 					day = 30 + day;
-				} else if(player[7] == 'November'){
-					player[7] = 'October';
+				} else if(month == 'November'){
+					month = 'October';
 					day = 31 + day;
-				} else if(player[7] == 'Decmeber'){
-					player[7] = 'November';
+				} else if(month == 'Decmeber'){
+					month = 'November';
 					day = 30 + day;
-				} else if(player[7] == 'January'){
-					player[7] = 'Decmeber';
+				} else if(month == 'January'){
+					month = 'Decmeber';
 					day = 31 + day;
-				} else if(player[7] == 'February'){
-					player[7] = 'January';
+				} else if(month == 'February'){
+					month = 'January';
 					day = 31 + day;
-				} else if(player[7] == 'March'){
-					player[7] = 'February';
+				} else if(month == 'March'){
+					month = 'February';
 					day = 28 + day;
 				}
 
 
-				$("span.month").text(player[7]);
+				$("span.month").text(month);
 				$("span.day").text(day);
 			}
 			$("span.day").text(day);
@@ -397,6 +437,40 @@ player[7] = "April";
 		
 		
 	}
+
+	var chat1name, chat1job, chat2name, chat2job, chat3name, chat3job, chat4name, chat4job;
+
+	function chat(name){
+		
+
+		nameNum = (Math.floor((Math.random() * $(localName).length + 1))) - 1;
+		jobNum = (Math.floor((Math.random() * $(localJob).length + 1))) - 1;
+		if(name == "chatterbox1"){
+			chat1name = localName[nameNum];
+			chat1job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat1job);
+			$("." + name + " .chatter-name").text(chat1name);
+		} else if (name == "chatterbox2"){
+			chat2name = localName[nameNum];
+			chat2job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat2job);
+			$("." + name + " .chatter-name").text(chat2name);
+		} else if (name == "chatterbox3"){
+			chat3name = localName[nameNum];
+			chat3job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat3job);
+			$("." + name + " .chatter-name").text(chat3name);
+		} else if (name == "chatterbox4"){
+			chat4name = localName[nameNum];
+			chat4job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat4job);
+			$("." + name + " .chatter-name").text(chat4name);
+		}
+	}
 	
 
 	function deadCrew(){
@@ -422,15 +496,15 @@ player[7] = "April";
 
 //jobs
 	$(".farmer").click(function(){
-		addJob(farmer);
+		captainJob = "farmer";
 		money = 1000;
 	});
 	$(".engineer").click(function(){
-		addJob(engineer);
+		captainJob = "engineer";
 		money = 1500;
 	});
 	$(".moneybags").click(function(){
-		addJob(moneybags);
+		captainJob = "moneybags";
 		money = 2000;
 	});
 
@@ -438,43 +512,45 @@ player[7] = "April";
 //names
 	$(".leaderName").click(function(){
 		var inputLeader = $("input[name = 'captain']").val();
-		var name = [leader = inputLeader];
-		player = $.merge(player,name);
-		console.log(player);
+		var name = [inputLeader];
+		captainName = $.merge([],name);
+		console.log(captainName);
 	});
 
 	$(".memberName").click(function(){
 		var inputMember = $("input[name = 'member1']").val();
-		var name  = [member1 = inputMember];
-		player = $.merge(player,name);
-		inputMember = $("input[name = 'member2']").val();
-		name  = [member2 = inputMember];
-		player = $.merge(player,name);
-		inputMember = $("input[name = 'member3']").val();
-		name  = [member3 = inputMember];
-		player = $.merge(player,name);
-		inputMember = $("input[name = 'member4']").val();
-		name  = [member4 = inputMember];
-		player = $.merge(player,name);
+		var name = [inputMember];
 		crew = $.merge([],name);
-		console.log(player);
+
+		inputMember = $("input[name = 'member2']").val();
+		name = [inputMember];
+		crew = $.merge(crew,name);
+		
+		inputMember = $("input[name = 'member3']").val();
+		name = [inputMember];
+		crew = $.merge(crew,name);
+
+		inputMember = $("input[name = 'member4']").val();
+		name = [inputMember];
+		crew = $.merge(crew,name);
+		console.log("crew:" + crew);
 	});
 
 //month
 	$(".april").click(function(){
-		player[7] = 'April';
+		month = 'April';
 		updateMonth();
 	});
 	$(".may").click(function(){
-		player[7] = 'May';
+		month = 'May';
 		updateMonth();
 	});
 	$(".june").click(function(){
-		player[7] = 'June';
+		month = 'June';
 		updateMonth();
 	});
 	$(".july").click(function(){
-		player[7] = 'July';
+		month = 'July';
 		updateMonth();
 	});
 
@@ -507,34 +583,33 @@ player[7] = "April";
 		oldBillAmmo = costOfItems;
 	});
 	$(".exitStore").click(function(){
-
-		player[1] = storeTotal;
-		player[8] = numOfParts;
-		player[9] = numOfFuel * 100;
-		fuel = player[9];
-		player[10] = numOfFood;
-		food = player[10] * 100;
-		player[11] = numOfAmmo;
-		ammo = player[11] * 2;
+		parts = numOfParts;
+		fuel = numOfFuel * 100;
+		food = numOfFood * 100;
+		ammo = numOfAmmo * 5;
 		money = storeTotal;
-		console.log(player);
+		conlog("parts: " + parts);
+		conlog("fuel: " + fuel);
+		conlog("food: " + food);
+		conlog("ammo: " + ammo);
+		conlog("money: "+ money);
 	});
 
 
 
 	$(".departure").click(function(){
-		counter = 0;
-		startCounter = true;
-		console.log(startCounter);
+		// counter = 0;
+		// startCounter = true;
+		// console.log(startCounter);
 		$("span.money").text(money);
-		$("span.weather").text(weather);
 		$("span.pace").text(pace);
 		$("span.health").text(health);
 		$("span.rations").text(rations);
 		$("span.food").text(food);
 		$("span.ammo").text(ammo);
 		$("span.fuel").text(fuel);
-		$("span.month").text(player[7]);
+		$("span.month").text(month);
+		day = 1;
 		$("span.day").text(day);
 		$(".options").show();
 	});
@@ -551,7 +626,7 @@ player[7] = "April";
 // 			console.log(randomEncounterDice);
 var role = 1;
 
-player[7] = "April";
+month = "April";
 food = 500;
 ammo = 1;
 fuel = 200;
@@ -572,19 +647,23 @@ $("span.fuel").text(fuel);
 		if(pace == "slow"){
 			fuelUsage = 5;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role++;
 		} else if(pace == "moderate"){
 			fuelUsage = 15;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=2
 		} else if(pace == "quick"){
 			fuelUsage = 30;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=3
 		} else if(pace == "fast"){
 			fuelUsage = 50;
 			fuel -= fuelUsage;
-			$("span.fuel").text(fuel)
+			$("span.fuel").text(fuel);
+			role +=4
 		}
 
 		if(rations == "bare"){
@@ -617,10 +696,13 @@ $("span.fuel").text(fuel);
 
 			addToConsole("You are running low on fuel. Try trading for more fuel or adjusting your pace.");
 		} else if(fuel <=0){
+			fuel = 0;
+			$("span.fuel").text(fuel);
 			addWarning("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
 			// $(".traverse").addClass("noFuel").removeClass("traverse").off('click');
 			$(".traverse").css({'pointerEvents':'none','opacity':'.5'});
 			encounter = 20;
+
 		}
 
 		if(food <= (ffp * health) && food > 0){
@@ -655,16 +737,15 @@ $("span.fuel").text(fuel);
 	
 
 		conlog("role:" + role);
-		conlog(diceOne);
-		conlog(diceTwo);
-		conlog(ranEnDice);
-		conlog(encounter);
+		// conlog(diceOne);
+		// conlog(diceTwo);
+		// conlog(ranEnDice);
+		// conlog(encounter);
 		encounter = 0;
-		role++;
 
 
-	//Planet X
-		if(role == locationOne){
+	//locations
+		if(role >= locationOne && role <= locationTwo){
 			addToConsole("You have neared Planet X, what will you do?");
 			$(".travel").hide();
 			$(".twoChoices").show();
@@ -675,6 +756,7 @@ $("span.fuel").text(fuel);
 				addToConsole("You have touched down on Planet X. This a main hub for those who favor themselves as cosmopoliton.")
 				
 				$(".twoChoices").hide();
+				$(".travel").hide();
 				$(".planetX").show();
 				updateMonth();
 			});
@@ -684,6 +766,10 @@ $("span.fuel").text(fuel);
 				$(".twoChoices").hide();
 				$(this).off("click");
 			});
+		} else if(role >= locationTwo && role <= locationThree){
+			conlog("second location");
+		} else if(role >= locationThree){
+			conlog("third location");
 		}
 	});
 
@@ -739,39 +825,116 @@ $("span.fuel").text(fuel);
 		trade("trade-two");
 		trade("trade-three");
 		
-		addToConsole("trade attempted");
 
 	});
 
 	$(".trade-done").click(function(){
 		if(fuel > fuelUsage){
-			conlog("hello");
 			$(".traverse").css({'pointerEvents':'initial','opacity':1})
 		}
 		$(".progressConsole").show();
 		$(".travel").show();
 		$(".trading").hide();
-		if(fuel >= fuelUsage){
-			$(".noFuel").addClass("traverse").removeClass("noFuel").on('click'); //not working?
-		}
+		
+		addToConsole("trade attempted");
 	})
 	
 //Planet X
 	
 	$(".local-trade").click(function(){
 		updateMonth();
-		conlog("trade with locals");
+		$(".progressConsole").hide();
+		$(".planetX").hide();
+		$(".local-trading").show();
+		trade("trade-one");
+		trade("trade-two");
+		trade("trade-three");
+
 	});
+
+	$(".local-trade-done").click(function(){
+		$(".progressConsole").show();
+		$(".planetX").show();
+		$(".local-trading").hide();
+	});
+
 	$(".local-chat").click(function(){
 		updateMonth();
-		conlog("chat with locals");
+		// $(".progressConsole").css({'height':'15%'});
+		addToConsole("You enter a local bar called Dravent's Watering Hole.");
+
+		$(".planetX").hide();
+		$(".local-chatting").show();
 	});
+
+	$(".chat-talk").click(function(){
+
+		nameNum = (Math.floor((Math.random() * $(localName).length + 1))) - 1;
+		jobNum = (Math.floor((Math.random() * $(localJob).length + 1))) - 1;
+		addToConsole("You start talking with " + localJob[jobNum] + " " + localName[nameNum] + ".");
+
+		diceOne = Math.ceil( ( Math.random() * 10) );
+		if(diceOne == 1){
+			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
+		} else if(diceOne == 2){
+			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 lbs of food");
+			food += 50;
+			$("span.food").text(food);
+		} else if(diceOne == 3){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You won! They give you §100 as your winnings.");
+			money += 100;
+			$("span.money").text(money);
+		} else if(diceOne == 4){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
+			money -= 100;
+			$("span.money").text(money);
+		} else if(diceOne == 5){
+			addToConsole("You buy your new friend a drink and local bar food.");
+			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
+			money -= 10;
+			$("span.money").text(money);
+		} else if(diceOne == 6){
+			addToConsole("You find some money on the floor and decide to keep it");
+			addToConsole("You gain §20.");
+			money += 20;
+			$("span.money").text(money);
+		} else if(diceOne == 7){
+			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
+		} else if(diceOne == 8){
+			addToConsole("You get along well with this random stranger you've sat down with.");
+		} else if(diceOne == 9){
+			addToConsole("You find out that " + localJob[jobNum] + " " + localName[nameNum] + " knows Aunt Frale. What a small world");
+		} else{
+			addToConsole(localJob[jobNum] + " " + localName[nameNum] + " seems like a good person. You wonder if they would join you on your journey.");
+			if(crew.length < 4){
+				addToConsole(localJob[jobNum] + " " + localName[nameNum] + " agrees to join you.");
+				addToConsole(localJob[jobNum] + " " + localName[nameNum] + " joins you.");
+				var newmember = [localName[nameNum]];
+				crew = $.merge(crew,newmember);
+				conlog(crew);
+				health = $(crew).length;
+
+			} else if(crew.length >= 4){
+				addToConsole("Too bad there's no room in your ship for another person.");
+			}
+		}
+		$(".chat-talk").text("Talk to Somebody Else")
+	});
+	
+	$(".chat-leave").click(function(){
+		$(".local-chatting").hide();
+		$(".planetX").show();
+	});
+
 	$(".leave-planet").click(function(){
 		updateMonth();
 		$(".travel").show();
 		$(".planetX").hide();
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		conlog("leave planet");
+		role = 15;
 	});
 
 

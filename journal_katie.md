@@ -32,8 +32,8 @@ It's Halloween!
 SPOOOKY!   
 Night Before Halloween Song Here.   
 Smell Ya Later.   
-Katie   
----
+Katie    
+---   
 
 # Captian's Log   
 _Nov 7, 2017_   
@@ -44,6 +44,7 @@ Finished setup this week.
 Started counter.   
 Fare Thee Well.   
 Katie   
+---   
 
 # Captian's Log  
 _Nov 14, 2017_   
@@ -52,4 +53,14 @@ Late Log...
 Got rations and pace changes working.   
 Got pirate encounter sorta working.   
 Toodle Loo.   
-Katie
+Katie   
+---   
+
+# Captian's Log   
+_Nov 20, 2017_
+_Module 11_   
+I have so far added a location and enabled trading with locals.   
+I will start chatting with locals.   
+Until Later.   
+Katie   
+---   
