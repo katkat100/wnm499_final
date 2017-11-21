@@ -40,8 +40,7 @@ $(function(){
 	var docHeight = $("body").height();
 	var mainMargin = 0;
 
-	var weather = "perfect";
-	var weatherOpt = ["heated", "freezing", "fair", "perfect"];
+	
 	var pace = "quick";
 	var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
 	var health = $(crew).length;
@@ -87,7 +86,9 @@ $(function(){
 	var locationThree = 40;
 
 	var ranNum = [0,1,2,3,4,5,6,7,8];
-
+	
+	var localJob = ['Hooman', 'Erutzanans', 'Teegafane', 'Vleslon', 'Dlahiri', 'Bosolians', 'TuVav', 'Swerzog', 'Catali', 'Heerians', 'Gorganub'];
+	var localName = ['Uemyrea', 'Linola', 'Hystise', 'Airiene', 'Pela', 'Voloya', 'Jozane', 'Boozyad', 'Ukhgahr', 'Squxuoss', 'Kuarcax', 'Algaxath'];
 	// console.log(farmer);
 	// console.log(engineer);
 	// console.log(moneybags);
@@ -436,6 +437,40 @@ $(function(){
 		
 		
 	}
+
+	var chat1name, chat1job, chat2name, chat2job, chat3name, chat3job, chat4name, chat4job;
+
+	function chat(name){
+		
+
+		nameNum = (Math.floor((Math.random() * $(localName).length + 1))) - 1;
+		jobNum = (Math.floor((Math.random() * $(localJob).length + 1))) - 1;
+		if(name == "chatterbox1"){
+			chat1name = localName[nameNum];
+			chat1job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat1job);
+			$("." + name + " .chatter-name").text(chat1name);
+		} else if (name == "chatterbox2"){
+			chat2name = localName[nameNum];
+			chat2job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat2job);
+			$("." + name + " .chatter-name").text(chat2name);
+		} else if (name == "chatterbox3"){
+			chat3name = localName[nameNum];
+			chat3job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat3job);
+			$("." + name + " .chatter-name").text(chat3name);
+		} else if (name == "chatterbox4"){
+			chat4name = localName[nameNum];
+			chat4job = localJob[jobNum];
+
+			$("." + name + " .chatter-job").text(chat4job);
+			$("." + name + " .chatter-name").text(chat4name);
+		}
+	}
 	
 
 	function deadCrew(){
@@ -567,7 +602,6 @@ $(function(){
 		// startCounter = true;
 		// console.log(startCounter);
 		$("span.money").text(money);
-		$("span.weather").text(weather);
 		$("span.pace").text(pace);
 		$("span.health").text(health);
 		$("span.rations").text(rations);
@@ -826,25 +860,74 @@ $("span.fuel").text(fuel);
 
 	$(".local-chat").click(function(){
 		updateMonth();
-		$(".progressConsole").css({'height':'15%'});
+		// $(".progressConsole").css({'height':'15%'});
 		addToConsole("You enter a local bar called Dravent's Watering Hole.");
+
 		$(".planetX").hide();
 		$(".local-chatting").show();
-		chat("chatterbox1");
-		chat("chatterbox2");
-		chat("chatterbox3");
-		chat("chatterbox4");
 	});
-	function chat(name){
-		var localJob = ['Human', 'Erutzanans', 'Teegafane', 'Vleslon', 'Dlahiri', 'Bosolians', 'TuVav', 'Swerzog', 'Catali', 'Heerians', 'Gorganub'];
-		var localName = ['Uemyrea', 'Linola', 'Hystise', 'Airiene', 'Pela', 'Voloya', 'Jozane', 'Boozyad', 'Ukhgahr', 'Squxuoss', 'Kuarcax', 'Algaxath'];
+
+	$(".chat-talk").click(function(){
 
 		nameNum = (Math.floor((Math.random() * $(localName).length + 1))) - 1;
 		jobNum = (Math.floor((Math.random() * $(localJob).length + 1))) - 1;
+		addToConsole("You start talking with " + localJob[jobNum] + " " + localName[nameNum] + ".");
 
-		$("." + name + " .chatter-job").text(localName[nameNum]);
-		$("." + name + " .chatter-name").text(localJob[jobNum]);
-	}
+		diceOne = Math.ceil( ( Math.random() * 10) );
+		if(diceOne == 1){
+			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
+		} else if(diceOne == 2){
+			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 lbs of food");
+			food += 50;
+			$("span.food").text(food);
+		} else if(diceOne == 3){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You won! They give you §100 as your winnings.");
+			money += 100;
+			$("span.money").text(money);
+		} else if(diceOne == 4){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
+			money -= 100;
+			$("span.money").text(money);
+		} else if(diceOne == 5){
+			addToConsole("You buy your new friend a drink and local bar food.");
+			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
+			money -= 10;
+			$("span.money").text(money);
+		} else if(diceOne == 6){
+			addToConsole("You find some money on the floor and decide to keep it");
+			addToConsole("You gain §20.");
+			money += 20;
+			$("span.money").text(money);
+		} else if(diceOne == 7){
+			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
+		} else if(diceOne == 8){
+			addToConsole("You get along well with this random stranger you've sat down with.");
+		} else if(diceOne == 9){
+			addToConsole("You find out that " + localJob[jobNum] + " " + localName[nameNum] + " knows Aunt Frale. What a small world");
+		} else{
+			addToConsole(localJob[jobNum] + " " + localName[nameNum] + " seems like a good person. You wonder if they would join you on your journey.");
+			if(crew.length < 4){
+				addToConsole(localJob[jobNum] + " " + localName[nameNum] + " agrees to join you.");
+				addToConsole(localJob[jobNum] + " " + localName[nameNum] + " joins you.");
+				var newmember = [localName[nameNum]];
+				crew = $.merge(crew,newmember);
+				conlog(crew);
+				health = $(crew).length;
+
+			} else if(crew.length >= 4){
+				addToConsole("Too bad there's no room in your ship for another person.");
+			}
+		}
+		$(".chat-talk").text("Talk to Somebody Else")
+	});
+	
+	$(".chat-leave").click(function(){
+		$(".local-chatting").hide();
+		$(".planetX").show();
+	});
+
 	$(".leave-planet").click(function(){
 		updateMonth();
 		$(".travel").show();

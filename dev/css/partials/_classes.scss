@@ -157,6 +157,33 @@
 	width: 100%;
 }
 
+.chatterbox-image-container{
+	position: relative;
+	width: 100%;
+
+	&:before{
+		content: "";
+		display: block;
+		padding-top: 100%;
+	}
+
+	.chatterbox-image{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+}
+
+@for $i from 1 through 4{
+	.chatterbox#{i}{
+		.chatterbox-image{
+			// background-image: url("../images/")
+		}
+	}
+}
+
 @media (max-width: 899px) {
 	.card{
 		// margin-right: 1%;
