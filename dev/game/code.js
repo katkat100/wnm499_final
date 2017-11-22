@@ -827,6 +827,10 @@ $("span.fuel").text(fuel);
 		if($(this).data("minusFrom") == "food" && $(this).data("minus") > food){
 
 		}
+
+		if(gameobj[$(this).data("minusFrom")] < $(this).data("minus") ) {
+			
+		}
 		if($(this).data("addTo") == "food"){
 			food += parseInt($(this).data("add"));
 			$("span.food").text(food);
