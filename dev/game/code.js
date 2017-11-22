@@ -40,12 +40,18 @@ $(function(){
 	var docHeight = $("body").height();
 	var mainMargin = 0;
 
-	
+	var gameobj = {
+		food : 0,
+		fuel : 0,
+		ammo : 0,
+		parts : 0,
+
+	}
 	var pace = "quick";
 	var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
 	var health = $(crew).length;
 	var rations = "filling";
-	var food = 0;
+	// var food = 0;
 	var ffp = 0;
 	var ammo = 0;
 	var parts = 0;
@@ -111,15 +117,6 @@ $(function(){
 	function updateMonth(){
 		// console.log(month);
 		day++;
-		// if(pace == "slow"){
-		// 	day++;
-		// } else if(pace == "moderate"){
-		// 	day += 2;
-		// } else if(pace == "quick"){
-		// 	day += 3;
-		// } else if(pace == "fast"){
-		// 	day += 4;
-		// }
 
 		if(month == "April" && day > 30){
 			month = "May";
@@ -232,9 +229,9 @@ $(function(){
 						addToConsole("The space pirates draw their laser guns before you're able to!");
 						addToConsole("They loot §500 and 100lbs of food because of the trouble you caused.");
 						money -= 500;
-						food -= 100;
+						gameobj['food'] -= 100;
 						$("span.money").text(money);
-						$("span.food").text(food);
+						$("span.food").text(gameobj['food']);
 						$(".travel").show();
 						$(".twoChoices").hide();
 					}
@@ -353,7 +350,7 @@ $(function(){
 		} else if(encounter == 8){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
 			food = 100;
-			$("span.food").text(food);
+			$("span.food").text(gameobj['food']);
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
@@ -399,7 +396,7 @@ $(function(){
 			minusFrom: tradeItems[itemNum].from
 		})
 		if(
-			((tradeItems[itemNum].from) == "food" && tradeItems[itemNum].minus > food) ||
+			((tradeItems[itemNum].from) == "food" && tradeItems[itemNum].minus > gameobj['food']) ||
 			((tradeItems[itemNum].from) == "money" && tradeItems[itemNum].minus > money) ||
 			(tradeItems[itemNum].from) == "fuel" && tradeItems[itemNum].minus > fuel
 			){
@@ -556,12 +553,12 @@ $(function(){
 	$(".exitStore").click(function(){
 		parts = numOfParts;
 		fuel = numOfFuel * 100;
-		food = numOfFood * 100;
+		gameobj['food'] = numOfFood * 100;
 		ammo = numOfAmmo * 5;
 		money = storeTotal;
 		conlog("parts: " + parts);
 		conlog("fuel: " + fuel);
-		conlog("food: " + food);
+		conlog("food: " + gameobj['food']);
 		conlog("ammo: " + ammo);
 		conlog("money: "+ money);
 	});
@@ -576,7 +573,7 @@ $(function(){
 		$("span.pace").text(pace);
 		$("span.health").text(health);
 		$("span.rations").text(rations);
-		$("span.food").text(food);
+		$("span.food").text(gameobj['food']);
 		$("span.ammo").text(ammo);
 		$("span.fuel").text(fuel);
 		$("span.month").text(month);
@@ -598,14 +595,14 @@ $(function(){
 var role = 1;
 
 month = "April";
-food = 500;
+gameobj['food'] = 500;
 ammo = 1;
 fuel = 200;
 money = 2000;
 
 
 $("span.money").text(money);
-$("span.food").text(food);
+$("span.food").text(gameobj['food']);
 $("span.fuel").text(fuel);
 
 
@@ -639,16 +636,16 @@ $("span.fuel").text(fuel);
 
 		if(rations == "bare"){
 			fpp = 5;
-			food -= (fpp * health);
-			$("span.food").text(food);
+			gameobj['food'] -= (fpp * health);
+			$("span.food").text(gameobj['food']);
 		} else if(rations == "meager"){
 			fpp = 10;
-			food -= (fpp * health);
-			$("span.food").text(food);
+			gameobj['food'] -= (fpp * health);
+			$("span.food").text(gameobj['food']);
 		}else if(rations == "filling"){
 			fpp = 20;
-			food -= (fpp * health);
-			$("span.food").text(food);
+			gameobj['food'] -= (fpp * health);
+			$("span.food").text(gameobj['food']);
 		}
 		
 		diceOne = Math.ceil( ( Math.random() * 10) );
@@ -676,11 +673,11 @@ $("span.fuel").text(fuel);
 
 		}
 
-		if(food <= (ffp * health) && food > 0){
+		if(gameobj['food'] <= (ffp * health) && gameobj['food'] > 0){
 			addToConsole("A crew member warns you that food storage is getting low. It's advisable to make a trade for food.");
-		} else if(food <= 0){
-			food = 0;
-			$("span.food").text(food);
+		} else if(gameobj['food'] <= 0){
+			gameobj['food'] = 0;
+			$("span.food").text(gameobj['food']);
 			addWarning("Warning! You have run out of food. If you continue to travel without food your crew members may die.");
 			var hungryDice = Math.ceil( ( Math.random() * 10) );
 			conlog("hungry: " + hungryDice)
@@ -824,34 +821,35 @@ $("span.fuel").text(fuel);
 	});
 
 	$("body").on("click",".make-trade",function(){
-		if($(this).data("minusFrom") == "food" && $(this).data("minus") > food){
+/////////////////////////////////////////////////
+		if(gameobj[$(this).data("minusFrom")] > $(this).data("minus") ) {
+			gameobj[$(this).data("addTo")] += parseInt($(this).data("add"));
+			gameobj[$(this).data("minusFrom")] -= parseInt($(this).data("minus"));
+			$("span." + $(this).data("addTo")).text(gameobj[$(this).data("addTo")]);
+			$("span." + $(this).data("minusFrom")).text(gameobj[$(this).data("minusFrom")]);
+		}
+/////////////////////////////////////////////////
+		// if($(this).data("addTo") == "food"){
+		// 	gameobj['food'] += parseInt($(this).data("add"));
+		// 	$("span.food").text(gameobj['food']);
+		// } else if($(this).data("addTo") == "fuel"){
+		// 	fuel += parseInt($(this).data("add"));
+		// 	$("span.fuel").text(fuel);
+		// } else if($(this).data("addTo") == "money"){
+		// 	money += parseInt($(this).data("add"));
+		// 	$("span.money").text(money);
+		// }
 
-		}
-
-		if(gameobj[$(this).data("minusFrom")] < $(this).data("minus") ) {
-			
-		}
-		if($(this).data("addTo") == "food"){
-			food += parseInt($(this).data("add"));
-			$("span.food").text(food);
-		} else if($(this).data("addTo") == "fuel"){
-			fuel += parseInt($(this).data("add"));
-			$("span.fuel").text(fuel);
-		} else if($(this).data("addTo") == "money"){
-			money += parseInt($(this).data("add"));
-			$("span.money").text(money);
-		}
-
-		if($(this).data("minusFrom") == "food"){
-			food -= parseInt($(this).data("minus"));
-			$("span.food").text(food);
-		} else if($(this).data("minusFrom") == "fuel"){
-			fuel -= parseInt($(this).data("minus"));
-			$("span.fuel").text(fuel);
-		} else if($(this).data("minusFrom") == "money"){
-			money -= parseInt($(this).data("minus"));
-			$("span.money").text(money);
-		}
+		// if($(this).data("minusFrom") == "food"){
+		// 	gameobj['food'] -= parseInt($(this).data("minus"));
+		// 	$("span.food").text(gameobj['food']);
+		// } else if($(this).data("minusFrom") == "fuel"){
+		// 	fuel -= parseInt($(this).data("minus"));
+		// 	$("span.fuel").text(fuel);
+		// } else if($(this).data("minusFrom") == "money"){
+		// 	money -= parseInt($(this).data("minus"));
+		// 	$("span.money").text(money);
+		// }
 	});
 
 	$(".local-trade-done").click(function(){
@@ -880,8 +878,8 @@ $("span.fuel").text(fuel);
 			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
 		} else if(diceOne == 2){
 			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 lbs of food");
-			food += 50;
-			$("span.food").text(food);
+			gameobj['food'] += 50;
+			$("span.food").text(gameobj['food']);
 		} else if(diceOne == 3){
 			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
 			addToConsole("You won! They give you §100 as your winnings.");
