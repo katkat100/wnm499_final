@@ -26,7 +26,7 @@ $(function(){
 		ammo = 20,
 		parts = 100
 	];
-	var money = 0;
+	// var money = 0;
 	var numOfParts = 0, numOfFuel = 0, numOfFood = 0, numOfAmmo = 0;
 	var costOfItems = 0;
 	var oldBillParts = 0, oldBillFuel = 0, oldBillFood = 0, oldBillAmmo = 0;
@@ -54,12 +54,12 @@ $(function(){
 	var rations = "filling";
 	// var food = 0;
 	var ffp = 0;
-	var ammo = 0;
-	var parts = 0;
-	var fuel = 0;
+	// var ammo = 0;
+	// var parts = 0;
+	// var fuel = 0;
 	var fuelUsage = 0;
 	var day = 1;
-	var month = "";
+	// var month = "";
 
 	var diceOne = 0;
 	var diceTwo = 0;
@@ -165,7 +165,7 @@ $(function(){
 	function storeBilling(bill){
 		storeBill -= bill;
 		storeBill += costOfItems;
-		storeTotal = money - storeBill;
+		storeTotal = gameobj['money'] - storeBill;
 		console.log("bill: " + storeBill);
 		console.log("total: " + storeTotal);
 		$("span.bill").text(storeBill);
@@ -217,21 +217,21 @@ $(function(){
 			$(".twoChoices").show();
 			$(".twoChoices .one").click(function(){
 				$(".twoChoices .one").off("click")
-				if(ammo > 0){
+				if(gameobj['ammo'] > 0){
 					diceOne = Math.ceil( ( Math.random() * 10) );
 					conlog("Dice roll:" + diceOne);
 					if(diceOne >= 6){
 						addToConsole("Your gunslinging ways superior to the space pirates and they run away!");
-						ammo--;
-						$("span.ammo").text(ammo);
+						gameobj['ammo']--;
+						$("span.ammo").text(gameobj['ammo']);
 						$(".travel").show();
 						$(".twoChoices").hide();
 					} else {
 						addToConsole("The space pirates draw their laser guns before you're able to!");
 						addToConsole("They loot §500 and 100lbs of food because of the trouble you caused.");
-						money -= 500;
+						gameobj['money'] -= 500;
 						gameobj['food'] -= 100;
-						$("span.money").text(money);
+						$("span.money").text(gameobj['money']);
 						$("span.food").text(gameobj['food']);
 						$(".travel").show();
 						$(".twoChoices").hide();
@@ -245,15 +245,15 @@ $(function(){
 					diceOne = Math.ceil( ( Math.random() * 10) );
 					if( diceOne < 6){
 						addToConsole("They believe you and back off only taking §10.");
-						money -= 10;
-						$("span.money").text(money);
+						gameobj['money'] -= 10;
+						$("span.money").text(gameobj['money']);
 						$(".twoChoices .bluff").addClass("one").removeClass("bluff");
 						$(".twoChoices").hide();
 						$(".travel").show();
 					} else{
 						addToConsole("They laugh when they realize there's no ammo and take §700 instead.");
-						money -= 700;
-						$("span.money").text(money);
+						gameobj['money'] -= 700;
+						$("span.money").text(gameobj['money']);
 						$(".twoChoices .bluff").addClass("one").removeClass("bluff");
 						$(".twoChoices").hide();
 						$(".travel").show();
@@ -263,9 +263,9 @@ $(function(){
 			});
 			$(".twoChoices .two").click(function(){
 				addToConsole("You give the pirates what they want and they saunter off the ship with their pockets full");
-				money -= 500;
+				gameobj['money'] -= 500;
 				$(this).off('click');
-				$("span.money").text(money);
+				$("span.money").text(gameobj['money']);
 				$(".twoChoices").hide();
 				$(".travel").show();
 			});
@@ -442,15 +442,15 @@ $(function(){
 //jobs
 	$(".farmer").click(function(){
 		captainJob = "farmer";
-		money = 1000;
+		gameobj['money'] = 1000;
 	});
 	$(".engineer").click(function(){
 		captainJob = "engineer";
-		money = 1500;
+		gameobj['money'] = 1500;
 	});
 	$(".moneybags").click(function(){
 		captainJob = "moneybags";
-		money = 2000;
+		gameobj['money'] = 2000;
 	});
 
 
@@ -501,7 +501,7 @@ $(function(){
 
 //shop
 	// money = parseInt(player[1]);
-	$("span.money").text(money);
+	$("span.money").text(gameobj['money']);
 
 	$("input[name = 'parts']").on('input',function(){
 		numOfParts = $("input[name = 'parts']").val();
@@ -528,16 +528,16 @@ $(function(){
 		oldBillAmmo = costOfItems;
 	});
 	$(".exitStore").click(function(){
-		parts = numOfParts;
-		fuel = numOfFuel * 100;
+		gameobj['parts'] = numOfParts;
+		gameobj['fuel'] = numOfFuel * 100;
 		gameobj['food'] = numOfFood * 100;
-		ammo = numOfAmmo * 5;
-		money = storeTotal;
-		conlog("parts: " + parts);
-		conlog("fuel: " + fuel);
+		gameobj['ammo'] = numOfAmmo * 5;
+		gameobj['money'] = storeTotal;
+		conlog("parts: " + gameobj['parts']);
+		conlog("fuel: " + gameobj['fuel']);
 		conlog("food: " + gameobj['food']);
-		conlog("ammo: " + ammo);
-		conlog("money: "+ money);
+		conlog("ammo: " + gameobj['ammo']);
+		conlog("money: "+ gameobj['money']);
 	});
 
 
@@ -546,13 +546,13 @@ $(function(){
 		// counter = 0;
 		// startCounter = true;
 		// console.log(startCounter);
-		$("span.money").text(money);
+		$("span.money").text(gameobj['money']);
 		$("span.pace").text(pace);
 		$("span.health").text(health);
 		$("span.rations").text(rations);
 		$("span.food").text(gameobj['food']);
-		$("span.ammo").text(ammo);
-		$("span.fuel").text(fuel);
+		$("span.ammo").text(gameobj['ammo']);
+		$("span.fuel").text(gameobj['fuel']);
 		$("span.month").text(month);
 		day = 1;
 		$("span.day").text(day);
@@ -578,9 +578,9 @@ gameobj['fuel'] = 200;
 gameobj['money'] = 2000;
 
 
-$("span.money").text(money);
+$("span.money").text(gameobj['money']);
 $("span.food").text(gameobj['food']);
-$("span.fuel").text(fuel);
+$("span.fuel").text(gameobj['fuel']);
 
 
 
@@ -591,23 +591,23 @@ $("span.fuel").text(fuel);
 
 		if(pace == "slow"){
 			fuelUsage = 5;
-			fuel -= fuelUsage;
-			$("span.fuel").text(fuel);
+			gameobj['fuel'] -= fuelUsage;
+			$("span.fuel").text(gameobj['fuel']);
 			role++;
 		} else if(pace == "moderate"){
 			fuelUsage = 15;
-			fuel -= fuelUsage;
-			$("span.fuel").text(fuel);
+			gameobj['fuel'] -= fuelUsage;
+			$("span.fuel").text(gameobj['fuel']);
 			role +=2
 		} else if(pace == "quick"){
 			fuelUsage = 30;
-			fuel -= fuelUsage;
-			$("span.fuel").text(fuel);
+			gameobj['fuel'] -= fuelUsage;
+			$("span.fuel").text(gameobj['fuel']);
 			role +=3
 		} else if(pace == "fast"){
 			fuelUsage = 50;
-			fuel -= fuelUsage;
-			$("span.fuel").text(fuel);
+			gameobj['fuel'] -= fuelUsage;
+			$("span.fuel").text(gameobj['fuel']);
 			role +=4
 		}
 
@@ -636,13 +636,13 @@ $("span.fuel").text(fuel);
 
 		
 
-		if(fuel <= fuelUsage && fuel > 0){
+		if(gameobj['fuel'] <= fuelUsage && gameobj['fuel'] > 0){
 			// $(".travel").hide();
 
 			addToConsole("You are running low on fuel. Try trading for more fuel or adjusting your pace.");
-		} else if(fuel <=0){
-			fuel = 0;
-			$("span.fuel").text(fuel);
+		} else if(gameobj['fuel'] <=0){
+			gameobj['fuel'] = 0;
+			$("span.fuel").text(gameobj['fuel']);
 			addWarning("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
 			// $(".traverse").addClass("noFuel").removeClass("traverse").off('click');
 			$(".traverse").css({'pointerEvents':'none','opacity':'.5'});
@@ -774,7 +774,7 @@ $("span.fuel").text(fuel);
 	});
 
 	$(".trade-done").click(function(){
-		if(fuel > fuelUsage){
+		if(gameobj['fuel'] > fuelUsage){
 			$(".traverse").css({'pointerEvents':'initial','opacity':1})
 		}
 		$(".progressConsole").show();
@@ -862,23 +862,23 @@ $("span.fuel").text(fuel);
 		} else if(diceOne == 3){
 			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
 			addToConsole("You won! They give you §100 as your winnings.");
-			money += 100;
-			$("span.money").text(money);
+			gameobj['money'] += 100;
+			$("span.money").text(gameobj['money']);
 		} else if(diceOne == 4){
 			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
 			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
-			money -= 100;
-			$("span.money").text(money);
+			gameobj['money'] -= 100;
+			$("span.money").text(gameobj['money']);
 		} else if(diceOne == 5){
 			addToConsole("You buy your new friend a drink and local bar food.");
 			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
-			money -= 10;
-			$("span.money").text(money);
+			gameobj['money'] -= 10;
+			$("span.money").text(gameobj['money']);
 		} else if(diceOne == 6){
 			addToConsole("You find some money on the floor and decide to keep it");
 			addToConsole("You gain §20.");
-			money += 20;
-			$("span.money").text(money);
+			gameobj['money'] += 20;
+			$("span.money").text(gameobj['money']);
 		} else if(diceOne == 7){
 			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
 		} else if(diceOne == 8){
