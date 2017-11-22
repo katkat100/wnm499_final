@@ -45,6 +45,7 @@ $(function(){
 		fuel : 0,
 		ammo : 0,
 		parts : 0,
+		money : 0,
 
 	}
 	var pace = "quick";
@@ -380,31 +381,7 @@ $(function(){
 
 
 	
-	function trade(traderNum){
-		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
-		nameNum = (Math.floor((Math.random() * $(traderName).length + 1))) - 1;
-		itemNum = (Math.floor((Math.random() * $(tradeItems).length + 1))) - 1;
-		$("." + traderNum + " .traderTitle").text(traderTitle[titleNum]);
-		$("." + traderNum + " .trader").text(traderName[nameNum]);
-		$("." + traderNum + " .first-item").text(tradeItems[itemNum].one);
-		$("." + traderNum + " .second-item").text(tradeItems[itemNum].two);
-
-		$("." + traderNum + " .make-trade").data({
-			add: tradeItems[itemNum].add,
-			minus: tradeItems[itemNum].minus,
-			addTo: tradeItems[itemNum].to,
-			minusFrom: tradeItems[itemNum].from
-		})
-		if(
-			((tradeItems[itemNum].from) == "food" && tradeItems[itemNum].minus > gameobj['food']) ||
-			((tradeItems[itemNum].from) == "money" && tradeItems[itemNum].minus > money) ||
-			(tradeItems[itemNum].from) == "fuel" && tradeItems[itemNum].minus > fuel
-			){
-			$("." + traderNum + " .make-trade").css({'opacity' : '.5', 'pointerEvents' : 'none'});
-		}
-		
-		
-	}
+	
 
 	var chat1name, chat1job, chat2name, chat2job, chat3name, chat3job, chat4name, chat4job;
 
@@ -596,9 +573,9 @@ var role = 1;
 
 month = "April";
 gameobj['food'] = 500;
-ammo = 1;
-fuel = 200;
-money = 2000;
+gameobj['ammo'] = 1;
+gameobj['fuel'] = 200;
+gameobj['money'] = 2000;
 
 
 $("span.money").text(money);
@@ -820,36 +797,38 @@ $("span.fuel").text(fuel);
 
 	});
 
+	function trade(traderNum){
+		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
+		nameNum = (Math.floor((Math.random() * $(traderName).length + 1))) - 1;
+		itemNum = (Math.floor((Math.random() * $(tradeItems).length + 1))) - 1;
+		$("." + traderNum + " .traderTitle").text(traderTitle[titleNum]);
+		$("." + traderNum + " .trader").text(traderName[nameNum]);
+		$("." + traderNum + " .first-item").text(tradeItems[itemNum].one);
+		$("." + traderNum + " .second-item").text(tradeItems[itemNum].two);
+
+		$("." + traderNum + " .make-trade").data({
+			add: tradeItems[itemNum].add,
+			minus: tradeItems[itemNum].minus,
+			addTo: tradeItems[itemNum].to,
+			minusFrom: tradeItems[itemNum].from
+		})
+	}
+
 	$("body").on("click",".make-trade",function(){
-/////////////////////////////////////////////////
-		if(gameobj[$(this).data("minusFrom")] > $(this).data("minus") ) {
+		conlog($(this).data("minusFrom"));
+		conlog(gameobj[$(this).data("minusFrom")]);
+		conlog($(this).data("minus"));
+		if(gameobj[$(this).data("minusFrom")] >= $(this).data("minus") ) {
 			gameobj[$(this).data("addTo")] += parseInt($(this).data("add"));
 			gameobj[$(this).data("minusFrom")] -= parseInt($(this).data("minus"));
 			$("span." + $(this).data("addTo")).text(gameobj[$(this).data("addTo")]);
 			$("span." + $(this).data("minusFrom")).text(gameobj[$(this).data("minusFrom")]);
+		} else if(gameobj[$(this).data("minusFrom")] < $(this).data("minus")){
+			conlog("trade unavailable")
+		}else{
+			conlog("uhhh");
 		}
-/////////////////////////////////////////////////
-		// if($(this).data("addTo") == "food"){
-		// 	gameobj['food'] += parseInt($(this).data("add"));
-		// 	$("span.food").text(gameobj['food']);
-		// } else if($(this).data("addTo") == "fuel"){
-		// 	fuel += parseInt($(this).data("add"));
-		// 	$("span.fuel").text(fuel);
-		// } else if($(this).data("addTo") == "money"){
-		// 	money += parseInt($(this).data("add"));
-		// 	$("span.money").text(money);
-		// }
 
-		// if($(this).data("minusFrom") == "food"){
-		// 	gameobj['food'] -= parseInt($(this).data("minus"));
-		// 	$("span.food").text(gameobj['food']);
-		// } else if($(this).data("minusFrom") == "fuel"){
-		// 	fuel -= parseInt($(this).data("minus"));
-		// 	$("span.fuel").text(fuel);
-		// } else if($(this).data("minusFrom") == "money"){
-		// 	money -= parseInt($(this).data("minus"));
-		// 	$("span.money").text(money);
-		// }
 	});
 
 	$(".local-trade-done").click(function(){
