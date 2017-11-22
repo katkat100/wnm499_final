@@ -382,31 +382,7 @@ $(function(){
 	}
 
 
-	function trading(traderNum,adding,minusing,itTo,itFrom){
-		$("." + traderNum + " .make-trade").click(function(){
-			if(itTo == "food"){
-				food += parseInt(adding);
-				$("span.food").text(food);
-			} else if(itTo == "fuel"){
-				fuel += parseInt(adding);
-				$("span.fuel").text(fuel);
-			} else if(itTo == "money"){
-				money += parseInt(adding);
-				$("span.money").text(money);
-			}
-
-			if(itFrom == "food"){
-				food -= parseInt(minusing);
-				$("span.food").text(food);
-			} else if(itFrom == "fuel"){
-				fuel -= parseInt(minusing);
-				$("span.fuel").text(fuel);
-			} else if(itFrom == "money"){
-				money -= parseInt(minusing);
-				$("span.money").text(money);
-			}
-		});
-	}
+	
 	function trade(traderNum){
 		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
 		nameNum = (Math.floor((Math.random() * $(traderName).length + 1))) - 1;
@@ -416,24 +392,18 @@ $(function(){
 		$("." + traderNum + " .first-item").text(tradeItems[itemNum].one);
 		$("." + traderNum + " .second-item").text(tradeItems[itemNum].two);
 
-		if(traderNum == "trade-one"){
-			var oneAdd = tradeItems[itemNum].add;
-			var oneMinus = tradeItems[itemNum].minus;
-			var oneTo = tradeItems[itemNum].to;
-			var oneFrom = tradeItems[itemNum].from;
-			trading(traderNum,oneAdd,oneMinus,oneTo,oneFrom);
-		} else if(traderNum == "trade-two"){
-			var twoAdd = tradeItems[itemNum].add;
-			var twoMinus = tradeItems[itemNum].minus;
-			var twoTo = tradeItems[itemNum].to;
-			var twoFrom = tradeItems[itemNum].from;
-			trading(traderNum,twoAdd,twoMinus,twoTo,twoFrom);
-		} else if(traderNum == "trade-three"){
-			var threeAdd = tradeItems[itemNum].add;
-			var threeMinus = tradeItems[itemNum].minus;
-			var threeTo = tradeItems[itemNum].to;
-			var threeFrom = tradeItems[itemNum].from;
-			trading(traderNum,threeAdd,threeMinus,threeTo,threeFrom);
+		$("." + traderNum + " .make-trade").data({
+			add: tradeItems[itemNum].add,
+			minus: tradeItems[itemNum].minus,
+			addTo: tradeItems[itemNum].to,
+			minusFrom: tradeItems[itemNum].from
+		})
+		if(
+			((tradeItems[itemNum].from) == "food" && tradeItems[itemNum].minus > food) ||
+			((tradeItems[itemNum].from) == "money" && tradeItems[itemNum].minus > money) ||
+			(tradeItems[itemNum].from) == "fuel" && tradeItems[itemNum].minus > fuel
+			){
+			$("." + traderNum + " .make-trade").css({'opacity' : '.5', 'pointerEvents' : 'none'});
 		}
 		
 		
@@ -559,25 +529,25 @@ $(function(){
 	// money = parseInt(player[1]);
 	$("span.money").text(money);
 
-	$("input[name = 'parts']").change(function(){
+	$("input[name = 'parts']").on('input',function(){
 		numOfParts = $("input[name = 'parts']").val();
 		costOfItems = 100 * numOfParts;
 		storeBilling(oldBillParts);
 		oldBillParts = costOfItems;
 	});
-	$("input[name = 'fuel']").change(function(){
+	$("input[name = 'fuel']").on('input',function(){
 		numOfFuel = $("input[name = 'fuel']").val();
 		costOfItems = 50 * numOfFuel;
 		storeBilling(oldBillFuel);
 		oldBillFuel = costOfItems;
 	});
-	$("input[name = 'food']").change(function(){
+	$("input[name = 'food']").on('input',function(){
 		numOfFood = $("input[name = 'food']").val();
 		costOfItems = 10 * numOfFood;
 		storeBilling(oldBillFood);
 		oldBillFood = costOfItems;
 	});
-	$("input[name = 'ammo']").change(function(){
+	$("input[name = 'ammo']").on('input',function(){
 		numOfAmmo = $("input[name = 'ammo']").val();
 		costOfItems = 20 * numOfAmmo;
 		storeBilling(oldBillAmmo);
@@ -851,6 +821,33 @@ $("span.fuel").text(fuel);
 		trade("trade-two");
 		trade("trade-three");
 
+	});
+
+	$("body").on("click",".make-trade",function(){
+		if($(this).data("minusFrom") == "food" && $(this).data("minus") > food){
+
+		}
+		if($(this).data("addTo") == "food"){
+			food += parseInt($(this).data("add"));
+			$("span.food").text(food);
+		} else if($(this).data("addTo") == "fuel"){
+			fuel += parseInt($(this).data("add"));
+			$("span.fuel").text(fuel);
+		} else if($(this).data("addTo") == "money"){
+			money += parseInt($(this).data("add"));
+			$("span.money").text(money);
+		}
+
+		if($(this).data("minusFrom") == "food"){
+			food -= parseInt($(this).data("minus"));
+			$("span.food").text(food);
+		} else if($(this).data("minusFrom") == "fuel"){
+			fuel -= parseInt($(this).data("minus"));
+			$("span.fuel").text(fuel);
+		} else if($(this).data("minusFrom") == "money"){
+			money -= parseInt($(this).data("minus"));
+			$("span.money").text(money);
+		}
 	});
 
 	$(".local-trade-done").click(function(){

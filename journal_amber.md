@@ -31,3 +31,7 @@
 ## Stardate 2017.11.13
 - Styled Overview (Index), About, and FAQ pages
 - Began writing content for About page
+
+## Stardate 2017.11.20
+- Wrote descriptions for pace and ration options
+- Created SVG icons for party stats
