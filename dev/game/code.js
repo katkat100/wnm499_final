@@ -81,6 +81,7 @@ $(function(){
 	var traderNum = 0;
 	var titleNum = 0;
 
+	var locationGoal = 1;
 	var locationOne = 15;
 	var locationTwo = 25;
 	var locationThree = 40;
@@ -745,7 +746,7 @@ $("span.fuel").text(fuel);
 
 
 	//locations
-		if(role >= locationOne && role <= locationTwo){
+		if(role >= locationOne && role <= locationTwo && locationGoal == 1){
 			addToConsole("You have neared Planet X, what will you do?");
 			$(".travel").hide();
 			$(".twoChoices").show();
@@ -766,9 +767,9 @@ $("span.fuel").text(fuel);
 				$(".twoChoices").hide();
 				$(this).off("click");
 			});
-		} else if(role >= locationTwo && role <= locationThree){
+		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
 			conlog("second location");
-		} else if(role >= locationThree){
+		} else if(role >= locationThree && locationGoal == 3){
 			conlog("third location");
 		}
 	});
@@ -934,7 +935,8 @@ $("span.fuel").text(fuel);
 		$(".planetX").hide();
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		conlog("leave planet");
-		role = 15;
+		// role = 15;
+		locationGoal ++;
 	});
 
 
