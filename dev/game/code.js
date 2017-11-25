@@ -651,32 +651,32 @@ $("span.fuel").text(fuel);
 			$("span.fuel").text(fuel);
 			role++;
 		} else if(pace == "moderate"){
-			fuelUsage = 15;
+			fuelUsage = 12;
 			fuel -= fuelUsage;
 			$("span.fuel").text(fuel);
-			role +=2
+			role +=2;
 		} else if(pace == "quick"){
-			fuelUsage = 30;
+			fuelUsage = 24;
 			fuel -= fuelUsage;
 			$("span.fuel").text(fuel);
-			role +=3
+			role +=3;
 		} else if(pace == "fast"){
-			fuelUsage = 50;
+			fuelUsage = 36;
 			fuel -= fuelUsage;
 			$("span.fuel").text(fuel);
-			role +=4
+			role +=4;
 		}
 
 		if(rations == "bare"){
-			fpp = 5;
+			fpp = 1;
 			food -= (fpp * health);
 			$("span.food").text(food);
 		} else if(rations == "meager"){
-			fpp = 10;
+			fpp = 2;
 			food -= (fpp * health);
 			$("span.food").text(food);
 		}else if(rations == "filling"){
-			fpp = 20;
+			fpp = 3;
 			food -= (fpp * health);
 			$("span.food").text(food);
 		}
