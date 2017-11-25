@@ -193,20 +193,22 @@ $(function(){
 
 	function encounterSituations(){
 		if(encounter == 0){
-			addToConsole("You travel a days worth");
-			// if(pace == "slow"){
-			// 	day++;
-			// 	addToConsole("You travel a days worth");
-			// } else if(pace == "moderate"){
-			// 	day += 2;
-			// 	addToConsole("You travel two days worth");
-			// } else if(pace == "quick"){
-			// 	day += 3;
-			// 	addToConsole("You travel three days worth");
-			// } else if(pace == "fast"){
-			// 	day += 4;
-			// 	addToConsole("You travel four days worth");
-			// }
+			//addToConsole("You travel a days worth");
+
+			//day++;
+			if(pace == "slow"){
+				//day++;
+				addToConsole(month + " " + day + ": You travel 10 blorps");
+			} else if(pace == "moderate"){
+				//day += 2;
+				addToConsole(month + " " + day + ": You travel 25 blorps");
+			} else if(pace == "quick"){
+				//day += 3;
+				addToConsole(month + " " + day + ": You travel 50 blorps");
+			} else if(pace == "fast"){
+				//day += 4;
+				addToConsole(month + " " + day + ": You travel 75 blorps");
+			}
 			
 			//when have time do animation of getting closer to location
 		} else if(encounter == 1){
