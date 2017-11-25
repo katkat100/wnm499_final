@@ -212,7 +212,8 @@ nav {
     margin-left: 8.33333%; }
 
 .item-row {
-  height: 25px; }
+  display: flex;
+  align-items: baseline; }
   .item-row > * {
     height: 100%;
     margin: 1rem 0 0 0; }
