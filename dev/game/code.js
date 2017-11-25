@@ -194,19 +194,19 @@ $(function(){
 	function encounterSituations(){
 		if(encounter == 0){
 			addToConsole("You travel a days worth");
-			// if(pace == "slow"){
-			// 	day++;
-			// 	addToConsole("You travel a days worth");
-			// } else if(pace == "moderate"){
-			// 	day += 2;
-			// 	addToConsole("You travel two days worth");
-			// } else if(pace == "quick"){
-			// 	day += 3;
-			// 	addToConsole("You travel three days worth");
-			// } else if(pace == "fast"){
-			// 	day += 4;
-			// 	addToConsole("You travel four days worth");
-			// }
+			if(pace == "slow"){
+				day++;
+				addToConsole("You travel a days worth");
+			} else if(pace == "moderate"){
+				day += 2;
+				addToConsole("You travel two days worth");
+			} else if(pace == "quick"){
+				day += 3;
+				addToConsole("You travel three days worth");
+			} else if(pace == "fast"){
+				day += 4;
+				addToConsole("You travel four days worth");
+			}
 			
 			//when have time do animation of getting closer to location
 		} else if(encounter == 1){
@@ -230,9 +230,9 @@ $(function(){
 						$(".twoChoices").hide();
 					} else {
 						addToConsole("The space pirates draw their laser guns before you're able to!");
-						addToConsole("They loot §500 and 100lbs of food because of the trouble you caused.");
+						addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
 						money -= 500;
-						food -= 100;
+						food -= 10;
 						$("span.money").text(money);
 						$("span.food").text(food);
 						$(".travel").show();
@@ -586,7 +586,7 @@ $(function(){
 	$(".exitStore").click(function(){
 		parts = numOfParts;
 		fuel = numOfFuel * 100;
-		food = numOfFood * 100;
+		food = numOfFood * 10;
 		ammo = numOfAmmo * 5;
 		money = storeTotal;
 		conlog("parts: " + parts);
