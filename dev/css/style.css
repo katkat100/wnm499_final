@@ -211,8 +211,11 @@ nav {
     width: 55%;
     margin-left: 8.33333%; }
 
-.item-row input {
-  margin-top: 0; }
+.item-row {
+  height: 25px; }
+  .item-row > * {
+    height: 100%;
+    margin: 1rem 0 0 0; }
 
 .progressConsole {
   margin-top: 10px;

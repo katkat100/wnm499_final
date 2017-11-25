@@ -127,9 +127,15 @@
 
 }
 
-.item-row{
-	input{
-		margin-top: 0;
+.item-row {
+	height: 25px;
+	//display: flex;
+	&>* {
+		height: 100%;
+		margin: 1rem 0 0 0;
+	}
+	input {
+		//margin-top: 0;
 	}
 }
 
