@@ -35,3 +35,10 @@
 ## Stardate 2017.11.20
 - Wrote descriptions for pace and ration options
 - Created SVG icons for party stats
+
+## Stardate 2017.11.25
+- Changed main typeface
+- Created calendar icon
+- Added SVG icons to store
+- Added descriptions to store
+- Updated game values to match descriptions
