@@ -92,11 +92,15 @@ $(function(){
 	var locationOne = 15;
 	var locationTwo = 25;
 	var locationThree = 40;
+	var locationEnd = 55;
 
 	var ranNum = [0,1,2,3,4,5,6,7,8];
 	
 	var localJob = ['Hooman', 'Erutzanans', 'Teegafane', 'Vleslon', 'Dlahiri', 'Bosolians', 'TuVav', 'Swerzog', 'Catali', 'Heerians', 'Gorganub'];
 	var localName = ['Uemyrea', 'Linola', 'Hystise', 'Airiene', 'Pela', 'Voloya', 'Jozane', 'Boozyad', 'Ukhgahr', 'Squxuoss', 'Kuarcax', 'Algaxath'];
+
+	var doubleFuel = false;
+	var extraFuel = 1;
 	// console.log(farmer);
 	// console.log(engineer);
 	// console.log(moneybags);
@@ -215,7 +219,7 @@ $(function(){
 			$(".twoChoices .one").text("Attack!");
 			$(".twoChoices .two").text("Give In");
 			$(".twoChoices").show();
-			$(".twoChoices .one").click(function(){
+			$(".twoChoices .one").on('click', function(){
 				$(".twoChoices .one").off("click")
 				if(gameobj['ammo'] > 0){
 					diceOne = Math.ceil( ( Math.random() * 10) );
@@ -241,7 +245,7 @@ $(function(){
 					$(".twoChoices .one").text("Bluff!").addClass("bluff").removeClass("one").off("click");
 
 				}
-				$(".twoChoices .bluff").click(function(){
+				$(".twoChoices .bluff").on('click', function(){
 					diceOne = Math.ceil( ( Math.random() * 10) );
 					if( diceOne < 6){
 						addToConsole("They believe you and back off only taking §10.");
@@ -261,7 +265,7 @@ $(function(){
 				});
 
 			});
-			$(".twoChoices .two").click(function(){
+			$(".twoChoices .two").on('click', function(){
 				addToConsole("You give the pirates what they want and they saunter off the ship with their pockets full");
 				gameobj['money'] -= 500;
 				$(this).off('click');
@@ -331,7 +335,7 @@ $(function(){
 
 			conlog("death num: " + death);
 			conlog(crew);
-			addToConsole(crew[death - 1] + " gets space mites and dies!");
+			addWarning(crew[death - 1] + " gets space mites and dies!");
 			crew.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
@@ -342,7 +346,7 @@ $(function(){
 
 			conlog("death num: " + death);
 			conlog(crew);
-			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + crew[death - 1] + " dies from an infected bite.");
+			addWarning("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + crew[death - 1] + " dies from an infected bite.");
 			crew.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
@@ -364,7 +368,7 @@ $(function(){
 	}
 
 	function paceChange(clickPace){
-		$("." + clickPace).click(function(){
+		$("." + clickPace).on('click', function(){
 			pace = clickPace;
 			$(".pace-container h4").css({'color':'#ffffff'});
 			$(this).css({'color':'#2dfffe'});
@@ -372,7 +376,7 @@ $(function(){
 	}
 
 	function rationChange(clickRation){
-		$("." + clickRation).click(function(){
+		$("." + clickRation).on('click', function(){
 			rations = clickRation;
 			$(".ration-container h4").css({'color':'#ffffff'});
 			$(this).css({'color':'#2dfffe'});
@@ -431,7 +435,7 @@ $(function(){
 
 
 //next
-	$(".next").click(function(){
+	$(".next").on('click', function(){
 		screenCount++;
 		// console.log(docHeight);
 		mainMargin += docHeight;
@@ -440,29 +444,29 @@ $(function(){
 	});
 
 //jobs
-	$(".farmer").click(function(){
+	$(".farmer").on('click', function(){
 		captainJob = "farmer";
 		gameobj['money'] = 1000;
 	});
-	$(".engineer").click(function(){
+	$(".engineer").on('click', function(){
 		captainJob = "engineer";
 		gameobj['money'] = 1500;
 	});
-	$(".moneybags").click(function(){
+	$(".moneybags").on('click', function(){
 		captainJob = "moneybags";
 		gameobj['money'] = 2000;
 	});
 
 
 //names
-	$(".leaderName").click(function(){
+	$(".leaderName").on('click', function(){
 		var inputLeader = $("input[name = 'captain']").val();
 		var name = [inputLeader];
 		captainName = $.merge([],name);
 		console.log(captainName);
 	});
 
-	$(".memberName").click(function(){
+	$(".memberName").on('click', function(){
 		var inputMember = $("input[name = 'member1']").val();
 		var name = [inputMember];
 		crew = $.merge([],name);
@@ -482,19 +486,19 @@ $(function(){
 	});
 
 //month
-	$(".april").click(function(){
+	$(".april").on('click', function(){
 		month = 'April';
 		updateMonth();
 	});
-	$(".may").click(function(){
+	$(".may").on('click', function(){
 		month = 'May';
 		updateMonth();
 	});
-	$(".june").click(function(){
+	$(".june").on('click', function(){
 		month = 'June';
 		updateMonth();
 	});
-	$(".july").click(function(){
+	$(".july").on('click', function(){
 		month = 'July';
 		updateMonth();
 	});
@@ -527,7 +531,7 @@ $(function(){
 		storeBilling(oldBillAmmo);
 		oldBillAmmo = costOfItems;
 	});
-	$(".exitStore").click(function(){
+	$(".exitStore").on('click', function(){
 		gameobj['parts'] = numOfParts;
 		gameobj['fuel'] = numOfFuel * 100;
 		gameobj['food'] = numOfFood * 100;
@@ -542,7 +546,7 @@ $(function(){
 
 
 
-	$(".departure").click(function(){
+	$(".departure").on('click', function(){
 		// counter = 0;
 		// startCounter = true;
 		// console.log(startCounter);
@@ -559,22 +563,13 @@ $(function(){
 		$(".options").show();
 	});
 
-// //counter
-	
-// 			//Math.ceil rounds up
-// 			var diceOne = Math.ceil( ( Math.random() * 10) );
-// 			var diceTwo = Math.ceil( ( Math.random() * 10) );
-// 			var randomEncounterDice = Math.floor((diceOne + diceTwo)/2);
-// 			var encounter = 0;
-// 			console.log(diceOne);
-// 			console.log(diceTwo);
-// 			console.log(randomEncounterDice);
+
 var role = 1;
 
 month = "April";
-gameobj['food'] = 500;
+gameobj['food'] = 1500;
 gameobj['ammo'] = 1;
-gameobj['fuel'] = 200;
+gameobj['fuel'] = 1200;
 gameobj['money'] = 2000;
 
 
@@ -586,26 +581,32 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 //day
-	$(".traverse").click(function(){
+	$(".traverse").on('click', function(){
 		updateMonth();
 
+		if(doubleFuel){
+			extraFuel = 2;
+		} else if (!doubleFuel){
+			extraFuel = 1;
+		}
+
 		if(pace == "slow"){
-			fuelUsage = 5;
+			fuelUsage = 5 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role++;
 		} else if(pace == "moderate"){
-			fuelUsage = 15;
+			fuelUsage = 15 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=2
 		} else if(pace == "quick"){
-			fuelUsage = 30;
+			fuelUsage = 30 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=3
 		} else if(pace == "fast"){
-			fuelUsage = 50;
+			fuelUsage = 50 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=4
@@ -661,7 +662,7 @@ $("span.fuel").text(gameobj['fuel']);
 			if(hungryDice == 5 || hungryDice == 3){
 				var death = Math.floor((Math.random() * health+1));
 
-				addToConsole(crew[death - 1] + " has passed away from hunger.");
+				addWarning(crew[death - 1] + " has passed away from hunger.");
 
 				crew.splice(death - 1,1);
 				health = $(crew).length;
@@ -696,25 +697,47 @@ $("span.fuel").text(gameobj['fuel']);
 			$(".twoChoices").show();
 			$(".twoChoices .one").text("Touch Down");
 			$(".twoChoices .two").text("Avoid");
-			$(".one").click(function(){
+			$(".one").on('click',function(){
 
-				addToConsole("You have touched down on Planet X. This a main hub for those who favor themselves as cosmopoliton.")
+				addToConsole("You have touched down on Planet X. This is a main hub for those who favor themselves as cosmopoliton.")
 				
 				$(".twoChoices").hide();
 				$(".travel").hide();
 				$(".planetX").show();
 				updateMonth();
+				$(".one").off('click');
 			});
-			$(".two").click(function(){
+			$(".two").on('click',function(){
 				addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
 				$(".travel").show();
 				$(".twoChoices").hide();
-				$(this).off("click");
+				// $(this).off("click");
+				locationGoal ++;
 			});
 		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
 			conlog("second location");
+			addToConsole("You have neared Nebula Y.");
+			addToConsole("You have the choice of going through the expanse with the risk of space pirates or go around and use twice the amount of fuel.");
+			$(".twoChoices").show();
+			$(".travel").hide();
+			$(".twoChoices .one").text("Go through");
+			$(".twoChoices .two").text("Go around");
+			$(".one").on('click', function(){
+				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
+				$(".twoChoices").hide();
+				doubleFuel = true;			
+				$(".travel").show();
+				$(".one").off('click');
+			});
+			$(".two").on('click', function(){
+				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so you double the fuel will be used to travel the normal days travel.");
+			});
+			locationGoal ++;
 		} else if(role >= locationThree && locationGoal == 3){
 			conlog("third location");
+			locationGoal ++;
+		} else if(role >= locationEnd && locationGoal == 4){
+			conlog("Yay made it! Woo!")
 		}
 	});
 
@@ -723,7 +746,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 //pace
-	$(".check-pace").click(function(){
+	$(".check-pace").on('click', function(){
 		$(".change-pace").show();
 		$(".travel").hide();
 		$(".progressConsole").hide();
@@ -734,7 +757,7 @@ $("span.fuel").text(gameobj['fuel']);
 	paceChange("quick");
 	paceChange("fast");
 	
-	$(".set-pace").click(function(){
+	$(".set-pace").on('click', function(){
 		$("span.pace").text(pace);
 		$(".change-pace").hide();
 		$(".travel").show();
@@ -742,7 +765,7 @@ $("span.fuel").text(gameobj['fuel']);
 	})
 	
 //rations
-	$(".check-rations").click(function(){
+	$(".check-rations").on('click', function(){
 		$(".change-rations").show();
 		$(".travel").hide();
 		$(".progressConsole").hide();
@@ -752,7 +775,7 @@ $("span.fuel").text(gameobj['fuel']);
 	rationChange("meager");
 	rationChange("filling");
 
-	$(".set-rations").click(function(){
+	$(".set-rations").on('click', function(){
 		$("span.rations").text(rations);
 		$(".change-rations").hide();
 		$(".travel").show();
@@ -761,7 +784,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 //trade
-	$(".attempt-trade").click(function(){
+	$(".attempt-trade").on('click', function(){
 		$(".progressConsole").hide();
 		$(".travel").hide();
 		$(".trading").show();
@@ -773,7 +796,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 	});
 
-	$(".trade-done").click(function(){
+	$(".trade-done").on('click', function(){
 		if(gameobj['fuel'] > fuelUsage){
 			$(".traverse").css({'pointerEvents':'initial','opacity':1})
 		}
@@ -786,7 +809,7 @@ $("span.fuel").text(gameobj['fuel']);
 	
 //Planet X
 	
-	$(".local-trade").click(function(){
+	$(".local-trade").on('click', function(){
 		updateMonth();
 		$(".progressConsole").hide();
 		$(".planetX").hide();
@@ -831,13 +854,13 @@ $("span.fuel").text(gameobj['fuel']);
 
 	});
 
-	$(".local-trade-done").click(function(){
+	$(".local-trade-done").on('click', function(){
 		$(".progressConsole").show();
 		$(".planetX").show();
 		$(".local-trading").hide();
 	});
 
-	$(".local-chat").click(function(){
+	$(".local-chat").on('click', function(){
 		updateMonth();
 		// $(".progressConsole").css({'height':'15%'});
 		addToConsole("You enter a local bar called Dravent's Watering Hole.");
@@ -846,7 +869,7 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".local-chatting").show();
 	});
 
-	$(".chat-talk").click(function(){
+	$(".chat-talk").on('click', function(){
 
 		nameNum = (Math.floor((Math.random() * $(localName).length + 1))) - 1;
 		jobNum = (Math.floor((Math.random() * $(localJob).length + 1))) - 1;
@@ -894,6 +917,7 @@ $("span.fuel").text(gameobj['fuel']);
 				crew = $.merge(crew,newmember);
 				conlog(crew);
 				health = $(crew).length;
+				$("span.health").text(health);
 
 			} else if(crew.length >= 4){
 				addToConsole("Too bad there's no room in your ship for another person.");
@@ -902,12 +926,12 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".chat-talk").text("Talk to Somebody Else")
 	});
 	
-	$(".chat-leave").click(function(){
+	$(".chat-leave").on('click', function(){
 		$(".local-chatting").hide();
 		$(".planetX").show();
 	});
 
-	$(".leave-planet").click(function(){
+	$(".leave-planet").on('click', function(){
 		updateMonth();
 		$(".travel").show();
 		$(".planetX").hide();
@@ -930,7 +954,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 //restart
-	$(".restart h4").click(function(){
+	$(".restart h4").on('click', function(){
 		location.reload();
 	});
 
