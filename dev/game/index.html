@@ -4,18 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Space Trail</title>
-
-	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,400|Jura:700" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Exo+2|Jura:700" rel="stylesheet">
 	<link rel="stylesheet" href="../css/style.css">
-
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="code.js"></script>
-
-	<script>
-		
-	</script>
-
 </head>
 <body id="game">
 	<div class="atMain">
@@ -63,7 +55,7 @@
 		</section>
 		<section>
 			<div class="card" id="month">
-				<h2>The year is 4934. what month will the crew be leaving Space Station Faithful.</h2>
+				<h2>The year is 2148. what month will the crew be leaving Space Station Faithful.</h2>
 				<ol>
 					<li><h4 class="next april">April</h4></li>
 					<li><h4 class="next may">May</h4></li>
@@ -71,7 +63,7 @@
 					<li><h4 class="next july">July</h4></li>
 				</ol>
 			</div>
-		</section>
+		</section> 
 		<section>
 			<div class="card" id="money">
 				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
@@ -80,28 +72,35 @@
 		</section> 
 		<section>
 			<div class="card store" id="stationShop">
-				<h2>Welcome to my store! Buy the best quality items in the galaxy here!</h2>
+				<h2>Welcome to my store!</h2>
 				<div class="row gutters">
+					<div class="col-xs-12">
+						<p class="desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
+					</div>
 					<div class="col-xs-12 col-md-6 itemList">
-						<div class="item-row parts row flex">
-							<p class="item col-xs-5">Spare Parts</p>
-							<p class="cost col-xs-5">§100</p>
-							<input class="col-xs-2" type="number" name="parts" maxlength="10" value="0">
+						<div class="item-row food">
+							<p class="item col-xs-3">
+								<img src="../images/icons_food.svg" alt="food" class="icons">
+								Food
+							</p>
+							<p class="cost col-xs-6">§20 for 10 meals</p>
+							<input class="col-xs-3" type="number" name="food" maxlength="10" value="0">
 						</div>
 						<div class="item-row fuel">
-							<p class="item col-xs-5">Fuel</p>
-							<p class="cost col-xs-5">§50</p>
-							<input class="col-xs-2" type="number" name="fuel" maxlength="10" value="0">
-						</div>
-						<div class="item-row food">
-							<p class="item col-xs-5">Food</p>
-							<p class="cost col-xs-5">§20</p>
-							<input class="col-xs-2" type="number" name="food" maxlength="10" value="0">
+							<p class="item col-xs-3">
+								<img src="../images/icons_fuel.svg" alt="fuel" class="icons"> 
+								Fuel
+							</p>
+							<p class="cost col-xs-6">§50 for 100 fuel pods</p>
+							<input class="col-xs-3" type="number" name="fuel" maxlength="10" value="0">
 						</div>
 						<div class="item-row ammo">
-							<p class="item col-xs-5">Ammo</p>
-							<p class="cost col-xs-5">§20</p>
-							<input class="col-xs-2" type="number" name="ammo" maxlength="10" value="0">
+							<p class="item col-xs-3">
+								<img src="../images/icons_ammo.svg" alt="ammo" class="icons"> 
+								Ammo
+							</p>
+							<p class="cost col-xs-6">§20 for 5 energy shots</p>
+							<input class="col-xs-3" type="number" name="ammo" maxlength="10" value="0">
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6 total">
@@ -128,16 +127,38 @@
 			<div class="program">
 				<div class="gameInteraction conditions">
 					<div class="left">
-						<p><img src="../images/icons_food.svg" alt="food" class="icons"> <span class="food"></span> (<span class="rations"></span>)</p>
-						<!-- <p>Weather: <span class="weather"></span></p> -->
-						<p><img src="../images/icons_pace.svg" alt="pace" class="icons"> <span class="pace"></span></p>
-						<p><img src="../images/icons_fuel.svg" alt="fuel" class="icons"> <span class="fuel"></span></p>
-						<p><img src="../images/icons_health.svg" alt="health" class="icons"> <span class="health"></span>/4</p>
-						<p><img src="../images/icons_money.svg" alt="money" class="icons"> <span class="money"></span></p>
-						<p><img src="../images/icons_ammo.svg" alt="ammo" class="icons"> <span class="ammo"></span></p>
+						<p>
+							<img src="../images/icons_food.svg" alt="food" class="icons"> 
+							<span class="food"></span> 
+							(<span class="rations"></span>)
+						</p>
+						<p>
+							<img src="../images/icons_fuel.svg" alt="fuel" class="icons"> 
+							<span class="fuel"></span>
+						</p>
+						<p>
+							<img src="../images/icons_pace.svg" alt="pace" class="icons"> 
+							<span class="pace"></span>
+						</p>
+						<p>
+							<img src="../images/icons_ammo.svg" alt="ammo" class="icons"> 
+							<span class="ammo"></span>
+						</p>
+						<p>
+							<img src="../images/icons_money.svg" alt="money" class="icons"> 
+							<span class="money"></span>
+						</p>
+						<p>
+							<img src="../images/icons_health.svg" alt="health" class="icons"> 
+							<span class="health"></span>/4
+						</p>
 					</div>
 					<div class="dateCounter">
-						<p><span class="month"></span> <span class="day"></span>
+						<p>
+							<img src="../images/icons_calendar.svg" alt="calendar" class="icons"> 
+							<span class="month"></span> 
+							<span class="day"></span> 
+						</p>
 					</div>
 				</div>
 
@@ -168,19 +189,19 @@
 					<h4 class="h4Ignore">Change pace to:</h4>
 					<div class="col-xs-6 col-lg-3 pace-container">
 						<h4 class="slow">Slow</h4>
-						<p>You travel at a sluggish rate of 10 space units per day, using up 5 space gallons of fuel. The slower pace gives your crew more time for ship maintenance.</p>
+						<p>You travel at a sluggish rate of 10 blorps per day, using up 5 fuel pods. The slower pace gives your crew more time for ship maintenance.</p>
 					</div>
 					<div class="col-xs-6 col-lg-3 pace-container">
 						<h4 class="moderate">Moderate</h4>
-						<p>You travel at a balanced rate of 25 space units per day, using up 12 space gallons of fuel.</p>
+						<p>You travel at a balanced rate of 25 blorps per day, using up 12 fuel pods.</p>
 					</div>
 					<div class="col-xs-6 col-lg-3 pace-container">
 						<h4 class="quick">Quick</h4>
-						<p>You travel at a brisk rate of 50 space units per day, using up 24 space gallons of fuel. At this rate, the thermal stresses on your ship could possibly weaken its structural integrity.</p>
+						<p>You travel at a brisk rate of 50 blorps per day, using up 24 fuel pods. At this rate, the thermal stresses on your ship could possibly weaken its structural integrity.</p>
 					</div>
 					<div class="col-xs-6 col-lg-3 pace-container">
 						<h4 class="fast">Fast</h4>
-						<p>You travel at a speedy rate of 75 space units per day, using up 36 space gallons of fuel. At this rate, the thermal stresses on your ship will most likely weaken its structural integrity.</p>
+						<p>You travel at a speedy rate of 75 blorps per day, using up 36 fuel pods. At this rate, the thermal stresses on your ship will most likely weaken its structural integrity.</p>
 					</div>
 					<h4 class="set-pace">Set Pace</h4>
 				</div>

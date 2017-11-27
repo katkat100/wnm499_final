@@ -11,7 +11,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: "Exo 2", sans-serif;
   color: #ffffff;
   background-color: #000f1e;
   font-size: 100%;
@@ -57,13 +57,13 @@ h2 {
   text-transform: uppercase; }
 
 h3 {
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: "Exo 2", sans-serif;
   font-size: 200%;
   font-weight: 400;
   text-transform: uppercase; }
 
 h4 {
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: "Exo 2", sans-serif;
   font-size: 150%;
   font-weight: 100;
   text-transform: uppercase;
@@ -88,7 +88,7 @@ input {
   background-color: transparent;
   font-size: 150%;
   text-align: center;
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: "Exo 2", sans-serif;
   margin-top: 1em;
   color: #ffffff;
   font-weight: 100; }
@@ -211,8 +211,12 @@ nav {
     width: 55%;
     margin-left: 8.33333%; }
 
-.item-row input {
-  margin-top: 0; }
+.item-row {
+  display: flex;
+  align-items: baseline; }
+  .item-row > * {
+    height: 100%;
+    margin: 1rem 0 0 0; }
 
 .progressConsole {
   margin-top: 10px;
@@ -230,12 +234,32 @@ nav {
 .travel {
   width: 100%; }
 
+.chatterbox-image-container {
+  position: relative;
+  width: 100%; }
+  .chatterbox-image-container:before {
+    content: "";
+    display: block;
+    padding-top: 100%; }
+  .chatterbox-image-container .chatterbox-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+
 @media (max-width: 899px) {
   #title {
     background-image: none; }
     #title .info {
       width: 83.33333%;
       margin-left: 8.33333%; } }
+p.desc {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; }
+
 .grid {
   overflow: hidden; }
 

@@ -69,18 +69,18 @@ $(function(){
 	var traderTitle = ["Space Voyager", "Hitchhiker", "Galaxy Vagabond", "Ex-Pirate"];
 	var traderName = ["Bobbert", "Baltazar", "Hosanna", "Huxley", "Ivar", "Nevin", "Caess", "Sourdrop", "Aut"];
 	var tradeItems = [
-		{one:'100 lbs of food', two:'§50', add:'100', to:'food', minus:'50', from:'money'},
-		{one:'200 lbs of food', two:'§60', add:'200', to:'food', minus:'60', from:'money'},
-		{one:'200 lbs of food', two:'§70', add:'200', to:'food', minus:'70', from:'money'},
-		{one:'300 lbs of food', two:'§70', add:'300', to:'food', minus:'70', from:'money'},
+		{one:'10 meals', two:'§50', add:'10', to:'food', minus:'50', from:'money'},
+		{one:'20 meals', two:'§60', add:'20', to:'food', minus:'60', from:'money'},
+		{one:'20 meals', two:'§70', add:'20', to:'food', minus:'70', from:'money'},
+		{one:'30 meals', two:'§70', add:'30', to:'food', minus:'70', from:'money'},
 
-		{one:'100 gallons of fuel', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
-		{one:'200 gallons of fuel', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
-		{one:'300 gallons of fuel', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+		{one:'100 fuel pods', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
+		{one:'200 fuel pods', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
+		{one:'300 fuel pods', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
 
-		{one:'2 energy pods', two:'200 lbs of food', add:'2', to:'ammo', minus:'200', from:'food'},
-		{one:'5 energy pods', two:'300 lbs of food', add:'5', to:'ammo', minus:'300', from:'food'},
-		{one:'3 energy pods', two:'§220', add:'3', to:'ammo', minus:'220', from:'money'},
+		{one:'2 energy shots', two:'20 meals', add:'2', to:'ammo', minus:'20', from:'food'},
+		{one:'5 energy shots', two:'30 meals', add:'5', to:'ammo', minus:'30', from:'food'},
+		{one:'3 energy shots', two:'§220', add:'3', to:'ammo', minus:'220', from:'money'},
 	]
 	var itemNum = 0;
 	var nameNum = 0;
@@ -195,20 +195,22 @@ $(function(){
 
 	function encounterSituations(){
 		if(encounter == 0){
-			addToConsole("You travel a days worth");
-			// if(pace == "slow"){
-			// 	day++;
-			// 	addToConsole("You travel a days worth");
-			// } else if(pace == "moderate"){
-			// 	day += 2;
-			// 	addToConsole("You travel two days worth");
-			// } else if(pace == "quick"){
-			// 	day += 3;
-			// 	addToConsole("You travel three days worth");
-			// } else if(pace == "fast"){
-			// 	day += 4;
-			// 	addToConsole("You travel four days worth");
-			// }
+			//addToConsole("You travel a days worth");
+
+			//day++;
+			if(pace == "slow"){
+				//day++;
+				addToConsole(month + " " + day + ": You travel 10 blorps");
+			} else if(pace == "moderate"){
+				//day += 2;
+				addToConsole(month + " " + day + ": You travel 25 blorps");
+			} else if(pace == "quick"){
+				//day += 3;
+				addToConsole(month + " " + day + ": You travel 50 blorps");
+			} else if(pace == "fast"){
+				//day += 4;
+				addToConsole(month + " " + day + ": You travel 75 blorps");
+			}
 			
 			//when have time do animation of getting closer to location
 		} else if(encounter == 1){
@@ -232,11 +234,13 @@ $(function(){
 						$(".twoChoices").hide();
 					} else {
 						addToConsole("The space pirates draw their laser guns before you're able to!");
-						addToConsole("They loot §500 and 100lbs of food because of the trouble you caused.");
-						gameobj['money'] -= 500;
-						gameobj['food'] -= 100;
-						$("span.money").text(gameobj['money']);
-						$("span.food").text(gameobj['food']);
+
+						addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
+						money -= 500;
+						food -= 10;
+						$("span.money").text(money);
+						$("span.food").text(food);
+
 						$(".travel").show();
 						$(".twoChoices").hide();
 					}
@@ -624,6 +628,7 @@ $("span.fuel").text(gameobj['fuel']);
 			fpp = 20;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
+
 		}
 		
 		diceOne = Math.ceil( ( Math.random() * 10) );
