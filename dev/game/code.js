@@ -743,7 +743,8 @@ $("span.fuel").text(gameobj['fuel']);
 			addToConsole("You have reached the ends of your travels. You see THX-11 growing bigger as you advance towards your new home.")
 			$(".travel").hide();
 			$(".oneChoices").show();
-			$(".oneChoices .one").text("Land on your new home")
+			$(".oneChoices .one").text("Land on your new home");
+			
 		}
 	});
 
