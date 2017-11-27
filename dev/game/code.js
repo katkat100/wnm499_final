@@ -15,6 +15,7 @@ $(function(){
 		});
 
 	}
+//variables
 	// var player = [];
 	var captainName = "";
 	var captainJob = "";
@@ -92,7 +93,7 @@ $(function(){
 	var locationOne = 15;
 	var locationTwo = 25;
 	var locationThree = 40;
-	var locationEnd = 55;
+	var locationEnd = 60;
 
 	var ranNum = [0,1,2,3,4,5,6,7,8];
 	
@@ -180,35 +181,18 @@ $(function(){
 			$(".exitStore").hide();
 		}
 	}
-
-	// function step(){
-	// 	console.log(counter);
-	// 	counter++;
-	// 	console.log(counter);
-	// 	if(counter > 129600) t = 0;
-	// 	window.requestAnimationFrame(step);
-
-	// 	//20 chances for randomness
-	// }
-
 	
 
 	function encounterSituations(){
 		if(encounter == 0){
 			//addToConsole("You travel a days worth");
-
-			//day++;
 			if(pace == "slow"){
-				//day++;
 				addToConsole(month + " " + day + ": You travel 10 blorps");
 			} else if(pace == "moderate"){
-				//day += 2;
 				addToConsole(month + " " + day + ": You travel 25 blorps");
 			} else if(pace == "quick"){
-				//day += 3;
 				addToConsole(month + " " + day + ": You travel 50 blorps");
 			} else if(pace == "fast"){
-				//day += 4;
 				addToConsole(month + " " + day + ": You travel 75 blorps");
 			}
 			
@@ -236,10 +220,10 @@ $(function(){
 						addToConsole("The space pirates draw their laser guns before you're able to!");
 
 						addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
-						money -= 500;
-						food -= 10;
-						$("span.money").text(money);
-						$("span.food").text(food);
+						gameobj['money'] -= 500;
+						gameobj['food'] -= 10;
+						$("span.money").text(gameobj['money']);
+						$("span.food").text(gameobj['food']);
 
 						$(".travel").show();
 						$(".twoChoices").hide();
@@ -358,7 +342,7 @@ $(function(){
 			deadCrew();
 		} else if(encounter == 8){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
-			food = 100;
+			gameobj['food'] = 100;
 			$("span.food").text(gameobj['food']);
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
@@ -637,7 +621,14 @@ $("span.fuel").text(gameobj['fuel']);
 		if(ranEnDice == diceOne || ranEnDice == diceTwo){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
-		// encounter = 3;
+		if(locationGoal == 3 && doubleFuel){
+			conlog("pirates?");
+			diceOne = Math.ceil( ( Math.random() * 10) );
+			if(diceOne > 5){
+				encounter = 1;
+				conlog("encounter: " + encounter);
+			}
+		}
 
 
 		
@@ -672,6 +663,7 @@ $("span.fuel").text(gameobj['fuel']);
 				crew.splice(death - 1,1);
 				health = $(crew).length;
 				$("span.health").text(health);
+				conlog(crew);
 				encounter = 20;
 			}
 		}
@@ -681,10 +673,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 
-
-		
 		encounterSituations();
-
 	
 
 		conlog("role:" + role);
@@ -718,31 +707,43 @@ $("span.fuel").text(gameobj['fuel']);
 				$(".twoChoices").hide();
 				// $(this).off("click");
 				locationGoal ++;
+				$(".one").off('click');
+				$(".two").off('click');
 			});
 		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
 			conlog("second location");
 			addToConsole("You have neared Nebula Y.");
-			addToConsole("You have the choice of going through the expanse with the risk of space pirates or go around and use twice the amount of fuel.");
+			addToConsole("You have the choice of going through the expanse with the risk of space pirates or going around and using twice the amount of fuel.");
 			$(".twoChoices").show();
 			$(".travel").hide();
 			$(".twoChoices .one").text("Go through");
 			$(".twoChoices .two").text("Go around");
 			$(".one").on('click', function(){
 				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
-				$(".twoChoices").hide();
-				doubleFuel = true;			
+				$(".twoChoices").hide();		
 				$(".travel").show();
 				$(".one").off('click');
+
 			});
 			$(".two").on('click', function(){
-				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so you double the fuel will be used to travel the normal days travel.");
+				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so double the fuel will be used to travel a normal days travel.");
+				doubleFuel = true;
+
 			});
+
 			locationGoal ++;
+			conlog(locationGoal);
+			conlog(locationThree);
 		} else if(role >= locationThree && locationGoal == 3){
-			conlog("third location");
+			// conlog("third location");
+			addToConsole("You have reached the end of the Nebula system seems to have returned to normal. THX-11 is close. You can feel it.")
 			locationGoal ++;
 		} else if(role >= locationEnd && locationGoal == 4){
-			conlog("Yay made it! Woo!")
+			conlog("Yay made it! Woo!");
+			addToConsole("You have reached the ends of your travels. You see THX-11 growing bigger as you advance towards your new home.")
+			$(".travel").hide();
+			$(".oneChoices").show();
+			$(".oneChoices .one").text("Land on your new home")
 		}
 	});
 
