@@ -64,3 +64,16 @@ I will start chatting with locals.
 Until Later.   
 Katie   
 ---   
+
+# Captian's Log   
+_Nov 28,2017_   
+_Module 13_   
+Aftermath of Thanksgiving.   
+Tired.   
+Added end of travel.   
+Fixed small bug in shop.   
+Merged with Amber.   
+TTYL.   
+Katie   
+---   
+
