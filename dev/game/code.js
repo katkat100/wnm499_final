@@ -15,6 +15,10 @@ $(function(){
 		});
 
 	}
+	function oneDiceRoll(){
+		diceOne = Math.ceil( ( Math.random() * 10) );
+		conlog("Dice roll:" + diceOne);
+	}
 //variables
 	// var player = [];
 	var captainName = "";
@@ -218,12 +222,25 @@ $(function(){
 						$(".twoChoices").hide();
 					} else {
 						addToConsole("The space pirates draw their laser guns before you're able to!");
+						oneDiceRoll();
+						if(diceOne > 5){
+							var death = Math.floor((Math.random() * health+1));
 
-						addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
-						gameobj['money'] -= 500;
-						gameobj['food'] -= 10;
-						$("span.money").text(gameobj['money']);
-						$("span.food").text(gameobj['food']);
+							conlog("death num: " + death);
+							conlog(crew);
+							addWarning(crew[death - 1] + " is shot by an overeager intern pirate.");
+							crew.splice(death - 1,1);
+							health = $(crew).length;
+							$("span.health").text(health);
+							conlog(crew);
+							deadCrew();
+						} else{
+							addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
+							gameobj['money'] -= 500;
+							gameobj['food'] -= 10;
+							$("span.money").text(gameobj['money']);
+							$("span.food").text(gameobj['food']);
+						}
 
 						$(".travel").show();
 						$(".twoChoices").hide();
@@ -334,7 +351,8 @@ $(function(){
 
 			conlog("death num: " + death);
 			conlog(crew);
-			addWarning("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH! " + crew[death - 1] + " dies from an infected bite.");
+			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH!");
+			addWarning(crew[death - 1] + " dies from an infected bite.");
 			crew.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
@@ -435,14 +453,29 @@ $(function(){
 	$(".farmer").on('click', function(){
 		captainJob = "farmer";
 		gameobj['money'] = 1000;
+		storeTotal = gameobj['money'];
+		conlog(storeTotal);
+		$("span.money").text(gameobj['money']);
+		$("span.total").text(storeTotal);
+		$("span.bill").text(storeBill);
 	});
 	$(".engineer").on('click', function(){
 		captainJob = "engineer";
 		gameobj['money'] = 1500;
+		storeTotal = gameobj['money'];
+		conlog(storeTotal);
+		$("span.money").text(gameobj['money']);
+		$("span.total").text(storeTotal);
+		$("span.bill").text(storeBill);
 	});
 	$(".moneybags").on('click', function(){
 		captainJob = "moneybags";
 		gameobj['money'] = 2000;
+		storeTotal = gameobj['money'];
+		conlog(storeTotal);
+		$("span.money").text(gameobj['money']);
+		$("span.total").text(storeTotal);
+		$("span.bill").text(storeBill);
 	});
 
 
@@ -492,8 +525,7 @@ $(function(){
 	});
 
 //shop
-	// money = parseInt(player[1]);
-	$("span.money").text(gameobj['money']);
+	
 
 	$("input[name = 'parts']").on('input',function(){
 		numOfParts = $("input[name = 'parts']").val();
@@ -535,9 +567,6 @@ $(function(){
 
 
 	$(".departure").on('click', function(){
-		// counter = 0;
-		// startCounter = true;
-		// console.log(startCounter);
 		$("span.money").text(gameobj['money']);
 		$("span.pace").text(pace);
 		$("span.health").text(health);
@@ -621,10 +650,10 @@ $("span.fuel").text(gameobj['fuel']);
 		if(ranEnDice == diceOne || ranEnDice == diceTwo){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
-		if(locationGoal == 3 && doubleFuel){
+		if(locationGoal == 3 && !doubleFuel){
 			conlog("pirates?");
-			diceOne = Math.ceil( ( Math.random() * 10) );
-			if(diceOne > 5){
+			oneDiceRoll();
+			if(diceOne > 6){
 				encounter = 1;
 				conlog("encounter: " + encounter);
 			}
@@ -734,13 +763,15 @@ $("span.fuel").text(gameobj['fuel']);
 			locationGoal ++;
 			conlog(locationGoal);
 			conlog(locationThree);
+
 		} else if(role >= locationThree && locationGoal == 3){
 			// conlog("third location");
 			addToConsole("You have reached the end of the Nebula system seems to have returned to normal. THX-11 is close. You can feel it.")
 			locationGoal ++;
+			extraFuel = false;
 		} else if(role >= locationEnd && locationGoal == 4){
 			conlog("Yay made it! Woo!");
-			addToConsole("You have reached the ends of your travels. You see THX-11 growing bigger as you advance towards your new home.")
+			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
 			$(".travel").hide();
 			$(".oneChoices").show();
 			$(".oneChoices .one").text("Land on your new home");
