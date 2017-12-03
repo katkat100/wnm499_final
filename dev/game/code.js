@@ -1,5 +1,5 @@
 $(function(){
-	function conlog(print){
+	function c(print){
 		console.log(print);
 	}
 	function addToConsole(text){
@@ -17,7 +17,7 @@ $(function(){
 	}
 	function oneDiceRoll(){
 		diceOne = Math.ceil( ( Math.random() * 10) );
-		conlog("Dice roll:" + diceOne);
+		c("Dice roll:" + diceOne);
 	}
 //variables
 	// var player = [];
@@ -122,7 +122,7 @@ $(function(){
 		var name  = [num = inputMember];
 		// player = $.merge(player,name);
 		crew = $.merge([],name);
-		conlog[crew];
+		c[crew];
 	}
 	function updateMonth(){
 		// console.log(month);
@@ -165,7 +165,7 @@ $(function(){
 			month = "April";
 			day = 1;
 		} 
-		conlog("day:" + day);
+		c("day:" + day);
 
 		$("span.month").text(month);
 		$("span.day").text(day);
@@ -206,79 +206,81 @@ $(function(){
 			addToConsole("The space pirates demand §500 or else!");
 			addToConsole("What will you do?");
 			$(".travel").hide();
-			$(".twoChoices .one").text("Attack!");
-			$(".twoChoices .two").text("Give In");
-			$(".twoChoices").show();
-			$(".twoChoices .one").on('click', function(){
-				$(".twoChoices .one").off("click")
+			$(".piratesOne").show();
+
+
+			$("body").on('click', '.pirate-attack', function(){
 				if(gameobj['ammo'] > 0){
-					diceOne = Math.ceil( ( Math.random() * 10) );
-					conlog("Dice roll:" + diceOne);
+					oneDiceRoll();
 					if(diceOne >= 6){
-						addToConsole("Your gunslinging ways superior to the space pirates and they run away!");
+						addToConsole("Their gunslinging was no match for yours! Defeated the pirates run back to their ship.");
 						gameobj['ammo']--;
 						$("span.ammo").text(gameobj['ammo']);
 						$(".travel").show();
-						$(".twoChoices").hide();
-					} else {
-						addToConsole("The space pirates draw their laser guns before you're able to!");
-						oneDiceRoll();
-						if(diceOne > 5){
-							var death = Math.floor((Math.random() * health+1));
-
-							conlog("death num: " + death);
-							conlog(crew);
-							addWarning(crew[death - 1] + " is shot by an overeager intern pirate.");
-							crew.splice(death - 1,1);
-							health = $(crew).length;
-							$("span.health").text(health);
-							conlog(crew);
-							deadCrew();
-						} else{
-							addToConsole("They loot §500 and 10 meals because of the trouble you caused.");
+						$(".piratesOne").hide();
+					} else{
+						if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
+							addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
 							gameobj['money'] -= 500;
-							gameobj['food'] -= 10;
+							gameobj['food'] -= 50;
+							$("span.money").text(gameobj['money']);
+							$("span.food").text(gameobj['food']);
+						} else if(gameobj['money'] < 500 && gameobj['food'] < 50){
+							addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and food.");
+							gameobj['money'] = 0;
+							gameobj['food'] = 0;
+							$("span.money").text(gameobj['money']);
+							$("span.food").text(gameobj['food']);
+						} else if(gameobj['money'] < 500 && gameobj['food'] >= 50){
+							addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50lbs of food.");
+							gameobj['money'] = 0;
+							gameobj['food'] -= 50;
+							$("span.money").text(gameobj['money']);
+							$("span.food").text(gameobj['food']);
+						} else if(gameobj['money'] >= 500 && gameobj['food'] < 50){
+							addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and all of your food.");
+							gameobj['money'] -= 500;
+							gameobj['food'] = 0;
 							$("span.money").text(gameobj['money']);
 							$("span.food").text(gameobj['food']);
 						}
-
-						$(".travel").show();
-						$(".twoChoices").hide();
 					}
 				} else {
-					addToConsole("You have no ammo! What will you do?");
-					$(".twoChoices .one").text("Bluff!").addClass("bluff").removeClass("one").off("click");
-
+					addToConsole("You have no ammo! Are you going to bluff your way through or give in.");
+					$('.piratesOne').hide();
+					$(".piratesTwo").show();
 				}
-				$(".twoChoices .bluff").on('click', function(){
-					diceOne = Math.ceil( ( Math.random() * 10) );
-					if( diceOne < 6){
-						addToConsole("They believe you and back off only taking §10.");
-						gameobj['money'] -= 10;
-						$("span.money").text(gameobj['money']);
-						$(".twoChoices .bluff").addClass("one").removeClass("bluff");
-						$(".twoChoices").hide();
-						$(".travel").show();
-					} else{
-						addToConsole("They laugh when they realize there's no ammo and take §700 instead.");
+			});
+
+			$("body").on('click', '.pirate-bluff', function(){
+				oneDiceRoll();
+				if(diceOne >= 7){
+					addToConsole("The pirates believe your bluff and cautiously return to their ship.");
+					$(".piratesTwo").hide();
+					$(".travel").show();
+				} else {
+					if(gameobj['money'] >= 700){
+						addToConsole("The pirates see through your bluff and take 700");
 						gameobj['money'] -= 700;
 						$("span.money").text(gameobj['money']);
-						$(".twoChoices .bluff").addClass("one").removeClass("bluff");
-						$(".twoChoices").hide();
-						$(".travel").show();
+					} else {
+						addToConsole("The pirates see through your bluff and take all your money");
+						gameobj['money'] = 0;
+						$("span.money").text(gameobj['money']);
 					}
-				});
-
+					$(".piratesTwo").hide();
+					$(".travel").show();
+				}
 			});
-			$(".twoChoices .two").on('click', function(){
-				addToConsole("You give the pirates what they want and they saunter off the ship with their pockets full");
+
+			$("body").on('click','.pirate-givein', function(){
+				addToConsole("You give in to their demands and they take §500.");
 				gameobj['money'] -= 500;
-				$(this).off('click');
 				$("span.money").text(gameobj['money']);
-				$(".twoChoices").hide();
 				$(".travel").show();
+				$(".piratesOne").hide();
+				$(".piratesTwo").hide();
 			});
-
 
 		} else if(encounter == 2){
 			addToConsole("Space whales pass by and sooth your soul");
@@ -338,25 +340,25 @@ $(function(){
 		} else if(encounter == 6){
 			var death = Math.floor((Math.random() * health+1));
 
-			conlog("death num: " + death);
-			conlog(crew);
+			c("death num: " + death);
+			c(crew);
 			addWarning(crew[death - 1] + " gets space mites and dies!");
 			crew.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
-			conlog(crew);
+			c(crew);
 			deadCrew();
 		} else if(encounter == 7){
 			var death = Math.floor((Math.random() * health+1));
 
-			conlog("death num: " + death);
-			conlog(crew);
+			c("death num: " + death);
+			c(crew);
 			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH!");
 			addWarning(crew[death - 1] + " dies from an infected bite.");
 			crew.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
-			conlog(crew);
+			c(crew);
 			deadCrew();
 		} else if(encounter == 8){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
@@ -370,6 +372,10 @@ $(function(){
 
 		} else{
 			addToConsole("You travel a days worth");
+		}
+
+		if(encounter != 1){
+			atLocation();
 		}
 	}
 
@@ -387,6 +393,74 @@ $(function(){
 			$(".ration-container h4").css({'color':'#ffffff'});
 			$(this).css({'color':'#2dfffe'});
 		});
+	}
+//locations
+	function atLocation(){
+		if(role >= locationOne && role <= locationTwo && locationGoal == 1){
+			addToConsole("You have neared Planet X, what will you do?");
+			$(".travel").hide();
+			$(".twoChoices").show();
+			$(".twoChoices .one").text("Touch Down");
+			$(".twoChoices .two").text("Avoid");
+			$(".one").on('click',function(){
+
+				addToConsole("You have touched down on Planet X. This is a main hub for those who favor themselves as cosmopoliton.")
+				
+				$(".twoChoices").hide();
+				$(".travel").hide();
+				$(".planetX").show();
+				updateMonth();
+				$(".one").off('click');
+			});
+			$(".two").on('click',function(){
+				addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
+				$(".travel").show();
+				$(".twoChoices").hide();
+				// $(this).off("click");
+				locationGoal ++;
+				$(".one").off('click');
+				$(".two").off('click');
+			});
+		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
+			c("second location");
+			addToConsole("You have neared Nebula Y.");
+			addToConsole("You have the choice of going through the expanse with the risk of space pirates or going around and using twice the amount of fuel.");
+			$(".twoChoices").show();
+			$(".travel").hide();
+			$(".twoChoices .one").text("Go through");
+			$(".twoChoices .two").text("Go around");
+			$(".one").on('click', function(){
+				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
+				$(".twoChoices").hide();		
+				$(".travel").show();
+				$(".one").off('click');
+				$(".two").off('click');
+
+			});
+			$(".two").on('click', function(){
+				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so double the fuel will be used to travel a normal days travel.");
+				doubleFuel = true;
+				$(this).off('click');
+
+			});
+
+			locationGoal ++;
+			c(locationGoal);
+			c(locationThree);
+
+		} else if(role >= locationThree && locationGoal == 3){
+			// c("third location");
+			addToConsole("You have reached the end of the Nebula system seems to have returned to normal. THX-11 is close. You can feel it.")
+			locationGoal ++;
+			extraFuel = false;
+		} else if(role >= locationEnd && locationGoal == 4){
+			c("Yay made it! Woo!");
+			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
+			$(".travel").hide();
+			$(".oneChoices").show();
+			$(".oneChoices .one").text("Land on your new home");
+			
+		}
 	}
 
 
@@ -454,7 +528,7 @@ $(function(){
 		captainJob = "farmer";
 		gameobj['money'] = 1000;
 		storeTotal = gameobj['money'];
-		conlog(storeTotal);
+		c(storeTotal);
 		$("span.money").text(gameobj['money']);
 		$("span.total").text(storeTotal);
 		$("span.bill").text(storeBill);
@@ -463,7 +537,7 @@ $(function(){
 		captainJob = "engineer";
 		gameobj['money'] = 1500;
 		storeTotal = gameobj['money'];
-		conlog(storeTotal);
+		c(storeTotal);
 		$("span.money").text(gameobj['money']);
 		$("span.total").text(storeTotal);
 		$("span.bill").text(storeBill);
@@ -472,7 +546,7 @@ $(function(){
 		captainJob = "moneybags";
 		gameobj['money'] = 2000;
 		storeTotal = gameobj['money'];
-		conlog(storeTotal);
+		c(storeTotal);
 		$("span.money").text(gameobj['money']);
 		$("span.total").text(storeTotal);
 		$("span.bill").text(storeBill);
@@ -557,11 +631,11 @@ $(function(){
 		gameobj['food'] = numOfFood * 100;
 		gameobj['ammo'] = numOfAmmo * 5;
 		gameobj['money'] = storeTotal;
-		conlog("parts: " + gameobj['parts']);
-		conlog("fuel: " + gameobj['fuel']);
-		conlog("food: " + gameobj['food']);
-		conlog("ammo: " + gameobj['ammo']);
-		conlog("money: "+ gameobj['money']);
+		c("parts: " + gameobj['parts']);
+		c("fuel: " + gameobj['fuel']);
+		c("food: " + gameobj['food']);
+		c("ammo: " + gameobj['ammo']);
+		c("money: "+ gameobj['money']);
 	});
 
 
@@ -651,11 +725,11 @@ $("span.fuel").text(gameobj['fuel']);
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
 		if(locationGoal == 3 && !doubleFuel){
-			conlog("pirates?");
+			c("pirates?");
 			oneDiceRoll();
 			if(diceOne > 6){
 				encounter = 1;
-				conlog("encounter: " + encounter);
+				c("encounter: " + encounter);
 			}
 		}
 
@@ -683,7 +757,7 @@ $("span.fuel").text(gameobj['fuel']);
 			$("span.food").text(gameobj['food']);
 			addWarning("Warning! You have run out of food. If you continue to travel without food your crew members may die.");
 			var hungryDice = Math.ceil( ( Math.random() * 10) );
-			conlog("hungry: " + hungryDice)
+			c("hungry: " + hungryDice)
 			if(hungryDice == 5 || hungryDice == 3){
 				var death = Math.floor((Math.random() * health+1));
 
@@ -692,7 +766,7 @@ $("span.fuel").text(gameobj['fuel']);
 				crew.splice(death - 1,1);
 				health = $(crew).length;
 				$("span.health").text(health);
-				conlog(crew);
+				c(crew);
 				encounter = 20;
 			}
 		}
@@ -701,82 +775,19 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-
+		encounter = 1;
 		encounterSituations();
 	
 
-		conlog("role:" + role);
-		// conlog(diceOne);
-		// conlog(diceTwo);
-		// conlog(ranEnDice);
-		// conlog(encounter);
+		c("role:" + role);
+		// c(diceOne);
+		// c(diceTwo);
+		// c(ranEnDice);
+		// c(encounter);
 		encounter = 0;
 
 
-	//locations
-		if(role >= locationOne && role <= locationTwo && locationGoal == 1){
-			addToConsole("You have neared Planet X, what will you do?");
-			$(".travel").hide();
-			$(".twoChoices").show();
-			$(".twoChoices .one").text("Touch Down");
-			$(".twoChoices .two").text("Avoid");
-			$(".one").on('click',function(){
-
-				addToConsole("You have touched down on Planet X. This is a main hub for those who favor themselves as cosmopoliton.")
-				
-				$(".twoChoices").hide();
-				$(".travel").hide();
-				$(".planetX").show();
-				updateMonth();
-				$(".one").off('click');
-			});
-			$(".two").on('click',function(){
-				addToConsole("You chose to avoid Planet X. Was this a good idea? Only time will tell.");
-				$(".travel").show();
-				$(".twoChoices").hide();
-				// $(this).off("click");
-				locationGoal ++;
-				$(".one").off('click');
-				$(".two").off('click');
-			});
-		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
-			conlog("second location");
-			addToConsole("You have neared Nebula Y.");
-			addToConsole("You have the choice of going through the expanse with the risk of space pirates or going around and using twice the amount of fuel.");
-			$(".twoChoices").show();
-			$(".travel").hide();
-			$(".twoChoices .one").text("Go through");
-			$(".twoChoices .two").text("Go around");
-			$(".one").on('click', function(){
-				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
-				$(".twoChoices").hide();		
-				$(".travel").show();
-				$(".one").off('click');
-
-			});
-			$(".two").on('click', function(){
-				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so double the fuel will be used to travel a normal days travel.");
-				doubleFuel = true;
-
-			});
-
-			locationGoal ++;
-			conlog(locationGoal);
-			conlog(locationThree);
-
-		} else if(role >= locationThree && locationGoal == 3){
-			// conlog("third location");
-			addToConsole("You have reached the end of the Nebula system seems to have returned to normal. THX-11 is close. You can feel it.")
-			locationGoal ++;
-			extraFuel = false;
-		} else if(role >= locationEnd && locationGoal == 4){
-			conlog("Yay made it! Woo!");
-			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
-			$(".travel").hide();
-			$(".oneChoices").show();
-			$(".oneChoices .one").text("Land on your new home");
-			
-		}
+	
 	});
 
 
@@ -876,18 +887,18 @@ $("span.fuel").text(gameobj['fuel']);
 	}
 
 	$("body").on("click",".make-trade",function(){
-		conlog($(this).data("minusFrom"));
-		conlog(gameobj[$(this).data("minusFrom")]);
-		conlog($(this).data("minus"));
+		c($(this).data("minusFrom"));
+		c(gameobj[$(this).data("minusFrom")]);
+		c($(this).data("minus"));
 		if(gameobj[$(this).data("minusFrom")] >= $(this).data("minus") ) {
 			gameobj[$(this).data("addTo")] += parseInt($(this).data("add"));
 			gameobj[$(this).data("minusFrom")] -= parseInt($(this).data("minus"));
 			$("span." + $(this).data("addTo")).text(gameobj[$(this).data("addTo")]);
 			$("span." + $(this).data("minusFrom")).text(gameobj[$(this).data("minusFrom")]);
 		} else if(gameobj[$(this).data("minusFrom")] < $(this).data("minus")){
-			conlog("trade unavailable")
+			c("trade unavailable")
 		}else{
-			conlog("uhhh");
+			c("uhhh");
 		}
 
 	});
@@ -953,7 +964,7 @@ $("span.fuel").text(gameobj['fuel']);
 				addToConsole(localJob[jobNum] + " " + localName[nameNum] + " joins you.");
 				var newmember = [localName[nameNum]];
 				crew = $.merge(crew,newmember);
-				conlog(crew);
+				c(crew);
 				health = $(crew).length;
 				$("span.health").text(health);
 
@@ -974,7 +985,7 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".travel").show();
 		$(".planetX").hide();
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
-		conlog("leave planet");
+		c("leave planet");
 		// role = 15;
 		locationGoal ++;
 	});
@@ -996,6 +1007,6 @@ $("span.fuel").text(gameobj['fuel']);
 		location.reload();
 	});
 
-
+	// window.g = gameobj;
 
 });
