@@ -255,7 +255,7 @@ $(function(){
 				}
 			});
 
-			$("body").off().on('click', '.pirate-bluff', function(){
+			$("body").on('click', '.pirate-bluff', function(){
 				oneDiceRoll();
 				if(diceOne >= 7){
 					addToConsole("The pirates believe your bluff and cautiously return to their ship.");
@@ -278,9 +278,15 @@ $(function(){
 				}
 			});
 
-			$("body").off().on('click','.pirate-givein', function(){
-				addToConsole("You give in to their demands and they take §500.");
-				gameobj['money'] -= 500;
+			$("body").on('click','.pirate-givein', function(){
+				if(gameobj['money'] >= 500){
+					addToConsole("You give in to their demands and they take §500.");
+					gameobj['money'] -= 500;
+				} else if(gameobj['money'] < 500){
+					addToConsole("You give in to their demands and they take all your money.");
+					gameobj['money'] = 0;
+				}
+				
 				$("span.money").text(gameobj['money']);
 				$(".travel").show();
 				$(".piratesOne").hide();
@@ -781,7 +787,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-		encounter = 1;
+		// encounter = 1;
 		encounterSituations();
 	
 
