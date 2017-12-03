@@ -208,8 +208,7 @@ $(function(){
 			$(".travel").hide();
 			$(".piratesOne").show();
 
-
-			$("body").on('click', '.pirate-attack', function(){
+			$("body").off().on('click', '.pirate-attack', function(){
 				if(gameobj['ammo'] > 0){
 					oneDiceRoll();
 					if(diceOne >= 6){
@@ -218,6 +217,7 @@ $(function(){
 						$("span.ammo").text(gameobj['ammo']);
 						$(".travel").show();
 						$(".piratesOne").hide();
+						atLocation();
 					} else{
 						if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
 							addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
@@ -244,6 +244,9 @@ $(function(){
 							$("span.money").text(gameobj['money']);
 							$("span.food").text(gameobj['food']);
 						}
+						$(".travel").show();
+						$(".piratesOne").hide();
+						atLocation();
 					}
 				} else {
 					addToConsole("You have no ammo! Are you going to bluff your way through or give in.");
@@ -252,15 +255,16 @@ $(function(){
 				}
 			});
 
-			$("body").on('click', '.pirate-bluff', function(){
+			$("body").off().on('click', '.pirate-bluff', function(){
 				oneDiceRoll();
 				if(diceOne >= 7){
 					addToConsole("The pirates believe your bluff and cautiously return to their ship.");
 					$(".piratesTwo").hide();
 					$(".travel").show();
+					atLocation();
 				} else {
 					if(gameobj['money'] >= 700){
-						addToConsole("The pirates see through your bluff and take 700");
+						addToConsole("The pirates see through your bluff and take §700");
 						gameobj['money'] -= 700;
 						$("span.money").text(gameobj['money']);
 					} else {
@@ -270,16 +274,18 @@ $(function(){
 					}
 					$(".piratesTwo").hide();
 					$(".travel").show();
+					atLocation();
 				}
 			});
 
-			$("body").on('click','.pirate-givein', function(){
+			$("body").off().on('click','.pirate-givein', function(){
 				addToConsole("You give in to their demands and they take §500.");
 				gameobj['money'] -= 500;
 				$("span.money").text(gameobj['money']);
 				$(".travel").show();
 				$(".piratesOne").hide();
 				$(".piratesTwo").hide();
+				atLocation();
 			});
 
 		} else if(encounter == 2){
