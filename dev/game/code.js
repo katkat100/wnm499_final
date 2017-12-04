@@ -470,7 +470,7 @@ $(function(){
 			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
 			$(".travel").hide();
 			$(".oneChoices").show();
-			$(".oneChoices .one").text("Land on your new home");
+			$(".landOn").text("Land on your new home");
 			
 		}
 	}
@@ -1002,7 +1002,14 @@ $("span.fuel").text(gameobj['fuel']);
 		locationGoal ++;
 	});
 
-
+	$(".landOn").on('click', function(){
+		c("home!");
+		$(".progressConsole").hide();
+		$(".conditions").hide();
+		$(".travel").hide();
+		$(".landOn").hide();
+		$(".newHome").show();
+	});
 
 
 
