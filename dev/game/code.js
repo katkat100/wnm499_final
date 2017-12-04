@@ -374,7 +374,7 @@ $(function(){
 				blackHoleObjects();
 			});
 
-			$("body").off().on('click', '.throw-button', function(){
+			$("body").on('click', '.throw-button', function(){
 				gameobj['food'] -= foodInput * 10;
 				gameobj['fuel'] -= fuelInput * 10;
 
@@ -526,12 +526,14 @@ $(function(){
 			$(".two").on('click', function(){
 				addToConsole("You have decided to go around the Nebula. The Nebula is expansive so double the fuel will be used to travel a normal days travel.");
 				doubleFuel = true;
+				$(".twoChoices").hide();		
+				$(".travel").show();
 				$(this).off('click');
 
 			});
 
 			locationGoal ++;
-			c(locationGoal);
+			c("location" + locationGoal);
 			c(locationThree);
 
 		} else if(role >= locationThree && locationGoal == 3){
@@ -1131,14 +1133,14 @@ $("span.fuel").text(gameobj['fuel']);
 		locationGoal ++;
 	});
 
-	$(".landOn").on('click', function(){
-		c("home!");
-		$(".progressConsole").hide();
-		$(".conditions").hide();
-		$(".travel").hide();
-		$(".landOn").hide();
-		$(".newHome").show();
-	});
+	// $(".landOn").on('click', function(){
+	// 	c("home!");
+	// 	$(".progressConsole").hide();
+	// 	$(".conditions").hide();
+	// 	$(".travel").hide();
+	// 	$(".landOn").hide();
+	// 	$(".newHome").show();
+	// });
 
 
 
