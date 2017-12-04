@@ -106,9 +106,13 @@ $(function(){
 
 	var doubleFuel = false;
 	var extraFuel = 1;
-	// console.log(farmer);
-	// console.log(engineer);
-	// console.log(moneybags);
+
+	var throwTotal = 0;
+	var throwRemain = 100;
+	var foodThrown = 0;
+	var fuelThrown = 0;
+	var foodInput = $("input[name = 'throw-food']").val();
+	var fuelInput = $("input[name = 'throw-fuel']").val();
 
 //function
 	// function addJob(job){
@@ -345,8 +349,45 @@ $(function(){
 			}
 			$("span.day").text(day);
 		} else if(encounter == 4){
-			addToConsole("You see poop in space. That was weird.");
-			//black hole shed weight choose what to dump
+			
+
+			$("span.throw-total").text(throwTotal);
+			$("span.throw-left").text(throwRemain);
+
+			addToConsole("Your ship has been caught in a black hole gravitational pull!");
+			addToConsole("Shed some weight to escape!");
+			$(".travel").hide();
+			// $(".conditions").hide();
+			$(".progressConsole").css({'height':'20%'});
+			$('.blackHole').show();
+
+			$("input[name = 'throw-food']").on('input',function(){
+				blackHoleObjects();
+			});
+
+			$("input[name = 'throw-fuel']").on('input',function(){
+				blackHoleObjects();
+			});
+
+			$("body").on('click', '.throw-button', function(){
+				gameobj['food'] -= foodInput * 10;
+				gameobj['fuel'] -= fuelInput * 10;
+
+				$("span.food").text(gameobj['food']);
+				$("span.fuel").text(gameobj['fuel']);
+
+				$(".progressConsole").css({'height':'55%'});
+				$('.blackHole').hide();
+				$(".throw-cont").hide();
+				$(".travel").show();
+
+				$("input[name = 'throw-food']").val(0);
+				$("input[name = 'throw-fuel']").val(0);
+				throwTotal = 0;
+				throwRemain = 100;
+
+			});
+
 		} else if(encounter == 5){
 			addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
 		} else if(encounter == 6){
@@ -386,7 +427,7 @@ $(function(){
 			addToConsole("You travel a days worth");
 		}
 
-		if(encounter != 1){
+		if(encounter != 1 && encounter != 4){
 			atLocation();
 		}
 	}
@@ -524,6 +565,31 @@ $(function(){
 			encounter = 20;
 		}
 	}
+
+	function blackHoleObjects(){
+		foodInput = $("input[name = 'throw-food']").val();
+		fuelInput = $("input[name = 'throw-fuel']").val();
+
+		foodThrown = foodInput * 10;
+		fuelThrown = fuelInput * 50;
+		throwTotal = foodThrown + fuelThrown;
+		throwRemain = 100 - throwTotal;
+
+		if(throwRemain < 0){
+			throwRemain = 0;
+		}
+
+		$("span.throw-total").text(throwTotal);
+		$("span.throw-left").text(throwRemain);
+
+		if(throwRemain == 0){
+			$(".throw-cont").show();
+		} else {
+			$(".throw-cont").hide();
+		}
+	}
+
+	
 
 
 //next
@@ -787,7 +853,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-		// encounter = 1;
+		encounter = 4;
 		encounterSituations();
 	
 
