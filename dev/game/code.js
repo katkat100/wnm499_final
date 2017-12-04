@@ -107,8 +107,9 @@ $(function(){
 	var doubleFuel = false;
 	var extraFuel = 1;
 
+	var toBeThrow = 100;
 	var throwTotal = 0;
-	var throwRemain = 100;
+	var throwRemain = toBeThrow;
 	var foodThrown = 0;
 	var fuelThrown = 0;
 	var foodInput = $("input[name = 'throw-food']").val();
@@ -349,8 +350,11 @@ $(function(){
 			}
 			$("span.day").text(day);
 		} else if(encounter == 4){
-			
+			toBeThrow = (Math.floor(Math.random() * 50) + 1) * 10;
+			c(toBeThrow);
+			throwRemain = toBeThrow;
 
+			$("span.to-throw").text(toBeThrow);
 			$("span.throw-total").text(throwTotal);
 			$("span.throw-left").text(throwRemain);
 
@@ -360,6 +364,7 @@ $(function(){
 			// $(".conditions").hide();
 			$(".progressConsole").css({'height':'20%'});
 			$('.blackHole').show();
+			$(".throw-giveCont").show();
 
 			$("input[name = 'throw-food']").on('input',function(){
 				blackHoleObjects();
@@ -369,7 +374,7 @@ $(function(){
 				blackHoleObjects();
 			});
 
-			$("body").on('click', '.throw-button', function(){
+			$("body").off().on('click', '.throw-button', function(){
 				gameobj['food'] -= foodInput * 10;
 				gameobj['fuel'] -= fuelInput * 10;
 
@@ -386,6 +391,34 @@ $(function(){
 				throwTotal = 0;
 				throwRemain = 100;
 
+				atLocation();
+			});
+
+			$("body").off().on('click', '.throw-giveUp', function(){
+				oneDiceRoll();
+				if(diceOne >= 8){
+					addToConsole("You made it out of the gravitational pull alive with a little hard work and a lot of luck.");
+				} else {
+					var death = Math.floor((Math.random() * health+1));
+
+					c("death num: " + death);
+					c(crew);
+
+					// addToConsole("You didn't make it out of the pull in time.");
+					addWarning(crew[death - 1] + " died in the attempts getting out of the gravitational pull.");
+					addToConsole("Well that's one way of losing some weight");
+
+					crew.splice(death - 1,1);
+					health = $(crew).length;
+					$("span.health").text(health);
+					c(crew);
+					deadCrew();
+				}
+					$(".progressConsole").css({'height':'55%'});
+					$('.blackHole').hide();
+					$(".travel").show();
+					$(".throw-cont").hide();
+					$(".throw-giveCont").hide();
 			});
 
 		} else if(encounter == 5){
@@ -553,6 +586,57 @@ $(function(){
 			$("." + name + " .chatter-name").text(chat4name);
 		}
 	}
+
+	function blackHoleObjects(){
+		foodInput = $("input[name = 'throw-food']").val();
+		fuelInput = $("input[name = 'throw-fuel']").val();
+
+		foodThrown = foodInput * 10;
+		fuelThrown = fuelInput * 50;
+
+		if(foodThrown > gameobj['food']){
+			addToConsole("You don't have enough food for that.");
+			$("input[name = 'throw-food']").val(0);
+			foodInput = $("input[name = 'throw-food']").val()
+			foodThrown = foodInput * 10;
+		}
+
+		if(fuelThrown > gameobj['fuel']){
+			addToConsole("You don't have enough fuel pods for that.");
+			$("input[name = 'throw-fuel']").val(0);
+			fuelInput = $("input[name = 'throw-fuel']").val()
+			fuelThrown = fuelInput * 50;
+		}
+
+		throwTotal = foodThrown + fuelThrown;
+		throwRemain = toBeThrow - throwTotal;
+
+		if(throwRemain < 0){
+			throwRemain = 0;
+		}
+
+		$("span.throw-total").text(throwTotal);
+		$("span.throw-left").text(throwRemain);
+
+		if(throwRemain == 0){
+			$(".throw-cont").show();
+			$(".throw-giveCont").hide();
+		} else {
+			$(".throw-cont").hide();
+			$(".throw-giveCont").show();
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
 	
 
 	function deadCrew(){
@@ -566,28 +650,7 @@ $(function(){
 		}
 	}
 
-	function blackHoleObjects(){
-		foodInput = $("input[name = 'throw-food']").val();
-		fuelInput = $("input[name = 'throw-fuel']").val();
-
-		foodThrown = foodInput * 10;
-		fuelThrown = fuelInput * 50;
-		throwTotal = foodThrown + fuelThrown;
-		throwRemain = 100 - throwTotal;
-
-		if(throwRemain < 0){
-			throwRemain = 0;
-		}
-
-		$("span.throw-total").text(throwTotal);
-		$("span.throw-left").text(throwRemain);
-
-		if(throwRemain == 0){
-			$(".throw-cont").show();
-		} else {
-			$(".throw-cont").hide();
-		}
-	}
+	
 
 	
 
@@ -853,7 +916,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-		encounter = 4;
+		// encounter = 4;
 		encounterSituations();
 	
 

@@ -191,7 +191,7 @@ nav {
   display: none;
   margin-top: 0; }
 
-.change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .newHome, .blackHole, .throw-cont {
+.change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .newHome, .blackHole, .throw-cont, .throw-giveCont {
   display: none; }
 
 .first-item, .second-item {
