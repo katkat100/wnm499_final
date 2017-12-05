@@ -95,3 +95,14 @@
 		display: table;
 	}
 }
+
+@mixin flex-helpers($prefix:'') {
+	@if($prefix!=''){
+		$prefix:"-#{$prefix}";
+	}
+	@for $i from 1 through $column-length{
+		.flex-order#{$prefix}-#{$i}{
+			order: $i;
+		}
+	}
+}

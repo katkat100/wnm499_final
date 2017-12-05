@@ -40,8 +40,11 @@
 	@media (min-width: $prevalue){
 		@include container-make(#{$prefix});
 		@include columns-make(#{$prefix});
+		@include flex-helpers(#{$prefix});
 	}
 }
+
+
 
 .flex-parent{
 	display: flex;
