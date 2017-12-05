@@ -90,6 +90,7 @@ h4{
 	text-align: center;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	transition: all 500ms;
 
 	&:hover{
 		color: $color-prime;

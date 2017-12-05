@@ -77,10 +77,10 @@
 	}
 	
 	& > h4{
-		border: 1px solid $color-tri;
+		border-bottom: 2px solid $color-tri;
 		display: block;
 		&:hover{
-			border: 1px solid $color-prime;
+			border-bottom: 2px solid $color-prime;
 
 		}
 	}
