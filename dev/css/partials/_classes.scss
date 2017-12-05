@@ -237,6 +237,7 @@ p.desc {
 }
 .flex-child-center {
 	align-self: center;
+	flex-shrink: 1;
 }
 .flex-none {
 	flex: none;

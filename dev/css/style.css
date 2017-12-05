@@ -44,7 +44,8 @@ h1 {
   border-radius: .15em;
   margin-bottom: .3em;
   text-shadow: 0 0 15px #2dfffe;
-  box-shadow: 0 0 15px #2dfffe; }
+  box-shadow: 0 0 15px #2dfffe;
+  text-align: center; }
 
 h2 {
   font-family: "Jura", sans-serif;
@@ -117,6 +118,11 @@ nav {
   left: 10px; }
   nav ul {
     padding-left: 0; }
+
+p {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left; }
 
 .clearfix:after {
   clear: both;
@@ -274,7 +280,8 @@ p.desc {
   flex: 1 1 auto; }
 
 .flex-child-center {
-  align-self: center; }
+  align-self: center;
+  flex-shrink: 1; }
 
 .flex-none {
   flex: none; }
@@ -998,18 +1005,22 @@ p.desc {
   height: 100%; }
 
 .content > section {
-  padding-top: 100px;
-  margin-bottom: -100px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px; }
-  .content > section > p {
-    max-width: 600px; }
-    .content > section > p.question {
+  text-align: center; }
+  .content > section div {
+    margin-left: auto;
+    margin-right: auto; }
+  .content > section p {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 15, 30, 0.5); }
+    .content > section p.question {
       color: #00adac;
       margin-bottom: 0;
       font-weight: 400; }
-    .content > section > p.answer {
+    .content > section p.answer {
       margin-top: 0.25em;
       margin-bottom: 1.25em; }
   .content > section img {
@@ -1029,7 +1040,8 @@ p.desc {
   margin-bottom: .3em;
   text-shadow: 0 0 0 transparent;
   box-shadow: 0 0 0 transparent;
-  transition: all 500ms; }
+  transition: all 500ms;
+  text-align: center; }
   .button:hover {
     text-shadow: 0 0 15px #2dfffe;
     box-shadow: 0 0 15px #2dfffe;
