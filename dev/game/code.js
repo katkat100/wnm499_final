@@ -374,7 +374,8 @@ $(function(){
 				blackHoleObjects();
 			});
 
-			$("body").on('click', '.throw-button', function(){
+			$(".throw-button").on('click', function(){
+				c("hello");
 				gameobj['food'] -= foodInput * 10;
 				gameobj['fuel'] -= fuelInput * 10;
 
@@ -918,7 +919,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-		// encounter = 4;
+		encounter = 4;
 		encounterSituations();
 	
 
