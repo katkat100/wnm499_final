@@ -48,3 +48,6 @@
 
 ## Stardate 2017.12.04
 - Created separate icon for rations 
+
+## Stardate 2017.12.05
+- Brainstormed layout options
