@@ -334,7 +334,7 @@ $(function(){
 					month = 'November';
 					day = 30 + day;
 				} else if(month == 'January'){
-					month = 'Decmeber';
+					month = 'December';
 					day = 31 + day;
 				} else if(month == 'February'){
 					month = 'January';
