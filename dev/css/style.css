@@ -118,7 +118,7 @@ nav {
   nav ul {
     padding-left: 0; }
 
-.clearix:after {
+.clearfix:after {
   clear: both;
   content: '';
   display: table; }
@@ -260,6 +260,24 @@ p.desc {
   margin-left: auto;
   margin-right: auto;
   text-align: left; }
+
+.circle {
+  border-radius: 50%;
+  width: 100%;
+  flex: 0 0 auto;
+  padding: 20px; }
+
+.flex-parent {
+  display: flex; }
+
+.flex-child {
+  flex: 1 1 auto; }
+
+.flex-child-center {
+  align-self: center; }
+
+.flex-none {
+  flex: none; }
 
 .grid {
   overflow: hidden; }
