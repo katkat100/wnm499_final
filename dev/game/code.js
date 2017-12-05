@@ -830,32 +830,32 @@ $("span.fuel").text(gameobj['fuel']);
 			$("span.fuel").text(gameobj['fuel']);
 			role++;
 		} else if(pace == "moderate"){
-			fuelUsage = 15 * extraFuel;
+			fuelUsage = 12 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=2
 		} else if(pace == "quick"){
-			fuelUsage = 30 * extraFuel;
+			fuelUsage = 24 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=3
 		} else if(pace == "fast"){
-			fuelUsage = 50 * extraFuel;
+			fuelUsage = 36 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
 			role +=4
 		}
 
 		if(rations == "bare"){
-			fpp = 5;
+			fpp = 1;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
 		} else if(rations == "meager"){
-			fpp = 10;
+			fpp = 2;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
 		}else if(rations == "filling"){
-			fpp = 20;
+			fpp = 3;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
 
