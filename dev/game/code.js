@@ -94,10 +94,10 @@ $(function(){
 	var titleNum = 0;
 
 	var locationGoal = 1;
-	var locationOne = 15;
-	var locationTwo = 25;
-	var locationThree = 40;
-	var locationEnd = 60;
+	var locationOne = 25;
+	var locationTwo = 45;
+	var locationThree = 70;
+	var locationEnd = 100;
 
 	var ranNum = [0,1,2,3,4,5,6,7,8];
 	
@@ -214,9 +214,20 @@ $(function(){
 			$(".piratesOne").show();
 
 			$("body").off().on('click', '.pirate-attack', function(){
+				var attackChance = 6;
+
+				if(rations == 'bare'){
+					attackChance = 9;
+				} else {
+					attackChance = 6;
+				}
+
+				c("attack chance: " + attackChance);
+
 				if(gameobj['ammo'] > 0){
 					oneDiceRoll();
-					if(diceOne >= 6){
+					c("dice: " + diceOne);
+					if(diceOne >= attackChance){
 						addToConsole("Their gunslinging was no match for yours! Defeated the pirates run back to their ship.");
 						gameobj['ammo']--;
 						$("span.ammo").text(gameobj['ammo']);
@@ -374,7 +385,8 @@ $(function(){
 				blackHoleObjects();
 			});
 
-			$("body").on('click', '.throw-button', function(){
+			$(".throw-button").on('click', function(){
+				c("hello");
 				gameobj['food'] -= foodInput * 10;
 				gameobj['fuel'] -= fuelInput * 10;
 
@@ -800,16 +812,16 @@ $(function(){
 
 var role = 1;
 
-month = "April";
-gameobj['food'] = 1500;
-gameobj['ammo'] = 1;
-gameobj['fuel'] = 1200;
-gameobj['money'] = 2000;
+// month = "April";
+// gameobj['food'] = 1500;
+// gameobj['ammo'] = 10;
+// gameobj['fuel'] = 1200;
+// gameobj['money'] = 2000;
 
 
-$("span.money").text(gameobj['money']);
-$("span.food").text(gameobj['food']);
-$("span.fuel").text(gameobj['fuel']);
+// $("span.money").text(gameobj['money']);
+// $("span.food").text(gameobj['food']);
+// $("span.fuel").text(gameobj['fuel']);
 
 
 
@@ -918,7 +930,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 
-		// encounter = 4;
+		// encounter = 1;
 		encounterSituations();
 	
 
@@ -1029,7 +1041,7 @@ $("span.fuel").text(gameobj['fuel']);
 		})
 	}
 
-	$("body").on("click",".make-trade",function(){
+	$(".make-trade").on("click",function(){
 		c($(this).data("minusFrom"));
 		c(gameobj[$(this).data("minusFrom")]);
 		c($(this).data("minus"));
