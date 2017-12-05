@@ -54,20 +54,37 @@
 }
 
 .conditions{
+	display: flex;
+	flex-flow: column wrap;
+	width: 150px;
+
 	.cond-info{
-		text-align: center;
+		//text-align: center;
+		display: flex;
+		align-items: center;
+		font-size: 1.2em;
+
+		div {
+			flex: 1 1 auto;
+			display: inline-block;
+			vertical-align: middle;
+		}
 	}
 	.icons{
 		text-align: center;
-		width: 60%;
+		height: 3em;
+		padding: .25em;
+		flex: none;
+		display: inline-block;
+		vertical-align: middle;
 	}
 	
-	p{
-		text-align: center;
-		margin-top: 0;
-		margin-bottom: 0;
-		font-size: 120%;
-	}
+	// p{
+	// 	text-align: center;
+	// 	margin-top: 0;
+	// 	margin-bottom: 0;
+	// 	font-size: 120%;
+	// }
 }
 
 .left{

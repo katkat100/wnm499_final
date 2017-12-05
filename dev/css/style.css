@@ -170,16 +170,25 @@ p {
   .gameInteraction h3 {
     text-transform: initial; }
 
-.conditions .cond-info {
-  text-align: center; }
-.conditions .icons {
-  text-align: center;
-  width: 60%; }
-.conditions p {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 120%; }
+.conditions {
+  display: flex;
+  flex-flow: column wrap;
+  width: 150px; }
+  .conditions .cond-info {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em; }
+    .conditions .cond-info div {
+      flex: 1 1 auto;
+      display: inline-block;
+      vertical-align: middle; }
+  .conditions .icons {
+    text-align: center;
+    height: 3em;
+    padding: .25em;
+    flex: none;
+    display: inline-block;
+    vertical-align: middle; }
 
 .left {
   float: left; }
