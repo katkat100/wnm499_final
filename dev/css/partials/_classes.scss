@@ -44,7 +44,8 @@
 	border: 1px solid $color-sec;
 	border-radius: .15em;
 	padding: .2em .5em;
-	height: 200px;
+	// height: 200px;
+	overflow: auto;
 	background-color: darken($color-sec, 85%);
 	h3{
 		text-transform: initial;
@@ -52,8 +53,16 @@
 }
 
 .conditions{
+	.cond-info{
+		text-align: center;
+	}
+	.icons{
+		text-align: center;
+		width: 60%;
+	}
 	
 	p{
+		text-align: center;
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 120%;
@@ -65,7 +74,7 @@
 }
 
 .dateCounter{
-	float: right;
+	// float: right;
 }
 
 .options{
@@ -77,10 +86,10 @@
 	}
 	
 	& > h4{
-		border: 1px solid $color-tri;
-		display: block;
+		// border: 1px solid $color-tri;
+		// display: block;
 		&:hover{
-			border: 1px solid $color-prime;
+			// border: 1px solid $color-prime;
 
 		}
 	}
@@ -142,8 +151,11 @@
 }
 
 .progressConsole{
-	margin-top: 10px;
-	height: 55%;
+	margin-left: 5%;
+	margin-right: 5%;
+	width: 90%;
+	margin-top: 20px;
+	height: 65%;
 	overflow:auto;
 
 	&::-webkit-scrollbar{
@@ -163,6 +175,44 @@
 
 .travel{
 	width: 100%;
+}
+
+.blackHole-icon{
+	width: 25px;
+}
+
+.opt-bottom{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.object-row{
+	.object{
+		text-align: center;
+		img{
+			vertical-align: middle;
+		}
+		
+
+		p{
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+
+	.cost{
+		text-align: center;
+	}
+
+	input{
+		margin-top: 6px;
+	}
+}
+
+.weight-record{
+	text-align: center;
 }
 
 .chatterbox-image-container{

@@ -393,7 +393,7 @@ $(function(){
 				$("span.food").text(gameobj['food']);
 				$("span.fuel").text(gameobj['fuel']);
 
-				$(".progressConsole").css({'height':'55%'});
+				$(".progressConsole").css({'height':'65%'});
 				$('.blackHole').hide();
 				$(".throw-cont").hide();
 				$(".travel").show();
@@ -426,7 +426,7 @@ $(function(){
 					c(crew);
 					deadCrew();
 				}
-					$(".progressConsole").css({'height':'55%'});
+					$(".progressConsole").css({'height':'65%'});
 					$('.blackHole').hide();
 					$(".travel").show();
 					$(".throw-cont").hide();
@@ -807,21 +807,22 @@ $(function(){
 		day = 1;
 		$("span.day").text(day);
 		$(".options").show();
+		$(".departure").hide();
 	});
 
 
 var role = 1;
 
-// month = "April";
-// gameobj['food'] = 1500;
-// gameobj['ammo'] = 10;
-// gameobj['fuel'] = 1200;
-// gameobj['money'] = 2000;
+month = "April";
+gameobj['food'] = 1500;
+gameobj['ammo'] = 10;
+gameobj['fuel'] = 1200;
+gameobj['money'] = 2000;
 
 
-// $("span.money").text(gameobj['money']);
-// $("span.food").text(gameobj['food']);
-// $("span.fuel").text(gameobj['fuel']);
+$("span.money").text(gameobj['money']);
+$("span.food").text(gameobj['food']);
+$("span.fuel").text(gameobj['fuel']);
 
 
 
@@ -930,7 +931,7 @@ var role = 1;
 		
 
 
-		// encounter = 1;
+		// encounter = 4;
 		encounterSituations();
 	
 

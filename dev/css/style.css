@@ -68,7 +68,6 @@ h4 {
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 1em;
   margin-bottom: 1em; }
   h4:hover {
     color: #2dfffe;
@@ -159,12 +158,18 @@ nav {
   border: 1px solid #ffffff;
   border-radius: .15em;
   padding: .2em .5em;
-  height: 200px;
+  overflow: auto;
   background-color: #262626; }
   .gameInteraction h3 {
     text-transform: initial; }
 
+.conditions .cond-info {
+  text-align: center; }
+.conditions .icons {
+  text-align: center;
+  width: 60%; }
 .conditions p {
+  text-align: center;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 120%; }
@@ -172,20 +177,12 @@ nav {
 .left {
   float: left; }
 
-.dateCounter {
-  float: right; }
-
 .options {
   margin-top: 50vh; }
   .options.travel {
     position: absolute;
     bottom: 0;
     display: none; }
-  .options > h4 {
-    border: 1px solid #000f1e;
-    display: block; }
-    .options > h4:hover {
-      border: 1px solid #2dfffe; }
 
 .twoChoices, .oneChoices {
   display: none;
@@ -219,8 +216,11 @@ nav {
     margin: 1rem 0 0 0; }
 
 .progressConsole {
-  margin-top: 10px;
-  height: 55%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  margin-top: 20px;
+  height: 65%;
   overflow: auto; }
   .progressConsole::-webkit-scrollbar {
     background-color: #002951;
@@ -233,6 +233,30 @@ nav {
 
 .travel {
   width: 100%; }
+
+.blackHole-icon {
+  width: 25px; }
+
+.opt-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.object-row .object {
+  text-align: center; }
+  .object-row .object img {
+    vertical-align: middle; }
+  .object-row .object p {
+    display: inline-block;
+    vertical-align: middle; }
+.object-row .cost {
+  text-align: center; }
+.object-row input {
+  margin-top: 6px; }
+
+.weight-record {
+  text-align: center; }
 
 .chatterbox-image-container {
   position: relative;
@@ -835,8 +859,5 @@ p.desc {
     text-shadow: 0 0 15px #2dfffe;
     box-shadow: 0 0 15px #2dfffe;
     color: #2dfffe; }
-
-.icons {
-  width: 25px; }
 
 /*# sourceMappingURL=style.css.map */
