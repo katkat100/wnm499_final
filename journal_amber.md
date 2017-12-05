@@ -42,3 +42,9 @@
 - Added SVG icons to store
 - Added descriptions to store
 - Updated game values to match descriptions
+
+## Stardate 2017.12.03
+- Tested the game with my roommates
+
+## Stardate 2017.12.04
+- Created separate icon for rations 
