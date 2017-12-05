@@ -862,14 +862,18 @@ var role = 1;
 			fpp = 1;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
+			$("svg#rations .teal, svg#rations .red").addClass("plate");
 		} else if(rations == "meager"){
 			fpp = 2;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
+			$("svg#rations .teal").addClass("plate");
+			$("svg#rations .red").removeClass("plate");
 		}else if(rations == "filling"){
 			fpp = 3;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
+			$("svg#rations .red, svg#rations .teal").removeClass("plate");
 
 		}
 		
