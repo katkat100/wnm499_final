@@ -45,7 +45,6 @@
 	border: 1px solid $color-sec;
 	border-radius: .15em;
 	padding: .2em .5em;
-	// height: 200px;
 	overflow: auto;
 	background-color: darken($color-sec, 85%);
 	h3{
@@ -57,9 +56,10 @@
 	display: flex;
 	flex-flow: column wrap;
 	width: 150px;
+	display: inline-block;
+	margin-right: 0;
 
 	.cond-info{
-		//text-align: center;
 		display: flex;
 		align-items: center;
 		font-size: 1.2em;
@@ -79,21 +79,12 @@
 		vertical-align: middle;
 	}
 	
-	// p{
-	// 	text-align: center;
-	// 	margin-top: 0;
-	// 	margin-bottom: 0;
-	// 	font-size: 120%;
-	// }
 }
 
 .left{
 	float: left;
 }
 
-.dateCounter{
-	// float: right;
-}
 #game h4:not(.button) {
 	border-bottom: 2px solid $color-tri;
 	display: block;
@@ -121,7 +112,11 @@
 }
 
 .change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont{
-	display: none;
+	//display: none;
+}
+.change-pace, .change-rations, .trading, .local-trading{
+	width: calc(60% - 200px);
+	display: inline-block;
 }
 
 .first-item, .second-item{
@@ -168,12 +163,12 @@
 }
 
 .progressConsole{
-
-	margin-left: 5%;
-	margin-right: 5%;
-	width: 90%;
-	margin-top: 20px;
-	height: 65%;
+	// margin-left: 5%;
+	// margin-right: 5%;
+	width: calc(60% - 200px);
+	display: inline-block;
+	//margin-top: 20px;
+	//height: 65%;
 	overflow:auto;
 
 	&::-webkit-scrollbar{
@@ -189,6 +184,10 @@
 	.warning{
 		color: $color-warning;
 	}
+}
+.displayWindow{
+	display: inline-block;
+	width: 39%;
 }
 
 .travel{

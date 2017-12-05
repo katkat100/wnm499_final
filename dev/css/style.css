@@ -173,7 +173,9 @@ p {
 .conditions {
   display: flex;
   flex-flow: column wrap;
-  width: 150px; }
+  width: 150px;
+  display: inline-block;
+  margin-right: 0; }
   .conditions .cond-info {
     display: flex;
     align-items: center;
@@ -210,8 +212,9 @@ p {
   display: none;
   margin-top: 0; }
 
-.change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont {
-  display: none; }
+.change-pace, .change-rations, .trading, .local-trading {
+  width: calc(60% - 200px);
+  display: inline-block; }
 
 .first-item, .second-item {
   font-weight: 400; }
@@ -238,11 +241,8 @@ p {
     margin: 1rem 0 0 0; }
 
 .progressConsole {
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-  margin-top: 20px;
-  height: 65%;
+  width: calc(60% - 200px);
+  display: inline-block;
   overflow: auto; }
   .progressConsole::-webkit-scrollbar {
     background-color: #002951;
@@ -252,6 +252,10 @@ p {
     border-radius: 5px; }
   .progressConsole .warning {
     color: #F2545B; }
+
+.displayWindow {
+  display: inline-block;
+  width: 39%; }
 
 .travel {
   width: 100%; }

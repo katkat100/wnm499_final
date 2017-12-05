@@ -190,6 +190,7 @@ $(function(){
 			$(".exitStore").hide();
 		}
 	}
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
 	
 
 	function encounterSituations(){
