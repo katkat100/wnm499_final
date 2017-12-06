@@ -397,7 +397,7 @@ $(function(){
 				$("span.food").text(gameobj['food']);
 				$("span.fuel").text(gameobj['fuel']);
 
-				$(".progressConsole").css({'height':'65%'});
+				$(".progressConsole").css({'height':'80vh'});
 				$('.blackHole').hide();
 				$(".throw-cont").hide();
 				$(".travel").show();
@@ -430,7 +430,7 @@ $(function(){
 					c(crew);
 					deadCrew();
 				}
-					$(".progressConsole").css({'height':'65%'});
+					$(".progressConsole").css({'height':'80vh'});
 					$('.blackHole').hide();
 					$(".travel").show();
 					$(".throw-cont").hide();
@@ -971,6 +971,7 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".change-pace").show();
 		$(".travel").hide();
 		$(".progressConsole").hide();
+		$(".displayWindow").hide();
 	});
 
 	paceChange("slow");
@@ -983,6 +984,7 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".change-pace").hide();
 		$(".travel").show();
 		$(".progressConsole").show();
+		$(".displayWindow").show();
 	})
 	
 //rations
@@ -990,6 +992,7 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".change-rations").show();
 		$(".travel").hide();
 		$(".progressConsole").hide();
+		$(".displayWindow").hide();
 	});
 
 	rationChange("bare");
@@ -1001,12 +1004,14 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".change-rations").hide();
 		$(".travel").show();
 		$(".progressConsole").show();
+		$(".displayWindow").show();
 	});
 
 
 //trade
 	$(".attempt-trade").on('click', function(){
 		$(".progressConsole").hide();
+		$(".displayWindow").hide();
 		$(".travel").hide();
 		$(".trading").show();
 
@@ -1022,6 +1027,7 @@ $("span.fuel").text(gameobj['fuel']);
 			$(".traverse").css({'pointerEvents':'initial','opacity':1})
 		}
 		$(".progressConsole").show();
+		$(".displayWindow").show();
 		$(".travel").show();
 		$(".trading").hide();
 		
@@ -1033,6 +1039,7 @@ $("span.fuel").text(gameobj['fuel']);
 	$(".local-trade").on('click', function(){
 		updateMonth();
 		$(".progressConsole").hide();
+		$(".displayWindow").hide();
 		$(".planetX").hide();
 		$(".local-trading").show();
 		trade("trade-one");
@@ -1077,6 +1084,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 	$(".local-trade-done").on('click', function(){
 		$(".progressConsole").show();
+		$(".displayWindow").show();
 		$(".planetX").show();
 		$(".local-trading").hide();
 	});
