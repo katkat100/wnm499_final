@@ -113,9 +113,10 @@
 
 .change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont{
 	//display: none;
+	// This has been moved to code.js
 }
 .change-pace, .change-rations, .trading, .local-trading{
-	width: calc(60% - 200px);
+	width: calc(90% - 200px);
 	display: inline-block;
 }
 
@@ -168,7 +169,7 @@
 	width: calc(60% - 200px);
 	display: inline-block;
 	//margin-top: 20px;
-	//height: 65%;
+	height: 80vh;
 	overflow:auto;
 
 	&::-webkit-scrollbar{
