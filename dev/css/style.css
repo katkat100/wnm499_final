@@ -175,7 +175,8 @@ p {
   flex-flow: column wrap;
   width: 150px;
   display: inline-block;
-  margin-right: 0; }
+  margin-right: 0;
+  vertical-align: top; }
   .conditions .cond-info {
     display: flex;
     align-items: center;
@@ -255,6 +256,7 @@ p {
     color: #F2545B; }
 
 .displayWindow {
+  vertical-align: top;
   display: inline-block;
   width: 39%; }
 
