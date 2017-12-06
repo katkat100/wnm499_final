@@ -58,6 +58,7 @@
 	width: 150px;
 	display: inline-block;
 	margin-right: 0;
+	vertical-align: top;
 
 	.cond-info{
 		display: flex;
@@ -187,6 +188,7 @@
 	}
 }
 .displayWindow{
+	vertical-align: top;
 	display: inline-block;
 	width: 39%;
 }
