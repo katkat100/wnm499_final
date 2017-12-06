@@ -19,6 +19,9 @@ $(function(){
 		diceOne = Math.ceil( ( Math.random() * 10) );
 		c("Dice roll:" + diceOne);
 	}
+	function rangeRatio(n,nmin,nmax,omin,omax) {
+		return (((n-nmin)/(nmax-nmin))*(omax-omin))+omin;
+	}//Hamilton https://codepen.io/bronkula/pen/KyYeXx?editors=0010
 //variables
 	// var player = [];
 	var captainName = "";
@@ -947,8 +950,16 @@ $("span.fuel").text(gameobj['fuel']);
 		// c(encounter);
 		encounter = 0;
 
+		var locationEnd = 25;
 
-	
+		var trailWidth = $(".locationProgress").width() - 40;
+
+		var propulsion = ((role/locationEnd) * trailWidth);
+		
+
+		$(".ship").css({
+			transform:"translateX(" + propulsion + "px)"
+		})
 	});
 
 

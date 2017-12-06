@@ -1,4 +1,4 @@
-# Captian's Log  
+# Captain's Log  
 _Oct 24,2017_  
 _Module 8_  
 Made new project, announced I was not responsible.  
@@ -6,7 +6,7 @@ Till next time.
 Katie  
 ---
 
-# Captian's Log   
+# Captain's Log   
 _Oct 29,2017_   
 _Module 8_   
 Added font-family variables and colors.   
@@ -16,7 +16,7 @@ Tally Ho.
 Katie   
 ---
 
-# Captian's Log   
+# Captain's Log   
 _Oct 30,2017_   
 _Module 8_   
 Coded title card.   
@@ -25,7 +25,7 @@ Ciao.
 Katie   
 ---
 
-# Captian's Log   
+# Captain's Log   
 _Oct 31,2017_   
 _Module 9-   
 It's Halloween!   
@@ -35,7 +35,7 @@ Smell Ya Later.
 Katie    
 ---   
 
-# Captian's Log   
+# Captain's Log   
 _Nov 7, 2017_   
 _Module 10_   
 Late log...   
@@ -46,7 +46,7 @@ Fare Thee Well.
 Katie   
 ---   
 
-# Captian's Log  
+# Captain's Log  
 _Nov 14, 2017_   
 _Module 11_   
 Late Log...   
@@ -56,7 +56,7 @@ Toodle Loo.
 Katie   
 ---   
 
-# Captian's Log   
+# Captain's Log   
 _Nov 20, 2017_
 _Module 11_   
 I have so far added a location and enabled trading with locals.   
@@ -65,7 +65,7 @@ Until Later.
 Katie   
 ---   
 
-# Captian's Log   
+# Captain's Log   
 _Nov 28,2017_   
 _Module 13_   
 Aftermath of Thanksgiving.   
@@ -77,3 +77,14 @@ TTYL.
 Katie   
 ---   
 
+# Captain's Log   
+_Dec 5, 2017_   
+_Module 14_   
+Finished most of code.   
+Probably.  
+Will start working on css this week.   
+Love.   
+Katie   
+---   
+   
+   
