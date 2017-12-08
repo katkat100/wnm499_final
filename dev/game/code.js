@@ -522,6 +522,7 @@ $(function(){
 				locationGoal ++;
 				$(".one").off('click');
 				$(".two").off('click');
+				
 			});
 		} else if(role >= locationTwo && role <= locationThree && locationGoal == 2){
 			c("second location");
@@ -950,16 +951,18 @@ $("span.fuel").text(gameobj['fuel']);
 		// c(encounter);
 		encounter = 0;
 
-		var locationEnd = 25;
+		ship();
 
-		var trailWidth = $(".locationProgress").width() - 40;
+		function ship(){
+			var trailWidth = $(".locationProgress").width() - 40;
+			var propulsion = ((role/locationEnd) * trailWidth);
+			
 
-		var propulsion = ((role/locationEnd) * trailWidth);
-		
-
-		$(".ship").css({
-			transform:"translateX(" + propulsion + "px)"
-		})
+			$(".ship").css({
+				transform:"translateX(" + propulsion + "px)"
+			})
+			
+		};
 	});
 
 
@@ -1166,7 +1169,6 @@ $("span.fuel").text(gameobj['fuel']);
 		$(".planetX").hide();
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		c("leave planet");
-		// role = 15;
 		locationGoal ++;
 	});
 
