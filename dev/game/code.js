@@ -856,12 +856,12 @@ $("span.fuel").text(gameobj['fuel']);
 			fuelUsage = 24 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
-			role +=3
+			role +=4
 		} else if(pace == "fast"){
 			fuelUsage = 36 * extraFuel;
 			gameobj['fuel'] -= fuelUsage;
 			$("span.fuel").text(gameobj['fuel']);
-			role +=4
+			role +=5
 		}
 
 		if(rations == "bare"){
