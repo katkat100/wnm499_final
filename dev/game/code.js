@@ -1,4 +1,5 @@
 $(function(){
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -19,9 +20,6 @@ $(function(){
 		diceOne = Math.ceil( ( Math.random() * 10) );
 		c("Dice roll:" + diceOne);
 	}
-	function rangeRatio(n,nmin,nmax,omin,omax) {
-		return (((n-nmin)/(nmax-nmin))*(omax-omin))+omin;
-	}//Hamilton https://codepen.io/bronkula/pen/KyYeXx?editors=0010
 //variables
 	// var player = [];
 	var captainName = "";
@@ -98,7 +96,7 @@ $(function(){
 
 	var locationGoal = 1;
 	var locationOne = 25;
-	var locationTwo = 45;
+	var locationTwo = 55;
 	var locationThree = 70;
 	var locationEnd = 100;
 
@@ -193,7 +191,7 @@ $(function(){
 			$(".exitStore").hide();
 		}
 	}
-	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
+	
 	
 
 	function encounterSituations(){
