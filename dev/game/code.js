@@ -374,6 +374,8 @@ $(function(){
 			$("span.throw-total").text(throwTotal);
 			$("span.throw-left").text(throwRemain);
 
+			$(".display-box").css({"backgroundImage":"url(../images/blackHole.png)"});
+
 			addToConsole("Your ship has been caught in a black hole gravitational pull!");
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
@@ -954,8 +956,8 @@ $("span.fuel").text(gameobj['fuel']);
 		deadCrew();
 		
 
-
-		// encounter = 4;
+//change the encounter
+		encounter = 4;
 		encounterSituations();
 	
 
