@@ -123,267 +123,6 @@ p {
   padding-right: 20px;
   text-align: left; }
 
-.clearfix:after {
-  clear: both;
-  content: '';
-  display: table; }
-
-.center {
-  margin-left: auto;
-  margin-right: auto; }
-
-.phillip-parent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; }
-
-.pos-relative {
-  position: relative; }
-
-.pos-absolute {
-  position: absolute; }
-
-.card {
-  vertical-align: middle;
-  display: table-cell;
-  text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: calc(100vh - 57px);
-  margin-top: 57px; }
-
-.program {
-  height: calc(100vh - 57px);
-  margin-top: 57px; }
-
-.gameInteraction {
-  margin-right: 5%;
-  border: 1px solid #ffffff;
-  border-radius: .15em;
-  padding: .2em .5em;
-  overflow: auto;
-  background-color: #262626; }
-  .gameInteraction h3 {
-    text-transform: initial; }
-
-.conditions {
-  display: flex;
-  flex-flow: column wrap;
-  width: 150px;
-  display: inline-block;
-  margin-right: 0;
-  vertical-align: top; }
-  .conditions .cond-info {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em; }
-    .conditions .cond-info div {
-      flex: 1 1 auto;
-      display: inline-block;
-      vertical-align: middle; }
-  .conditions .icons {
-    text-align: center;
-    height: 3em;
-    padding: .25em;
-    flex: none;
-    display: inline-block;
-    vertical-align: middle; }
-
-.left {
-  float: left; }
-
-#game h4:not(.button) {
-  border-bottom: 2px solid #000f1e;
-  display: block; }
-  #game h4:not(.button):hover {
-    border-bottom: 2px solid #2dfffe; }
-
-.options {
-  margin-top: 50vh; }
-  .options.travel {
-    position: absolute;
-    bottom: 0;
-    display: none; }
-
-.twoChoices, .oneChoices {
-  display: none;
-  margin-top: 0; }
-
-.change-pace, .change-rations, .trading, .local-trading {
-  width: calc(90% - 200px);
-  display: inline-block; }
-
-.first-item, .second-item {
-  font-weight: 400; }
-
-.h4Ignore:hover {
-  color: #ffffff;
-  cursor: inherit; }
-
-#title {
-  background-image: url("../images/card-title-bkg.png");
-  background-size: cover;
-  background-position: right;
-  background-repeat: no-repeat;
-  background-attachment: fixed; }
-  #title .info {
-    width: 55%;
-    margin-left: 8.33333%; }
-
-.item-row {
-  display: flex;
-  align-items: baseline; }
-  .item-row > * {
-    height: 100%;
-    margin: 1rem 0 0 0; }
-
-.progressConsole {
-  display: inline-block;
-  height: 80vh;
-  overflow: auto; }
-  .progressConsole::-webkit-scrollbar {
-    background-color: #002951;
-    width: .3em; }
-  .progressConsole::-webkit-scrollbar-thumb {
-    background-color: #2dfffe;
-    border-radius: 5px; }
-  .progressConsole .warning {
-    color: #F2545B; }
-
-.displayWindow {
-  vertical-align: top;
-  display: inline-block; }
-
-.travel {
-  width: 100%; }
-
-.blackHole-icon {
-  width: 25px; }
-
-.opt-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-
-.locationProgress {
-  content: '';
-  height: 50px;
-  width: 100%;
-  position: relative; }
-
-.ship {
-  background-image: url("../images/ship_farmer.svg");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  transform: translateX(0);
-  transition: transform 0.2s; }
-
-.homePlanet {
-  background-image: url("../images/newHome.gif");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  right: 0; }
-
-.xPlanet {
-  background-image: url("../images/planetX.gif");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  left: 22%; }
-
-.yNebula {
-  background-image: url("../images/nebula.gif");
-  content: '';
-  height: 20px;
-  width: 15%;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  left: 53%; }
-
-.object-row .object {
-  text-align: center; }
-  .object-row .object img {
-    vertical-align: middle; }
-  .object-row .object p {
-    display: inline-block;
-    vertical-align: middle; }
-.object-row .cost {
-  text-align: center; }
-.object-row input {
-  margin-top: 6px; }
-
-.weight-record {
-  text-align: center; }
-
-.chatterbox-image-container {
-  position: relative;
-  width: 100%; }
-  .chatterbox-image-container:before {
-    content: "";
-    display: block;
-    padding-top: 100%; }
-  .chatterbox-image-container .chatterbox-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0; }
-
-@media (max-width: 899px) {
-  #title {
-    background-image: none; }
-    #title .info {
-      width: 83.33333%;
-      margin-left: 8.33333%; } }
-p.desc {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left; }
-
-.circle {
-  border-radius: 50%;
-  width: 100%;
-  flex: 0 0 auto;
-  padding: 20px; }
-
-.flex-parent {
-  display: flex; }
-
-.flex-child {
-  flex: 1 1 auto; }
-
-.flex-child-center {
-  align-self: center;
-  flex-shrink: 1; }
-
-.flex-none {
-  flex: none; }
-
 .grid {
   overflow: hidden; }
 
@@ -1095,6 +834,275 @@ p.desc {
 
 .flex-none {
   flex: none; }
+
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: table; }
+
+.center {
+  margin-left: auto;
+  margin-right: auto; }
+
+.phillip-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; }
+
+.pos-relative {
+  position: relative; }
+
+.pos-absolute {
+  position: absolute; }
+
+.card {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: calc(100vh - 57px);
+  margin-top: 57px; }
+
+.program {
+  height: calc(100vh - 57px);
+  margin-top: 57px; }
+
+.gameInteraction {
+  margin-right: 5%;
+  border: 1px solid #ffffff;
+  border-radius: .15em;
+  padding: .2em .5em;
+  overflow: auto;
+  background-color: #262626; }
+  .gameInteraction h3 {
+    text-transform: initial; }
+
+.conditions {
+  display: flex;
+  flex-flow: column wrap;
+  width: 150px;
+  display: inline-block;
+  margin-right: 0;
+  vertical-align: top; }
+  .conditions .cond-info {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em; }
+    .conditions .cond-info div {
+      flex: 1 1 auto;
+      display: inline-block;
+      vertical-align: middle; }
+  .conditions .icons {
+    text-align: center;
+    height: 3em;
+    padding: .25em;
+    flex: none;
+    display: inline-block;
+    vertical-align: middle; }
+
+.left {
+  float: left; }
+
+#game h4:not(.button) {
+  border-bottom: 2px solid #000f1e;
+  display: block; }
+  #game h4:not(.button):hover {
+    border-bottom: 2px solid #2dfffe; }
+
+.options {
+  margin-top: 50vh; }
+  .options.travel {
+    position: absolute;
+    bottom: 0;
+    display: none; }
+
+.twoChoices, .oneChoices {
+  display: none;
+  margin-top: 0; }
+
+.change-pace, .change-rations, .trading, .local-trading {
+  width: calc(90% - 200px);
+  display: inline-block; }
+
+.first-item, .second-item {
+  font-weight: 400; }
+
+.h4Ignore:hover {
+  color: #ffffff;
+  cursor: inherit; }
+
+#title {
+  background-image: url("../images/card-title-bkg.png");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
+  #title .info {
+    width: 55%;
+    margin-left: 8.33333%; }
+
+.item-row {
+  display: flex;
+  align-items: baseline; }
+  .item-row > * {
+    height: 100%;
+    margin: 1rem 0 0 0; }
+
+.progressConsole {
+  display: inline-block;
+  height: 80vh;
+  overflow: auto; }
+  .progressConsole::-webkit-scrollbar {
+    background-color: #002951;
+    width: .3em; }
+  .progressConsole::-webkit-scrollbar-thumb {
+    background-color: #2dfffe;
+    border-radius: 5px; }
+  .progressConsole .warning {
+    color: #F2545B; }
+
+.displayWindow {
+  vertical-align: top;
+  display: inline-block; }
+
+.travel {
+  width: 100%; }
+
+.blackHole-icon {
+  width: 25px; }
+
+.opt-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.locationProgress {
+  content: '';
+  height: 50px;
+  width: 100%;
+  position: relative; }
+
+.ship {
+  background-image: url("../images/ship_farmer.svg");
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 15px;
+  transform: translateX(0);
+  transition: transform 0.2s; }
+
+.homePlanet {
+  background-image: url("../images/newHome.gif");
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 15px;
+  right: 0; }
+
+.xPlanet {
+  background-image: url("../images/planetX.gif");
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 15px;
+  left: 22%; }
+
+.yNebula {
+  background-image: url("../images/nebula.gif");
+  content: '';
+  height: 20px;
+  width: 15%;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 15px;
+  left: 53%; }
+
+.object-row .object {
+  text-align: center; }
+  .object-row .object img {
+    vertical-align: middle; }
+  .object-row .object p {
+    display: inline-block;
+    vertical-align: middle; }
+.object-row .cost {
+  text-align: center; }
+.object-row input {
+  margin-top: 6px; }
+
+.weight-record {
+  text-align: center; }
+
+.chatterbox-image-container {
+  position: relative;
+  width: 100%; }
+  .chatterbox-image-container:before {
+    content: "";
+    display: block;
+    padding-top: 100%; }
+  .chatterbox-image-container .chatterbox-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+
+@media (max-width: 899px) {
+  #title {
+    background-image: none; }
+    #title .info {
+      width: 83.33333%;
+      margin-left: 8.33333%; } }
+p.desc {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; }
+
+.circle {
+  border-radius: 50%;
+  width: 100%;
+  flex: 0 0 auto;
+  padding: 20px; }
+
+.flex-parent {
+  display: flex; }
+
+.flex-child {
+  flex: 1 1 auto; }
+
+.flex-child-center {
+  align-self: center;
+  flex-shrink: 1; }
+
+.flex-none {
+  flex: none; }
+
+.blackHole {
+  float: left;
+  width: 40%;
+  margin-top: -20% !important; }
+
+.noPadding {
+  padding: 0; }
 
 .well {
   padding: 10px;
