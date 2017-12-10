@@ -98,6 +98,9 @@ h4{
 		text-shadow: 0 0 15px $color-prime;
 		cursor: pointer;
 	}
+	@media (max-width:640px) {
+		font-size: 1.25em;
+	}
 }
 
 section{

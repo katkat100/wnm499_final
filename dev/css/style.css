@@ -75,6 +75,9 @@ h4 {
     color: #2dfffe;
     text-shadow: 0 0 15px #2dfffe;
     cursor: pointer; }
+  @media (max-width: 640px) {
+    h4 {
+      font-size: 1.25em; } }
 
 section {
   display: table;
@@ -901,6 +904,12 @@ p {
     flex: none;
     display: inline-block;
     vertical-align: middle; }
+  @media (max-width: 640px) {
+    .conditions .cond-info {
+      flex-direction: column;
+      font-size: 1em; }
+    .conditions .icons {
+      height: 2em; } }
 
 .left {
   float: left; }
@@ -962,10 +971,19 @@ p {
     border-radius: 5px; }
   .progressConsole .warning {
     color: #F2545B; }
+  @media (max-width: 640px) {
+    .progressConsole {
+      height: 30vh; } }
 
 .displayWindow {
   vertical-align: top;
   display: inline-block; }
+  .displayWindow img {
+    max-width: 100%; }
+  @media (max-width: 640px) {
+    .displayWindow {
+      height: 30vh;
+      margin-left: 12%; } }
 
 .travel {
   width: 100%; }

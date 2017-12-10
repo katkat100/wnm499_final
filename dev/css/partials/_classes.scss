@@ -81,6 +81,15 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
+	@media (max-width:640px) {
+		.cond-info {
+			flex-direction: column;
+			font-size: 1em;
+		}
+		.icons {
+			height: 2em;
+		}
+	}
 	
 }
 
@@ -188,11 +197,21 @@
 	.warning{
 		color: $color-warning;
 	}
+	@media (max-width:640px) {
+		height: 30vh;
+	}
 }
 .displayWindow{
 	vertical-align: top;
 	display: inline-block;
-	// width: 39%;
+
+	img {
+		max-width: 100%;
+	}
+	@media (max-width:640px) {
+		height: 30vh;
+		margin-left: 12%;
+	}
 }
 
 .travel{
