@@ -15,7 +15,7 @@
 		flex-wrap:wrap;
 	}
 	&.gutters{
-		//margin-top: -$gutter-size;
+		margin-top: -$gutter-size;
 		margin-left: -($gutter-size * 0.5);
 		margin-right: -($gutter-size * 0.5);
 	}

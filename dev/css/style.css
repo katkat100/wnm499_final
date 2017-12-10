@@ -136,6 +136,7 @@ p {
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap; }
 .row.gutters {
+  margin-top: -10px;
   margin-left: -5px;
   margin-right: -5px; }
 
@@ -868,7 +869,9 @@ p {
 
 .program {
   height: calc(100vh - 57px);
-  margin-top: 57px; }
+  margin-top: 57px;
+  margin-right: 20px;
+  margin-left: 20px; }
 
 .gameInteraction {
   border: 1px solid #ffffff;
@@ -1098,6 +1101,11 @@ p.desc {
 
 .noPadding {
   padding: 0; }
+
+.displayWindow img {
+  margin-right: auto;
+  margin-left: auto;
+  display: block; }
 
 .well {
   padding: 10px;
