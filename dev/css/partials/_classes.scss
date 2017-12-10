@@ -32,6 +32,61 @@
 	padding-right: 5%;
 	height: calc(100vh - 57px);
 	margin-top: 57px;
+
+	h4{
+		margin-top: 50px;
+
+	}
+}
+
+#nameMembers{
+	ol{
+		padding-left: 0;
+	}
+	ol li{
+		list-style: none;
+		padding:.2em .5em;
+	}
+	.crewImageBox{
+		// display: inline-block;
+		position:relative;
+		width: 49%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: .5em;
+		&:before{
+			content: "";
+			display: block;
+			padding-top: 100%;
+		}
+	}
+	.crewImage{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		
+	}
+	.crew1{
+		background-image: url("../images/crew1.svg");
+	}
+	.crew2{
+		background-image: url("../images/crew2.svg");
+	}
+	.crew3{
+		background-image: url("../images/crew3.svg");
+	}
+	.crew4{
+		background-image: url("../images/crew4.svg");
+	}
+
+	input{
+		margin-top: 0;
+	}
 }
 
 .program{
@@ -232,11 +287,36 @@
 	right: 0;
 }
 
+.display-container{
+	position: relative;
+	width: 100%;
+	&:before{
+		content: "";
+		display: block;
+		padding-top: 100%;
+	}
+	.display-box{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-image: url('../images/you.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+}
+
 .locationProgress{
 	content: '';
 	height: 50px;
 	width: 100%;
 	position: relative;
+	background-image: url("../images/stars.gif");
+	background-repeat: repeat;
+	background-size: contain;
+	background-position: center;
 }
 
 .ship{
@@ -263,7 +343,8 @@
 	background-size: contain;
 	position: absolute;
 	top:15px;
-	right: 0;
+	right: 10px;
+	display: none;
 }
 
 .xPlanet{
@@ -277,6 +358,8 @@
 	position: absolute;
 	top:15px;
 	left: 22%;
+
+	display: none;
 }
 
 .yNebula{
@@ -290,6 +373,7 @@
 	position: absolute;
 	top:15px;
 	left: 53%;
+	display: none;
 }
 
 .object-row{
@@ -391,11 +475,6 @@ p.desc {
 	flex: none;
 }
 
-.blackHole {
-	float:left;
-	width: 40%;
-	margin-top: -20% !important;
-}
 .noPadding {
 	padding: 0;
 }

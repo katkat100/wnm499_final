@@ -1,5 +1,5 @@
 $(function(){
-	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont, .departure").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -25,6 +25,8 @@ $(function(){
 	var captainName = "";
 	var captainJob = "";
 	var crew = ["rachel","spencer", "marg", "thom"];
+	var crewImage = ["crew1", "crew2", "crew3", "crew4"];
+	var crewDeath = ["crewDeath1", "crewDeath2", "crewDeath3", "crewDeath4"];
 
 	var supplyCost = [
 		fuel = 50,
@@ -196,6 +198,7 @@ $(function(){
 
 	function encounterSituations(){
 		if(encounter == 0){
+			$(".display-box").css({"backgroundImage":"url(../images/you.svg)"});
 			//addToConsole("You travel a days worth");
 			if(pace == "slow"){
 				addToConsole(month + " " + day + ": You travel 10 blorps");
@@ -212,6 +215,7 @@ $(function(){
 			addToConsole("ARRRRRRRGH! Pirates have stormed the ship!");
 			addToConsole("The space pirates demand §500 or else!");
 			addToConsole("What will you do?");
+			$(".display-box").css({"backgroundImage":"url(../images/pirate.svg)"});
 			$(".travel").hide();
 			$(".piratesOne").show();
 
@@ -314,7 +318,9 @@ $(function(){
 
 		} else if(encounter == 2){
 			addToConsole("Space whales pass by and sooth your soul");
+			$(".display-box").css({"backgroundImage":"url(../images/spaceWhale.svg)"});			
 		} else if(encounter == 3 && role > 3){
+			$(".display-box").css({"backgroundImage":"url(../images/blackHole.svg)"});
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 			day -= 4;
 			role -= 4;
@@ -375,7 +381,8 @@ $(function(){
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
 			// $(".conditions").hide();
-			$(".progressConsole").css({'height':'20%'});
+			// $(".progressConsole").css({'height':'20%'});
+			$(".displayWindow").hide();
 			$('.blackHole').show();
 			$(".throw-giveCont").show();
 
@@ -405,11 +412,14 @@ $(function(){
 				throwTotal = 0;
 				throwRemain = 100;
 
+				$(".displayWindow").show();
+
 				atLocation();
 			});
 
 			$("body").off().on('click', '.throw-giveUp', function(){
 				oneDiceRoll();
+
 				if(diceOne >= 8){
 					addToConsole("You made it out of the gravitational pull alive with a little hard work and a lot of luck.");
 				} else {
@@ -421,8 +431,10 @@ $(function(){
 					// addToConsole("You didn't make it out of the pull in time.");
 					addWarning(crew[death - 1] + " died in the attempts getting out of the gravitational pull.");
 					addToConsole("Well that's one way of losing some weight");
+					$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 
 					crew.splice(death - 1,1);
+					crewDeath.splice(death - 1,1);
 					health = $(crew).length;
 					$("span.health").text(health);
 					c(crew);
@@ -433,17 +445,21 @@ $(function(){
 					$(".travel").show();
 					$(".throw-cont").hide();
 					$(".throw-giveCont").hide();
+					$(".displayWindow").show();
 			});
 
 		} else if(encounter == 5){
 			addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
+			$(".display-box").css({"backgroundImage":"url(../images/asteroid.svg)"});
 		} else if(encounter == 6){
 			var death = Math.floor((Math.random() * health+1));
 
 			c("death num: " + death);
 			c(crew);
 			addWarning(crew[death - 1] + " gets space mites and dies!");
+			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
+			crewDeath.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -455,7 +471,9 @@ $(function(){
 			c(crew);
 			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH!");
 			addWarning(crew[death - 1] + " dies from an infected bite.");
+			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
+			crewDeath.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -464,14 +482,19 @@ $(function(){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
 			gameobj['food'] = 100;
 			$("span.food").text(gameobj['food']);
+			$(".display-box").css({"backgroundImage":"url(../images/spacePigeon.svg)"});
+ 
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
-			addToConsole("You wish on a falling star. What a beautiful time.");
+			addToConsole("The view of space is breathtaking and you stand at your helm to watch it go by.");
+			$(".display-box").css({"backgroundImage":"url(../images/galaxy.png)"});
 		} else if(encounter >= 20){
 
 		} else{
 			addToConsole("You travel a days worth");
+			$(".display-box").css({"backgroundImage":"url(../images/you.svg)"});
+ 
 		}
 
 		if(encounter != 1 && encounter != 4){
@@ -499,9 +522,13 @@ $(function(){
 		if(role >= locationOne && role <= locationTwo && locationGoal == 1){
 			addToConsole("You have neared Planet X, what will you do?");
 			$(".travel").hide();
+			$(".xPlanet").show();
 			$(".twoChoices").show();
 			$(".twoChoices .one").text("Touch Down");
 			$(".twoChoices .two").text("Avoid");
+
+			$(".display-box").css({"backgroundImage":"url(../images/xplanet-arrive.png)"});
+
 			$(".one").on('click',function(){
 
 				addToConsole("You have touched down on Planet X. This is a main hub for those who favor themselves as cosmopoliton.")
@@ -528,8 +555,12 @@ $(function(){
 			addToConsole("You have the choice of going through the expanse with the risk of space pirates or going around and using twice the amount of fuel.");
 			$(".twoChoices").show();
 			$(".travel").hide();
+			$(".yNebula").show();
 			$(".twoChoices .one").text("Go through");
 			$(".twoChoices .two").text("Go around");
+
+			$(".display-box").css({"backgroundImage":"url(../images/nebula-arrive.png)"});
+
 			$(".one").on('click', function(){
 				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
 				$(".twoChoices").hide();		
@@ -560,6 +591,8 @@ $(function(){
 			c("Yay made it! Woo!");
 			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
 			$(".travel").hide();
+			$(".display-box").css({"backgroundImage":"url(../images/newHome.png)"});
+			$(".homePlanet").show();
 			$(".oneChoices").show();
 			$(".landOn").text("Land on your new home");
 			
@@ -794,6 +827,7 @@ $(function(){
 		c("food: " + gameobj['food']);
 		c("ammo: " + gameobj['ammo']);
 		c("money: "+ gameobj['money']);
+		$(".departure").show();
 	});
 
 
@@ -925,8 +959,10 @@ $("span.fuel").text(gameobj['fuel']);
 				var death = Math.floor((Math.random() * health+1));
 
 				addWarning(crew[death - 1] + " has passed away from hunger.");
+				$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 
 				crew.splice(death - 1,1);
+				crewDeath.splice(death - 1,1);
 				health = $(crew).length;
 				$("span.health").text(health);
 				c(crew);
@@ -937,8 +973,8 @@ $("span.fuel").text(gameobj['fuel']);
 		deadCrew();
 		
 
-
-		// encounter = 4;
+//change the encounter
+		encounter = 7;
 		encounterSituations();
 	
 
@@ -1165,6 +1201,7 @@ $("span.fuel").text(gameobj['fuel']);
 		updateMonth();
 		$(".travel").show();
 		$(".planetX").hide();
+		$(".display-box").css({"backgroundImage":"url(../images/xplanet-arrive.png)"});
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		c("leave planet");
 		locationGoal ++;
