@@ -136,7 +136,6 @@ p {
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap; }
 .row.gutters {
-  margin-top: -10px;
   margin-left: -5px;
   margin-right: -5px; }
 
@@ -872,7 +871,6 @@ p {
   margin-top: 57px; }
 
 .gameInteraction {
-  margin-right: 5%;
   border: 1px solid #ffffff;
   border-radius: .15em;
   padding: .2em .5em;
@@ -882,9 +880,6 @@ p {
     text-transform: initial; }
 
 .conditions {
-  display: flex;
-  flex-flow: column wrap;
-  width: 150px;
   display: inline-block;
   margin-right: 0;
   vertical-align: top; }
