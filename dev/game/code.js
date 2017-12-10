@@ -1,5 +1,5 @@
 $(function(){
-	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont, .departure").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -827,6 +827,7 @@ $(function(){
 		c("food: " + gameobj['food']);
 		c("ammo: " + gameobj['ammo']);
 		c("money: "+ gameobj['money']);
+		$(".departure").show();
 	});
 
 

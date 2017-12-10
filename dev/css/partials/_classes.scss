@@ -32,6 +32,61 @@
 	padding-right: 5%;
 	height: calc(100vh - 57px);
 	margin-top: 57px;
+
+	h4{
+		margin-top: 50px;
+
+	}
+}
+
+#nameMembers{
+	ol{
+		padding-left: 0;
+	}
+	ol li{
+		list-style: none;
+		padding:.2em .5em;
+	}
+	.crewImageBox{
+		// display: inline-block;
+		position:relative;
+		width: 49%;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: .5em;
+		&:before{
+			content: "";
+			display: block;
+			padding-top: 100%;
+		}
+	}
+	.crewImage{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		
+	}
+	.crew1{
+		background-image: url("../images/crew1.svg");
+	}
+	.crew2{
+		background-image: url("../images/crew2.svg");
+	}
+	.crew3{
+		background-image: url("../images/crew3.svg");
+	}
+	.crew4{
+		background-image: url("../images/crew4.svg");
+	}
+
+	input{
+		margin-top: 0;
+	}
 }
 
 .program{
