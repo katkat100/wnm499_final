@@ -25,6 +25,8 @@ $(function(){
 	var captainName = "";
 	var captainJob = "";
 	var crew = ["rachel","spencer", "marg", "thom"];
+	var crewImage = ["crew1", "crew2", "crew3", "crew4"];
+	var crewDeath = ["crewDeath1", "crewDeath2", "crewDeath3", "crewDeath4"];
 
 	var supplyCost = [
 		fuel = 50,
@@ -318,6 +320,7 @@ $(function(){
 			addToConsole("Space whales pass by and sooth your soul");
 			$(".display-box").css({"backgroundImage":"url(../images/spaceWhale.svg)"});			
 		} else if(encounter == 3 && role > 3){
+			$(".display-box").css({"backgroundImage":"url(../images/blackHole.svg)"});
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 			day -= 4;
 			role -= 4;
@@ -374,8 +377,6 @@ $(function(){
 			$("span.throw-total").text(throwTotal);
 			$("span.throw-left").text(throwRemain);
 
-			$(".display-box").css({"backgroundImage":"url(../images/blackHole.png)"});
-
 			addToConsole("Your ship has been caught in a black hole gravitational pull!");
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
@@ -430,8 +431,10 @@ $(function(){
 					// addToConsole("You didn't make it out of the pull in time.");
 					addWarning(crew[death - 1] + " died in the attempts getting out of the gravitational pull.");
 					addToConsole("Well that's one way of losing some weight");
+					$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 
 					crew.splice(death - 1,1);
+					crewDeath.splice(death - 1,1);
 					health = $(crew).length;
 					$("span.health").text(health);
 					c(crew);
@@ -447,13 +450,16 @@ $(function(){
 
 		} else if(encounter == 5){
 			addToConsole("Asteroids fly by but you make it out unscathed! Thank the space lords!");
+			$(".display-box").css({"backgroundImage":"url(../images/asteroid.svg)"});
 		} else if(encounter == 6){
 			var death = Math.floor((Math.random() * health+1));
 
 			c("death num: " + death);
 			c(crew);
 			addWarning(crew[death - 1] + " gets space mites and dies!");
+			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
+			crewDeath.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -465,7 +471,9 @@ $(function(){
 			c(crew);
 			addToConsole("Weasles! Weasles! SPACE WEASLES! They are in the suits! AHHHHH!");
 			addWarning(crew[death - 1] + " dies from an infected bite.");
+			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
+			crewDeath.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -479,7 +487,8 @@ $(function(){
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
-			addToConsole("You wish on a falling star. What a beautiful time.");
+			addToConsole("The view of space is breathtaking and you stand at your helm to watch it go by.");
+			$(".display-box").css({"backgroundImage":"url(../images/galaxy.png)"});
 		} else if(encounter >= 20){
 
 		} else{
@@ -949,8 +958,10 @@ $("span.fuel").text(gameobj['fuel']);
 				var death = Math.floor((Math.random() * health+1));
 
 				addWarning(crew[death - 1] + " has passed away from hunger.");
+				$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 
 				crew.splice(death - 1,1);
+				crewDeath.splice(death - 1,1);
 				health = $(crew).length;
 				$("span.health").text(health);
 				c(crew);
@@ -962,7 +973,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 //change the encounter
-		encounter = 11;
+		encounter = 7;
 		encounterSituations();
 	
 
