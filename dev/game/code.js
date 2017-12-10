@@ -196,6 +196,7 @@ $(function(){
 
 	function encounterSituations(){
 		if(encounter == 0){
+			$(".display-box").css({"backgroundImage":"url(../images/you.svg)"});
 			//addToConsole("You travel a days worth");
 			if(pace == "slow"){
 				addToConsole(month + " " + day + ": You travel 10 blorps");
@@ -212,6 +213,7 @@ $(function(){
 			addToConsole("ARRRRRRRGH! Pirates have stormed the ship!");
 			addToConsole("The space pirates demand §500 or else!");
 			addToConsole("What will you do?");
+			$(".display-box").css({"backgroundImage":"url(../images/pirate.svg)"});
 			$(".travel").hide();
 			$(".piratesOne").show();
 
@@ -314,6 +316,7 @@ $(function(){
 
 		} else if(encounter == 2){
 			addToConsole("Space whales pass by and sooth your soul");
+			$(".display-box").css({"backgroundImage":"url(../images/spaceWhale.svg)"});			
 		} else if(encounter == 3 && role > 3){
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 			day -= 4;
@@ -464,6 +467,8 @@ $(function(){
 			addToConsole("Space Pigeons are found in the storage area. They have eaten all the food but now you have space pigeons to eat.");
 			gameobj['food'] = 100;
 			$("span.food").text(gameobj['food']);
+			$(".display-box").css({"backgroundImage":"url(../images/spacePigeon.svg)"});
+ 
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
 		} else if(encounter == 10){
@@ -472,6 +477,8 @@ $(function(){
 
 		} else{
 			addToConsole("You travel a days worth");
+			$(".display-box").css({"backgroundImage":"url(../images/you.svg)"});
+ 
 		}
 
 		if(encounter != 1 && encounter != 4){
@@ -499,9 +506,13 @@ $(function(){
 		if(role >= locationOne && role <= locationTwo && locationGoal == 1){
 			addToConsole("You have neared Planet X, what will you do?");
 			$(".travel").hide();
+			$(".xPlanet").show();
 			$(".twoChoices").show();
 			$(".twoChoices .one").text("Touch Down");
 			$(".twoChoices .two").text("Avoid");
+
+			$(".display-box").css({"backgroundImage":"url(../images/xplanet-arrive.png)"});
+
 			$(".one").on('click',function(){
 
 				addToConsole("You have touched down on Planet X. This is a main hub for those who favor themselves as cosmopoliton.")
@@ -528,8 +539,12 @@ $(function(){
 			addToConsole("You have the choice of going through the expanse with the risk of space pirates or going around and using twice the amount of fuel.");
 			$(".twoChoices").show();
 			$(".travel").hide();
+			$(".yNebula").show();
 			$(".twoChoices .one").text("Go through");
 			$(".twoChoices .two").text("Go around");
+
+			$(".display-box").css({"backgroundImage":"url(../images/nebula-arrive.png)"});
+
 			$(".one").on('click', function(){
 				addToConsole("You have decided to go through the Nebula. Be wary, the magnetic dust that is found in this Nebula causes malfunctions in your gear making you easier targets to space pirates.");
 				$(".twoChoices").hide();		
@@ -560,6 +575,8 @@ $(function(){
 			c("Yay made it! Woo!");
 			addToConsole("You have reached the ends of your travels. Your crew crowds the front window to get the first look of your new home.");
 			$(".travel").hide();
+			$(".display-box").css({"backgroundImage":"url(../images/newHome.png)"});
+			$(".homePlanet").show();
 			$(".oneChoices").show();
 			$(".landOn").text("Land on your new home");
 			
@@ -1165,6 +1182,7 @@ $("span.fuel").text(gameobj['fuel']);
 		updateMonth();
 		$(".travel").show();
 		$(".planetX").hide();
+		$(".display-box").css({"backgroundImage":"url(../images/xplanet-arrive.png)"});
 		addToConsole("You take off from Planet X to once again travel across the galaxy towards your new home.")
 		c("leave planet");
 		locationGoal ++;

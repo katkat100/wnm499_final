@@ -269,11 +269,33 @@ p {
   left: 0;
   right: 0; }
 
+.display-container {
+  position: relative;
+  width: 100%; }
+  .display-container:before {
+    content: "";
+    display: block;
+    padding-top: 100%; }
+  .display-container .display-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("../images/you.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; }
+
 .locationProgress {
   content: '';
   height: 50px;
   width: 100%;
-  position: relative; }
+  position: relative;
+  background-image: url("../images/stars.gif");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center; }
 
 .ship {
   background-image: url("../images/ship_farmer.svg");
@@ -298,7 +320,8 @@ p {
   background-size: contain;
   position: absolute;
   top: 15px;
-  right: 0; }
+  right: 10px;
+  display: none; }
 
 .xPlanet {
   background-image: url("../images/planetX.gif");
@@ -310,7 +333,8 @@ p {
   background-size: contain;
   position: absolute;
   top: 15px;
-  left: 22%; }
+  left: 22%;
+  display: none; }
 
 .yNebula {
   background-image: url("../images/nebula.gif");
@@ -322,7 +346,8 @@ p {
   background-size: contain;
   position: absolute;
   top: 15px;
-  left: 53%; }
+  left: 53%;
+  display: none; }
 
 .object-row .object {
   text-align: center; }
