@@ -51,3 +51,8 @@
 
 ## Stardate 2017.12.05
 - Brainstormed layout options
+- Started adjusting layout
+
+## Stardate 2017.12.09
+- Continued adjusting layout
+- Added mobile layout
