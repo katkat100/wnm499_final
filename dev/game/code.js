@@ -380,7 +380,8 @@ $(function(){
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
 			// $(".conditions").hide();
-			$(".progressConsole").css({'height':'20%'});
+			// $(".progressConsole").css({'height':'20%'});
+			$(".displayWindow").hide();
 			$('.blackHole').show();
 			$(".throw-giveCont").show();
 
@@ -410,11 +411,14 @@ $(function(){
 				throwTotal = 0;
 				throwRemain = 100;
 
+				$(".displayWindow").show();
+
 				atLocation();
 			});
 
 			$("body").off().on('click', '.throw-giveUp', function(){
 				oneDiceRoll();
+
 				if(diceOne >= 8){
 					addToConsole("You made it out of the gravitational pull alive with a little hard work and a lot of luck.");
 				} else {
@@ -438,6 +442,7 @@ $(function(){
 					$(".travel").show();
 					$(".throw-cont").hide();
 					$(".throw-giveCont").hide();
+					$(".displayWindow").show();
 			});
 
 		} else if(encounter == 5){
@@ -885,18 +890,18 @@ $("span.fuel").text(gameobj['fuel']);
 			fpp = 1;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
-			$("svg#rations .teal, svg#rations .red").addClass("plate");
+			//$("svg#rations .teal, svg#rations .red").addClass("plate");
 		} else if(rations == "meager"){
 			fpp = 2;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
-			$("svg#rations .teal").addClass("plate");
-			$("svg#rations .red").removeClass("plate");
+			//$("svg#rations .teal").addClass("plate");
+			//$("svg#rations .red").removeClass("plate");
 		}else if(rations == "filling"){
 			fpp = 3;
 			gameobj['food'] -= (fpp * health);
 			$("span.food").text(gameobj['food']);
-			$("svg#rations .red, svg#rations .teal").removeClass("plate");
+			//$("svg#rations .red, svg#rations .teal").removeClass("plate");
 
 		}
 		
@@ -957,7 +962,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 //change the encounter
-		encounter = 4;
+		encounter = 11;
 		encounterSituations();
 	
 
