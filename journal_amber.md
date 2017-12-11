@@ -56,3 +56,7 @@
 ## Stardate 2017.12.09
 - Continued adjusting layout
 - Added mobile layout
+
+## Stardate 2017.12.10
+- Tested game with updated graphics
+- Asked & answered questions for FAQ page
