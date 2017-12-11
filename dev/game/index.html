@@ -18,7 +18,7 @@
 				<li><a href="../faq.html">FAQ</a></li>
 			</ul>
 		</nav>
-		<!-- <section>
+		<section>
 			<div class="card" id="title">
 				<div class="info">
 					<h1>Space Trail</h1>
@@ -40,39 +40,41 @@
 				<input type="text" name="captain" value="Capitano" maxlength="10">
 				<h4 class="next leaderName">Enter Name</h4>
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<div class="card" id="nameMembers">
 				<h2>What are the names of the other members?</h2>
-				<ol class="col-xs-10 offset-xs-1">
-					<li class="col-xs-6">
-						<div class="crewImageBox">
-							<div class="crewImage crew1"></div>
-						</div>
-						<input type="text" name="member1" value="Clemence" maxlength="10">
-					</li>
+				<div class="row">
+					<ol class="col-xs-10 offset-xs-1">
+						<li class="col-xs-6">
+							<div class="crewImageBox">
+								<div class="crewImage crew1"></div>
+							</div>
+							<input type="text" name="member1" value="Clemence" maxlength="10">
+						</li>
 
-					<li class="col-xs-6">
-						<div class="crewImageBox">
-							<div class="crewImage crew2"></div>
-						</div>
-						<input type="text" name="member2" value="Parnell" maxlength="10">
-					</li>
+						<li class="col-xs-6">
+							<div class="crewImageBox">
+								<div class="crewImage crew2"></div>
+							</div>
+							<input type="text" name="member2" value="Parnell" maxlength="10">
+						</li>
 
-					<li class="col-xs-6">
-						<div class="crewImageBox">
-							<div class="crewImage crew3"></div>
-						</div>
-						<input type="text" name="member3" value="Oswyn" maxlength="10">
-					</li>
+						<li class="col-xs-6">
+							<div class="crewImageBox">
+								<div class="crewImage crew3"></div>
+							</div>
+							<input type="text" name="member3" value="Oswyn" maxlength="10">
+						</li>
 
-					<li class="col-xs-6">
-						<div class="crewImageBox">
-							<div class="crewImage crew4"></div>
-						</div>
-						<input type="text" name="member4"  value="Gilbert" maxlength="10">
-					</li>
-				</ol>
+						<li class="col-xs-6">
+							<div class="crewImageBox">
+								<div class="crewImage crew4"></div>
+							</div>
+							<input type="text" name="member4"  value="Gilbert" maxlength="10">
+						</li>
+					</ol>
+				</div>
 				<h4 class="next memberName">Enter Names</h4>
 			</div>
 		</section>
@@ -206,7 +208,7 @@
 					</div>
 				</div>
 
-				<div class="progressConsole col-xs-10 col-md-4">
+				<div class="progressConsole col-xs-6 col-md-4 col-lg-5">
 				</div>
 				
 				<div class="displayWindow col-xs-10 col-md-4 col-lg-5">
@@ -342,14 +344,14 @@
 							<p class="cost col-xs-7">10 fuel pods are 50 lbs</p>
 							<input class="col-xs-2" type="number" name="throw-fuel" maxlength="10" min="0" value="0">
 						</div>
-						<!-- <div class="object-row ammo">
+						<div class="object-row ammo">
 							<p class="object col-xs-3">
 								<img src="../images/icons_ammo.svg" alt="ammo" class="icons"> 
 								Ammo
 							</p>
 							<p class="cost col-xs-6">§20 for 5 energy shots</p>
 							<input class="col-xs-3" type="number" name="ammo" maxlength="10" min="0" value="0">
-						</div> -->
+						</div>
 					</div>
 					<div class="col-xs-12 weight-record">
 						<p class="col-xs-4">You need to throw away: <span class="to-throw"></span> lbs</p>
@@ -377,7 +379,10 @@
 		<section>
 			<div class="card">
 				<div class="newHome">
-					<h2>Wow New Home!</h2>
+					<h2>Congratulations! You have made it to THX-11! You earned have earned a total of <span class="points"></span> points!</h2>
+					<div class="home"></div>
+					<div class="crewLeft"></div>
+					<div class="ground"></div>
 				</div>
 			</div>
 		</section>

@@ -907,6 +907,11 @@ p {
 #nameMembers input {
   margin-top: 0; }
 
+.store .itemList, .store .total {
+  vertical-align: middle; }
+.store .total p {
+  text-align: center; }
+
 .program {
   height: calc(100vh - 57px);
   margin-top: 57px;
@@ -987,6 +992,9 @@ p {
   #title .info {
     width: 55%;
     margin-left: 8.33333%; }
+
+.item {
+  text-align: center; }
 
 .item-row {
   display: flex;
@@ -1144,6 +1152,53 @@ p {
     left: 0;
     bottom: 0;
     right: 0; }
+
+.newHome .home {
+  background-image: url("../images/home.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left bottom;
+  position: absolute;
+  bottom: 2vh;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  content: ''; }
+.newHome .ground {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2vh;
+  background-image: url("../images/homeGround.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; }
+.newHome .crewLeft {
+  display: inline-block;
+  width: 50%;
+  height: 10vh;
+  position: absolute;
+  bottom: 1vh;
+  right: 0; }
+  .newHome .crewLeft .surviveCrew {
+    height: 100%;
+    content: "";
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block; }
+  .newHome .crewLeft .crew1 {
+    background-image: url("../images/crew1.svg"); }
+  .newHome .crewLeft .crew2 {
+    background-image: url("../images/crew2.svg"); }
+  .newHome .crewLeft .crew3 {
+    background-image: url("../images/crew3.svg"); }
+  .newHome .crewLeft .crew4 {
+    background-image: url("../images/crew4.svg"); }
+  .newHome .crewLeft .leader {
+    background-image: url("../images/you.svg"); }
 
 @media (max-width: 899px) {
   #title {
