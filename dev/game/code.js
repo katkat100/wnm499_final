@@ -1,6 +1,6 @@
 $(function(){
-	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
-	// $(".departure").hide();
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont, .newHome").hide();
+	$(".departure").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -983,6 +983,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 //change the encounter
 		// encounter = 7;
+		c('encounter' + encounter)
 		encounterSituations();
 	
 
@@ -1224,7 +1225,8 @@ $("span.fuel").text(gameobj['fuel']);
 	// 	$(".newHome").show();
 	// }); used next instead
 
-	// $(".landOn").on('click', function(){
+	$(".landOn").on('click', function(){
+		$('.newHome').show();
 		if(crew.length == 4){
 			$(".crewLeft").append("<div class='col-xs-1fifth surviveCrew leader'></div><div class='col-xs-1fifth surviveCrew crew1'></div><div class='col-xs-1fifth surviveCrew crew2'></div><div class='col-xs-1fifth surviveCrew crew3'></div><div class='col-xs-1fifth surviveCrew crew4'></div>");
 		} if(crew.length == 3){
@@ -1270,7 +1272,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 
 
-	// })
+	}) 
 
 
 
