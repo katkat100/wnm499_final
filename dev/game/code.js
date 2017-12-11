@@ -34,8 +34,8 @@ $(function(){
 	var supplyCost = [
 		fuel = 50,
 		food = 20,
-		ammo = 20,
-		parts = 100
+		ammo = 20
+		// parts = 100
 	];
 	// var money = 0;
 	var numOfParts = 0, numOfFuel = 0, numOfFood = 0, numOfAmmo = 0;
@@ -55,7 +55,7 @@ $(function(){
 		food : 0,
 		fuel : 0,
 		ammo : 0,
-		parts : 0,
+		// parts : 0,
 		money : 0,
 
 	}
@@ -1226,7 +1226,6 @@ $("span.fuel").text(gameobj['fuel']);
 
 	// $(".landOn").on('click', function(){
 		if(crew.length == 4){
-			
 			$(".crewLeft").append("<div class='col-xs-1fifth surviveCrew leader'></div><div class='col-xs-1fifth surviveCrew crew1'></div><div class='col-xs-1fifth surviveCrew crew2'></div><div class='col-xs-1fifth surviveCrew crew3'></div><div class='col-xs-1fifth surviveCrew crew4'></div>");
 		} if(crew.length == 3){
 			$(".crewLeft").append("<div class='col-xs-3 surviveCrew leader'></div><div class='col-xs-3 surviveCrew " + crewImage[0] + "'></div><div class='col-xs-3 surviveCrew " + crewImage[1] + "'></div><div class='col-xs-3 surviveCrew " + crewImage[2] + "'></div>");
@@ -1235,6 +1234,39 @@ $("span.fuel").text(gameobj['fuel']);
 		} if(crew.length == 1){
 			$(".crewLeft").append("<div class='col-xs-4 surviveCrew leader'></div><div class='col-xs-4 surviveCrew " + crewImage[0] + "'></div>");
 		}
+
+		captainJob = "farmer";
+
+		var pFood = (gameobj["food"] / 10);
+		var pAmmo = gameobj["ammo"];
+		var pFuel = gameobj['fuel'] / 10;
+		var pMoney = Math.floor(gameobj["money"] / 5);
+		var pHealth = health * 200;
+		var pSubtotal = pFood + pAmmo + pFuel + pMoney + pHealth;
+		var JobBenefit = 0;
+
+		c(pFood);
+		c(pAmmo);
+		c(pFuel);
+		c(pMoney);
+		c(pHealth);
+
+		c(pSubtotal);
+
+		if(captainJob == "farmer"){
+			JobBenefit = 3;
+		} else if(captainJob == "engineer"){
+			JobBenefit = 2;
+		} else if(captainJob == "moneybags"){
+			JobBenefit = 1;
+		}
+
+		c(JobBenefit);
+
+		var pTotal = pSubtotal * JobBenefit;
+		c(pTotal);
+
+		$("span.points").text(pTotal);
 
 
 
