@@ -1265,7 +1265,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 		c(JobBenefit);
 
-		var pTotal = pSubtotal * JobBenefit;
+		var pTotal = Math.floor(pSubtotal * JobBenefit);
 		c(pTotal);
 
 		$("span.points").text(pTotal);
