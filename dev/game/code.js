@@ -49,9 +49,6 @@ $(function(){
 
 	var screenCount = 0;
 	var docHeight = $("body").height();
-	$(window).resize(function(){
-		docHeight = $("body").height();
-	})
 	var mainMargin = 0;
 
 	var gameobj = {
@@ -716,13 +713,54 @@ $(function(){
 
 
 //next
-	$(".next").on('click', function(){
-		screenCount++;
-		// console.log(docHeight);
-		mainMargin += docHeight;
-		$(".atMain").css('marginTop',  -mainMargin);
-		// console.log(mainMargin);
+	// $(".next").on('click', function(){
+	// 	screenCount++;
+	// 	// console.log(docHeight);
+	// 	mainMargin += docHeight;
+	// 	$(".atMain").css('marginTop',  -mainMargin);
+	// 	// console.log(mainMargin);
+	// });
+	$('#secOne .next').on('click', function(){
+		$('#secOne').hide();
+		$('#secTwo').show();
 	});
+	$('#secTwo .next').on('click', function(){
+		$('#secTwo').hide();
+		$('#secThree').show();
+	});
+	$('#secThree .next').on('click', function(){
+		$('#secThree').hide();
+		$('#secFour').show();
+	});
+	$('#secFour .next').on('click', function(){
+		$('#secFour').hide();
+		$('#secFive').show();
+	});
+	$('#secFive .next').on('click', function(){
+		$('#secFive').hide();
+		$('#secSix').show();
+	});
+	$('#secSix .next').on('click', function(){
+		$('#secSix').hide();
+		$('#secSeven').show();
+	});
+	$('#secSeven .next').on('click', function(){
+		$('#secSeven').hide();
+		$('#secEight').show();
+	});
+	$('#secEight .next').on('click', function(){
+		$('#secEight').hide();
+		$('#secNine').show();
+	});
+	$('#secNine .next').on('click', function(){
+		$('#secNine').hide();
+		$('#secTen').show();
+	});
+	// $('#secTen .next').on('click', function(){
+	// 	$('#secTen').hide();
+	// 	$('#secEleven').show();
+	// });
+
 
 //jobs
 	$(".farmer").on('click', function(){
