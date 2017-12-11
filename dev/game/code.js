@@ -1,5 +1,6 @@
 $(function(){
-	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont, .departure").hide();
+	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont").hide();
+	// $(".departure").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -26,6 +27,8 @@ $(function(){
 	var captainJob = "";
 	var crew = ["rachel","spencer", "marg", "thom"];
 	var crewImage = ["crew1", "crew2", "crew3", "crew4"];
+
+
 	var crewDeath = ["crewDeath1", "crewDeath2", "crewDeath3", "crewDeath4"];
 
 	var supplyCost = [
@@ -320,7 +323,7 @@ $(function(){
 			addToConsole("Space whales pass by and sooth your soul");
 			$(".display-box").css({"backgroundImage":"url(../images/spaceWhale.svg)"});			
 		} else if(encounter == 3 && role > 3){
-			$(".display-box").css({"backgroundImage":"url(../images/blackHole.svg)"});
+			$(".display-box").css({"backgroundImage":"url(../images/blackHole.png)"});
 			addToConsole("Woaahhh! Woaahhh! Time Warp sends you back three days!");
 			day -= 4;
 			role -= 4;
@@ -435,6 +438,7 @@ $(function(){
 
 					crew.splice(death - 1,1);
 					crewDeath.splice(death - 1,1);
+					crewImage.splice(death - 1,1);
 					health = $(crew).length;
 					$("span.health").text(health);
 					c(crew);
@@ -460,6 +464,7 @@ $(function(){
 			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
 			crewDeath.splice(death - 1,1);
+			crewImage.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -474,6 +479,7 @@ $(function(){
 			$(".display-box").css({"backgroundImage":"url(../images/" + crewDeath[death - 1] + ".svg)"});
 			crew.splice(death - 1,1);
 			crewDeath.splice(death - 1,1);
+			crewImage.splice(death - 1,1);
 			health = $(crew).length;
 			$("span.health").text(health);
 			c(crew);
@@ -486,6 +492,7 @@ $(function(){
  
 		} else if(encounter == 9){
 			addToConsole("You catch flotsam passing by your ship. You inspect it closer. NEVERMIND IT'S SPACE WHALE POOP! NOOOOOOO!");
+			$(".display-box").css({"backgroundImage":"url(../images/ .svg)"});
 		} else if(encounter == 10){
 			addToConsole("The view of space is breathtaking and you stand at your helm to watch it go by.");
 			$(".display-box").css({"backgroundImage":"url(../images/galaxy.png)"});
@@ -963,6 +970,7 @@ $("span.fuel").text(gameobj['fuel']);
 
 				crew.splice(death - 1,1);
 				crewDeath.splice(death - 1,1);
+				crewImage.splice(death - 1,1);
 				health = $(crew).length;
 				$("span.health").text(health);
 				c(crew);
@@ -974,7 +982,7 @@ $("span.fuel").text(gameobj['fuel']);
 		
 
 //change the encounter
-		encounter = 7;
+		// encounter = 7;
 		encounterSituations();
 	
 
@@ -1214,7 +1222,23 @@ $("span.fuel").text(gameobj['fuel']);
 	// 	$(".travel").hide();
 	// 	$(".landOn").hide();
 	// 	$(".newHome").show();
-	// });
+	// }); used next instead
+
+	// $(".landOn").on('click', function(){
+		if(crew.length == 4){
+			
+			$(".crewLeft").append("<div class='col-xs-1fifth surviveCrew leader'></div><div class='col-xs-1fifth surviveCrew crew1'></div><div class='col-xs-1fifth surviveCrew crew2'></div><div class='col-xs-1fifth surviveCrew crew3'></div><div class='col-xs-1fifth surviveCrew crew4'></div>");
+		} if(crew.length == 3){
+			$(".crewLeft").append("<div class='col-xs-3 surviveCrew leader'></div><div class='col-xs-3 surviveCrew " + crewImage[0] + "'></div><div class='col-xs-3 surviveCrew " + crewImage[1] + "'></div><div class='col-xs-3 surviveCrew " + crewImage[2] + "'></div>");
+		} if(crew.length == 2){
+			$(".crewLeft").append("<div class='col-xs-4 surviveCrew leader'></div><div class='col-xs-4 surviveCrew " + crewImage[0] + "'></div><div class='col-xs-4 surviveCrew " + crewImage[1] + "'></div");
+		} if(crew.length == 1){
+			$(".crewLeft").append("<div class='col-xs-4 surviveCrew leader'></div><div class='col-xs-4 surviveCrew " + crewImage[0] + "'></div>");
+		}
+
+
+
+	// })
 
 
 
