@@ -49,6 +49,9 @@ $(function(){
 
 	var screenCount = 0;
 	var docHeight = $("body").height();
+	$(window).resize(function(){
+		docHeight = $("body").height();
+	})
 	var mainMargin = 0;
 
 	var gameobj = {
