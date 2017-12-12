@@ -48,14 +48,12 @@
 		padding:.2em .5em;
 	}
 	.crewImageBox{
-		// display: inline-block;
 		position:relative;
 		width: 10vh;
 		max-width: 150px;
 		margin-right: auto;
 		margin-left: auto;
 		margin-top: .5em;
-		// max-width: 170px;
 		&:before{
 			content: "";
 			display: block;
@@ -118,8 +116,6 @@
 }
 
 .gameInteraction{
-	//margin-left: 5%;
-	//margin-right: 5%;
 	border: 1px solid $color-sec;
 	border-radius: .15em;
 	padding: .2em .5em;
@@ -131,9 +127,6 @@
 }
 
 .conditions{
-	//display: flex;
-	//flex-flow: column wrap;
-	//width: 180px;
 	display: inline-block;
 	margin-right: 0;
 	vertical-align: top;
@@ -174,8 +167,6 @@
 	}
 }
 
-	
-
 .left{
 	float: left;
 }
@@ -197,21 +188,13 @@
 		display: none;
 	}
 }
-// .travel, .progressConsole{
-// 	display: none;
-// }
 
 .twoChoices, .oneChoices{
 	display: none;
 	margin-top: 0;
 }
 
-.change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont{
-	//display: none;
-	// This has been moved to code.js
-}
 .change-pace, .change-rations, .trading, .local-trading{
-	//width: calc(90% - 200px);
 	display: inline-block;
 }
 
@@ -240,16 +223,11 @@
 
 }
 
-.item-list{
-
-}
-
 .item{
 	text-align: center;
 }
 
 .item-row {
-	//height: 25px;
 	display: flex;
 	align-items: baseline;
 
@@ -257,17 +235,10 @@
 		height: 100%;
 		margin: 1rem 0 0 0;
 	}
-	input {
-		//margin-top: 0;
-	}
 }
 
 .progressConsole{
-	// margin-left: 5%;
-	// margin-right: 5%;
-	// width: calc(60% - 200px);
 	display: inline-block;
-	//margin-top: 20px;
 	height: 80vh;
 	overflow:auto;
 
@@ -304,7 +275,6 @@
 	}
 	@media (max-width:640px) {
 		height: 50vh;
-		//padding-left: 20px;
 	}
 }
 
@@ -511,29 +481,14 @@
 	}
 }
 
-@for $i from 1 through 4{
-	.chatterbox#{i}{
-		.chatterbox-image{
-			// background-image: url("../images/")
-		}
-	}
-}
-
 @media (max-width: 899px) {
-	.card{
-		// margin-right: 1%;
-		// margin-left: 1%;
-	}
-
 	#title{
 		background-image: none;
 		.info{
 			width: 83.33333%;
 			margin-left: 8.33333%	
 		}
-
 	}
-
 }
 
 p.desc {
