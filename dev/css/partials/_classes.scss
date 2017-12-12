@@ -541,6 +541,9 @@ p.desc {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
+	@media (max-width:640px) {
+		font-size: .8em;
+	}
 }
 
 .circle {

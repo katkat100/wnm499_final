@@ -138,20 +138,27 @@ input{
 	}
 }
 
-ol{
-	text-align: left;
-	width: 50%;
-	margin-left: 23%;
-	li{
-		width:100%;
-	}
-}
-
 ul{
 	color: $color-prime;
 	li{
 		display: inline-block;
 		padding: .2em .5em;
+	}
+}
+
+#month {
+	ul{
+		//text-align: left;
+		//width: 50%;
+		margin: 0;
+		margin-right: auto;
+		margin-left: auto;
+		padding: 0;
+		color: white;
+		list-style: none;
+		li{
+			width:100%;
+		}
 	}
 }
 

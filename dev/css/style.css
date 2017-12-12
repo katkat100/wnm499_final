@@ -107,18 +107,21 @@ input {
   li > input {
     width: 100%; }
 
-ol {
-  text-align: left;
-  width: 50%;
-  margin-left: 23%; }
-  ol li {
-    width: 100%; }
-
 ul {
   color: #2dfffe; }
   ul li {
     display: inline-block;
     padding: .2em .5em; }
+
+#month ul {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  color: white;
+  list-style: none; }
+  #month ul li {
+    width: 100%; }
 
 nav {
   position: fixed;
@@ -1232,6 +1235,9 @@ p.desc {
   margin-left: auto;
   margin-right: auto;
   text-align: left; }
+  @media (max-width: 640px) {
+    p.desc {
+      font-size: .8em; } }
 
 .circle {
   border-radius: 50%;
