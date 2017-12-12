@@ -50,7 +50,8 @@
 	.crewImageBox{
 		// display: inline-block;
 		position:relative;
-		width: 49%;
+		width: 10vh;
+		max-width: 150px;
 		margin-right: auto;
 		margin-left: auto;
 		margin-top: .5em;
@@ -87,6 +88,12 @@
 
 	input{
 		margin-top: 0;
+	}
+}
+
+#month{
+	h4{
+		margin-top: 10px;
 	}
 }
 
