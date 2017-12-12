@@ -951,11 +951,14 @@ p {
     display: inline-block;
     vertical-align: middle; }
   @media (max-width: 640px) {
-    .conditions .cond-info {
-      flex-direction: column;
-      font-size: 1em; }
-    .conditions .icons {
-      height: 2em; } }
+    .conditions {
+      display: flex; }
+      .conditions .cond-info {
+        flex-direction: column;
+        font-size: 1em;
+        flex: 1 1 auto; }
+      .conditions .icons {
+        height: 2em; } }
 
 .left {
   float: left; }
@@ -1021,7 +1024,10 @@ p {
     color: #F2545B; }
   @media (max-width: 640px) {
     .progressConsole {
-      height: 30vh; } }
+      height: 50vh;
+      padding-left: 0 !important; }
+      .progressConsole p {
+        padding: 0; } }
 
 .displayWindow {
   vertical-align: top;
@@ -1033,8 +1039,7 @@ p {
     display: block; }
   @media (max-width: 640px) {
     .displayWindow {
-      height: 30vh;
-      padding-left: 20px; } }
+      height: 50vh; } }
 
 .travel {
   width: 100%; }

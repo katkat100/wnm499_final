@@ -154,9 +154,11 @@
 		vertical-align: middle;
 	}
 	@media (max-width:640px) {
+		display: flex;
 		.cond-info {
 			flex-direction: column;
 			font-size: 1em;
+			flex: 1 1 auto;
 		}
 		.icons {
 			height: 2em;
@@ -274,7 +276,11 @@
 		color: $color-warning;
 	}
 	@media (max-width:640px) {
-		height: 30vh;
+		height: 50vh;
+		padding-left: 0 !important;
+		p {
+			padding: 0;
+		}
 	}
 }
 .displayWindow{
@@ -288,8 +294,8 @@
 		display: block;
 	}
 	@media (max-width:640px) {
-		height: 30vh;
-		padding-left: 20px;
+		height: 50vh;
+		//padding-left: 20px;
 	}
 }
 
