@@ -384,7 +384,7 @@ $(function(){
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
 			// $(".conditions").hide();
-			// $(".progressConsole").css({'height':'20%'});
+			$(".progressConsole").css({'height':'calc(80vh - 275px)'});
 			$(".displayWindow").hide();
 			$('.blackHole').show();
 			$(".throw-giveCont").show();
