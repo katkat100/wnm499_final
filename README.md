@@ -14,9 +14,9 @@ http://amberslovick.com/space-trail
 Space Trail is the result of an 8-week collaboration between designers Katie Noborikawa and Amber Slovick. Katie and Amber are both big fans of science fiction books, movies, and shows, so it's no wonder they chose to make a game about space. Besides sci-fi, the other major inspiration for Space Trail was, of course, The Oregon Trail.
 
 ## Katie
-- knoborikawa.com
+- http://knoborikawa.com
 - k.noborikawa.chs@gmail.com
 
 ## Amber
-- amberslovick.com
+- http://amberslovick.com
 - amber.slovick@gmail.com
