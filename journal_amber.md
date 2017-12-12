@@ -47,11 +47,14 @@
 - Tested the game with my roommates
 
 ## Stardate 2017.12.04
+- Added images to About page
+- Fixed typos
 - Created separate icon for rations 
 
 ## Stardate 2017.12.05
 - Brainstormed layout options
 - Started adjusting layout
+- Redesigned rations icon
 
 ## Stardate 2017.12.09
 - Continued adjusting layout
@@ -60,3 +63,8 @@
 ## Stardate 2017.12.10
 - Tested game with updated graphics
 - Asked & answered questions for FAQ page
+
+## Stardate 2017.12.11
+- Tested for bugs
+- Fixed bugs found
+- Fixed layout issues
