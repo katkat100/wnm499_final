@@ -75,10 +75,16 @@ h4 {
     color: #2dfffe;
     text-shadow: 0 0 15px #2dfffe;
     cursor: pointer; }
-  @media (max-width: 640px) {
-    h4 {
-      font-size: 1.25em; } }
 
+@media (max-width: 640px) {
+  h2 {
+    font-size: 1.75em; }
+
+  h3 {
+    font-size: 1.5em; }
+
+  h4 {
+    font-size: 1.25em; } }
 section {
   display: table;
   height: 100vh;
@@ -915,6 +921,9 @@ p {
   vertical-align: middle; }
 .store .total p {
   text-align: center; }
+  @media (max-width: 640px) {
+    .store .total p {
+      margin: 0; } }
 
 .program {
   height: calc(100vh - 57px);
@@ -945,7 +954,6 @@ p {
       vertical-align: middle; }
   .conditions .icons {
     text-align: center;
-    height: 3em;
     padding: .25em;
     flex: none;
     display: inline-block;
@@ -956,9 +964,13 @@ p {
       .conditions .cond-info {
         flex-direction: column;
         font-size: 1em;
-        flex: 1 1 auto; }
-      .conditions .icons {
-        height: 2em; } }
+        flex: 1 1 auto; } }
+
+.icons {
+  height: 3em; }
+  @media (max-width: 640px) {
+    .icons {
+      height: 2em; } }
 
 .left {
   float: left; }

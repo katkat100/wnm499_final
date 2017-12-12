@@ -103,6 +103,10 @@
 	}
 	.total p{
 		text-align: center;
+
+		@media (max-width:640px) {
+			margin: 0;
+		}
 	}
 }
 
@@ -147,7 +151,6 @@
 	}
 	.icons{
 		text-align: center;
-		height: 3em;
 		padding: .25em;
 		flex: none;
 		display: inline-block;
@@ -160,12 +163,18 @@
 			font-size: 1em;
 			flex: 1 1 auto;
 		}
-		.icons {
-			height: 2em;
-		}
 	}
 	
 }
+
+.icons {
+	height: 3em;
+	@media (max-width:640px) {
+		height: 2em;
+	}
+}
+
+	
 
 .left{
 	float: left;
