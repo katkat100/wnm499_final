@@ -6,3 +6,6 @@ You and your family are planning a mission to help colonize THX-11. The earliest
 ## Repositories
 - Amber: https://github.com/amberslovick/wnm499_final.git
 - Katie: https://github.com/katkat100/wnm499_final.git
+
+## Live Version
+http://amberslovick.com/space-trail
