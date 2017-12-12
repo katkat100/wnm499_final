@@ -87,4 +87,11 @@ Love.
 Katie   
 ---   
    
-   
+# Captain's Log   
+_Dec 5, 2017_   
+_Module 15_   
+Night befire last class.   
+Probably done.   
+Going in early to make sure.   
+Night.   
+Katie   
