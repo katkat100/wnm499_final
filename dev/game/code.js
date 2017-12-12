@@ -384,7 +384,7 @@ $(function(){
 			addToConsole("Shed some weight to escape!");
 			$(".travel").hide();
 			// $(".conditions").hide();
-			// $(".progressConsole").css({'height':'20%'});
+			$(".progressConsole").css({'height':'calc(80vh - 275px)'});
 			$(".displayWindow").hide();
 			$('.blackHole').show();
 			$(".throw-giveCont").show();
@@ -1278,7 +1278,7 @@ $("span.fuel").text(gameobj['fuel']);
 			$(".crewLeft").append("<div class='col-xs-4 surviveCrew leader'></div><div class='col-xs-4 surviveCrew " + crewImage[0] + "'></div>");
 		}
 
-		captainJob = "farmer";
+		//captainJob = "farmer";
 
 		var pFood = (gameobj["food"] / 10);
 		var pAmmo = gameobj["ammo"];

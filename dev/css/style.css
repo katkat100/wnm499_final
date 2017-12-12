@@ -1,4 +1,3 @@
-/* My CSS Library */
 html {
   box-sizing: border-box; }
 
@@ -35,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-family: "Jura", sans-serif;
   color: #2dfffe;
-  font-size: 400%;
+  font-size: 4em;
   font-weight: 700;
   border: 5px solid #2dfffe;
   text-transform: uppercase;
@@ -50,7 +49,7 @@ h1 {
 h2 {
   font-family: "Jura", sans-serif;
   color: #2dfffe;
-  font-size: 300%;
+  font-size: 3em;
   font-weight: 700;
   text-shadow: 0 0 15px #2dfffe;
   margin-bottom: .15em;
@@ -59,13 +58,13 @@ h2 {
 
 h3 {
   font-family: "Exo 2", sans-serif;
-  font-size: 200%;
+  font-size: 2em;
   font-weight: 400;
   text-transform: uppercase; }
 
 h4 {
   font-family: "Exo 2", sans-serif;
-  font-size: 150%;
+  font-size: 1.5em;
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
@@ -75,10 +74,16 @@ h4 {
     color: #2dfffe;
     text-shadow: 0 0 15px #2dfffe;
     cursor: pointer; }
-  @media (max-width: 640px) {
-    h4 {
-      font-size: 1.25em; } }
 
+@media (max-width: 640px) {
+  h2 {
+    font-size: 1.75em; }
+
+  h3 {
+    font-size: 1.5em; }
+
+  h4 {
+    font-size: 1.25em; } }
 section {
   display: table;
   height: 100vh;
@@ -101,18 +106,21 @@ input {
   li > input {
     width: 100%; }
 
-ol {
-  text-align: left;
-  width: 50%;
-  margin-left: 23%; }
-  ol li {
-    width: 100%; }
-
 ul {
   color: #2dfffe; }
   ul li {
     display: inline-block;
     padding: .2em .5em; }
+
+#month ul {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  color: white;
+  list-style: none; }
+  #month ul li {
+    width: 100%; }
 
 nav {
   position: fixed;
@@ -915,6 +923,9 @@ p {
   vertical-align: middle; }
 .store .total p {
   text-align: center; }
+  @media (max-width: 640px) {
+    .store .total p {
+      margin: 0; } }
 
 .program {
   height: calc(100vh - 57px);
@@ -945,16 +956,22 @@ p {
       vertical-align: middle; }
   .conditions .icons {
     text-align: center;
-    height: 3em;
     padding: .25em;
     flex: none;
     display: inline-block;
     vertical-align: middle; }
   @media (max-width: 640px) {
-    .conditions .cond-info {
-      flex-direction: column;
-      font-size: 1em; }
-    .conditions .icons {
+    .conditions {
+      display: flex; }
+      .conditions .cond-info {
+        flex-direction: column;
+        font-size: 1em;
+        flex: 1 1 auto; } }
+
+.icons {
+  height: 3em; }
+  @media (max-width: 640px) {
+    .icons {
       height: 2em; } }
 
 .left {
@@ -1021,7 +1038,10 @@ p {
     color: #F2545B; }
   @media (max-width: 640px) {
     .progressConsole {
-      height: 30vh; } }
+      height: 50vh;
+      padding-left: 0 !important; }
+      .progressConsole p {
+        padding: 0; } }
 
 .displayWindow {
   vertical-align: top;
@@ -1033,8 +1053,7 @@ p {
     display: block; }
   @media (max-width: 640px) {
     .displayWindow {
-      height: 30vh;
-      padding-left: 20px; } }
+      height: 50vh; } }
 
 .travel {
   width: 100%; }
@@ -1215,6 +1234,9 @@ p.desc {
   margin-left: auto;
   margin-right: auto;
   text-align: left; }
+  @media (max-width: 640px) {
+    p.desc {
+      font-size: .8em; } }
 
 .circle {
   border-radius: 50%;
