@@ -108,9 +108,9 @@
 
 .program{
 	height: calc(100vh - 57px);
-	margin-top: 57px;
-	margin-right: 20px;
-	margin-left: 20px;
+	margin-top: 57px !important;
+	margin-right: 20px !important;
+	margin-left: 20px !important;
 }
 
 .gameInteraction{
