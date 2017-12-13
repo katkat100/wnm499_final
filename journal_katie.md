@@ -88,10 +88,20 @@ Katie
 ---   
    
 # Captain's Log   
-_Dec 5, 2017_   
+_Dec 11, 2017_   
 _Module 15_   
 Night befire last class.   
 Probably done.   
 Going in early to make sure.   
 Night.   
 Katie   
+---
+
+# Captian's Log   
+_Dec 12, 2017_
+_Module 15_   
+This is the first group project that I have actually worked with the person. I usually hate the idea of a group project and in the begining of this project I started out with that mindset, but being in a group project with Amber was not a bad experience. Her feedback and ideas made the project easier to create and I could always check in with her thoughts on whatever I was working on. One of the problems that I encountered working in a group was that we coded differently. It didnt realy set us back but it was something that tripped me up a few times. I wasn't really expecting that since we both learned code from WNM but I guess it does come down to who taught us, since we had different teachers and classes up until last yearish.   
+I think we got a lot of our initial ideas into the game which I didn't think was possible. Some of the ideas that didn't make it was the hunting, spare parts, exploring worlds along the way, and dwarf stars. When I pick this project up to refine it, I need to reassemble a lot of the HTML and code. In the begining I used a lot of placement tags but I kept them due to laziness and they truely don't make sense later. Also I would like to fix the graphics so that they look more cohesive. Some grpahics are flat with solid colors while others are multicolored with depth. I am to blame since I made them at different times and wasnt thinking about the overall look. My bad.    
+Anyways I am happy with what Amber and I came up with in the end. Super proud of the work we put into it!   
+It's been fun.   
+Katie
