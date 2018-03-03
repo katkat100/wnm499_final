@@ -10,10 +10,10 @@ html {
 }
 
 body {
+	font-family: $font;
+	color: $color-tri;
+	background-color: $color-back;
 	margin: 0;
-	font-family: $font-body;
-	color: $color-sec;
-	background-color: $color-tri;
 	font-size: 100%;
 	font-weight: 100;
 
@@ -41,7 +41,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 h1{
-	font-family: $font-heading;
+	font-family: $font;
 	color: $color-prime;
 	font-size: 4em;
 	font-weight: 700;
@@ -57,7 +57,7 @@ h1{
 }
 
 h2{
-	font-family: $font-heading;
+	font-family: $font;
 	color: $color-prime;
 	font-size: 3em;
 	font-weight: 700;
@@ -68,14 +68,14 @@ h2{
 }
 
 h3{
-	font-family: $font-body;
+	font-family: $font;
 	font-size: 2em;
 	font-weight: 400;
 	text-transform: uppercase;
 }
 
 h4{
-	font-family: $font-body;
+	font-family: $font;
 	font-size: 1.5em;
 	font-weight: 100;
 	text-transform: uppercase;
@@ -116,7 +116,7 @@ input{
 	background-color: transparent;
 	font-size: 150%;
 	text-align: center;
-	font-family: $font-body;
+	font-family: $font;
 	margin-top: 1em;
 	color: $color-sec;
 	font-weight: 100;
@@ -125,14 +125,6 @@ input{
 	}
 	li>&{
 		width:100%;
-	}
-}
-
-ul{
-	color: $color-prime;
-	li{
-		display: inline-block;
-		padding: .2em .5em;
 	}
 }
 
@@ -162,4 +154,11 @@ p {
 	padding-left: 20px;
 	padding-right: 20px;
 	text-align: left;
+}
+
+ul{
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom:0;
 }

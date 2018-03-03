@@ -5,14 +5,14 @@ html {
   box-sizing: border-box; }
 
 ::selection {
-  background: #ffffff;
-  color: #2dfffe; }
+  background: #0B4574;
+  color: #2DF5D0; }
 
 body {
+  font-family: "Source Code Pro", monospace;
+  color: #EEFFFC;
+  background-color: #030D21;
   margin: 0;
-  font-family: "Exo 2", sans-serif;
-  color: #ffffff;
-  background-color: #000f1e;
   font-size: 100%;
   font-weight: 100; }
   body#game {
@@ -20,7 +20,7 @@ body {
     height: 100vh; }
 
 a {
-  color: #2dfffe;
+  color: #2DF5D0;
   text-decoration: none;
   text-shadow: 0 0 0 transparent;
   transition: all 500ms ease-in-out; }
@@ -32,38 +32,38 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0; }
 
 h1 {
-  font-family: "Jura", sans-serif;
-  color: #2dfffe;
+  font-family: "Source Code Pro", monospace;
+  color: #2DF5D0;
   font-size: 4em;
   font-weight: 700;
-  border: 5px solid #2dfffe;
+  border: 5px solid #2DF5D0;
   text-transform: uppercase;
   display: inline-block;
   padding: .05em .2em;
   border-radius: .15em;
   margin-bottom: .3em;
-  text-shadow: 0 0 15px #2dfffe;
-  box-shadow: 0 0 15px #2dfffe;
+  text-shadow: 0 0 15px #2DF5D0;
+  box-shadow: 0 0 15px #2DF5D0;
   text-align: center; }
 
 h2 {
-  font-family: "Jura", sans-serif;
-  color: #2dfffe;
+  font-family: "Source Code Pro", monospace;
+  color: #2DF5D0;
   font-size: 3em;
   font-weight: 700;
-  text-shadow: 0 0 15px #2dfffe;
+  text-shadow: 0 0 15px #2DF5D0;
   margin-bottom: .15em;
   margin-top: .15em;
   text-transform: uppercase; }
 
 h3 {
-  font-family: "Exo 2", sans-serif;
+  font-family: "Source Code Pro", monospace;
   font-size: 2em;
   font-weight: 400;
   text-transform: uppercase; }
 
 h4 {
-  font-family: "Exo 2", sans-serif;
+  font-family: "Source Code Pro", monospace;
   font-size: 1.5em;
   font-weight: 100;
   text-transform: uppercase;
@@ -71,8 +71,8 @@ h4 {
   margin-bottom: 1em;
   transition: all 500ms; }
   h4:hover {
-    color: #2dfffe;
-    text-shadow: 0 0 15px #2dfffe;
+    color: #2DF5D0;
+    text-shadow: 0 0 15px #2DF5D0;
     cursor: pointer; }
 
 @media (max-width: 640px) {
@@ -91,26 +91,20 @@ section {
 
 input {
   border: 0;
-  border-bottom: 3px solid #ffffff;
+  border-bottom: 3px solid #0B4574;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: transparent;
   font-size: 150%;
   text-align: center;
-  font-family: "Exo 2", sans-serif;
+  font-family: "Source Code Pro", monospace;
   margin-top: 1em;
-  color: #ffffff;
+  color: #0B4574;
   font-weight: 100; }
   input:focus {
     outline: none; }
   li > input {
     width: 100%; }
-
-ul {
-  color: #2dfffe; }
-  ul li {
-    display: inline-block;
-    padding: .2em .5em; }
 
 #month ul {
   margin: 0;
@@ -133,6 +127,12 @@ p {
   padding-left: 20px;
   padding-right: 20px;
   text-align: left; }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .grid {
   overflow: hidden; }
@@ -934,11 +934,11 @@ p {
   margin-left: 20px !important; }
 
 .gameInteraction {
-  border: 1px solid #ffffff;
+  border: 1px solid #0B4574;
   border-radius: .15em;
   padding: .2em .5em;
   overflow: auto;
-  background-color: #262626; }
+  background-color: black; }
   .gameInteraction h3 {
     text-transform: initial; }
 
@@ -958,14 +958,14 @@ p {
     margin-left: -5px;
     width: 0px;
     height: 20px;
-    background-color: #ffffff;
+    background-color: #0B4574;
     display: inline-block;
     transform: skew(15deg, 0deg); }
   .inventory .bar {
     content: "";
     width: 0px;
     height: 20px;
-    background-color: #2dfffe;
+    background-color: #2DF5D0;
     display: inline-block;
     transform: skew(15deg, 0deg); }
   .inventory img {
@@ -1036,10 +1036,10 @@ p {
   float: left; }
 
 #game h4:not(.button) {
-  border-bottom: 2px solid #000f1e;
+  border-bottom: 2px solid #EEFFFC;
   display: block; }
   #game h4:not(.button):hover {
-    border-bottom: 2px solid #2dfffe; }
+    border-bottom: 2px solid #2DF5D0; }
 
 .options {
   margin-top: 50vh; }
@@ -1059,7 +1059,7 @@ p {
   font-weight: 400; }
 
 .h4Ignore:hover {
-  color: #ffffff;
+  color: #0B4574;
   cursor: inherit; }
 
 #title {
@@ -1087,10 +1087,10 @@ p {
   height: 80vh;
   overflow: auto; }
   .progressConsole::-webkit-scrollbar {
-    background-color: #002951;
+    background-color: white;
     width: .3em; }
   .progressConsole::-webkit-scrollbar-thumb {
-    background-color: #2dfffe;
+    background-color: #2DF5D0;
     border-radius: 5px; }
   .progressConsole .warning {
     color: #F2545B; }
@@ -1335,9 +1335,9 @@ p.desc {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(0, 15, 30, 0.5); }
+    background-color: rgba(238, 255, 252, 0.5); }
     .content > section p.question {
-      color: #00adac;
+      color: #079b80;
       margin-bottom: 0;
       font-weight: 400; }
     .content > section p.answer {
@@ -1347,11 +1347,11 @@ p.desc {
     max-width: 100%; }
 
 .button {
-  font-family: "Jura", sans-serif;
-  color: #2dfffe;
+  font-family: "Source Code Pro", monospace;
+  color: #2DF5D0;
   font-size: 200%;
   font-weight: 700;
-  border: 3px solid #2dfffe;
+  border: 3px solid #2DF5D0;
   text-transform: uppercase;
   display: inline-block;
   padding: .05em .2em;
@@ -1363,8 +1363,8 @@ p.desc {
   transition: all 500ms;
   text-align: center; }
   .button:hover {
-    text-shadow: 0 0 15px #2dfffe;
-    box-shadow: 0 0 15px #2dfffe;
-    color: #2dfffe; }
+    text-shadow: 0 0 15px #2DF5D0;
+    box-shadow: 0 0 15px #2DF5D0;
+    color: #2DF5D0; }
 
 /*# sourceMappingURL=style.css.map */
