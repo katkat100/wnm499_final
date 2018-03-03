@@ -1,0 +1,59 @@
+
+.grid{
+	overflow: hidden;
+}
+
+//A row is only use as a parent of columns
+//Colums ALWAYS need a row parent
+.row{
+	@include clearfix;
+
+	&.flex{
+		display:-webkit-flex;
+		display: flex;
+		-webkit-flex-wrap:wrap;
+		flex-wrap:wrap;
+	}
+	&.gutters{
+		margin-top: -$gutter-size;
+		margin-left: -($gutter-size * 0.5);
+		margin-right: -($gutter-size * 0.5);
+	}
+}
+
+[class*='col-'] {
+	float:left;
+
+	.flex>&{
+		-webkit-flex:1 1 auto;
+		flex:1 1 auto;
+	}
+
+	.gutters>&{
+		padding-top: $gutter-size;
+		padding-left: $gutter-size * 0.5;
+		padding-right: $gutter-size * 0.5;
+	}
+}
+
+@each $prefix, $prevalue in $container-width{
+	@media (min-width: $prevalue){
+		@include container-make(#{$prefix});
+		@include columns-make(#{$prefix});
+		@include flex-helpers(#{$prefix});
+	}
+}
+
+
+
+.flex-parent{
+	display: flex;
+}
+
+.flex-child{
+	flex:1 1 auto;
+}
+
+.flex-none{
+	flex:none;
+}

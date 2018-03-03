@@ -1,6 +1,6 @@
 $(function(){
 	$(".change-pace, .change-rations, .restart, .trading, .planetX, .local-trading, .local-chatting, .piratesOne, .piratesTwo, .blackHole, .throw-cont, .throw-giveCont, .newHome").hide();
-	$(".departure").hide();
+	// $(".departure").hide();
 	function c(print){
 		console.log(print);
 	}
@@ -22,7 +22,6 @@ $(function(){
 		c("Dice roll:" + diceOne);
 	}
 //variables
-	// var player = [];
 	var captainName = "";
 	var captainJob = "";
 	var crew = ["rachel","spencer", "marg", "thom"];
@@ -37,7 +36,6 @@ $(function(){
 		ammo = 20
 		// parts = 100
 	];
-	// var money = 0;
 	var numOfParts = 0, numOfFuel = 0, numOfFood = 0, numOfAmmo = 0;
 	var costOfItems = 0;
 	var oldBillParts = 0, oldBillFuel = 0, oldBillFood = 0, oldBillAmmo = 0;
@@ -63,14 +61,9 @@ $(function(){
 	var paceOpt = ["stopped", "slow", "moderate", "quick", "fast"];
 	var health = $(crew).length;
 	var rations = "filling";
-	// var food = 0;
 	var ffp = 0;
-	// var ammo = 0;
-	// var parts = 0;
-	// var fuel = 0;
 	var fuelUsage = 0;
 	var day = 1;
-	// var month = "";
 
 	var diceOne = 0;
 	var diceTwo = 0;

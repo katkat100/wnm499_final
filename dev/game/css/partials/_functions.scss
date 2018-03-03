@@ -1,0 +1,106 @@
+//A mixin has properties available to everything
+@mixin center-child-horizontal{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin container-make($prefix:''){
+	.container{
+		@include center-child-horizontal;
+
+		@if($prefix == 'xl' or $prefix == 'lg'){
+			width:map-get($container-width,$prefix);
+		}  @else{
+			width: initial;
+			padding-left: $gutter-size *0.5;
+			padding-right: $gutter-size *0.5;
+		}
+	}
+}
+
+@mixin helpers-make($prefix:''){
+	@if($prefix!=''){
+		$prefix:"-#{$prefix}";
+	}
+	@each $pre-short,$pre-long in $boxes-map {
+		@each $suf-short,$suf-long in $sizes-map{
+			@each $pos-short,$pos-long in $positions-map{
+				.#{$pre-short}#{$prefix}-#{$pos-short}#{$suf-short}{
+					#{$pre-long}-#{$pos-long}: $suf-long;
+				}
+			}
+
+			.#{$pre-short}#{$prefix}-h#{$suf-short}{
+				#{$pre-long}-left: $suf-long;
+				#{$pre-long}-right: $suf-long;
+			}
+			.#{$pre-short}#{$prefix}-v#{$suf-short}{
+				#{$pre-long}-top: $suf-long;
+				#{$pre-long}-bottom: $suf-long;
+			}
+			.#{$pre-short}#{$prefix}-h#{$suf-short}{
+				#{$pre-long}: $suf-long;
+			}
+		}
+	}
+
+	@each $pre-short,$pre-long in $positioning-map{
+		.position#{$prefix}-#{$pre-short}{
+			position: $pre-long;
+		}
+	}
+}
+
+@mixin columns-make($prefix:''){
+	@if($prefix!=''){
+		$prefix:"-#{$prefix}";
+	}
+
+
+	.col#{$prefix}-seventh{
+		width:14.2857%;
+	}
+
+
+	@for $i from 1 through 4{
+		.col#{$prefix}-#{$i}fifth{
+			width:percentage($i / 5);
+		}
+	}
+
+	.col#{$prefix}-main{
+		width:calc(100% - #{$side-column});
+	}
+
+	.col#{$prefix}-side{
+		width:$side-column;
+	}
+
+	@for $i from 1 through $column-length{
+		.offset#{$prefix}-#{$i}{
+			margin-left: percentage($i / $column-length);
+		}
+		.col#{$prefix}-#{$i}{
+			width: percentage($i / $column-length);
+		}
+	}
+}
+
+@mixin clearfix{
+	&:after{
+		clear: both;
+		content: '';
+		display: table;
+	}
+}
+
+@mixin flex-helpers($prefix:'') {
+	@if($prefix!=''){
+		$prefix:"-#{$prefix}";
+	}
+	@for $i from 1 through $column-length{
+		.flex-order#{$prefix}-#{$i}{
+			order: $i;
+		}
+	}
+}
