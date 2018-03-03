@@ -126,6 +126,80 @@
 	}
 }
 
+.sidebar{
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%,-50%);
+}
+
+.inventory{
+  position:relative;
+  padding-top:20px;
+  li{
+    margin-bottom: 15px;
+  }
+  .full-bar{
+    content:'';
+    margin-left:-5px;
+    // width:100px;
+    width:0px;
+    height:20px;
+    background-color: $color-sec;
+    display:inline-block;
+    transform: skew(15deg,0deg);
+  }
+  .bar{
+    content: "";
+    // width:100px;
+    width:0px;
+    height:20px;
+    background-color: $color-prime;
+    display:inline-block;
+    transform: skew(15deg,0deg);
+  }
+  
+  img{
+    position:relative;
+    top:-2px;
+    width:20px;
+    height:20px;
+    vertical-align: middle;
+  }
+  .food .info{
+    position: absolute;
+    left: 0px;
+    top: 10px;
+  }
+  .fuel .info{
+    position: absolute;
+    left: 0px;
+    top: 50px;
+  }
+  .ammo .info{
+    position: absolute;
+    left: 0px;
+    top: 89px;
+  }
+  .fuel,.food,.ammo{
+    vertical-align: middle;
+  }
+}
+
+.stats{
+  margin-top:20px;
+  img{
+    position:relative;
+    top:-2px;
+    width:20px;
+    height:20px;
+    vertical-align: middle;
+  }
+  li{
+    margin-bottom: 15px;
+  }
+}
+
 .conditions{
 	display: inline-block;
 	margin-right: 0;

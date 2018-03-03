@@ -942,6 +942,64 @@ p {
   .gameInteraction h3 {
     text-transform: initial; }
 
+.sidebar {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%); }
+
+.inventory {
+  position: relative;
+  padding-top: 20px; }
+  .inventory li {
+    margin-bottom: 15px; }
+  .inventory .full-bar {
+    content: '';
+    margin-left: -5px;
+    width: 0px;
+    height: 20px;
+    background-color: #ffffff;
+    display: inline-block;
+    transform: skew(15deg, 0deg); }
+  .inventory .bar {
+    content: "";
+    width: 0px;
+    height: 20px;
+    background-color: #2dfffe;
+    display: inline-block;
+    transform: skew(15deg, 0deg); }
+  .inventory img {
+    position: relative;
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle; }
+  .inventory .food .info {
+    position: absolute;
+    left: 0px;
+    top: 10px; }
+  .inventory .fuel .info {
+    position: absolute;
+    left: 0px;
+    top: 50px; }
+  .inventory .ammo .info {
+    position: absolute;
+    left: 0px;
+    top: 89px; }
+  .inventory .fuel, .inventory .food, .inventory .ammo {
+    vertical-align: middle; }
+
+.stats {
+  margin-top: 20px; }
+  .stats img {
+    position: relative;
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle; }
+  .stats li {
+    margin-bottom: 15px; }
+
 .conditions {
   display: inline-block;
   margin-right: 0;
