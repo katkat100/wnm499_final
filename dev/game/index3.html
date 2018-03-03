@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Space Trail</title>
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600,900" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!-- <script src="code.js"></script> -->
+	<script>
+	$(function(){
+		var gameobj = {
+		  food : 100,
+		  fuel : 450,
+		  ammo : 10,
+		  money : 0
+		}
+		var gameobjLimit = {
+		  food : 500,
+		  fuel : 500,
+		  ammo : 20,
+		}
+		var bar = 200;
+
+		$("span.food").text(gameobj['food']);
+		$("span.fuel").text(gameobj['fuel']);
+		$("span.ammo").text(gameobj['ammo']);
+
+
+		//ALL of the stats go at once
+		$(".inventory").mouseenter(function(){
+		  var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
+		  var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
+		  var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
+		  $(".inven.food .bar").animate({width: foodBar});
+		  $(".inven.food .full-bar").animate({width: 200 - foodBar});
+		  $(".inven.fuel .bar").animate({width: fuelBar});
+		  $(".inven.fuel .full-bar").animate({width: 200 - fuelBar});
+		  $(".inven.ammo .bar").animate({width: ammoBar});
+		  $(".inven.ammo .full-bar").animate({width: 200 - ammoBar});
+		  // $(".inventory span").animate({opacity: 0});
+		})
+
+		$(".inventory").mouseleave(function(){
+		  $(".inven.food .bar").animate({width: 0});
+		  $(".inven.food .full-bar").animate({width: 0});
+		  $(".inven.fuel .bar").animate({width: 0});
+		  $(".inven.fuel .full-bar").animate({width: 0});
+		  $(".inven.ammo .bar").animate({width: 0});
+		  $(".inven.ammo .full-bar").animate({width: 0});
+		  // $(".inventory span").animate({opacity: 1});
+		})
+	});
+	</script>
+</head>
+<body id="game">
+	<div class="sidebar">
+		<ul class="inventory">
+		  <li class="inven food">
+		    <div class="bar"></div>
+		    <div class="full-bar"></div>
+		    <div class="info">
+		      <img src="../images/sidebar_apple.svg">
+		      <span class="food"></span>
+		    </div>
+		  </li>
+		  <li class="inven fuel">
+		    <div class="bar"></div>
+		    <div class="full-bar"></div>
+		    <div class="info">
+		      <img src="../images/sidebar_apple.svg">
+		      <span class="fuel"></span>
+		    </div>
+		  </li>
+		  <li class="inven ammo">
+		    <div class="bar"></div>
+		    <div class="full-bar"></div>
+		    <div class="info">
+		      <img src="../images/sidebar_apple.svg">
+		      <span class="ammo"></span>
+		    </div>
+		  </li>
+		</ul>
+		<ul class="stats">
+		  <li class="stat money">
+		    <div class="info">
+		      <img src="../images/sidebar_apple.svg">
+		      <span class="money">2000</span>
+		    </div>
+		  </li>
+		  <li class="stat health">
+		    <div class="info">
+		      <img src="../images/sidebar_apple.svg">
+		      <span class="health">4</span>
+		    </div>
+		  </li>
+		</ul>
+	</div>
+
+
+	
+</body>
+</html>
