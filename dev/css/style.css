@@ -16,6 +16,9 @@ body {
   font-size: 100%;
   font-weight: 100; }
 
+@media (max-width: 639px) {
+  body {
+    font-size: 90%; } }
 a {
   color: #2DF5D0;
   text-decoration: none;
@@ -68,7 +71,7 @@ h4 {
   text-align: center;
   display: block; }
 
-@media (max-width: 640px) {
+@media (max-width: 639px) {
   h2 {
     font-size: 1.75em; }
 
@@ -99,6 +102,11 @@ input {
   li > input {
     width: 100%; }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
 #month ul {
   margin: 0;
   margin-right: auto;
@@ -117,11 +125,6 @@ nav {
   nav li {
     display: inline-block;
     padding: .75em .5em; }
-
-p {
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: left; }
 
 ul {
   list-style: none;
@@ -949,12 +952,14 @@ ul {
     margin-top: 0; }
   #setUp-shop .item-cost {
     text-align: center; }
+  #setUp-shop .item-buy {
+    text-align: center; }
   #setUp-shop .item input {
     margin-top: 0;
-    position: absolute;
-    bottom: 0;
-    width: 90%;
-    left: 5%; }
+    display: inline-block;
+    width: 40px; }
+#setUp-shop .receipt {
+  vertical-align: middle; }
 
 input[name=captain] {
   width: 100%; }
@@ -1020,6 +1025,62 @@ input[name=captain] {
   .inventory .fuel, .inventory .food, .inventory .ammo {
     vertical-align: middle; }
 
+@media (min-width: 480px) and (max-width: 639px) {
+  #setUp-shop .item {
+    padding-bottom: 0; }
+    #setUp-shop .item p {
+      margin-bottom: 10px;
+      margin-top: 10px; }
+    #setUp-shop .item img {
+      height: 1.3em; }
+    #setUp-shop .item-top {
+      display: inline-block;
+      width: 20%; }
+    #setUp-shop .item-cost {
+      display: inline-block;
+      width: 40%; }
+    #setUp-shop .item-buy {
+      display: inline-block;
+      width: 33%; } }
+@media (max-width: 639px) {
+  #setUp-crew .image1to1 {
+    width: 50%;
+    margin-left: 25%; }
+
+  #setUp-shop .item-top {
+    display: inline-block; } }
+@media (max-width: 479px) {
+  #setUp-shop .item {
+    padding: 0 5px; }
+    #setUp-shop .item p {
+      margin-bottom: 10px;
+      margin-top: 10px; }
+    #setUp-shop .item-top {
+      width: 25%; }
+    #setUp-shop .item img {
+      display: inline-block;
+      width: 20%;
+      margin-left: 0;
+      vertical-align: middle; }
+    #setUp-shop .item-title {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 0;
+      width: 70%; }
+    #setUp-shop .item-cost {
+      width: 33.5%;
+      vertical-align: middle;
+      display: inline-block; }
+    #setUp-shop .item-buy {
+      width: 33%;
+      vertical-align: middle;
+      display: inline-block; }
+  #setUp-shop .receipt {
+    padding-top: 0; }
+    #setUp-shop .receipt p {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      text-align: center; } }
 .well {
   padding: 10px;
   background-color: #eee;

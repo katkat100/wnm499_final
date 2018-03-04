@@ -18,6 +18,12 @@ body {
 	font-weight: 100;
 }
 
+@media (max-width: 639px) {
+	body{
+		font-size: 90%;
+	}
+}
+
 a{
 	color: $color-prime;
 	text-decoration: none;
@@ -81,7 +87,7 @@ h4{
 	
 	
 }
-@media (max-width:640px) {
+@media (max-width:639px) {
 	h2 {
 		font-size: 1.75em;
 	}
@@ -119,6 +125,12 @@ input{
 	}
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 #month {
 	ul{
 		margin: 0;
@@ -145,11 +157,11 @@ nav{
 	}
 }
 
-p {
-	padding-left: 20px;
-	padding-right: 20px;
-	text-align: left;
-}
+// p {
+// 	padding-left: 20px;
+// 	padding-right: 20px;
+// 	text-align: left;
+// }
 
 ul{
   list-style: none;

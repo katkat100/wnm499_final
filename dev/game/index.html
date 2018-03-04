@@ -26,7 +26,7 @@
 					<div class="card" id="setUp-profession">
 						<h2>Choose a Profession</h2>
 						<ul class="row gutters">
-							<li class="col-xs-12 col-md-4">
+							<li class="col-xs-4">
 								<div class="job">
 									<div class="image1to1">
 										<div class="img-farmer"></div>
@@ -34,7 +34,7 @@
 									<p class="setUp-desc">Meteorite Farmer</p>
 								</div>
 							</li>
-							<li class="col-xs-12 col-md-4">
+							<li class="col-xs-4">
 								<div class="job">
 									<div class="image1to1">
 										<div class="img-engineer"></div>
@@ -42,7 +42,7 @@
 									<p class="setUp-desc">Spaceship Engineer</p>
 								</div>
 							</li>
-							<li class="col-xs-12 col-md-4">
+							<li class="col-xs-4">
 								<div class="job">
 									<div class="image1to1">
 										<div class="img-moneybags"></div>
@@ -139,27 +139,33 @@
 
 						<div class="shop-inventory">
 							<div class="row gutters flex">
-								<ul class="col-xs-6 col-md-9 item-container row gutters">
+								<ul class="col-xs-12 col-sm-7 col-md-9 item-container row gutters">
 									<li class="col-xs-12 col-md-4 item">
-										<img src="../images/sidebar_apple.svg">
-										<p class="item-title">Food</p>
+										<div class="item-top">
+											<img src="../images/sidebar_apple.svg">
+											<p class="item-title">Food</p>
+										</div>
 										<p class="item-cost">§20 for a food crate (10 meals)</p>
-										<input type="number" name="shop-food" min="0" maxlength="20" value="0">
+										<p class="item-buy">Buy: <input type="number" name="shop-food" min="0" maxlength="20" value="0"> crate(s)</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
-										<img src="../images/sidebar_apple.svg">
-										<p class="item-title">Fuel</p>
+										<div class="item-top">
+											<img src="../images/sidebar_apple.svg">
+											<p class="item-title">Fuel</p>
+										</div>
 										<p class="item-cost">§50 for a carton (50 fuel pods)</p>
-										<input type="number" name="shop-fuel" min="0" maxlength="20" value="0">
+										<p class="item-buy">Buy: <input type="number" name="shop-fuel" min="0" maxlength="20" value="0"> carton(s)</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
-										<img src="../images/sidebar_apple.svg">
-										<p class="item-title">Ammo</p>
-										<p class="item-cost">§20 for a cartridge (5 energy shots)</p>
-										<input type="number" name="shop-ammo" min="0" maxlength="20" value="0">
+										<div class="item-top">
+											<img src="../images/sidebar_apple.svg">
+											<p class="item-title">Ammo</p>
+										</div>
+										<p class="item-cost">§20 per cartridge (5 shots)</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> cartridge(s)</p>
 									</li>
 								</ul>
-								<div class="col-xs-6 col-md-3 receipt">
+								<div class="col-xs-12 col-sm-5 col-md-3 receipt">
 									<p>Amount you have: §<span class="money"></span></p>
 									<p>Bill so far: §<span class="bill"></span></p>
 									<p>Ending amount: §<span class="total"></span></p>
