@@ -56,19 +56,150 @@
 
 
 
+.card{
+	position: relative;
+	top: 50%;
+	transform: translate(0, -60%);
+	&-container{
+		width: 100%;
+		height: calc(100vh - 44px);
+		position: relative;
+		display: inline-block;
+	}
+}
 
+.setUp-container{
+	.img-captain, .img-crewOne, .img-crewTwo, .img-crewThree, .img-crewFour{
+		@extend %background-image-basic;
+	}
+	.img-{
+		&captain{
+			background-image: url(../images/you.svg);
+		}
+		&crewOne{
+			background-image: url(../images/crew1.svg);
+		}
+		&crewTwo{
+			background-image: url(../images/crew2.svg);
+		}
+		&crewThree{
+			background-image: url(../images/crew3.svg);
+		}
+		&crewFour{
+			background-image: url(../images/crew4.svg);
+		}
+	}
+}
+
+#setUp{
+	&-profession{
+		.job{
+			border: 3px solid $color-tri;
+			padding: .5em;
+			padding-bottom: 1em;
+			cursor: pointer;
+			transition: border 0.3s;
+
+			.img-farmer{
+				background-color: $color-sec;
+			}
+			
+			&:hover{
+				border-color: $color-prime;
+				h4{
+					color: $color-prime;
+				}
+			}
+
+			&.active{
+				border-color: $color-prime;
+			}
+
+			.setUp-button{
+				border-width: 0px;
+				display: block;
+				padding: 0;
+
+			}
+
+
+		}
+	}
+
+	&-month{
+		& .month-choice{
+			font-size: 1.2em;
+			text-align: center;
+			cursor: pointer;
+			border: 3px solid $color-tri;
+			transition: border 0.3s;
+			padding: .25em .5em;
+
+			&:hover{
+				color: $color-prime;
+				border-color: $color-prime;
+			}
+		}
+	}
+
+	&-shop{
+		.item{
+			position: relative;
+			padding-bottom: 30px;
+			img{
+				width: 30%;
+				margin-left: 35%;
+			}
+
+			&-title{
+				text-align: center;
+				font-size: 1.1em;
+				font-weight: 600;
+				text-transform: uppercase;
+				margin-top: 0;
+			}
+
+			&-cost{
+				text-align: center;
+			}
+
+			input{
+				margin-top: 0;
+				position: absolute;
+				bottom: 0;
+				width: 90%;
+				left:5%;
+			}
+		}
+	}
+
+
+}
+
+input[name=captain]{
+	width: 100%;
+}
 
 .setUp-button{
+	border:3px solid $color-tri;
+	display: inline-block;
+	padding: .25em .5em;
+	@extend %center-horizontally;
+	margin-top: 1em;
 
-}
-
-#setUp-Month{
-	& .month{
-		font-size: 1.2em;
-		text-align: center;
+	&:hover{
+		color: $color-prime;
+		text-shadow: 0 0 15px $color-prime;
+		cursor: pointer;
+		border-color: $color-prime;
 	}
-	
 }
+
+.setUp-desc{
+	text-align: center;
+}
+
+
 
 .sidebar{
   display: inline-block;

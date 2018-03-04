@@ -66,12 +66,7 @@ h4 {
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 1em;
   display: block; }
-  h4:hover {
-    color: #2DF5D0;
-    text-shadow: 0 0 15px #2DF5D0;
-    cursor: pointer; }
 
 @media (max-width: 640px) {
   h2 {
@@ -891,8 +886,91 @@ ul {
 .noPadding {
   padding: 0; }
 
-#setUp-Month .month {
+.card {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -60%); }
+  .card-container {
+    width: 100%;
+    height: calc(100vh - 44px);
+    position: relative;
+    display: inline-block; }
+
+.setUp-container .img-captain {
+  background-image: url(../images/you.svg); }
+.setUp-container .img-crewOne {
+  background-image: url(../images/crew1.svg); }
+.setUp-container .img-crewTwo {
+  background-image: url(../images/crew2.svg); }
+.setUp-container .img-crewThree {
+  background-image: url(../images/crew3.svg); }
+.setUp-container .img-crewFour {
+  background-image: url(../images/crew4.svg); }
+
+#setUp-profession .job {
+  border: 3px solid #EEFFFC;
+  padding: .5em;
+  padding-bottom: 1em;
+  cursor: pointer;
+  transition: border 0.3s; }
+  #setUp-profession .job .img-farmer {
+    background-color: #0B4574; }
+  #setUp-profession .job:hover {
+    border-color: #2DF5D0; }
+    #setUp-profession .job:hover h4 {
+      color: #2DF5D0; }
+  #setUp-profession .job.active {
+    border-color: #2DF5D0; }
+  #setUp-profession .job .setUp-button {
+    border-width: 0px;
+    display: block;
+    padding: 0; }
+#setUp-month .month-choice {
   font-size: 1.2em;
+  text-align: center;
+  cursor: pointer;
+  border: 3px solid #EEFFFC;
+  transition: border 0.3s;
+  padding: .25em .5em; }
+  #setUp-month .month-choice:hover {
+    color: #2DF5D0;
+    border-color: #2DF5D0; }
+#setUp-shop .item {
+  position: relative;
+  padding-bottom: 30px; }
+  #setUp-shop .item img {
+    width: 30%;
+    margin-left: 35%; }
+  #setUp-shop .item-title {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0; }
+  #setUp-shop .item-cost {
+    text-align: center; }
+  #setUp-shop .item input {
+    margin-top: 0;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    left: 5%; }
+
+input[name=captain] {
+  width: 100%; }
+
+.setUp-button {
+  border: 3px solid #EEFFFC;
+  display: inline-block;
+  padding: .25em .5em;
+  margin-top: 1em; }
+  .setUp-button:hover {
+    color: #2DF5D0;
+    text-shadow: 0 0 15px #2DF5D0;
+    cursor: pointer;
+    border-color: #2DF5D0; }
+
+.setUp-desc {
   text-align: center; }
 
 .sidebar {
@@ -992,6 +1070,44 @@ ul {
 
 #game .content {
   position: relative;
-  top: 42px; }
+  top: 44px; }
+
+.image1to1 {
+  position: relative;
+  width: 100%; }
+  .image1to1:before {
+    content: '';
+    display: block;
+    padding-top: 100%; }
+  .image1to1 > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+
+.imageHalfto1 {
+  position: relative;
+  width: 100%; }
+  .imageHalfto1:before {
+    content: '';
+    display: block;
+    padding-top: 50%; }
+  .imageHalfto1 > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+
+.setUp-button {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0); }
+
+.setUp-container .img-captain, .setUp-container .img-crewOne, .setUp-container .img-crewTwo, .setUp-container .img-crewThree, .setUp-container .img-crewFour {
+  background-size: contain;
+  background-position: center;
+  background-repeat: none; }
 
 /*# sourceMappingURL=style.css.map */
