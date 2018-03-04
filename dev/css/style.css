@@ -5,19 +5,16 @@ html {
   box-sizing: border-box; }
 
 ::selection {
-  background: #0B4574;
+  background: #EEFFFC;
   color: #2DF5D0; }
 
 body {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   color: #EEFFFC;
   background-color: #030D21;
   margin: 0;
   font-size: 100%;
   font-weight: 100; }
-  body#game {
-    overflow: hidden;
-    height: 100vh; }
 
 a {
   color: #2DF5D0;
@@ -32,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0; }
 
 h1 {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   color: #2DF5D0;
   font-size: 4em;
   font-weight: 700;
@@ -47,29 +44,30 @@ h1 {
   text-align: center; }
 
 h2 {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   color: #2DF5D0;
   font-size: 3em;
   font-weight: 700;
-  text-shadow: 0 0 15px #2DF5D0;
+  text-shadow: 0 0 15px #06836c;
   margin-bottom: .15em;
   margin-top: .15em;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  text-align: center; }
 
 h3 {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   font-size: 2em;
   font-weight: 400;
   text-transform: uppercase; }
 
 h4 {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   font-size: 1.5em;
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 1em;
-  transition: all 500ms; }
+  display: block; }
   h4:hover {
     color: #2DF5D0;
     text-shadow: 0 0 15px #2DF5D0;
@@ -91,15 +89,15 @@ section {
 
 input {
   border: 0;
-  border-bottom: 3px solid #0B4574;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom: 3px solid #EEFFFC;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
   background-color: transparent;
-  font-size: 150%;
+  font-size: 1.2em;
   text-align: center;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   margin-top: 1em;
-  color: #0B4574;
+  color: #EEFFFC;
   font-weight: 100; }
   input:focus {
     outline: none; }
@@ -118,10 +116,12 @@ input {
 
 nav {
   position: fixed;
-  top: 0;
-  left: 10px; }
+  top: 0; }
   nav ul {
     padding-left: 0; }
+  nav li {
+    display: inline-block;
+    padding: .75em .5em; }
 
 p {
   padding-left: 20px;
@@ -869,78 +869,31 @@ ul {
 .pos-absolute {
   position: absolute; }
 
-.card {
-  vertical-align: middle;
-  display: table-cell;
-  text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: calc(100vh - 57px);
-  margin-top: 57px; }
-  .card h4 {
-    margin-top: 50px; }
+.left {
+  float: left; }
 
-#nameMembers ol {
-  padding-left: 0; }
-#nameMembers ol li {
-  list-style: none;
-  padding: .2em .5em; }
-#nameMembers .crewImageBox {
-  position: relative;
-  width: 10vh;
-  max-width: 150px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: .5em; }
-  #nameMembers .crewImageBox:before {
-    content: "";
-    display: block;
-    padding-top: 100%; }
-#nameMembers .crewImage {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain; }
-#nameMembers .crew1 {
-  background-image: url("../images/crew1.svg"); }
-#nameMembers .crew2 {
-  background-image: url("../images/crew2.svg"); }
-#nameMembers .crew3 {
-  background-image: url("../images/crew3.svg"); }
-#nameMembers .crew4 {
-  background-image: url("../images/crew4.svg"); }
-#nameMembers input {
-  margin-top: 0; }
+.right {
+  float: right; }
 
-#month h4 {
-  margin-top: 10px; }
+.flex-parent {
+  display: flex; }
 
-.store .itemList, .store .total {
-  vertical-align: middle; }
-.store .total p {
+.flex-child {
+  flex: 1 1 auto; }
+
+.flex-child-center {
+  align-self: center;
+  flex-shrink: 1; }
+
+.flex-none {
+  flex: none; }
+
+.noPadding {
+  padding: 0; }
+
+#setUp-Month .month {
+  font-size: 1.2em;
   text-align: center; }
-  @media (max-width: 640px) {
-    .store .total p {
-      margin: 0; } }
-
-.program {
-  height: calc(100vh - 57px);
-  margin-top: 57px !important;
-  margin-right: 20px !important;
-  margin-left: 20px !important; }
-
-.gameInteraction {
-  border: 1px solid #0B4574;
-  border-radius: .15em;
-  padding: .2em .5em;
-  overflow: auto;
-  background-color: black; }
-  .gameInteraction h3 {
-    text-transform: initial; }
 
 .sidebar {
   display: inline-block;
@@ -989,335 +942,6 @@ ul {
   .inventory .fuel, .inventory .food, .inventory .ammo {
     vertical-align: middle; }
 
-.stats {
-  margin-top: 20px; }
-  .stats img {
-    position: relative;
-    top: -2px;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle; }
-  .stats li {
-    margin-bottom: 15px; }
-
-.conditions {
-  display: inline-block;
-  margin-right: 0;
-  vertical-align: top; }
-  .conditions .cond-info {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em; }
-    .conditions .cond-info div {
-      flex: 1 1 auto;
-      display: inline-block;
-      vertical-align: middle; }
-  .conditions .icons {
-    text-align: center;
-    padding: .25em;
-    flex: none;
-    display: inline-block;
-    vertical-align: middle; }
-  @media (max-width: 640px) {
-    .conditions {
-      display: flex; }
-      .conditions .cond-info {
-        flex-direction: column;
-        font-size: 1em;
-        flex: 1 1 auto; } }
-
-.icons {
-  height: 3em; }
-  @media (max-width: 640px) {
-    .icons {
-      height: 2em; } }
-
-.left {
-  float: left; }
-
-#game h4:not(.button) {
-  border-bottom: 2px solid #EEFFFC;
-  display: block; }
-  #game h4:not(.button):hover {
-    border-bottom: 2px solid #2DF5D0; }
-
-.options {
-  margin-top: 50vh; }
-  .options.travel {
-    position: absolute;
-    bottom: 0;
-    display: none; }
-
-.twoChoices, .oneChoices {
-  display: none;
-  margin-top: 0; }
-
-.change-pace, .change-rations, .trading, .local-trading {
-  display: inline-block; }
-
-.first-item, .second-item {
-  font-weight: 400; }
-
-.h4Ignore:hover {
-  color: #0B4574;
-  cursor: inherit; }
-
-#title {
-  background-image: url("../images/card-title-bkg.png");
-  background-size: cover;
-  background-position: right;
-  background-repeat: no-repeat;
-  background-attachment: fixed; }
-  #title .info {
-    width: 55%;
-    margin-left: 8.33333%; }
-
-.item {
-  text-align: center; }
-
-.item-row {
-  display: flex;
-  align-items: baseline; }
-  .item-row > * {
-    height: 100%;
-    margin: 1rem 0 0 0; }
-
-.progressConsole {
-  display: inline-block;
-  height: 80vh;
-  overflow: auto; }
-  .progressConsole::-webkit-scrollbar {
-    background-color: white;
-    width: .3em; }
-  .progressConsole::-webkit-scrollbar-thumb {
-    background-color: #2DF5D0;
-    border-radius: 5px; }
-  .progressConsole .warning {
-    color: #F2545B; }
-  @media (max-width: 640px) {
-    .progressConsole {
-      height: 50vh;
-      padding-left: 0 !important; }
-      .progressConsole p {
-        padding: 0; } }
-
-.displayWindow {
-  vertical-align: top;
-  display: inline-block; }
-  .displayWindow img {
-    max-width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    display: block; }
-  @media (max-width: 640px) {
-    .displayWindow {
-      height: 50vh; } }
-
-.travel {
-  width: 100%; }
-
-.blackHole-icon {
-  width: 25px; }
-
-.opt-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-
-.display-container {
-  position: relative;
-  width: 100%; }
-  .display-container:before {
-    content: "";
-    display: block;
-    padding-top: 100%; }
-  .display-container .display-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-image: url("../images/you.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain; }
-
-.locationProgress {
-  content: '';
-  height: 50px;
-  width: 100%;
-  position: relative;
-  background-image: url("../images/stars.gif");
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: center; }
-
-.ship {
-  background-image: url("../images/ship_farmer.svg");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  transform: translateX(0);
-  transition: transform 0.2s; }
-
-.homePlanet {
-  background-image: url("../images/newHome.gif");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  display: none; }
-
-.xPlanet {
-  background-image: url("../images/planetX.gif");
-  content: '';
-  height: 20px;
-  width: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  left: 22%;
-  display: none; }
-
-.yNebula {
-  background-image: url("../images/nebula.gif");
-  content: '';
-  height: 20px;
-  width: 15%;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  top: 15px;
-  left: 53%;
-  display: none; }
-
-.object-row .object {
-  text-align: center; }
-  .object-row .object img {
-    vertical-align: middle; }
-  .object-row .object p {
-    display: inline-block;
-    vertical-align: middle; }
-.object-row .cost {
-  text-align: center; }
-.object-row input {
-  margin-top: 6px; }
-
-.weight-record {
-  text-align: center; }
-
-.chatterbox-image-container {
-  position: relative;
-  width: 100%; }
-  .chatterbox-image-container:before {
-    content: "";
-    display: block;
-    padding-top: 100%; }
-  .chatterbox-image-container .chatterbox-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0; }
-
-.newHome .home {
-  background-image: url("../images/home.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left bottom;
-  position: absolute;
-  bottom: 2vh;
-  left: 0;
-  width: 100%;
-  height: 30vh;
-  content: ''; }
-.newHome .ground {
-  position: absolute;
-  content: '';
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2vh;
-  background-image: url("../images/homeGround.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; }
-.newHome .crewLeft {
-  display: inline-block;
-  width: 50%;
-  height: 10vh;
-  position: absolute;
-  bottom: 1vh;
-  right: 0; }
-  .newHome .crewLeft .surviveCrew {
-    height: 100%;
-    content: "";
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block; }
-  .newHome .crewLeft .crew1 {
-    background-image: url("../images/crew1.svg"); }
-  .newHome .crewLeft .crew2 {
-    background-image: url("../images/crew2.svg"); }
-  .newHome .crewLeft .crew3 {
-    background-image: url("../images/crew3.svg"); }
-  .newHome .crewLeft .crew4 {
-    background-image: url("../images/crew4.svg"); }
-  .newHome .crewLeft .leader {
-    background-image: url("../images/you.svg"); }
-
-@media (max-width: 899px) {
-  #title {
-    background-image: none; }
-    #title .info {
-      width: 83.33333%;
-      margin-left: 8.33333%; } }
-p.desc {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left; }
-  @media (max-width: 640px) {
-    p.desc {
-      font-size: .8em; } }
-
-.circle {
-  border-radius: 50%;
-  width: 100%;
-  flex: 0 0 auto;
-  padding: 20px; }
-
-.flex-parent {
-  display: flex; }
-
-.flex-child {
-  flex: 1 1 auto; }
-
-.flex-child-center {
-  align-self: center;
-  flex-shrink: 1; }
-
-.flex-none {
-  flex: none; }
-
-.noPadding {
-  padding: 0; }
-
 .well {
   padding: 10px;
   background-color: #eee;
@@ -1334,8 +958,7 @@ p.desc {
   .content > section p {
     max-width: 600px;
     margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(238, 255, 252, 0.5); }
+    margin-right: auto; }
     .content > section p.question {
       color: #079b80;
       margin-bottom: 0;
@@ -1347,7 +970,7 @@ p.desc {
     max-width: 100%; }
 
 .button {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
   color: #2DF5D0;
   font-size: 200%;
   font-weight: 700;
@@ -1366,5 +989,9 @@ p.desc {
     text-shadow: 0 0 15px #2DF5D0;
     box-shadow: 0 0 15px #2DF5D0;
     color: #2DF5D0; }
+
+#game .content {
+  position: relative;
+  top: 42px; }
 
 /*# sourceMappingURL=style.css.map */

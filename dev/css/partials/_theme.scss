@@ -18,7 +18,7 @@
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
-		background-color: rgba($color-tri, 0.5);
+		// background-color: rgba($color-tri, 0.5);
 
 		&.question {
 			color: darken($color-prime, 25%);
@@ -56,5 +56,12 @@
 		text-shadow: 0 0 15px $color-prime;
 		box-shadow: 0 0 15px $color-prime;
 		color: $color-prime;
+	}
+}
+
+#game{
+	.content{
+		position: relative;
+		top: 42px;
 	}
 }

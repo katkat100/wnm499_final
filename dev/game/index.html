@@ -21,22 +21,100 @@
 
 	<div class="content">
 		<div class="setUp-container">
-			<div class="row gutters" id="setUp-profession">
-				<h2>Choose a Profession</h2>
-				<ul>
-					<li class="col-xs-12 col-md-4">
-						<div class="img-farmer"></div>
-						<h4>Meteorite Farmer</h4>
-					</li>
-					<li class="col-xs-12 col-md-4">
-						<div class="img-engineer"></div>
-						<h4>Spaceship Engineer</h4>
-					</li>
-					<li class="col-xs-12 col-md-4">
-						<div class="img-moneybags"></div>
-						<h4>Moneybags</h4>
-					</li>
-				</ul>
+			<div class="container">
+				<div id="setUp-profession">
+					<h2>Choose a Profession</h2>
+					<ul class="row gutters">
+						<li class="col-xs-12 col-md-4">
+							<div class="img-farmer"></div>
+							<h4 class="setUp-button">Meteorite Farmer</h4>
+						</li>
+						<li class="col-xs-12 col-md-4">
+							<div class="img-engineer"></div>
+							<h4 class="setUp-button">Spaceship Engineer</h4>
+						</li>
+						<li class="col-xs-12 col-md-4">
+							<div class="img-moneybags"></div>
+							<h4 class="setUp-button">Moneybags</h4>
+						</li>
+					</ul>
+				</div>
+
+				<div id="setUp-Name">
+					<h2>What is your name, captain?</h2>
+					<div class="row gutters">
+						<input type="text" name="captain" value="Capitano" maxlength="15" class="col-xs-4 offset-xs-4">
+					</div>
+					<h4 class="setUp-button">This is my name.</h4>
+				</div>
+
+				<div id="setUp-Crew">
+					<h2>What is the names of your crew?</h2>
+					<ul class="row gutters">
+						<li class="col-xs-6 col-md-3">
+							<div class="img-crewOne"></div>
+							<input type="text" name="crewOne" value="Clemence" maxlength="10">
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<div class="img-crewTwo"></div>
+							<input type="text" name="crewTwo" value="Parnell" maxlength="10">
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<div class="img-crewThree"></div>
+							<input type="text" name="crewThree" value="Oswyn" maxlength="10">
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<div class="img-crewFour"></div>
+							<input type="text" name="crewFour" value="Gilbert" maxlength="10">
+						</li>
+					</ul>
+					<h4 class="setUp-button">This is my crew.</h4>
+				</div>
+
+				<div id="setUp-Month">
+					<h2>The year is 2148. What month do you plan on leaving?</h2>
+					<ul class="row gutters">
+						<li class="col-xs-6 col-md-3">
+							<p class="month april">April</p>
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<p class="month may">May</p>
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<p class="month june">June</p>
+						</li>
+						<li class="col-xs-6 col-md-3">
+							<p class="month july">July</p>
+						</li>
+					</ul>
+					<h4 class="setUp-button">We leave on <span class="month"></span>.</h4>
+				</div>
+				
+				<div id="setUp-b4Shop">
+					<h2>Before you depart it is wise to stock up on supplies.</h2>
+					<p>You have §<span class="money"></span> to spend. It would be wise to not spend it all in one place.</p>
+					<h4 class="setUp-button">Enter Store</h4>
+				</div>
+
+				<div id="setUp-Shop">
+					<h2>Welcome to Singrid's One-Stop Shop!</h2>
+					<p>Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
+
+					<div class="shop-inventory">
+						<div class="row gutters flex">
+							<ul class="col-xs-12 col-md-9">
+								<li class="col-xs-6 col-md-4"></li>
+								<li class="col-xs-6 col-md-4"></li>
+								<li class="col-xs-6 col-md-4"></li>
+							</ul>
+						</div>
+							
+					</div>
+
+				</div>
+
+
+
 			</div>
 		</div>
 	</div>
