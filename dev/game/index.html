@@ -102,15 +102,41 @@
 
 					<div class="shop-inventory">
 						<div class="row gutters flex">
-							<ul class="col-xs-12 col-md-9">
-								<li class="col-xs-6 col-md-4"></li>
-								<li class="col-xs-6 col-md-4"></li>
-								<li class="col-xs-6 col-md-4"></li>
+							<ul class="col-xs-6 col-md-9 item-container row gutters">
+								<li class="col-xs-12 col-md-4 item">
+									<img src="../images/sidebar_apple.svg">
+									<p class="item-title">Food</p>
+									<p class="item-cost">§20 for 10 meals</p>
+									<input type="number" name="shop-food" min="0" maxlength="20" value="0">
+								</li>
+								<li class="col-xs-12 col-md-4 item">
+									<img src="../images/sidebar_apple.svg">
+									<p class="item-title">Fuel</p>
+									<p class="item-cost">§50 for 100 fuel pods</p>
+									<input type="number" name="shop-fuel" min="0" maxlength="20" value="0">
+								</li>
+								<li class="col-xs-12 col-md-4 item">
+									<img src="../images/sidebar_apple.svg">
+									<p class="item-title">Ammo</p>
+									<p class="item-cost">§20 for 5 energy shots</p>
+									<input type="number" name="shop-ammo" min="0" maxlength="20" value="0">
+								</li>
 							</ul>
+							<div class="col-xs-6 col-md-3 receipt">
+								<p>Amount you have: §<span class="money"></span></p>
+								<p>Bill so far: §<span class="bill"></span></p>
+								<p>Ending amount: §<span class="total"></span></p>
+							</div>
 						</div>
 							
 					</div>
+					<h4 class="setUp-button">Purchase Items & Exit Store</h4>
 
+				</div>
+
+				<div id="setUp-End">
+					<h2>You have a long journey ahead of you. Good Luck.</h2>
+					<h4 class="setUp-button">Depart</h4>
 				</div>
 
 
