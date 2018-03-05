@@ -93,6 +93,7 @@
 
 #setUp{
 	&-profession{
+		
 		.job{
 			border: 3px solid $color-tri;
 			padding: .5em;
@@ -103,16 +104,16 @@
 			.img-farmer{
 				background-color: $color-sec;
 			}
+
+			.setUp-desc{
+				transition: color 0.3s;
+			}
 			
 			&:hover{
-				border-color: $color-prime;
-				h4{
-					color: $color-prime;
+				border-color: lighten($color-prime, 30%);
+				.setUp-desc{
+					color: lighten($color-prime, 30%);
 				}
-			}
-
-			&.active{
-				border-color: $color-prime;
 			}
 
 			.setUp-button{
@@ -121,8 +122,17 @@
 				padding: 0;
 
 			}
+			
 
+		}
+		.active{
+			.job{
+				border-color: $color-prime;
 
+				.setUp-desc{
+					color: $color-prime;
+				}
+			}
 		}
 	}
 

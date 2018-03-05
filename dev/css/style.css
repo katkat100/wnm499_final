@@ -918,16 +918,20 @@ ul {
   transition: border 0.3s; }
   #setUp-profession .job .img-farmer {
     background-color: #0B4574; }
+  #setUp-profession .job .setUp-desc {
+    transition: color 0.3s; }
   #setUp-profession .job:hover {
-    border-color: #2DF5D0; }
-    #setUp-profession .job:hover h4 {
-      color: #2DF5D0; }
-  #setUp-profession .job.active {
-    border-color: #2DF5D0; }
+    border-color: #bffcf1; }
+    #setUp-profession .job:hover .setUp-desc {
+      color: #bffcf1; }
   #setUp-profession .job .setUp-button {
     border-width: 0px;
     display: block;
     padding: 0; }
+#setUp-profession .active .job {
+  border-color: #2DF5D0; }
+  #setUp-profession .active .job .setUp-desc {
+    color: #2DF5D0; }
 #setUp-month .month-choice {
   font-size: 1.2em;
   text-align: center;
