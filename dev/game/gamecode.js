@@ -27,7 +27,9 @@ $(function(){
 
 
 //functions
-
+	function gameSpans(object){
+		$("span." + object).text(gameobj[object]);
+	}
 
 
 
@@ -48,17 +50,21 @@ $(function(){
 		if($("#setUp-profession .active").hasClass("job-farmer")){
 			captain["job"] = "farmer";
 			gameobj["money"] = 1000;
+			budget = gameobj["money"];
 		} else if($("#setUp-profession .active").hasClass("job-engineer")){
 			captain["job"] = "engineer";
 			gameobj["money"] = 1500;
+			budget = gameobj["money"];
 		} else if($("#setUp-profession .active").hasClass("job-moneybags")){
 			captain["job"] = "moneybag";
 			gameobj["money"] = 2000;
+			budget = gameobj["money"];
 		} else {
 
 		}
 		c("job " + captain["job"]);
 		c("money " + gameobj["money"]);
+		$("span.money").text(gameobj["money"]);
 	})
 
 //name
@@ -98,8 +104,49 @@ $(function(){
 	});
 
 //shop
-	$().on('click', function(){
+	var numFood = 0; numFuel = 0; numAmmo = 0;
+	var shopBill = 0;
+	// var budget = 0;
+	var budget = 2000;
+	var shopTotal = 0;
 
+	function updateBill(){
+		shopBill = (20 * numFood) + (50 * numFuel) + (20 * numAmmo);
+		shopTotal = budget - shopBill;
+		$("span.bill").text(shopBill);
+		$("span.total").text(shopTotal);
+	}
+
+	$("input[name=shop-food]").on('change', function(){
+		numFood = $("input[name=shop-food]").val();
+		updateBill();
+		c("food: " + numFood);
+		c("bill: " + shopBill);
+	})
+
+	$("input[name=shop-fuel]").on('change', function(){
+		numFuel = $("input[name=shop-fuel]").val();
+		updateBill();
+		c("fuel: " + numFuel);
+		c("bill: " + shopBill);
+	})
+
+	$("input[name=shop-ammo]").on('change', function(){
+		numAmmo = $("input[name=shop-ammo]").val();
+		updateBill();
+		c("ammo: " + numAmmo);
+		c("bill: " + shopBill);
+	})
+
+	$("#setUp-shop .setUp-button").on('click', function(){
+		gameobj['food'] = numFood * 10;
+		gameobj['fuel'] = numFuel * 50;
+		gameobj['ammo'] = numAmmo * 5;
+		gameobj['money'] = shopTotal;
+		gameSpans('food');
+		gameSpans('fuel');
+		gameSpans('ammo');
+		gameSpans('money');
 	});
 	
 })
