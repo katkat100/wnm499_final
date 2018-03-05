@@ -937,11 +937,14 @@ ul {
   text-align: center;
   cursor: pointer;
   border: 3px solid #EEFFFC;
-  transition: border 0.3s;
+  transition: border 0.3s, color 0.3s;
   padding: .25em .5em; }
   #setUp-month .month-choice:hover {
-    color: #2DF5D0;
-    border-color: #2DF5D0; }
+    color: #bffcf1;
+    border-color: #bffcf1; }
+#setUp-month .active .month-choice {
+  color: #2DF5D0;
+  border-color: #2DF5D0; }
 #setUp-shop .item {
   position: relative;
   padding-bottom: 30px; }

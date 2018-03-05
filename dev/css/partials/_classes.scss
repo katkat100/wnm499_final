@@ -137,15 +137,22 @@
 	}
 
 	&-month{
-		& .month-choice{
+		
+		.month-choice{
 			font-size: 1.2em;
 			text-align: center;
 			cursor: pointer;
 			border: 3px solid $color-tri;
-			transition: border 0.3s;
+			transition: border 0.3s, color 0.3s;
 			padding: .25em .5em;
 
 			&:hover{
+				color: lighten($color-prime, 30%);
+				border-color: lighten($color-prime, 30%);
+			}
+		}
+		.active{
+			.month-choice{
 				color: $color-prime;
 				border-color: $color-prime;
 			}
