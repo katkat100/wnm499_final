@@ -5,13 +5,19 @@ $(function(){
 		ammo : 0,
 		money : 0
 	};
+	var gameobjLimit = {
+		food : 500,
+		fuel : 500,
+		ammo : 50
+	};
 
 	var captain = {
 		job : "",
 		name : ""
 	};
 
-	var crew = []; var crewImage = ["crew1", "crew2", "crew3", "crew4"];
+	var crew = ["mem1", "mem2", "mem3", "mem4"];
+	var crewImage = ["crew1", "crew2", "crew3", "crew4"];
 
 	var month = '';
 	var day = 1;
@@ -42,6 +48,7 @@ $(function(){
 		}, 700, function(){
 			if(setUpEnd == true){
 				$('.setUp-container').hide();
+				$('.spaceScreen-container').show();
 			}
 		})
 	}
@@ -135,8 +142,8 @@ $(function(){
 
 	var numFood = 0; numFuel = 0; numAmmo = 0;
 	var shopBill = 0;
-	// var budget = 0;
-	var budget = 2000;
+	var budget = 0;
+	// var budget = 2000;
 	var shopTotal = 0;
 
 	function updateBill(){
@@ -189,5 +196,41 @@ $(function(){
 		setUpMove();
 
 	})
+
+	//game
+	var bar = 200;
+	$(".inventory").mouseenter(function(){
+		var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
+		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
+		var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
+		$(".inven.food .bar").animate({width: foodBar});
+		$(".inven.food .full-bar").animate({width: 200 - foodBar});
+		$(".inven.fuel .bar").animate({width: fuelBar});
+		$(".inven.fuel .full-bar").animate({width: 200 - fuelBar});
+		$(".inven.ammo .bar").animate({width: ammoBar});
+		$(".inven.ammo .full-bar").animate({width: 200 - ammoBar});
+		// $(".inventory span").animate({opacity: 0});
+	})
+
+	$(".inventory").mouseleave(function(){
+		$(".inven.food .bar").animate({width: 0});
+		$(".inven.food .full-bar").animate({width: 0});
+		$(".inven.fuel .bar").animate({width: 0});
+		$(".inven.fuel .full-bar").animate({width: 0});
+		$(".inven.ammo .bar").animate({width: 0});
+		$(".inven.ammo .full-bar").animate({width: 0});
+		// $(".inventory span").animate({opacity: 1});
+	})
+
+
+	gameobj['food'] = 200;
+	gameobj['fuel'] = 200;
+	gameobj['ammo'] = 10;
+	gameobj['money'] = 2000;
+	gameSpans('food');
+	gameSpans('fuel');
+	gameSpans('ammo');
+	gameSpans('money');
+	$("span.health").text(4)
 	
 })
