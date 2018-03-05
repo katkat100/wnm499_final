@@ -55,6 +55,9 @@
 
 
 
+.warning{
+	color: $color-warning;
+}
 
 .card{
 	position: relative;
@@ -65,10 +68,15 @@
 		height: calc(100vh - 44px);
 		position: relative;
 		display: inline-block;
+		// transition: all 0.5s;
 	}
 }
 
 .setUp-container{
+	height: calc(100vh - 44px);
+	overflow: hidden;
+
+
 	.img-captain, .img-crewOne, .img-crewTwo, .img-crewThree, .img-crewFour{
 		@extend %background-image-basic;
 	}
@@ -160,6 +168,10 @@
 	}
 
 	&-shop{
+		.overSpent{
+			display: none;
+			text-align: center;
+		}
 		.item{
 			position: relative;
 			padding-bottom: 30px;

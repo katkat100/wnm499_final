@@ -889,6 +889,9 @@ ul {
 .noPadding {
   padding: 0; }
 
+.warning {
+  color: #F2545B; }
+
 .card {
   position: relative;
   top: 50%;
@@ -899,16 +902,19 @@ ul {
     position: relative;
     display: inline-block; }
 
-.setUp-container .img-captain {
-  background-image: url(../images/you.svg); }
-.setUp-container .img-crewOne {
-  background-image: url(../images/crew1.svg); }
-.setUp-container .img-crewTwo {
-  background-image: url(../images/crew2.svg); }
-.setUp-container .img-crewThree {
-  background-image: url(../images/crew3.svg); }
-.setUp-container .img-crewFour {
-  background-image: url(../images/crew4.svg); }
+.setUp-container {
+  height: calc(100vh - 44px);
+  overflow: hidden; }
+  .setUp-container .img-captain {
+    background-image: url(../images/you.svg); }
+  .setUp-container .img-crewOne {
+    background-image: url(../images/crew1.svg); }
+  .setUp-container .img-crewTwo {
+    background-image: url(../images/crew2.svg); }
+  .setUp-container .img-crewThree {
+    background-image: url(../images/crew3.svg); }
+  .setUp-container .img-crewFour {
+    background-image: url(../images/crew4.svg); }
 
 #setUp-profession .job {
   border: 3px solid #EEFFFC;
@@ -945,6 +951,9 @@ ul {
 #setUp-month .active .month-choice {
   color: #2DF5D0;
   border-color: #2DF5D0; }
+#setUp-shop .overSpent {
+  display: none;
+  text-align: center; }
 #setUp-shop .item {
   position: relative;
   padding-bottom: 30px; }

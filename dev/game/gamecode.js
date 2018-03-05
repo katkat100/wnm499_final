@@ -31,6 +31,21 @@ $(function(){
 		$("span." + object).text(gameobj[object]);
 	}
 
+	var windowHeight = $(window).height();
+	var baseCard = windowHeight - 44;
+	var moveCard = 0;
+	var setUpEnd = false
+	function setUpMove(){
+		moveCard +=baseCard;
+		$(".card-container").animate({
+			top : -moveCard
+		}, 700, function(){
+			if(setUpEnd == true){
+				$('.setUp-container').hide();
+			}
+		})
+	}
+
 
 
 //job
@@ -51,14 +66,17 @@ $(function(){
 			captain["job"] = "farmer";
 			gameobj["money"] = 1000;
 			budget = gameobj["money"];
+			setUpMove();
 		} else if($("#setUp-profession .active").hasClass("job-engineer")){
 			captain["job"] = "engineer";
 			gameobj["money"] = 1500;
 			budget = gameobj["money"];
+			setUpMove();
 		} else if($("#setUp-profession .active").hasClass("job-moneybags")){
 			captain["job"] = "moneybag";
 			gameobj["money"] = 2000;
 			budget = gameobj["money"];
+			setUpMove();
 		} else {
 
 		}
@@ -71,6 +89,7 @@ $(function(){
 	$("#setUp-name .setUp-button").on('click',function(){
 		captain['name'] = $("input[name=captain]").val();
 		c("captain " + captain['name']);
+		setUpMove();
 	});
 
 //crew
@@ -81,6 +100,7 @@ $(function(){
 		crew[3] = $("input[name=crewFour]").val();
 
 		c("crew: " + crew);
+		setUpMove();
 	});
 
 //month
@@ -91,12 +111,16 @@ $(function(){
 	$("#setUp-month .setUp-button").on('click', function(){
 		if($("#setUp-month .active").children(".month-choice").hasClass("april")){
 			month = "April";
+			setUpMove();
 		} else if($("#setUp-month .active").children(".month-choice").hasClass("may")){
 			month = "May";
+			setUpMove();
 		} else if($("#setUp-month .active").children(".month-choice").hasClass("june")){
 			month = "June";
+			setUpMove();
 		} else if($("#setUp-month .active").children(".month-choice").hasClass("july")){
 			month = "July";
+			setUpMove();
 		} else {
 
 		}
@@ -104,6 +128,11 @@ $(function(){
 	});
 
 //shop
+
+	$("#setUp-b4Shop .setUp-button").on('click', function(){
+		setUpMove();
+	})
+
 	var numFood = 0; numFuel = 0; numAmmo = 0;
 	var shopBill = 0;
 	// var budget = 0;
@@ -115,38 +144,50 @@ $(function(){
 		shopTotal = budget - shopBill;
 		$("span.bill").text(shopBill);
 		$("span.total").text(shopTotal);
+
+		c("food: " + numFood);
+		c("fuel: " + numFuel);
+		c("ammo: " + numAmmo);
+		c("bill: " + shopBill);
 	}
 
 	$("input[name=shop-food]").on('change', function(){
 		numFood = $("input[name=shop-food]").val();
 		updateBill();
-		c("food: " + numFood);
-		c("bill: " + shopBill);
 	})
 
 	$("input[name=shop-fuel]").on('change', function(){
 		numFuel = $("input[name=shop-fuel]").val();
 		updateBill();
-		c("fuel: " + numFuel);
-		c("bill: " + shopBill);
 	})
 
 	$("input[name=shop-ammo]").on('change', function(){
 		numAmmo = $("input[name=shop-ammo]").val();
 		updateBill();
-		c("ammo: " + numAmmo);
-		c("bill: " + shopBill);
 	})
 
 	$("#setUp-shop .setUp-button").on('click', function(){
-		gameobj['food'] = numFood * 10;
-		gameobj['fuel'] = numFuel * 50;
-		gameobj['ammo'] = numAmmo * 5;
-		gameobj['money'] = shopTotal;
-		gameSpans('food');
-		gameSpans('fuel');
-		gameSpans('ammo');
-		gameSpans('money');
+		if(shopTotal >= 0){
+			gameobj['food'] = numFood * 10;
+			gameobj['fuel'] = numFuel * 50;
+			gameobj['ammo'] = numAmmo * 5;
+			gameobj['money'] = shopTotal;
+			gameSpans('food');
+			gameSpans('fuel');
+			gameSpans('ammo');
+			gameSpans('money');
+			setUpMove();
+		} else {
+			$(".overSpent").show();
+		}
+		
 	});
+
+//setUp end
+	$('#setUp-end').on('click', function(){
+		setUpEnd = true;
+		setUpMove();
+
+	})
 	
 })

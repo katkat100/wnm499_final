@@ -138,6 +138,8 @@
 						<h2>Welcome to Singrid's One-Stop Shop!</h2>
 						<p class="setUp-desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
 
+						<p class="warning overSpent">It doesn't look like you have enough money to buy these items. Please change the amount of items you want to buy in order to leave the store.</p>
+
 						<div class="shop-inventory">
 							<div class="row gutters flex">
 								<ul class="col-xs-12 col-sm-7 col-md-9 item-container row gutters">
@@ -193,135 +195,6 @@
 	</div>
 
 	<!-- <div class="atMain">
-		<nav>
-			<ul>
-				<li><a href="../index.html">Overview</a></li>
-				<li><a href="../about.html">About</a></li>
-				<li><a href="../faq.html">FAQ</a></li>
-			</ul>
-		</nav>
-		<section id="secTwo">
-			<div class="card" id="spaceStation">
-				<h2>Choose a profession</h2>
-				<h4 class="next farmer">Meteorite Farmer</h4>
-				<h4 class="next engineer">Spaceship Engineer</h4>
-				<h4 class="next moneybags">Moneybags</h4>
-			</div>
-		</section>
-		<section id="secThree">
-			<div class="card" id="nameLeader">
-				<h2>What is the name of the Captain?</h2>
-				<input type="text" name="captain" value="Capitano" maxlength="10">
-				<h4 class="next leaderName">Enter Name</h4>
-			</div>
-		</section>
-		<section id="secFour">
-			<div class="card" id="nameMembers">
-				<h2>What are the names of the other members?</h2>
-				<div class="row">
-					<ol class="col-xs-10 offset-xs-1">
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew1"></div>
-							</div>
-							<input type="text" name="member1" value="Clemence" maxlength="10">
-						</li>
-
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew2"></div>
-							</div>
-							<input type="text" name="member2" value="Parnell" maxlength="10">
-						</li>
-
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew3"></div>
-							</div>
-							<input type="text" name="member3" value="Oswyn" maxlength="10">
-						</li>
-
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew4"></div>
-							</div>
-							<input type="text" name="member4"  value="Gilbert" maxlength="10">
-						</li>
-					</ol>
-				</div>
-				<h4 class="next memberName">Enter Names</h4>
-			</div>
-		</section>
-		<section id="secFive">
-			<div class="card" id="month">
-				<h2>The year is 2148. What month will the crew be leaving Space Station Faithful?</h2>
-				<ul>
-					<li><h4 class="next april">April</h4></li>
-					<li><h4 class="next may">May</h4></li>
-					<li><h4 class="next june">June</h4></li>
-					<li><h4 class="next july">July</h4></li>
-				</ul>
-			</div>
-		</section> 
-		<section id="secSix">
-			<div class="card" id="money">
-				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
-				<h4 class="next enterStore">Enter Store</h4>
-			</div>
-		</section> 
-		<section id="secSeven">
-			<div class="card store" id="stationShop">
-				<h2>Welcome to my store!</h2>
-				<div class="row gutters">
-					<div class="col-xs-12">
-						<p class="desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
-					</div>
-					<div class="col-xs-12 col-md-6 itemList">
-						<div class="item-row food">
-							<p class="item col-xs-3">
-								<img src="../images/icons_food.svg" alt="food" class="icons">
-								Food
-							</p>
-							<p class="cost col-xs-6">§20 for 10 meals</p>
-							<input class="col-xs-3" type="number" name="food" maxlength="10" min="0" value="0">
-						</div>
-						<div class="item-row fuel">
-							<p class="item col-xs-3">
-								<img src="../images/icons_fuel.svg" alt="fuel" class="icons"> 
-								Fuel
-							</p>
-							<p class="cost col-xs-6">§50 for 100 fuel pods</p>
-							<input class="col-xs-3" type="number" name="fuel" maxlength="10" min="0" value="0">
-						</div>
-						<div class="item-row ammo">
-							<p class="item col-xs-3">
-								<img src="../images/icons_ammo.svg" alt="ammo" class="icons"> 
-								Ammo
-							</p>
-							<p class="cost col-xs-6">§20 for 5 energy shots</p>
-							<input class="col-xs-3" type="number" name="ammo" maxlength="10" min="0" value="0">
-						</div>
-					</div>
-					<div class="col-xs-12 col-md-6 total">
-						<p>Amount you have: §<span class="money"></span></p>
-						<p>Bill so far: §<span class="bill"></span></p>
-						<p>Ending amount: §<span class="total"></span></p>
-					</div>
-				</div>
-
-				<h4 class="next exitStore">Purchase Items & Exit Store</h4>
-			</div>
-		</section>
-		<section id="secEight">
-			<div class="card" id="departure">
-				<h2>You have a long journey ahead of you.</h2>
-				<h2>Good Luck.</h2>
-				<div class="options row">
-					<h4 class="opt-bottom next departure col-xs-12">Depart</h4>
-				</div>
-			</div>
-		</section>
-		
 		<section id="secNine">
 			<div class="program row gutters">
 				<div class="gameInteraction conditions col-xs-12 col-md-3">
