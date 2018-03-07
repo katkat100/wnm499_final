@@ -1034,11 +1034,11 @@ input[name=captain] {
 
 .displayWindow {
   position: absolute;
-  width: calc(100% - 70px);
   height: calc(100% - 215px);
   content: "";
-  top: 160px;
-  left: 70px; }
+  top: 150px;
+  left: 70px;
+  right: 70px; }
   .displayWindow > div {
     height: 100%; }
 
@@ -1051,6 +1051,12 @@ input[name=captain] {
   content: "";
   height: 100%;
   background-image: url("../images/pirate.svg"); }
+
+.monthDay {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  transform: translate(-50%, 0); }
 
 .travel-options {
   position: absolute;
@@ -1069,12 +1075,19 @@ input[name=captain] {
       border-color: #2DF5D0;
       color: #2DF5D0; }
 
-.sidebar {
+.sidebar-left {
   display: inline-block;
   position: absolute;
-  transform: translate(10px, 80%); }
+  top: 50%;
+  transform: translate(10px, -50%); }
 
-.inventory ul, .stats ul {
+.sidebar-right {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%); }
+
+.inventory ul, .stats ul .paceRation ul {
   list-style: none;
   padding-left: 0;
   margin-top: 0;
@@ -1132,6 +1145,16 @@ input[name=captain] {
   .stats li {
     margin-bottom: 15px; }
 
+.paceRation {
+  padding-top: 11px; }
+  .paceRation .para {
+    padding-bottom: 19px; }
+  .paceRation img {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-left: 10px; }
+
 @media (min-width: 480px) and (max-width: 639px) {
   #setUp-shop .item {
     padding-bottom: 0; }
@@ -1159,7 +1182,10 @@ input[name=captain] {
 
   .travel-options .screen-width {
     width: 100%;
-    margin-left: 0; } }
+    margin-left: 0; }
+
+  .progressConsole-container {
+    width: 100%; } }
 @media (max-width: 479px) {
   #setUp-shop .item {
     padding: 0 5px; }

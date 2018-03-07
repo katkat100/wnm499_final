@@ -10,6 +10,8 @@ $(function(){
 		fuel : 500,
 		ammo : 50
 	};
+	var ration = "filling";
+	var pace = "quick";
 
 	var captain = {
 		job : "",
@@ -221,6 +223,28 @@ $(function(){
 		$(".inven.ammo .full-bar").animate({width: 0});
 		// $(".inventory span").animate({opacity: 1});
 	})
+
+	$(".travel").on('click', function(){
+		//update month and day
+		//move closer to location
+		//roll dice for situation
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	gameobj['food'] = 200;

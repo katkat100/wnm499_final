@@ -300,11 +300,12 @@ input[name=captain]{
 .displayWindow{
 	// background-color: $color-highlight;
 	position: absolute;
-	width: calc(100% - 70px);
+	// width: calc(100% - 70px);
 	height: calc(100% - 215px);
 	content: "";
-	top: 160px;
+	top: 150px;
 	left: 70px;
+	right: 70px;
 
 	&>div{
 		height: 100%;
@@ -323,6 +324,13 @@ input[name=captain]{
 	height: 100%;
 	@extend %background-image-basic;
 	background-image: url("../images/pirate.svg");
+}
+
+.monthDay{
+	position: absolute;
+	left: 50%;
+	bottom: 70px;
+	transform:translate(-50%, 0);
 }
 
 .travel-options{
@@ -348,13 +356,21 @@ input[name=captain]{
 	}
 }
 
-.sidebar{
+.sidebar-left{
   display: inline-block;
   position: absolute;
-  transform: translate(10px,80%);
-
+  top: 50%;
+  transform: translate(10px,-50%);
 }
-.inventory ul, .stats ul{
+
+.sidebar-right{
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translate(0,-50%);
+}
+
+.inventory ul, .stats ul .paceRation ul{
   list-style: none;
   padding-left: 0;
   margin-top: 0;
@@ -428,6 +444,23 @@ input[name=captain]{
   }
 }
 
+.paceRation{
+	padding-top: 11px;
+
+	.para{
+		padding-bottom: 19px;
+	}
+	img{
+		width: 20px;
+		height: 20px;
+		float: right;
+		margin-left: 10px;
+	}
+	li{
+		
+	}
+}
+
 
 //sm
 @media (min-width: 480px) and (max-width: 639px){
@@ -483,6 +516,12 @@ input[name=captain]{
 		.screen-width{
 			width: 100%;
 			margin-left: 0;
+		}
+	}
+
+	.progressConsole{
+		&-container{
+			width: 100%;
 		}
 	}
 
