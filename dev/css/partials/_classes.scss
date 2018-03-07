@@ -65,7 +65,8 @@
 	transform: translate(0, -60%);
 	&-container{
 		width: 100%;
-		height: calc(100vh - 44px);
+		// height: calc(100vh - 44px);
+		height: 100vh;
 		position: relative;
 		display: inline-block;
 		// transition: all 0.5s;
@@ -73,7 +74,8 @@
 }
 
 .setUp-container{
-	height: calc(100vh - 44px);
+	// height: calc(100vh - 44px);
+	height: 100vh;
 	overflow: hidden;
 
 
@@ -244,18 +246,39 @@ input[name=captain]{
 //game
 .spaceScreen-container{
 	display: none;
-	height: calc(100vh - 44px);
+	// height: calc(100vh - 44px);
+	height: 100vh;
 }
 
 .progressConsole{
-	height: calc(100% - 16px);
+	content: "";
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	p{
+		margin-top: 0;
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	&::-webkit-scrollbar{
+		background-color: rgba(62,244,208,.3);
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-thumb{
+		background-color: $color-prime;
+	}
+	
 	&-container{
-		background-color: lighten($color-back, 3%);
-		width: 500px;
+		background-color:#323E4C;
+		width: 600px;
 		margin-left: auto;
 		margin-right: auto;
-		height: 200px;
+		height: 150px;
 		content: "";
+		padding: 1em 1.25em;
 	}
 
 	&-dragHandle{
@@ -278,9 +301,9 @@ input[name=captain]{
 	// background-color: $color-highlight;
 	position: absolute;
 	width: calc(100% - 70px);
-	height: calc(100% - 65px);
+	height: calc(100% - 215px);
 	content: "";
-	top: 0;
+	top: 160px;
 	left: 70px;
 
 	&>div{

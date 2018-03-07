@@ -898,12 +898,12 @@ ul {
   transform: translate(0, -60%); }
   .card-container {
     width: 100%;
-    height: calc(100vh - 44px);
+    height: 100vh;
     position: relative;
     display: inline-block; }
 
 .setUp-container {
-  height: calc(100vh - 44px);
+  height: 100vh;
   overflow: hidden; }
   .setUp-container .img-captain {
     background-image: url(../images/you.svg); }
@@ -996,17 +996,30 @@ input[name=captain] {
 
 .spaceScreen-container {
   display: none;
-  height: calc(100vh - 44px); }
+  height: 100vh; }
 
 .progressConsole {
-  height: calc(100% - 16px); }
+  content: "";
+  height: 100%;
+  width: 100%;
+  overflow: auto; }
+  .progressConsole p {
+    margin-top: 0; }
+    .progressConsole p:last-child {
+      margin-bottom: 0; }
+  .progressConsole::-webkit-scrollbar {
+    background-color: rgba(62, 244, 208, 0.3);
+    width: 8px; }
+  .progressConsole::-webkit-scrollbar-thumb {
+    background-color: #2DF5D0; }
   .progressConsole-container {
-    background-color: #04132f;
-    width: 500px;
+    background-color: #323E4C;
+    width: 600px;
     margin-left: auto;
     margin-right: auto;
-    height: 200px;
-    content: ""; }
+    height: 150px;
+    content: "";
+    padding: 1em 1.25em; }
   .progressConsole-dragHandle {
     width: 100%; }
 
@@ -1022,9 +1035,9 @@ input[name=captain] {
 .displayWindow {
   position: absolute;
   width: calc(100% - 70px);
-  height: calc(100% - 65px);
+  height: calc(100% - 215px);
   content: "";
-  top: 0;
+  top: 160px;
   left: 70px; }
   .displayWindow > div {
     height: 100%; }
@@ -1228,8 +1241,7 @@ input[name=captain] {
     color: #2DF5D0; }
 
 #game .content {
-  position: relative;
-  top: 44px; }
+  position: relative; }
 
 .image1to1 {
   position: relative;
