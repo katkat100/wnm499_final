@@ -994,9 +994,71 @@ input[name=captain] {
 .setUp-desc {
   text-align: center; }
 
+.spaceScreen-container {
+  display: none;
+  height: calc(100vh - 44px); }
+
+.progressConsole {
+  height: calc(100% - 16px); }
+  .progressConsole-container {
+    background-color: #04132f;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    content: ""; }
+  .progressConsole-dragHandle {
+    width: 100%; }
+
+.dragHandle {
+  content: "";
+  height: 10px;
+  width: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 3px solid #071f50;
+  border-bottom: 3px solid #071f50; }
+
+.displayWindow {
+  position: absolute;
+  width: calc(100% - 70px);
+  height: calc(100% - 65px);
+  content: "";
+  top: 0;
+  left: 70px; }
+  .displayWindow > div {
+    height: 100%; }
+
+.display-captain {
+  content: "";
+  height: 100%;
+  background-image: url("../images/you.svg"); }
+
+.display-obstacle {
+  content: "";
+  height: 100%;
+  background-image: url("../images/pirate.svg"); }
+
+.travel-options {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  text-align: center; }
+  .travel-options .screen-width {
+    width: 83.3333333%;
+    margin-left: 8.3333333%; }
+  .travel-options .option {
+    padding: .5em .75em;
+    border: 3px solid #EEFFFC;
+    cursor: pointer;
+    transition: border 0.3s, color 0.3s; }
+    .travel-options .option:hover {
+      border-color: #2DF5D0;
+      color: #2DF5D0; }
+
 .sidebar {
   display: inline-block;
-  position: relative;
+  position: absolute;
   transform: translate(10px, 80%); }
 
 .inventory ul, .stats ul {
@@ -1038,11 +1100,11 @@ input[name=captain] {
   .inventory .fuel .info {
     position: absolute;
     left: 0px;
-    top: 50px; }
+    top: 49px; }
   .inventory .ammo .info {
     position: absolute;
     left: 0px;
-    top: 89px; }
+    top: 87px; }
   .inventory .fuel, .inventory .food, .inventory .ammo {
     vertical-align: middle; }
 
@@ -1080,7 +1142,11 @@ input[name=captain] {
     margin-left: 25%; }
 
   #setUp-shop .item-top {
-    display: inline-block; } }
+    display: inline-block; }
+
+  .travel-options .screen-width {
+    width: 100%;
+    margin-left: 0; } }
 @media (max-width: 479px) {
   #setUp-shop .item {
     padding: 0 5px; }
@@ -1198,9 +1264,9 @@ input[name=captain] {
   left: 50%;
   transform: translate(-50%, 0); }
 
-.setUp-container .img-captain, .setUp-container .img-crewOne, .setUp-container .img-crewTwo, .setUp-container .img-crewThree, .setUp-container .img-crewFour {
+.setUp-container .img-captain, .setUp-container .img-crewOne, .setUp-container .img-crewTwo, .setUp-container .img-crewThree, .setUp-container .img-crewFour, .display-captain, .display-obstacle {
   background-size: contain;
   background-position: center;
-  background-repeat: none; }
+  background-repeat: no-repeat; }
 
 /*# sourceMappingURL=style.css.map */

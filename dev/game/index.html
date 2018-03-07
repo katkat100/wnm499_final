@@ -10,6 +10,11 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- <script src="code.js"></script> -->
 	<script src="gamecode.js"></script>
+	<style>
+		.spaceScreen-container{
+			display: block;
+		}
+	</style>
 </head>
 <body id="game">
 	<nav>
@@ -145,7 +150,7 @@
 								<ul class="col-xs-12 col-sm-7 col-md-9 item-container row gutters">
 									<li class="col-xs-12 col-md-4 item">
 										<div class="item-top">
-											<img src="../images/sidebar_apple.svg">
+											<img src="../images/sidebar_food.svg">
 											<p class="item-title">Food</p>
 										</div>
 										<p class="item-cost">§20 for a food crate (10 meals)</p>
@@ -153,7 +158,7 @@
 									</li>
 									<li class="col-xs-12 col-md-4 item">
 										<div class="item-top">
-											<img src="../images/sidebar_apple.svg">
+											<img src="../images/sidebar_fuel.svg">
 											<p class="item-title">Fuel</p>
 										</div>
 										<p class="item-cost">§50 for a carton (50 fuel pods)</p>
@@ -161,7 +166,7 @@
 									</li>
 									<li class="col-xs-12 col-md-4 item">
 										<div class="item-top">
-											<img src="../images/sidebar_apple.svg">
+											<img src="../images/sidebar_ammo.svg">
 											<p class="item-title">Ammo</p>
 										</div>
 										<p class="item-cost">§20 per cartridge (5 shots)</p>
@@ -193,16 +198,13 @@
 			</div>
 		</div> -->
 		<div class="spaceScreen-container">
-			<div class="container">
-				
-			</div>
 			<div class="sidebar">
 				<ul class="inventory">
 				  <li class="inven food">
 				    <div class="bar"></div>
 				    <div class="full-bar"></div>
 				    <div class="info">
-				      <img src="../images/sidebar_apple.svg">
+				      <img src="../images/sidebar_food.svg">
 				      <span class="food"></span>
 				    </div>
 				  </li>
@@ -210,7 +212,7 @@
 				    <div class="bar"></div>
 				    <div class="full-bar"></div>
 				    <div class="info">
-				      <img src="../images/sidebar_apple.svg">
+				      <img src="../images/sidebar_fuel.svg">
 				      <span class="fuel"></span>
 				    </div>
 				  </li>
@@ -218,27 +220,55 @@
 				    <div class="bar"></div>
 				    <div class="full-bar"></div>
 				    <div class="info">
-				      <img src="../images/sidebar_apple.svg">
+				      <img src="../images/sidebar_ammo.svg">
 				      <span class="ammo"></span>
 				    </div>
 				  </li>
 				</ul>
 
 				<ul class="stats">
-				  <li class="stat money">
-				    <div class="info">
-				      <img src="../images/sidebar_apple.svg">
-				      <span class="money"></span>
-				    </div>
-				  </li>
 				  <li class="stat health">
 				    <div class="info">
-				      <img src="../images/sidebar_apple.svg">
+				      <img src="../images/sidebar_health.svg">
 				      <span class="health"></span>
+				    </div>
+				  </li>
+				  <li class="stat money">
+				    <div class="info">
+				      <img src="../images/sidebar_money.svg">
+				      <span class="money"></span>
 				    </div>
 				  </li>
 				</ul>
 			</div>
+			<!-- <div class="progressConsole-container">
+				<div class="progressConsole"></div>
+				<div class="progressConsole-dragHandle">
+					<div class="dragHandle"></div>
+				</div>
+			</div> -->
+			<div class="displayWindow">
+				<div class="row">
+					<div class="col-xs-6 display-captain"></div>
+					<div class="col-xs-6 display-obstacle"></div>
+				</div>
+			</div>
+			<div class="travel-options">
+				<div class="container">
+					<div class="screen-width">
+						<div class="row gutters">
+							<div class="col-xs-6">
+								<div class="option">Travel</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option">Trade</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
 			
 		</div>
 	</div>
