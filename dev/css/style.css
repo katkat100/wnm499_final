@@ -895,7 +895,7 @@ ul {
 .card {
   position: relative;
   top: 50%;
-  transform: translate(0, -60%); }
+  transform: translate(0, -50%); }
   .card-container {
     width: 100%;
     height: 100vh;
@@ -1002,7 +1002,9 @@ input[name=captain] {
   content: "";
   height: 100%;
   width: 100%;
-  overflow: auto; }
+  overflow: auto;
+  border: 1px solid rgba(239, 255, 252, 0.1);
+  padding: 8px; }
   .progressConsole p {
     margin-top: 0; }
     .progressConsole p:last-child {
@@ -1015,11 +1017,13 @@ input[name=captain] {
   .progressConsole-container {
     background-color: #323E4C;
     width: 600px;
-    margin-left: auto;
-    margin-right: auto;
     height: 150px;
     content: "";
-    padding: 1em 1.25em; }
+    padding: 1em 1.25em;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0); }
   .progressConsole-dragHandle {
     width: 100%; }
 
@@ -1034,9 +1038,9 @@ input[name=captain] {
 
 .displayWindow {
   position: absolute;
-  height: calc(100% - 215px);
+  height: calc(100% - 235px);
   content: "";
-  top: 150px;
+  top: 170px;
   left: 70px;
   right: 70px; }
   .displayWindow > div {
@@ -1185,7 +1189,7 @@ input[name=captain] {
     margin-left: 0; }
 
   .progressConsole-container {
-    width: 100%; } }
+    width: calc(100% - 40px); } }
 @media (max-width: 479px) {
   #setUp-shop .item {
     padding: 0 5px; }

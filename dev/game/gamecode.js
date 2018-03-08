@@ -12,6 +12,12 @@ $(function(){
 	};
 	var ration = "filling";
 	var pace = "quick";
+	var blorpTravel = {
+		slow : 1,
+		moderate : 2,
+		quick : 4,
+		fast : 8
+	}
 
 	var captain = {
 		job : "",
@@ -24,6 +30,11 @@ $(function(){
 	var month = '';
 	var day = 1;
 
+	var presentLocation = 0;
+	var stopLocations = [25, 55, 70, 100];
+	var pastLocation = 0;
+	var encounter = 0;
+
 //shortcut functions
 	function c(print){
 		console.log(print);
@@ -33,6 +44,13 @@ $(function(){
 		$(target).addClass(targetClass).siblings().removeClass(targetClass);
 	}
 
+	function addToConsole(text){
+		$(".progressConsole").append("<p>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
+	}
+
 
 //functions
 	function gameSpans(object){
@@ -40,7 +58,7 @@ $(function(){
 	}
 
 	var windowHeight = $(window).height();
-	var baseCard = windowHeight - 44;
+	var baseCard = windowHeight;
 	var moveCard = 0;
 	var setUpEnd = false
 	function setUpMove(){
@@ -53,6 +71,105 @@ $(function(){
 				$('.spaceScreen-container').show();
 			}
 		})
+	}
+
+	function upadateTime(){
+		day++;
+		if(month == "April" && day > 30){
+			month = "May";
+			day = 1;
+		} else if(month == "May" && day > 31){
+			month = "June";
+			day = 1;
+		} else if(month == "June" && day > 30){
+			month = "July";
+			day = 1;
+		} else if(month == "July" && day > 31){
+			month = "August";
+			day = 1;
+		} else if(month == "August" && day > 31){
+			month = "September";
+			day = 1;
+		} else if(month == "September" && day > 30){
+			month = "October";
+			day = 1;
+		} else if(month == "October" && day > 31){
+			month = "November";
+			day = 1;
+		} else if(month == "November" && day > 30){
+			month = "Decmeber";
+			day = 1;
+		} else if(month == "Decmeber" && day > 31){
+			month = "January";
+			day = 1;
+		} else if(month == "January" && day > 31){
+			month = "Febuary";
+			day = 1;
+		} else if(month == "Febuary" && day > 28){
+			month = "March";
+			day = 1;
+		} else if(month == "March" && day > 31){
+			month = "April";
+			day = 1;
+		}
+
+		// c(day);
+		// c(month);
+		$("span.month").text(month);
+		$("span.day").text(day);
+	}
+
+
+	function encounterDice(){
+		var diceOne, diceTwo, ranEnDice;
+		diceOne = Math.ceil( ( Math.random() * 10) );
+		diceTwo = Math.ceil( ( Math.random() * 10) );
+		ranEnDice = Math.floor((diceOne + diceTwo)/2);
+		if(ranEnDice == diceOne || ranEnDice == diceTwo){
+			encounter = Math.ceil( ( Math.random() * 10) );
+		}
+
+		// c("One: " + diceOne + ", Two: " + diceTwo + ", Random Dice: " + ranEnDice);
+	}
+
+	function encounterSituations(){
+		var conDay = month + " " + day + ": ";
+		switch(encounter){
+			case 0:
+				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+			break;
+			case 1:
+				addToConsole(conDay + "encounter 1");
+			break;
+			case 2:
+				addToConsole(conDay + "encounter 2");
+			break;
+			case 3:
+				addToConsole(conDay + "encounter 3");
+			break;
+			case 4:
+				addToConsole(conDay + "encounter 4");
+			break;
+			case 5:
+				addToConsole(conDay + "encounter 5");
+			break;
+			case 6:
+				addToConsole(conDay + "encounter 6");
+			break;
+			case 7:
+				addToConsole(conDay + "encounter 7");
+			break;
+			case 8:
+				addToConsole(conDay + "encounter 8");
+			break;
+			case 9:
+				addToConsole(conDay + "encounter 9");
+			break;
+			case 10:
+				addToConsole(conDay + "encounter 10");
+			break;
+		}
+		encounter = 0;
 	}
 
 
@@ -224,12 +341,29 @@ $(function(){
 		// $(".inventory span").animate({opacity: 1});
 	})
 
+
+//travel
 	$(".travel").on('click', function(){
-		//update month and day
+		upadateTime();
+		encounterDice();
+
+		presentLocation = presentLocation + blorpTravel[pace];
+		if(presentLocation >= stopLocations[0] && pastLocation == 0){
+			c("yayayayayay local one")
+
+			pastLocation = 1
+			presentLocation = stopLocations[0];
+		}
+
+
+
+		// encounter = 0;
+		encounterSituations();
 		//move closer to location
 		//roll dice for situation
 	});
 
+	
 
 
 
@@ -255,6 +389,11 @@ $(function(){
 	gameSpans('fuel');
 	gameSpans('ammo');
 	gameSpans('money');
-	$("span.health").text(4)
+
+	month = "March";
+	$("span.month").text(month);
+	$("span.day").text(day);
+
+	$("span.health").text(4);
 	
 })
