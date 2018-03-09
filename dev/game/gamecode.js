@@ -83,6 +83,13 @@ $(function(){
 		});
 	}
 
+	function addWarning(text){
+		$(".progressConsole").append("<p class='warning'>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
+	}
+
 
 //functions
 	function gameSpans(object){
@@ -108,14 +115,23 @@ $(function(){
 	function crewHealth(){
 		var totalHealth = 0;
 		for(var i = 0; i < crew.length; i++){
+			if(crew[i]['health'] <= 0 && crew[i]["status"] == "alive"){
+				theReaper(i);
+			}
 			if(crew[i]['status'] == "alive"){
 				totalHealth += crew[i]["health"];
 			}
 		}
 
 		health = (totalHealth / 16)*100;
+		$("span.health").text(health);
 
 		// c(health);
+	}
+
+	function theReaper(vic){
+		crew[vic]["status"] = "dead";
+		c(crew[vic]["name"] + " is dead");
 	}
 
 	function upadateTime(){
@@ -177,6 +193,33 @@ $(function(){
 		// c("One: " + diceOne + ", Two: " + diceTwo + ", Random Dice: " + ranEnDice);
 	}
 
+	function DiceRoll(){
+		diceOne = Math.ceil( ( Math.random() * 10) );
+		// c("Dice roll:" + diceOne);
+	}
+	var victimRoll;
+	function painHappens(){
+		victimRoll = Math.floor((Math.random() * crew.length));
+		c("victim " + victimRoll);
+
+		if(crew[victimRoll]["status"] == "dead"){
+			painHappens();
+		} else{
+			// var painRoll = Math.floor((Math.random() * 2)) + 1
+			// c("pain " + painRoll);
+
+			crew[victimRoll]["health"] -= 2;
+			// c(crew[victimRoll]["health"]);
+			if(crew[victimRoll]["health"] <= 0){
+				crew[victimRoll]["health"] = 0;
+			}
+			crewHealth();
+			//scales from 1-2
+		}
+
+		
+	}
+
 	function encounterSituations(){
 		var conDay = month + " " + day + ": ";
 		switch(encounter){
@@ -185,9 +228,6 @@ $(function(){
 			break;
 			case 1://pirates
 				addToConsole(conDay + "encounter 1");
-
-
-				crewHealth();
 			break;
 			case 2://time warp
 				addToConsole(conDay + "A disgruntled Spacetime Lord warps you back 3 days!");
@@ -247,28 +287,29 @@ $(function(){
 				//change food icon to pigeon for funsies
 			break;
 			case 5://sickness
-				addToConsole(conDay + "encounter 5");
+				DiceRoll();
+				painHappens();
+				
 
+				if(diceOne >= 3){
+					addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
+				} else if (diceOne < 3 && diceOne >= 6){
+					addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+				} else {
+					addWarning(conDay + crew[victimRoll]["name"] + " falls and hurts themselves because they worked too hard. They lose 2 health.");
+				}
+				
 
-				crewHealth();
+				//dysentery, measles, exhaustion
 			break;
 			case 6://weasels
 				addToConsole(conDay + "encounter 6");
-
-
-				crewHealth();
 			break;
 			case 7://thief
 				addToConsole(conDay + "encounter 7");
-
-
-				crewHealth();
 			break;
 			case 8://broken body part
 				addToConsole(conDay + "encounter 8");
-
-
-				crewHealth();
 			break;
 			case 9:
 				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
@@ -466,10 +507,14 @@ $(function(){
 			presentLocation = stopLocations[0];
 		}
 
+		
 
-		// crewHealth();
-		// encounter = 4;
+
+		encounter = 5;
 		encounterSituations();
+		for(var i = 0; i < crew.length; i++){
+			c(crew[i]["name"] + ": " + crew[i]["health"]);
+		}
 	});
 
 	
