@@ -195,21 +195,20 @@ $(function(){
 
 	function DiceRoll(){
 		diceOne = Math.ceil( ( Math.random() * 10) );
-		// c("Dice roll:" + diceOne);
+		c("Dice roll:" + diceOne);
 	}
 	var victimRoll;
 	function painHappens(){
 		victimRoll = Math.floor((Math.random() * crew.length));
-		c("victim " + victimRoll);
-
+		// c("victim " + victimRoll);
 		if(crew[victimRoll]["status"] == "dead"){
+
 			painHappens();
 		} else{
 			// var painRoll = Math.floor((Math.random() * 2)) + 1
 			// c("pain " + painRoll);
 
 			crew[victimRoll]["health"] -= 2;
-			// c(crew[victimRoll]["health"]);
 			if(crew[victimRoll]["health"] <= 0){
 				crew[victimRoll]["health"] = 0;
 			}
@@ -291,9 +290,9 @@ $(function(){
 				painHappens();
 				
 
-				if(diceOne >= 3){
+				if(diceOne <= 3){
 					addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
-				} else if (diceOne < 3 && diceOne >= 6){
+				} else if (diceOne > 3 && diceOne <= 6){
 					addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
 				} else {
 					addWarning(conDay + crew[victimRoll]["name"] + " falls and hurts themselves because they worked too hard. They lose 2 health.");
@@ -498,6 +497,7 @@ $(function(){
 	$(".travel").on('click', function(){
 		upadateTime();
 		encounterDice();
+		
 
 		presentLocation = presentLocation + blorpTravel[pace];
 		if(presentLocation >= stopLocations[0] && pastLocation == 0){
@@ -509,9 +509,13 @@ $(function(){
 
 		
 
-
-		encounter = 5;
-		encounterSituations();
+		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
+			addWarning("everyone is dead");
+		} else{
+			
+			encounter = 5;
+			encounterSituations();
+		}
 		for(var i = 0; i < crew.length; i++){
 			c(crew[i]["name"] + ": " + crew[i]["health"]);
 		}
