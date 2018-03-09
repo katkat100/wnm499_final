@@ -10,6 +10,8 @@ $(function(){
 		fuel : 500,
 		ammo : 50
 	};
+
+	var health = 100;
 	var ration = "filling";
 	var pace = "quick";
 	var blorpTravel = {
@@ -24,8 +26,38 @@ $(function(){
 		name : ""
 	};
 
-	var crew = ["mem1", "mem2", "mem3", "mem4"];
-	var crewImage = ["crew1", "crew2", "crew3", "crew4"];
+	// var crew = ["mem1", "mem2", "mem3", "mem4"];
+	// var crewImage = ["crew1", "crew2", "crew3", "crew4
+	var crew = [
+		{
+			name : "mem1",
+			image : "crew1",
+			death : "crewDeath1",
+			health : 4,
+			status : "alive"
+		},
+		{
+			name : "mem2",
+			image : "crew2",
+			death : "crewDeath2",
+			health : 4,
+			status : "alive"
+		},
+		{
+			name : "mem3",
+			image : "crew3",
+			death : "crewDeath3",
+			health : 4,
+			status : "alive"
+		},
+		{
+			name : "mem4",
+			image : "crew4",
+			death : "crewDeath4",
+			health : 4,
+			status : "alive"
+		}
+	]
 
 	var month = '';
 	var day = 1;
@@ -71,6 +103,19 @@ $(function(){
 				$('.spaceScreen-container').show();
 			}
 		})
+	}
+
+	function crewHealth(){
+		var totalHealth = 0;
+		for(var i = 0; i < crew.length; i++){
+			if(crew[i]['status'] == "alive"){
+				totalHealth += crew[i]["health"];
+			}
+		}
+
+		health = (totalHealth / 16)*100;
+
+		// c(health);
 	}
 
 	function upadateTime(){
@@ -138,35 +183,98 @@ $(function(){
 			case 0:
 				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 			break;
-			case 1:
+			case 1://pirates
 				addToConsole(conDay + "encounter 1");
+
+
+				crewHealth();
 			break;
-			case 2:
-				addToConsole(conDay + "encounter 2");
+			case 2://time warp
+				addToConsole(conDay + "A disgruntled Spacetime Lord warps you back 3 days!");
+				day -= 4;
+				presentLocation -= blorpTravel['pace'];
+				if(day < 1){
+					if(month == 'April'){
+						month = 'March';
+						day = 31 + day;
+					} else if(month == 'May'){
+						month = 'April';
+						day = 30 + day;
+					} else if(month == 'June'){
+						month = 'May';
+						day = 31 + day;
+					} else if(month == 'July'){
+						month = 'June';
+						day = 30 + day;
+					} else if(month == 'August'){
+						month = 'July';
+						day = 31 + day;
+					} else if(month == 'September'){
+						month = 'August';
+						day = 31 + day;
+					} else if(month == 'October'){
+						month = 'September';
+						day = 30 + day;
+					} else if(month == 'November'){
+						month = 'October';
+						day = 31 + day;
+					} else if(month == 'Decmeber'){
+						month = 'November';
+						day = 30 + day;
+					} else if(month == 'January'){
+						month = 'December';
+						day = 31 + day;
+					} else if(month == 'February'){
+						month = 'January';
+						day = 31 + day;
+					} else if(month == 'March'){
+						month = 'February';
+						day = 28 + day;
+					}
+
+
+					$("span.month").text(month);
+					$("span.day").text(day);
+				}
 			break;
-			case 3:
+			case 3://black hole
 				addToConsole(conDay + "encounter 3");
 			break;
-			case 4:
-				addToConsole(conDay + "encounter 4");
+			case 4://pigeon
+				addToConsole(conDay + "Oh No! Space Pigeons were found in your food bay and they ate EVERYTHING! Now all you have to eat is pigeon meat.");
+				gameobj['food'] = 100;
+				gameSpans('food');
+				//change food icon to pigeon for funsies
 			break;
-			case 5:
+			case 5://sickness
 				addToConsole(conDay + "encounter 5");
+
+
+				crewHealth();
 			break;
-			case 6:
+			case 6://weasels
 				addToConsole(conDay + "encounter 6");
+
+
+				crewHealth();
 			break;
-			case 7:
+			case 7://thief
 				addToConsole(conDay + "encounter 7");
+
+
+				crewHealth();
 			break;
-			case 8:
+			case 8://broken body part
 				addToConsole(conDay + "encounter 8");
+
+
+				crewHealth();
 			break;
 			case 9:
-				addToConsole(conDay + "encounter 9");
+				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 			break;
 			case 10:
-				addToConsole(conDay + "encounter 10");
+				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 			break;
 		}
 		encounter = 0;
@@ -220,12 +328,15 @@ $(function(){
 
 //crew
 	$("#setUp-crew .setUp-button").on('click',function(){
-		crew[0] = $("input[name=crewOne]").val();
-		crew[1] = $("input[name=crewTwo]").val();
-		crew[2] = $("input[name=crewThree]").val();
-		crew[3] = $("input[name=crewFour]").val();
+		crew[0]["name"] = $("input[name=crewOne]").val();
+		crew[1]["name"] = $("input[name=crewTwo]").val();
+		crew[2]["name"] = $("input[name=crewThree]").val();
+		crew[3]["name"] = $("input[name=crewFour]").val();
 
-		c("crew: " + crew);
+		c("crew1: " + crew[0]['name']);
+		c("crew2: " + crew[1]['name']);
+		c("crew3: " + crew[2]['name']);
+		c("crew4: " + crew[3]['name']);
 		setUpMove();
 	});
 
@@ -356,11 +467,9 @@ $(function(){
 		}
 
 
-
-		// encounter = 0;
+		// crewHealth();
+		// encounter = 4;
 		encounterSituations();
-		//move closer to location
-		//roll dice for situation
 	});
 
 	
@@ -377,6 +486,8 @@ $(function(){
 
 
 
+	//ideas
+	//create a tombstone epitaph
 
 
 
@@ -394,6 +505,6 @@ $(function(){
 	$("span.month").text(month);
 	$("span.day").text(day);
 
-	$("span.health").text(4);
+	$("span.health").text(health);
 	
 })
