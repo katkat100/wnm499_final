@@ -892,6 +892,9 @@ ul {
 .warning {
   color: #FF555D; }
 
+.emphasis {
+  color: #FFE387; }
+
 .card {
   position: relative;
   top: 50%;
@@ -1079,6 +1082,9 @@ input[name=captain] {
       border-color: #2DF5D0;
       color: #2DF5D0; }
 
+.hide {
+  display: none; }
+
 .sidebar-left {
   display: inline-block;
   position: absolute;
@@ -1158,6 +1164,27 @@ input[name=captain] {
     height: 20px;
     float: right;
     margin-left: 10px; }
+
+.planetX {
+  position: relative;
+  top: 190px;
+  height: calc(100vh - 190px); }
+  .planetX .activities-container {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%); }
+  .planetX .act {
+    border: 3px solid #EEFFFC;
+    padding: .5em;
+    padding-bottom: 1em;
+    cursor: pointer;
+    transition: border 0.3s; }
+    .planetX .act:hover {
+      border-color: #2DF5D0; }
+      .planetX .act:hover .act-desc {
+        color: #2DF5D0; }
+    .planetX .act-desc {
+      text-align: center; }
 
 @media (min-width: 480px) and (max-width: 639px) {
   #setUp-shop .item {

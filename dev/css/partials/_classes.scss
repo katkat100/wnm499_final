@@ -59,6 +59,10 @@
 	color: $color-warning;
 }
 
+.emphasis{
+	color: $color-highlight;
+}
+
 .card{
 	position: relative;
 	top: 50%;
@@ -359,6 +363,10 @@ input[name=captain]{
 	}
 }
 
+.hide{
+	display: none;
+}
+
 .sidebar-left{
   display: inline-block;
   position: absolute;
@@ -461,6 +469,38 @@ input[name=captain]{
 	}
 	li{
 		
+	}
+}
+
+
+
+
+.planetX{
+	position: relative;
+	top: 190px;
+	height: calc(100vh - 190px);
+	.activities-container{
+		position: relative;
+		top: 50%;
+		transform: translate(0, -50%);
+	}
+	.act{
+		border: 3px solid $color-tri;
+		padding: .5em;
+		padding-bottom: 1em;
+		cursor: pointer;
+		transition: border 0.3s;
+
+		&:hover{
+			border-color: $color-prime;
+			.act-desc{
+				color: $color-prime;
+			}
+		}
+
+		&-desc{
+			text-align: center;
+		}
 	}
 }
 

@@ -18,7 +18,7 @@ $(function(){
 		slow : 1,
 		moderate : 2,
 		quick : 4,
-		fast : 8
+		fast : 7
 	}
 
 	var captain = {
@@ -90,6 +90,17 @@ $(function(){
 		});
 	}
 
+	function addEmphasis(text){
+		$(".progressConsole").append("<p class='emphasis'>" + text + "</p>");
+		$(".progressConsole").stop().animate({
+			scrollTop: $(".progressConsole")[0].scrollHeight
+		});
+	}
+
+	function togClass(h,s){
+		$(h).hide();
+		$(s).show();
+	}
 
 //functions
 	function gameSpans(object){
@@ -132,6 +143,7 @@ $(function(){
 	function theReaper(vic){
 		crew[vic]["status"] = "dead";
 		c(crew[vic]["name"] + " is dead");
+		
 	}
 
 	function upadateTime(){
@@ -214,9 +226,7 @@ $(function(){
 			}
 			crewHealth();
 			//scales from 1-2
-		}
-
-		
+		}		
 	}
 
 	function encounterSituations(){
@@ -286,23 +296,21 @@ $(function(){
 				//change food icon to pigeon for funsies
 			break;
 			case 5://sickness
-				DiceRoll();
 				painHappens();
-				
 
-				if(diceOne <= 3){
-					addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
-				} else if (diceOne > 3 && diceOne <= 6){
-					addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
-				} else {
-					addWarning(conDay + crew[victimRoll]["name"] + " falls and hurts themselves because they worked too hard. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
-				
-
-				//dysentery, measles, exhaustion
 			break;
 			case 6://weasels
-				addToConsole(conDay + "encounter 6");
+				if(captain['job'] != "moneybags"){
+					painHappens();
+					addWarning(conDay + crew[victimRoll]["name"] + " get attcked by the resident hitchhiking weasel! They lose 2 health.");
+				} else {
+					addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+				}
+					
 			break;
 			case 7://thief
 				addToConsole(conDay + "encounter 7");
@@ -310,14 +318,63 @@ $(function(){
 			case 8://broken body part
 				addToConsole(conDay + "encounter 8");
 			break;
-			case 9:
-				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+			case 9://sickness
+				painHappens();
+				addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
 			break;
-			case 10:
-				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+			case 10://sickness
+				painHappens();
+				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
 			break;
+				
 		}
+
+		if(encounter != 1 && encounter != 3){
+			// location();
+		}
+
 		encounter = 0;
+	}
+
+	function location(){
+		if(presentLocation >= stopLocations[0] && pastLocation == 0){
+			c("yayayayayay local one");
+			addEmphasis(month + " " + day + ": " + "You have neared the first location. Will you touch down or keep travelling?");
+			togClass(".basic-options",".locationOne-options");
+
+			$(".pass").on('click', function(){
+				togClass(".locationOne-options",".basic-options");
+			})
+
+			$(".touchDown").on('click', function(){
+				addToConsole(month + " " + day + ": " + "Touched down on the planet X.");
+				addToConsole("What would you like to do while here?");
+				$(".sidebar-left").hide();
+				$(".sidebar-right").hide();
+				$(".displayWindow").hide();
+
+				togClass(".locationOne-options",".planetX");
+			})
+
+			
+		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
+			c("yayayayayay local two")
+
+			pastLocation = 2
+			presentLocation = 55;
+		} else if(presentLocation >= stopLocations[2] && pastLocation == 2){
+			c("yayayayayay local three")
+
+			pastLocation = 3
+			presentLocation = 70;
+		} else if(presentLocation >= stopLocations[3] && pastLocation == 3){
+			c("yayayayayay done")
+
+			pastLocation = 4
+			presentLocation = 100;
+		} else{
+			encounterSituations();
+		}
 	}
 
 
@@ -493,6 +550,25 @@ $(function(){
 	})
 
 
+	//Planet X
+	$(".planetX .takeOff").on("click", function(){
+		upadateTime();
+
+		addToConsole(month + " " + day + ": " + "Leaving the planet X.");
+		$(".sidebar-left").show();
+		$(".sidebar-right").show();
+		$(".displayWindow").show();
+
+		togClass(".planetX",".basic-options");
+
+		pastLocation = 1
+		presentLocation = 25;
+		c(pastLocation);
+		c(presentLocation);
+
+	})
+
+
 //travel
 	$(".travel").on('click', function(){
 		upadateTime();
@@ -500,12 +576,7 @@ $(function(){
 		
 
 		presentLocation = presentLocation + blorpTravel[pace];
-		if(presentLocation >= stopLocations[0] && pastLocation == 0){
-			c("yayayayayay local one")
-
-			pastLocation = 1
-			presentLocation = stopLocations[0];
-		}
+		
 
 		
 
@@ -513,12 +584,15 @@ $(function(){
 			addWarning("everyone is dead");
 		} else{
 			
-			encounter = 5;
-			encounterSituations();
+			// encounter = 5;
+			// encounterSituations();
+			location();
 		}
-		for(var i = 0; i < crew.length; i++){
-			c(crew[i]["name"] + ": " + crew[i]["health"]);
-		}
+		// for(var i = 0; i < crew.length; i++){
+		// 	c(crew[i]["name"] + ": " + crew[i]["health"]);
+		// }
+		// c(presentLocation);
+		// c(stopLocations)
 	});
 
 	
