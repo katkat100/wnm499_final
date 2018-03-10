@@ -566,7 +566,11 @@ $(function(){
 		c(pastLocation);
 		c(presentLocation);
 
-	})
+	});
+
+	$(".planetX .bar"){
+		
+	}
 
 
 //travel
