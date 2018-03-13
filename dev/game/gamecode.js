@@ -229,13 +229,19 @@ $(function(){
 		var ffp = 0;
 		if(ration == "bare"){
 			fpp = 1;
+			c("bare");
 		} else if(ration == "meager"){
 			fpp = 2;
+			c("meager");
 		} else if(ration == "filling"){
 			fpp = 4;
+			c("filling");
 		}
+		c("first food" + gameobj['food']);
+		crewHealth();
 		gameobj['food'] -= fpp * totalHealth;
 		gameSpans('food');
+		c("food" + gameobj['food']);
 
 		if(gameobj['food'] <= (ffp * health) && gameobj['food'] > 0){
 			addToConsole("A crew member warns you that food is getting low. It's advisable to trade for food.");
@@ -1014,14 +1020,8 @@ $(function(){
 		gameobj['food'] -= foodInput * 10;
 		gameobj['fuel'] -= fuelInput * 10;
 
-		c("food: " + gameobj['food']);
-		c("fuel: " + gameobj['fuel']);
-
 		gameSpans('food');
 		gameSpans('fuel');
-
-		c("food: " + gameobj['food']);
-		c("fuel: " + gameobj['fuel']);
 
 		addToConsole("You were able to escape the pull of gravity!");
 
@@ -1178,8 +1178,6 @@ $(function(){
 			}
 		}
 		
-c("firstfood: " + gameobj['food']);
-		c("firstfuel: " + gameobj['fuel']);
 		
 		c("encounter: " + encounter);
 		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
