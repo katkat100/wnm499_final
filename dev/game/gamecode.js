@@ -6,8 +6,8 @@ $(function(){
 		money : 0
 	};
 	var gameobjLimit = {
-		food : 500,
-		fuel : 500,
+		food : 1000,
+		fuel : 1000,
 		ammo : 50
 	};
 
@@ -24,7 +24,8 @@ $(function(){
 
 	var captain = {
 		job : "",
-		name : ""
+		name : "Rodger",
+		image : "",
 	};
 
 	// var crew = ["mem1", "mem2", "mem3", "mem4"];
@@ -241,14 +242,14 @@ $(function(){
 		} else if(gameobj['food'] <= 0){
 			gameobj['food'] = 0;
 			$("span.food").text(gameobj['food']);
-			addWarning("Warning! You have run out of food. If you continue to travel without food your crew members may die.");
+			addWarning("Warning! You have run out of food. Captain " + captain['name'] + " , if you continue to travel without food your crew members may die.");
 			var hungryDice = Math.ceil( ( Math.random() * 10) );
 			c("hungry: " + hungryDice)
 			if(hungryDice == 5 || hungryDice == 3){
 				painHappens();
 				addWarning(month + " " + day + ": " + crew[victimRoll]['name'] + " gets hurt from hunger. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
-					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+					addWarning(month + " " + day + ": " +  crew[victimRoll]["name"] + " died.")
 				}
 				encounter = 20;
 			}
@@ -280,7 +281,7 @@ $(function(){
 		presentLocation = presentLocation + parseInt(blorpTravel[pace]);
 
 		if(gameobj['fuel'] < (fuelUsage * 2) && gameobj['fuel'] > fuelUsage){
-			addToConsole("Fuel is getting low try trading for more fuel or adjusting your pace.")
+			addToConsole("Fuel is getting low try trading for more fuel or adjusting the pace.")
 
 		} else if(gameobj['fuel'] <= fuelUsage && gameobj['fuel'] > 0){
 			addWarning("You are running very low on fuel.");
@@ -444,7 +445,7 @@ $(function(){
 	function location(){
 		if(presentLocation >= stopLocations[0] && pastLocation == 0){
 			c("yayayayayay local one");
-			addEmphasis(month + " " + day + ": " + "You have neared the first location. Will you touch down or keep travelling?");
+			addEmphasis(month + " " + day + ": " + "You have neared the first location. Captain " + captain['name'] + ", will you touch down or keep travelling?");
 			togClass(".basic-options",".locationOne-options");
 
 			$(".pass").on('click', function(){
@@ -467,7 +468,7 @@ $(function(){
 		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
 			c("yayayayayay local two")
 
-			addEmphasis(month + " " + day + ": " + "You have neared Nebula Y which is known for being a pirate hangout. Going around will use double the amount of fuel but will be much safer. What will you do?");
+			addEmphasis(month + " " + day + ": " + "You have neared Nebula Y which is known for being a pirate hangout. Going around the nebula will use double the amount of fuel but will be much safer. Captain " + captain['name'] + " what will you do?");
 			togClass(".basic-options", ".locationTwo-options");
 
 			pastLocation = 2
@@ -481,6 +482,8 @@ $(function(){
 			presentLocation = 70;
 		} else if(presentLocation >= stopLocations[3] && pastLocation == 3){
 			c("yayayayayay done")
+
+			addEmphasis(month + " " + day + ": " + "You see your new home coming closer and your crew gathers around the windows to take their first look.")
 
 			pastLocation = 4
 			presentLocation = 100;
@@ -751,8 +754,8 @@ $(function(){
 		crewHealth();
 	})
 
-	//game
-	var bar = 200;
+//game
+	var bar = 100;
 	$(".inventory").mouseenter(function(){
 		var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
 		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
@@ -766,6 +769,16 @@ $(function(){
 		// $(".inventory span").animate({opacity: 0});
 	})
 
+var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
+		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
+		var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
+		$(".inven.food .bar").animate({width: foodBar});
+		$(".inven.food .full-bar").animate({width: bar - foodBar});
+		$(".inven.fuel .bar").animate({width: fuelBar});
+		$(".inven.fuel .full-bar").animate({width: bar - fuelBar});
+		$(".inven.ammo .bar").animate({width: ammoBar});
+		$(".inven.ammo .full-bar").animate({width: bar - ammoBar});
+		// $(".inventory span").animate({opacity: 0});
 	$(".inventory").mouseleave(function(){
 		$(".inven.food .bar").animate({width: 0});
 		$(".inven.food .full-bar").animate({width: 0});
@@ -931,7 +944,7 @@ $(function(){
 		
 
 		
-
+		c("encounter: " + encounter);
 		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
 			addWarning("everyone is dead");
 		} else{

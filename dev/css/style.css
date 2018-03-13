@@ -1113,19 +1113,19 @@ input[name=captain] {
   position: relative;
   padding-top: 20px; }
   .inventory li {
-    margin-bottom: 15px; }
+    margin-bottom: 25px; }
   .inventory .full-bar {
     content: '';
     margin-left: -5px;
     width: 0px;
-    height: 20px;
+    height: 16px;
     background-color: #0B4574;
     display: inline-block;
     transform: skew(15deg, 0deg); }
   .inventory .bar {
     content: "";
     width: 0px;
-    height: 20px;
+    height: 16px;
     background-color: #2DF5D0;
     display: inline-block;
     transform: skew(15deg, 0deg); }
@@ -1138,11 +1138,11 @@ input[name=captain] {
   .inventory .food .info {
     position: absolute;
     left: 0px;
-    top: 10px; }
+    top: -3px; }
   .inventory .fuel .info {
     position: absolute;
     left: 0px;
-    top: 49px; }
+    top: 42px; }
   .inventory .ammo .info {
     position: absolute;
     left: 0px;
@@ -1159,7 +1159,7 @@ input[name=captain] {
     height: 20px;
     vertical-align: middle; }
   .stats li {
-    margin-bottom: 15px; }
+    margin-bottom: 20px; }
 
 .paceRation {
   padding-top: 11px; }

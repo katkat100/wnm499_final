@@ -400,14 +400,14 @@ input[name=captain]{
   position:relative;
   padding-top:20px;
   li{
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
   .full-bar{
     content:'';
     margin-left:-5px;
     // width:100px;
     width:0px;
-    height:20px;
+    height:16px;
     background-color: $color-sec;
     display:inline-block;
     transform: skew(15deg,0deg);
@@ -416,7 +416,7 @@ input[name=captain]{
     content: "";
     // width:100px;
     width:0px;
-    height:20px;
+    height:16px;
     background-color: $color-prime;
     display:inline-block;
     transform: skew(15deg,0deg);
@@ -432,12 +432,12 @@ input[name=captain]{
   .food .info{
     position: absolute;
     left: 0px;
-    top: 10px;
+    top: -3px;
   }
   .fuel .info{
     position: absolute;
     left: 0px;
-    top: 49px;
+    top: 42px;
   }
   .ammo .info{
     position: absolute;
@@ -459,7 +459,7 @@ input[name=captain]{
     vertical-align: middle;
   }
   li{
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 }
 
