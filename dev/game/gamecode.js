@@ -304,11 +304,12 @@ $(function(){
 
 
 	function encounterDice(){
-		var diceOne, diceTwo, ranEnDice;
+		var diceOne, diceTwo, diceThree, ranEnDice;
 		diceOne = Math.ceil( ( Math.random() * 10) );
 		diceTwo = Math.ceil( ( Math.random() * 10) );
+		diceThree = Math.ceil( ( Math.random() * 10) );
 		ranEnDice = Math.floor((diceOne + diceTwo)/2);
-		if(ranEnDice == diceOne || ranEnDice == diceTwo){
+		if(ranEnDice == diceOne || ranEnDice == diceTwo || ranEnDice == diceThree){
 			encounter = Math.ceil( ( Math.random() * 10) );
 		}
 
@@ -569,6 +570,8 @@ $(function(){
 			c("yayayayayay done")
 
 			addEmphasis(month + " " + day + ": " + "You see your new home coming closer and your crew gathers around the windows to take their first look.")
+
+			togClass('.basic-options', '.locationEnd-options');
 
 			pastLocation = 4
 			presentLocation = 100;
@@ -1184,7 +1187,7 @@ $(function(){
 			addWarning("everyone is dead");
 		} else{
 			
-			encounter = 3;
+			// encounter = 3;
 			// encounterSituations();
 			location();
 		}
@@ -1230,5 +1233,10 @@ $(function(){
 	$("span.day").text(day);
 
 	$("span.health").text(health);
+
+//end
+	$(".land").on('click', function(){
+		togClass('.spaceScreen-container', ".home-container");
+	})
 	
 })
