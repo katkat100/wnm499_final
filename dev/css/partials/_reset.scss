@@ -43,17 +43,16 @@ h1,h2,h3,h4,h5,h6{
 
 h1{
 	font-family: $font;
-	color: $color-prime;
-	font-size: 4em;
-	font-weight: 700;
-	border: 5px solid $color-prime;
+	// color: $color-prime;
+	font-size: 3em;
+	font-weight: 400;
+	border: 5px solid $color-tri;
 	text-transform: uppercase;
 	display: inline-block;
 	padding: .05em .2em;
-	border-radius: .15em;
 	margin-bottom: .3em;
-	text-shadow: 0 0 15px $color-prime;
-	box-shadow: 0 0 15px $color-prime;
+	// text-shadow: 0 0 15px $color-prime;
+	box-shadow: 0 0 15px lighten($color-back, 50%);
 	text-align: center;
 }
 

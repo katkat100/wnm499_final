@@ -694,42 +694,71 @@ $(function(){
 
 //job
 	$(".job-farmer").on('click',function(){
-		toggleClasses(this, "active");
+		captain["job"] = "farmer";
+		gameobj["money"] = 1000;
+		budget = gameobj["money"];
+		setUpMove();
 	})
 
 	$(".job-engineer").on('click', function(){
-		toggleClasses(this, "active");
+		captain["job"] = "engineer";
+		gameobj["money"] = 1500;
+		budget = gameobj["money"];
+		setUpMove();
 	})
 
 	$(".job-moneybags").on('click', function(){
-		toggleClasses(this, 'active');
+		captain["job"] = "moneybag";
+		gameobj["money"] = 2000;
+		budget = gameobj["money"];
+		setUpMove();
 	})
 
-	$("#setUp-profession .setUp-button").on('click',function(){
-		if($("#setUp-profession .active").hasClass("job-farmer")){
-			captain["job"] = "farmer";
-			gameobj["money"] = 1000;
-			budget = gameobj["money"];
-			setUpMove();
-		} else if($("#setUp-profession .active").hasClass("job-engineer")){
-			captain["job"] = "engineer";
-			gameobj["money"] = 1500;
-			budget = gameobj["money"];
-			setUpMove();
-		} else if($("#setUp-profession .active").hasClass("job-moneybags")){
-			captain["job"] = "moneybag";
-			gameobj["money"] = 2000;
-			budget = gameobj["money"];
-			setUpMove();
-		} else {
+	c("job " + captain["job"]);
+	c("money " + gameobj["money"]);
+	$("span.money").text(gameobj["money"]);
 
-		}
-		c("job " + captain["job"]);
-		c("money " + gameobj["money"]);
-		$("span.money").text(gameobj["money"]);
-	})
+	
+	// $(".job-farmer").on('click',function(){
+	// 	toggleClasses(this, "active");
+	// })
+
+	// $(".job-engineer").on('click', function(){
+	// 	toggleClasses(this, "active");
+	// })
+
+	// $(".job-moneybags").on('click', function(){
+	// 	toggleClasses(this, 'active');
+	// })
+
+	// $("#setUp-profession .setUp-button").on('click',function(){
+	// 	if($("#setUp-profession .active").hasClass("job-farmer")){
+	// 		captain["job"] = "farmer";
+	// 		gameobj["money"] = 1000;
+	// 		budget = gameobj["money"];
+	// 		setUpMove();
+	// 	} else if($("#setUp-profession .active").hasClass("job-engineer")){
+	// 		captain["job"] = "engineer";
+	// 		gameobj["money"] = 1500;
+	// 		budget = gameobj["money"];
+	// 		setUpMove();
+	// 	} else if($("#setUp-profession .active").hasClass("job-moneybags")){
+	// 		captain["job"] = "moneybag";
+	// 		gameobj["money"] = 2000;
+	// 		budget = gameobj["money"];
+	// 		setUpMove();
+	// 	} else {
+
+	// 	}
+	// 	c("job " + captain["job"]);
+	// 	c("money " + gameobj["money"]);
+	// 	$("span.money").text(gameobj["money"]);
+	// })
 
 //name
+	$("input[name=captain]").on('input',function(){
+		$(this).css({"color": "#EEFFFC"});
+	})
 	$("#setUp-name .setUp-button").on('click',function(){
 		captain['name'] = $("input[name=captain]").val();
 		c("captain " + captain['name']);
@@ -737,6 +766,18 @@ $(function(){
 	});
 
 //crew
+	$("input[name=crewOne]").on('input',function(){
+		$(this).css({"color": "#EEFFFC"});
+	})
+	$("input[name=crewTwo]").on('input',function(){
+		$(this).css({"color": "#EEFFFC"});
+	})
+	$("input[name=crewThree]").on('input',function(){
+		$(this).css({"color": "#EEFFFC"});
+	})
+	$("input[name=crewFour]").on('input',function(){
+		$(this).css({"color": "#EEFFFC"});
+	})
 	$("#setUp-crew .setUp-button").on('click',function(){
 		crew[0]["name"] = $("input[name=crewOne]").val();
 		crew[1]["name"] = $("input[name=crewTwo]").val();
@@ -751,28 +792,42 @@ $(function(){
 	});
 
 //month
-	$("#setUp-month li").on('click', function(){
-		toggleClasses(this, "active");
+	$(".month-choice.april").on('click', function(){
+		month = "April";
+		setUpMove();
 	})
+	$(".month-choice.may").on('click', function(){
+		month = "May";
+		setUpMove();
+	})
+	$(".month-choice.june").on('click', function(){
+		month = "June";
+		setUpMove();
+	})
+	$(".month-choice.july").on('click', function(){
+		month = "July";
+		setUpMove();
+	})
+	c("month: " + month);
 
-	$("#setUp-month .setUp-button").on('click', function(){
-		if($("#setUp-month .active").children(".month-choice").hasClass("april")){
-			month = "April";
-			setUpMove();
-		} else if($("#setUp-month .active").children(".month-choice").hasClass("may")){
-			month = "May";
-			setUpMove();
-		} else if($("#setUp-month .active").children(".month-choice").hasClass("june")){
-			month = "June";
-			setUpMove();
-		} else if($("#setUp-month .active").children(".month-choice").hasClass("july")){
-			month = "July";
-			setUpMove();
-		} else {
+	// $("#setUp-month .setUp-button").on('click', function(){
+	// 	if($("#setUp-month .active").children(".month-choice").hasClass("april")){
+	// 		month = "April";
+	// 		setUpMove();
+	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("may")){
+	// 		month = "May";
+	// 		setUpMove();
+	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("june")){
+	// 		month = "June";
+	// 		setUpMove();
+	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("july")){
+	// 		month = "July";
+	// 		setUpMove();
+	// 	} else {
 
-		}
-		c("month: " + month);
-	});
+	// 	}
+	// 	c("month: " + month);
+	// });
 
 //shop
 

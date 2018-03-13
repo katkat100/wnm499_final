@@ -110,9 +110,13 @@
 			background-image: url(../images/crew4.svg);
 		}
 	}
+	input[type="text"]{
+		color: #acb7b5;
+	}
 }
 
 #setUp{
+	
 	&-profession{
 		
 		.job{
