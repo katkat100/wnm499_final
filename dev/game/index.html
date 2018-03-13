@@ -4,378 +4,557 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>Space Trail</title>
-	<link href="https://fonts.googleapis.com/css?family=Exo+2|Jura:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600,900" rel="stylesheet">
+	<link rel="icon" href="../images/favicon.png">
 	<link rel="stylesheet" href="../css/style.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="code.js"></script>
+	<!-- <script src="code.js"></script> -->
+	<script src="gamecode.js"></script>
+	<style>
+		.spaceScreen-container{
+			/*display: block;*/
+		}
+
+		.sidebar-left, .sidebar-right, .displayWindow, .basic-options{
+			/*display: none;*/
+		}
+
+		.progressConsole-container{
+			/*display: none;*/
+		}
+		.planetX{
+			display: none;
+		}
+/* */
+		.blackHole-container, .bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
+			display: none;
+		}
+
+		.home-container{
+			display: none;
+		}
+	</style>
 </head>
 <body id="game">
-	<div class="atMain">
-		<nav>
-			<ul>
-				<li><a href="../index.html">Overview</a></li>
-				<li><a href="../about.html">About</a></li>
-				<li><a href="../faq.html">FAQ</a></li>
-			</ul>
-		</nav>
-		<!-- <section id="secOne">
-			<div class="card" id="title">
-				<div class="info">
-					<h1>Space Trail</h1>
-					<h4 class="next button">Travel the Galaxy</h4>
+	<!-- <nav>
+		<ul>
+			<li><a href="../index.html">Overview</a></li>
+			<li><a href="../about.html">About</a></li>
+			<li><a href="../faq.html">FAQ</a></li>
+		</ul>
+	</nav> -->
+
+	<div class="content">
+		<div class="setUp-container">
+			<div class="container">
+				<div class="card-container">
+					<div class="card" id="setUp-profession">
+						<h2>Choose a Profession</h2>
+						<ul class="row gutters">
+							<li class="col-xs-4 job-farmer">
+								<div class="job">
+									<div class="image1to1">
+										<div class="img-farmer"></div>
+									</div>
+									<p class="setUp-desc">Meteorite Farmer</p>
+								</div>
+							</li>
+							<li class="col-xs-4 job-engineer">
+								<div class="job">
+									<div class="image1to1">
+										<div class="img-engineer"></div>
+									</div>
+									<p class="setUp-desc">Spaceship Engineer</p>
+								</div>
+							</li>
+							<li class="col-xs-4 job-moneybags">
+								<div class="job">
+									<div class="image1to1">
+										<div class="img-moneybags"></div>
+									</div>
+									<p class="setUp-desc">Moneybags</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="setUp-button">This is my profession</h4>
+					</div>
 				</div>
-			</div>
-		</section> -->
-		<section id="secTwo">
-			<div class="card" id="spaceStation">
-				<h2>Choose a profession</h2>
-				<h4 class="next farmer">Meteorite Farmer</h4>
-				<h4 class="next engineer">Spaceship Engineer</h4>
-				<h4 class="next moneybags">Moneybags</h4>
-			</div>
-		</section>
-		<section id="secThree">
-			<div class="card" id="nameLeader">
-				<h2>What is the name of the Captain?</h2>
-				<input type="text" name="captain" value="Capitano" maxlength="10">
-				<h4 class="next leaderName">Enter Name</h4>
-			</div>
-		</section>
-		<section id="secFour">
-			<div class="card" id="nameMembers">
-				<h2>What are the names of the other members?</h2>
-				<div class="row">
-					<ol class="col-xs-10 offset-xs-1">
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew1"></div>
-							</div>
-							<input type="text" name="member1" value="Clemence" maxlength="10">
-						</li>
 
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew2"></div>
+				<div class="card-container">
+					<div class="card" id="setUp-name">
+						<h2>What is your name, captain?</h2>
+						<div class="row gutters">
+							<div class="col-xs-4 offset-xs-4">
+								<div class="image1to1">
+									<div class="img-captain"></div>
+								</div>
+								<input type="text" name="captain" value="Capitano" maxlength="15">
 							</div>
-							<input type="text" name="member2" value="Parnell" maxlength="10">
-						</li>
-
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew3"></div>
-							</div>
-							<input type="text" name="member3" value="Oswyn" maxlength="10">
-						</li>
-
-						<li class="col-xs-6 col-md-3">
-							<div class="crewImageBox">
-								<div class="crewImage crew4"></div>
-							</div>
-							<input type="text" name="member4"  value="Gilbert" maxlength="10">
-						</li>
-					</ol>
+						</div>
+						<h4 class="setUp-button">This is my name</h4>
+					</div>
 				</div>
-				<h4 class="next memberName">Enter Names</h4>
+
+				<div class="card-container">
+					<div class="card" id="setUp-crew">
+						<h2>What is the names of your crew?</h2>
+						<ul class="row gutters">
+							<li class="col-xs-6 col-md-3">
+								<div class="image1to1">
+									<div class="img-crewOne"></div>
+								</div>
+								<input type="text" name="crewOne" value="Clemence" maxlength="10">
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<div class="image1to1">
+									<div class="img-crewTwo"></div>
+								</div>
+								<input type="text" name="crewTwo" value="Parnell" maxlength="10">
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<div class="image1to1">
+									<div class="img-crewThree"></div>
+								</div>
+								<input type="text" name="crewThree" value="Oswyn" maxlength="10">
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<div class="image1to1">
+									<div class="img-crewFour"></div>
+								</div>
+								<input type="text" name="crewFour" value="Gilbert" maxlength="10">
+							</li>
+						</ul>
+						<h4 class="setUp-button">This is my crew</h4>
+					</div>
+				</div>
+
+				<div class="card-container">
+					<div class="card" id="setUp-month">
+						<h2>The year is 2148. What month do you plan on leaving?</h2>
+						<ul class="row gutters">
+							<li class="col-xs-6 col-md-3">
+								<p class="month-choice april">April</p>
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<p class="month-choice may">May</p>
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<p class="month-choice june">June</p>
+							</li>
+							<li class="col-xs-6 col-md-3">
+								<p class="month-choice july">July</p>
+							</li>
+						</ul>
+						<h4 class="setUp-button">We leave on this month</h4>
+					</div>
+				</div>
+				
+				<div class="card-container">
+					<div class="card" id="setUp-b4Shop">
+						<h2>Before you depart it is wise to stock up on supplies.</h2>
+						<p class="setUp-desc">You have §<span class="money"></span> to spend. It is recommended to not spend it all in one place.</p>
+						<h4 class="setUp-button">Enter Store</h4>
+					</div>
+				</div>
+
+				<div class="card-container">
+					<div class="card" id="setUp-shop">
+						<h2>Welcome to Singrid's One-Stop Shop!</h2>
+						<p class="setUp-desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
+
+						<p class="warning overSpent">It doesn't look like you have enough money to buy these items. Please change the amount of items you want to buy in order to leave the store.</p>
+
+						<div class="shop-inventory">
+							<div class="row gutters flex">
+								<ul class="col-xs-12 col-sm-7 col-md-9 item-container row gutters">
+									<li class="col-xs-12 col-md-4 item">
+										<div class="item-top">
+											<img src="../images/sidebar_food.svg">
+											<p class="item-title">Food</p>
+										</div>
+										<p class="item-cost">§10 for a food crate (20 meals)</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-food" min="0" maxlength="20" value="0"> crate(s)</p>
+									</li>
+									<li class="col-xs-12 col-md-4 item">
+										<div class="item-top">
+											<img src="../images/sidebar_fuel.svg">
+											<p class="item-title">Fuel</p>
+										</div>
+										<p class="item-cost">§20 for a carton (60 fuel pods)</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-fuel" min="0" maxlength="20" value="0"> carton(s)</p>
+									</li>
+									<li class="col-xs-12 col-md-4 item">
+										<div class="item-top">
+											<img src="../images/sidebar_ammo.svg">
+											<p class="item-title">Ammo</p>
+										</div>
+										<p class="item-cost">§20 per magazine (5 shots)</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> magazine(s)</p>
+									</li>
+								</ul>
+								<div class="col-xs-12 col-sm-5 col-md-3 receipt">
+									<p>Amount you have: §<span class="money"></span></p>
+									<p>Bill so far: §<span class="bill"></span></p>
+									<p>Ending amount: §<span class="total"></span></p>
+								</div>
+							</div>
+								
+						</div>
+						<h4 class="setUp-button">Purchase Items & Exit Store</h4>
+
+					</div>
+				</div>
+
+				<div class="card-container">
+					<div class="card" id="setUp-end">
+						<h2>You have a long journey ahead of you.</h2><h2>Good Luck.</h2>
+						<h4 class="setUp-button">Depart</h4>
+					</div>
+				</div>
+
+
+
 			</div>
-		</section>
-		<section id="secFive">
-			<div class="card" id="month">
-				<h2>The year is 2148. What month will the crew be leaving Space Station Faithful?</h2>
-				<ul>
-					<li><h4 class="next april">April</h4></li>
-					<li><h4 class="next may">May</h4></li>
-					<li><h4 class="next june">June</h4></li>
-					<li><h4 class="next july">July</h4></li>
+		</div>
+		<div class="spaceScreen-container">
+			<div class="sidebar-left">
+				<ul class="inventory">
+				  <li class="inven food">
+				    <div class="bar"></div>
+				    <div class="full-bar"></div>
+				    <div class="info">
+				      <img src="../images/sidebar_food.svg">
+				      <span class="food"></span>
+				    </div>
+				  </li>
+				  <li class="inven fuel">
+				    <div class="bar"></div>
+				    <div class="full-bar"></div>
+				    <div class="info">
+				      <img src="../images/sidebar_fuel.svg">
+				      <span class="fuel"></span>
+				    </div>
+				  </li>
+				  <li class="inven ammo">
+				    <div class="bar"></div>
+				    <div class="full-bar"></div>
+				    <div class="info">
+				      <img src="../images/sidebar_ammo.svg">
+				      <span class="ammo"></span>
+				    </div>
+				  </li>
+				</ul>
+
+				<ul class="stats">
+				  <li class="stat health">
+				    <div class="info">
+				      <img src="../images/sidebar_health.svg">
+				      <span class="health"></span>%
+				    </div>
+				  </li>
+				  <li class="stat money">
+				    <div class="info">
+				      <img src="../images/sidebar_money.svg">
+				      <span class="money"></span>
+				    </div>
+				  </li>
 				</ul>
 			</div>
-		</section> 
-		<section id="secSix">
-			<div class="card" id="money">
-				<h3>Before you depart it is wise to stock up on supplies. You have §<span class="money"></span> to spend. Do not spend it all in one place.</h3>
-				<h4 class="next enterStore">Enter Store</h4>
+			<div class="sidebar-right">
+				<ul class="paceRation">
+					<li class="para ration">
+						<div class="info">
+							<span class="ration">Filling</span>
+							<img src="../images/sidebar_food.svg">
+						</div>
+					</li>
+					<li class="para pace">
+						<div class="info">
+							<span class="pace">Quick</span>
+							<img src="../images/sidebar_food.svg">
+						</div>
+					</li>
+				</ul>
 			</div>
-		</section> 
-		<section id="secSeven">
-			<div class="card store" id="stationShop">
-				<h2>Welcome to my store!</h2>
-				<div class="row gutters">
-					<div class="col-xs-12">
-						<p class="desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
-					</div>
-					<div class="col-xs-12 col-md-6 itemList">
-						<div class="item-row food">
-							<p class="item col-xs-3">
-								<img src="../images/icons_food.svg" alt="food" class="icons">
-								Food
-							</p>
-							<p class="cost col-xs-6">§20 for 10 meals</p>
-							<input class="col-xs-3" type="number" name="food" maxlength="10" min="0" value="0">
-						</div>
-						<div class="item-row fuel">
-							<p class="item col-xs-3">
-								<img src="../images/icons_fuel.svg" alt="fuel" class="icons"> 
-								Fuel
-							</p>
-							<p class="cost col-xs-6">§50 for 100 fuel pods</p>
-							<input class="col-xs-3" type="number" name="fuel" maxlength="10" min="0" value="0">
-						</div>
-						<div class="item-row ammo">
-							<p class="item col-xs-3">
-								<img src="../images/icons_ammo.svg" alt="ammo" class="icons"> 
-								Ammo
-							</p>
-							<p class="cost col-xs-6">§20 for 5 energy shots</p>
-							<input class="col-xs-3" type="number" name="ammo" maxlength="10" min="0" value="0">
-						</div>
-					</div>
-					<div class="col-xs-12 col-md-6 total">
-						<p>Amount you have: §<span class="money"></span></p>
-						<p>Bill so far: §<span class="bill"></span></p>
-						<p>Ending amount: §<span class="total"></span></p>
-					</div>
-				</div>
-
-				<h4 class="next exitStore">Purchase Items & Exit Store</h4>
-			</div>
-		</section>
-		<section id="secEight">
-			<div class="card" id="departure">
-				<h2>You have a long journey ahead of you.</h2>
-				<h2>Good Luck.</h2>
-				<div class="options row">
-					<h4 class="opt-bottom next departure col-xs-12">Depart</h4>
+			<div class="progressConsole-container">
+				<div class="progressConsole">
+					<p>Welcome to the Jungle! The Jungle of SPACE!</p>
 				</div>
 			</div>
-		</section>
-		
-		<section id="secNine">
-			<div class="program row gutters">
-				<div class="gameInteraction conditions col-xs-12 col-md-3">
-					<div class="cond-info">
-						<img src="../images/icons_food.svg" title="food" class="icons"> 
-						<div>
-							<span class="food"></span> 
-						</div>
-					</div>
-					<div class="cond-info">
-						<img src="../images/icons_rations.svg" title="rations" class="icons">
-						<div>
-							<span class="rations"></span>
-						</div>
-					</div>
+			<div class="displayWindow">
+				<div class="row">
+					<div class="col-xs-6 display-captain"></div>
+					<div class="col-xs-6 display-obstacle"></div>
+				</div>
+			</div>
 
-					<div class="cond-info">
-						<img src="../images/icons_fuel.svg" title="fuel" class="icons"> 
-						<div>
-							<span class="fuel"></span>
-						</div>
+			<div class="planetX">
+				<div class="activities-container">
+					<h2>Planet X</h2>
+					<div class="container">
+						<ul class="row gutters">
+							<li class="col-xs-4">
+								<div class="act takeOff">
+									<div class="image1to1">
+										<div class="img-takeOff"></div>
+									</div>
+									<p class="act-desc">Leave Planet</p>
+								</div>
+							</li>
+							<li class="col-xs-4">
+								<div class="act bar">
+									<div class="image1to1">
+										<div class="img-bar"></div>
+									</div>
+									<p class="act-desc">Talk to locals</p>
+								</div>
+							</li>
+							<li class="col-xs-4">
+								<div class="act trade">
+									<div class="image1to1">
+										<div class="img-trade"></div>
+									</div>
+									<p class="act-desc">Trade with locals</p>
+								</div>
+							</li>
+						</ul>
 					</div>
+				</div>
+			</div>
 
-					<div class="cond-info">
-						<img src="../images/icons_pace.svg" title="pace" class="icons"> 
-						<div>
-							<span class="pace"></span>
-						</div>
-					</div>
-
-					<div class="cond-info">
-						<img src="../images/icons_ammo.svg" title="ammo" class="icons">
-						<div> 
-							<span class="ammo"></span>
-						</div>
-					</div>
-
-					<div class="cond-info">
-						<img src="../images/icons_money.svg" title="money" class="icons">
-						<div> 
-							<span class="money"></span>
-						</div>
-					</div>
-
-					<div class="cond-info">
-						<img src="../images/icons_health.svg" title="health" class="icons">
-						<div> 
-							<span class="health"></span>/4
-						</div>
-
-					</div>
-					<div class="cond-info">
-						<img src="../images/icons_calendar.svg" title="calendar" class="icons"> 
-						<div>
-							<span class="month"></span> 
-							<span class="day"></span> 
-						</div>
-					</div>
-				</div>
-
-				<div class="progressConsole col-xs-6 col-md-5">
-				</div>
-				
-				<div class="displayWindow col-xs-6 col-md-4">
-					<div class="display-container">
-						<div class="display-box"></div>
-					</div>
-					<div class="locationProgress">
-						<div class="homePlanet"></div>
-						<div class="xPlanet"></div>
-						<div class="yNebula"></div>
-
-						<div class="ship"></div>
-					</div>
-				</div>
-				
-				<div class="change-pace row gutters col-xs-12 col-md-8">
-					<h4 class="h4Ignore">Change pace to:</h4>
-					<div class="col-xs-12 col-lg-3 pace-container">
-						<h4 class="slow">Slow</h4>
-						<p>You travel at a sluggish rate of 10 blorps per day, using up 5 fuel pods. The slower pace gives your crew more time for ship maintenance.</p>
-					</div>
-					<div class="col-xs-12 col-lg-3 pace-container">
-						<h4 class="moderate">Moderate</h4>
-						<p>You travel at a balanced rate of 25 blorps per day, using up 12 fuel pods.</p>
-					</div>
-					<div class="col-xs-12 col-lg-3 pace-container">
-						<h4 class="quick">Quick</h4>
-						<p>You travel at a brisk rate of 50 blorps per day, using up 24 fuel pods. At this rate, the thermal stresses on your ship could possibly weaken its structural integrity.</p>
-					</div>
-					<div class="col-xs-12 col-lg-3 pace-container">
-						<h4 class="fast">Fast</h4>
-						<p>You travel at a speedy rate of 75 blorps per day, using up 36 fuel pods. At this rate, the thermal stresses on your ship will most likely weaken its structural integrity.</p>
-					</div>
-					<h4 class="opt-bottom set-pace">Set Pace</h4>
-				</div>
-				<div class="change-rations row gutters col-xs-10 col-md-8">
-					<h4 class="h4Ignore">Change rations to:</h4>
-					<div class="col-xs-12 col-lg-4 rations-container">
-						<h4 class="bare">Bare Bones</h4>
-						<p>Your crew members only eat once a day. The food supplies are conserved, but the crew is more vunerable to illness, injury, and reduced reflex times.</p>
-					</div>
-					<div class="col-xs-12 col-lg-4 rations-container">
-						<h4 class="meager">Meager</h4>
-						<p>Your crew members eat twice a day. It's enough to survive, but no one's ever really satisfied.</p>
-					</div>
-					<div class="col-xs-12 col-lg-4 rations-container">
-						<h4 class="filling">Filling</h4>
-						<p>Your crew members eat three times a day. It's great for morale, but not so great for supply levels.</p>
-					</div>
-					<h4 class="opt-bottom set-rations">Set Rations</h4>
-				</div>
-				<div class="trading row gutters col-xs-10 col-md-6">
-					<div class="trade-opt trade-one col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<div class="trade-opt trade-two col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<div class="trade-opt trade-three col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<h4 class="opt-bottom trade-done">Finish Trading</h4>
-				</div>
-
-				<div class="opt-bottom planetX row gutters">
-					<h4 class="local-trade col-xs-12 col-md-4">Trade with Locals</h4>
-					<h4 class="local-chat col-xs-12 col-md-4">Chat with Locals</h4>
-					<h4 class="leave-planet col-xs-12 col-md-4">Take Off</h4>
-				</div>
-
-				<div class="local-trading row gutters col-xs-10 col-md-8">
-					<div class="trade-opt trade-one col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<div class="trade-opt trade-two col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<div class="trade-opt trade-three col-xs-12 col-md-4">
-						<p><span class="traderTitle"></span> <span class="trader"></span> is willing to trade <span class="first-item"></span> for <span class="second-item"></span>. Do you accept?</p>
-						<h4 class="make-trade">Make Trade</h4>
-					</div>
-					<h4 class="opt-bottom local-trade-done">Finish Trading</h4>
-				</div>
-
-				<div class="opt-bottom local-chatting row gutters">
-					<h4 class="chat-talk col-xs-6">Talk to Somebody</h4>
-					<h4 class="chat-leave col-xs-6">Leave</h4>
-				</div>
-				<div class="opt-bottom piratesOne row gutters">
-					<h4 class="pirate-attack col-xs-6">Attack</h4>
-					<h4 class="pirate-givein col-xs-6">Give In</h4>
-				</div>
-				<div class="opt-bottom piratesTwo row gutters">
-					<h4 class="pirate-bluff col-xs-6">Bluff</h4>
-					<h4 class="pirate-givein col-xs-6">Give In</h4>
-				</div>
-				<div class="options travel row gutters">
-					<h4 class="traverse col-xs-6 col-md-3">Continue</h4>
-					<h4 class="check-pace col-xs-6 col-md-3">Change Pace</h4>
-					<h4 class="check-rations col-xs-6 col-md-3">Change Rations</h4>
-					<h4 class="attempt-trade col-xs-6 col-md-3">Trade</h4>
-				</div>
-				<div class="opt-bottom twoChoices">
-					<h4 class="one col-xs-6"></h4>
-					<h4 class="two col-xs-6"></h4>
-				</div>
-				<div class="opt-bottom oneChoices">
-					<h4 class="landOn col-xs-6 offset-xs-3 next"></h4>
-				</div>
-
-				<div class="blackHole row gutters col-xs-10 col-md-8">
-					<div class="col-xs-12 objectList">
-						<div class="object-row row food">
-							<div class="object col-xs-3">
-								<img src="../images/icons_food.svg" alt="food" class="blackHole-icon">
-								<p class="noPadding">Food</p>
+			<div class="bar-container">
+				<div class="bars">
+					<h2>Salutations, new friend!</h2>
+					<div class="container">
+						<div class="row gutters flex">
+							<div class="col-xs-4">
+								<div class="bar-person barOne">
+									<div class="image1to1">
+										<div class="img-barOne"></div>
+									</div>
+									<div class="bar-name">
+										<span class="barOne-name">Georgey Porgey</span>
+									</div>
+								</div>
 							</div>
-							
-							<p class="cost col-xs-7">10 meals are 10 lbs</p>
-							<input class="col-xs-2" type="number" name="throw-food" maxlength="10" min="0" value="0">
-						</div>
-						<div class="object-row row fuel">
-							<div class="object col-xs-3">
-								<img src="../images/icons_fuel.svg" alt="fuel" class="blackHole-icon"> 
-								<p class="noPadding">Fuel</p>
+							<div class="col-xs-4">
+								<div class="bar-person barTwo">
+									<div class="image1to1">
+										<div class="img-barTwo"></div>
+									</div>
+									<div class="bar-name"><span class="barTwo-name">Georgey Porgey</span></div>
+								</div>
 							</div>
-
-							<p class="cost col-xs-7">10 fuel pods are 50 lbs</p>
-							<input class="col-xs-2" type="number" name="throw-fuel" maxlength="10" min="0" value="0">
+							<div class="col-xs-4">
+								<div class="bar-person barThree">
+									<div class="image1to1">
+										<div class="img-barThree"></div>
+									</div>
+									<div class="bar-name"><span class="barThree-name">Georgey Porgey</span></div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 weight-record">
-						<p class="col-xs-4">You need to throw away: <span class="to-throw"></span> lbs</p>
-						<p class="col-xs-4">To be thrown away: <span class="throw-total"></span> lbs</p>
-						<p class="col-xs-4">Remaining left: <span class="throw-left"></span> lbs</p>
+				</div>
+			</div>
+
+			<div class="trade-container">
+				<div class="trades">
+					<h2>Space Bazar</h2>
+					<div class="container">
+						<ul class="row gutters flex p-relative">
+							<li class="col-xs-4 tradeOne">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderOne"></div>
+									</div>
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+							<li class="col-xs-4 tradeTwo">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderTwo"></div>
+									</div>
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+							<li class="col-xs-4 tradeThree">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderThree"></div>
+									</div>
+
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+						</ul>
+						<ul class="row gutters tradeable">
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_money.svg">
+									<span class="money"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_ammo.svg">
+									<span class="ammo"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_food.svg">
+									<span class="food"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_fuel.svg">
+									<span class="fuel"></span>
+								</p>
+							</li>
+						</ul>
 					</div>
 				</div>
-
-				<div class="opt-bottom throw-cont">
-					<h4 class="throw-button col-xs-6">Throw Away</h4>
-					<h4 class="throw-giveUp col-xs-6">Give In To The Pull</h4>
-				</div>
-				<div class="opt-bottom throw-giveCont">
-					<h4 class="throw-giveUp">Give In To The Pull</h4>
-				</div>
-
-				<div class="restart">
-					<h4 class="col-xs-6 offset-xs-3">Restart</h4>
-				</div>
-
 			</div>
-		</section> 
-		<section  id="secTen">
-			<div class="card">
-				<div class="newHome">
-					<h2>Congratulations! You have made it to THX-11! You earned have earned a total of <span class="points"></span> points!</h2>
-					<div class="home"></div>
-					<div class="crewLeft"></div>
-					<div class="ground"></div>
+
+			<div class="blackHole-container">
+				<div class="blackHole">
+					<div class="container">
+						<p>You can try to throw away items or risk it for the bisquit and fight your way out of the gravitational pull. Be warned, fighting your way out may cause injuries to your crew.</p>
+						<div class="row gutters flex">
+							<ul class="col-xs-12 col-sm-7 col-md-9 row gutters">
+								<li class="col-xs-12 col-md-6 item">
+									<div class="item-top">
+										<img src="../images/sidebar_food.svg">
+										<p class="item-title">Food</p>
+									</div>
+									<p class="item-cost">10 meals weighs 10lbs</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-food" min="0" maxlength="20" value="0"> meal(s)</p>
+								</li>
+								<li class="col-xs-12 col-md-6 item">
+									<div class="item-top">
+										<img src="../images/sidebar_fuel.svg">
+										<p class="item-title">Fuel</p>
+									</div>
+									<p class="item-cost">10 fuel pods weigh 50lbs</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-fuel" min="0" maxlength="20" value="0"> pod(s)</p>
+								</li>
+							</ul>
+							<div class="col-xs-12 col-sm-5 col-md-3 receipt">
+								<p>Needs to be thrown away: <span class="to-throw"></span> lbs</p>
+								<p>Being thrown away: <span class="throw-total"></span> lbs</p>
+								<p>Remaining left: <span class="throw-left"></span> lbs</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</section>
+
+			<div class="travel-options">
+				<div class="container">
+					<div class="screen-width">
+						<div class="basic-options row gutters">
+							<div class="col-xs-6">
+								<div class="option travel">Travel</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option trade">Trade</div>
+							</div>
+						</div>
+						<div class="trade-options row gutters hide">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option no-trade">Back</div>
+							</div>
+						</div>
+						<div class="trade-options-planetX row gutters hide">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option no-trade">Back</div>
+							</div>
+						</div>
+						<div class="pirate-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option attack">Attack!</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option giveUp">Give In</div>
+							</div>
+						</div>
+						<div class="blackHole-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option throw-away">Throw Away</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option giveIn">Give In to the Pull</div>
+							</div>
+						</div>
+						<div class="pirate-bluff-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option bluff">Bluff!</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option giveUp">Give In</div>
+							</div>
+						</div>
+						<div class="thief-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option shoot">Shoot Them!</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option no-shoot">Let Them Go</div>
+							</div>
+						</div>
+						<div class="bar-options">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option leave-bar">Leave Bar</div>
+							</div>
+						</div>
+						<div class="locationOne-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option pass">Keep Traveling</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option touchDown">Touch Down</div>
+							</div>
+						</div>
+						<div class="locationTwo-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option go-through">Go Through</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option go-around">Go Around</div>
+							</div>
+						</div>
+						<div class="locationEnd-options row gutters hide">
+							<div class="offset-xs-6 col-xs-6">
+								<div class="option land">Land on My New Home</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			
+			
+		</div>
+		<div class="home-container">
+			<div class="home">
+				<h2>Captain <span class="captain-name"></span>, welcome to your new home!</h2>
+				<p>You have earned a total of <span class="end-points"></span> points.</p>
+			</div>
+			
+		</div>
 	</div>
 </body>
 </html>

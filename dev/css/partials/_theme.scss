@@ -18,7 +18,7 @@
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
-		background-color: rgba($color-tri, 0.5);
+		// background-color: rgba($color-tri, 0.5);
 
 		&.question {
 			color: darken($color-prime, 25%);
@@ -36,7 +36,7 @@
 }
 
 .button {
-	font-family: $font-heading;
+	font-family: $font;
 	color: $color-prime;
 	font-size: 200%;
 	font-weight: 700;
@@ -57,4 +57,73 @@
 		box-shadow: 0 0 15px $color-prime;
 		color: $color-prime;
 	}
+}
+
+#game{
+	.content{
+		position: relative;
+	}
+}
+
+.image1to1{
+	position: relative;
+	width: 100%;
+
+	&:before{
+		content: '';
+		display: block;
+		padding-top: 100%
+	}
+
+	&>div{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.imageHalfto1{
+	position: relative;
+	width: 100%;
+
+	&:before{
+		content: '';
+		display: block;
+		padding-top: 50%
+	}
+
+	&>div{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+%center-horizontally{
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+%center-vertically{
+	position: relative;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+%center-center{
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+%background-image-basic{
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }

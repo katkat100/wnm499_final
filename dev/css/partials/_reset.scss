@@ -5,21 +5,22 @@ html {
   box-sizing: border-box; }
 
 ::selection{
-	background: $color-sec;
+	background: $color-tri;
 	color: $color-prime;
 }
 
 body {
+	font-family: $font;
+	color: $color-tri;
+	background-color: $color-back;
 	margin: 0;
-	font-family: $font-body;
-	color: $color-sec;
-	background-color: $color-tri;
 	font-size: 100%;
 	font-weight: 100;
+}
 
-	&#game {
-		overflow: hidden;
-		height: 100vh;
+@media (max-width: 639px) {
+	body{
+		font-size: 90%;
 	}
 }
 
@@ -41,7 +42,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 h1{
-	font-family: $font-heading;
+	font-family: $font;
 	color: $color-prime;
 	font-size: 4em;
 	font-weight: 700;
@@ -57,40 +58,36 @@ h1{
 }
 
 h2{
-	font-family: $font-heading;
+	font-family: $font;
 	color: $color-prime;
 	font-size: 3em;
 	font-weight: 700;
-	text-shadow: 0 0 15px $color-prime;
+	text-shadow: 0 0 15px darken($color-prime,30%);
 	margin-bottom: .15em;
 	margin-top: .15em;
 	text-transform: uppercase;
+	text-align: center;
 }
 
 h3{
-	font-family: $font-body;
+	font-family: $font;
 	font-size: 2em;
 	font-weight: 400;
 	text-transform: uppercase;
 }
 
 h4{
-	font-family: $font-body;
+	font-family: $font;
 	font-size: 1.5em;
 	font-weight: 100;
 	text-transform: uppercase;
 	text-align: center;
-	margin-bottom: 1em;
-	transition: all 500ms;
+	display: block;
 
-	&:hover{
-		color: $color-prime;
-		text-shadow: 0 0 15px $color-prime;
-		cursor: pointer;
-	}
+	
 	
 }
-@media (max-width:640px) {
+@media (max-width:639px) {
 	h2 {
 		font-size: 1.75em;
 	}
@@ -110,15 +107,15 @@ section{
 
 input{
 	border: 0;
-	border-bottom: 3px solid $color-sec;
-	border-bottom-left-radius:2px;
-	border-bottom-right-radius:2px;
+	border-bottom: 3px solid $color-tri;
+	border-left: 3px solid transparent;
+	border-right: 3px solid transparent;
 	background-color: transparent;
-	font-size: 150%;
+	font-size: 1.2em;
 	text-align: center;
-	font-family: $font-body;
+	font-family: $font;
 	margin-top: 1em;
-	color: $color-sec;
+	color: $color-tri;
 	font-weight: 100;
 	&:focus{
 		outline: none;
@@ -128,12 +125,10 @@ input{
 	}
 }
 
-ul{
-	color: $color-prime;
-	li{
-		display: inline-block;
-		padding: .2em .5em;
-	}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 #month {
@@ -153,13 +148,24 @@ ul{
 nav{
 	position: fixed;
 	top: 0;
-	left: 10px;
 	ul{
 		padding-left: 0;
 	}
+	li{
+		display: inline-block;
+		padding: .75em .5em;
+	}
 }
-p {
-	padding-left: 20px;
-	padding-right: 20px;
-	text-align: left;
+
+// p {
+// 	padding-left: 20px;
+// 	padding-right: 20px;
+// 	text-align: left;
+// }
+
+ul{
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom:0;
 }
