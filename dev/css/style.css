@@ -921,6 +921,8 @@ ul {
     background-image: url(../images/crew3.svg); }
   .setUp-container .img-crewFour {
     background-image: url(../images/crew4.svg); }
+  .setUp-container input[type="text"] {
+    color: #acb7b5; }
 
 #setUp-profession .job {
   border: 3px solid #EEFFFC;
