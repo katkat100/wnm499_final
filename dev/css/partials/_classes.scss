@@ -646,6 +646,18 @@ input[name=captain]{
 	}
 }
 
+//end
+.end-points{
+	color: $color-prime;
+}
+
+.home{
+
+	p{
+		text-align: center;
+	}
+}
+
 
 //sm
 @media (min-width: 480px) and (max-width: 639px){

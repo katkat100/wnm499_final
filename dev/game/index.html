@@ -12,7 +12,7 @@
 	<script src="gamecode.js"></script>
 	<style>
 		.spaceScreen-container{
-			display: block;
+			/*display: block;*/
 		}
 
 		.sidebar-left, .sidebar-right, .displayWindow, .basic-options{
@@ -29,6 +29,10 @@
 		.blackHole-container, .bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
 			display: none;
 		}
+
+		.home-container{
+			display: none;
+		}
 	</style>
 </head>
 <body id="game">
@@ -41,7 +45,7 @@
 	</nav> -->
 
 	<div class="content">
-		<!-- <div class="setUp-container">
+		<div class="setUp-container">
 			<div class="container">
 				<div class="card-container">
 					<div class="card" id="setUp-profession">
@@ -148,7 +152,7 @@
 				<div class="card-container">
 					<div class="card" id="setUp-b4Shop">
 						<h2>Before you depart it is wise to stock up on supplies.</h2>
-						<p class="setUp-desc">You have §<span class="money"></span> to spend. It is recommended not spend it all in one place.</p>
+						<p class="setUp-desc">You have §<span class="money"></span> to spend. It is recommended to not spend it all in one place.</p>
 						<h4 class="setUp-button">Enter Store</h4>
 					</div>
 				</div>
@@ -168,7 +172,7 @@
 											<img src="../images/sidebar_food.svg">
 											<p class="item-title">Food</p>
 										</div>
-										<p class="item-cost">§20 for a food crate (10 meals)</p>
+										<p class="item-cost">§10 for a food crate (20 meals)</p>
 										<p class="item-buy">Buy: <input type="number" name="shop-food" min="0" maxlength="20" value="0"> crate(s)</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
@@ -176,7 +180,7 @@
 											<img src="../images/sidebar_fuel.svg">
 											<p class="item-title">Fuel</p>
 										</div>
-										<p class="item-cost">§50 for a carton (50 fuel pods)</p>
+										<p class="item-cost">§20 for a carton (60 fuel pods)</p>
 										<p class="item-buy">Buy: <input type="number" name="shop-fuel" min="0" maxlength="20" value="0"> carton(s)</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
@@ -203,7 +207,7 @@
 
 				<div class="card-container">
 					<div class="card" id="setUp-end">
-						<h2>You have a long journey ahead of you. Good Luck.</h2>
+						<h2>You have a long journey ahead of you.</h2><h2>Good Luck.</h2>
 						<h4 class="setUp-button">Depart</h4>
 					</div>
 				</div>
@@ -211,7 +215,7 @@
 
 
 			</div>
-		</div> -->
+		</div>
 		<div class="spaceScreen-container">
 			<div class="sidebar-left">
 				<ul class="inventory">
@@ -283,9 +287,6 @@
 					<div class="col-xs-6 display-obstacle"></div>
 				</div>
 			</div>
-			<!-- <div class="monthDay">
-				 <span class="month"></span> <span class="day"></span>
-			</div> -->
 
 			<div class="planetX">
 				<div class="activities-container">
@@ -547,8 +548,12 @@
 			
 			
 		</div>
-		<div class="home-container hide">
-			<h2>Home.</h2>
+		<div class="home-container">
+			<div class="home">
+				<h2>Captain <span class="captain-name"></span>, welcome to your new home!</h2>
+				<p>You have earned a total of <span class="end-points"></span> points.</p>
+			</div>
+			
 		</div>
 	</div>
 </body>

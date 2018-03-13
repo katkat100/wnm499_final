@@ -239,7 +239,7 @@ $(function(){
 		}
 		c("first food" + gameobj['food']);
 		crewHealth();
-		gameobj['food'] -= fpp * totalHealth;
+		gameobj['food'] -= fpp * (totalHealth / 4);
 		gameSpans('food');
 		c("food" + gameobj['food']);
 
@@ -248,7 +248,7 @@ $(function(){
 		} else if(gameobj['food'] <= 0){
 			gameobj['food'] = 0;
 			$("span.food").text(gameobj['food']);
-			addWarning("Warning! You have run out of food. Captain " + captain['name'] + " , if you continue to travel without food your crew members may die.");
+			addWarning("Warning! You have run out of food. Captain " + captain['name'] + ", if you continue to travel without food your crew members may die.");
 			var hungryDice = Math.ceil( ( Math.random() * 10) );
 			c("hungry: " + hungryDice)
 			if(hungryDice == 5 || hungryDice == 3){
@@ -457,7 +457,7 @@ $(function(){
 			break;
 			case 8://broken body part
 				painHappens();
-				addToConsole(conDay + crew[victimRoll]['name'] + "broke a bone. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]['name'] + " broke a bone. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
@@ -787,7 +787,7 @@ $(function(){
 	var shopTotal = 0;
 
 	function updateBill(){
-		shopBill = (20 * numFood) + (50 * numFuel) + (20 * numAmmo);
+		shopBill = (10 * numFood) + (20 * numFuel) + (20 * numAmmo);
 		shopTotal = budget - shopBill;
 		$("span.bill").text(shopBill);
 		$("span.total").text(shopTotal);
@@ -815,8 +815,8 @@ $(function(){
 
 	$("#setUp-shop .setUp-button").on('click', function(){
 		if(shopTotal >= 0){
-			gameobj['food'] = numFood * 10;
-			gameobj['fuel'] = numFuel * 50;
+			gameobj['food'] = numFood * 20;
+			gameobj['fuel'] = numFuel * 60;
 			gameobj['ammo'] = numAmmo * 5;
 			gameobj['money'] = shopTotal;
 			gameSpans('food');
@@ -843,29 +843,29 @@ $(function(){
 	})
 
 //game
-	var bar = 100;
-	$(".inventory").mouseenter(function(){
-		var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
-		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
-		var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
-		$(".inven.food .bar").animate({width: foodBar});
-		$(".inven.food .full-bar").animate({width: bar - foodBar});
-		$(".inven.fuel .bar").animate({width: fuelBar});
-		$(".inven.fuel .full-bar").animate({width: bar - fuelBar});
-		$(".inven.ammo .bar").animate({width: ammoBar});
-		$(".inven.ammo .full-bar").animate({width: bar - ammoBar});
-		// $(".inventory span").animate({opacity: 0});
-	})
+	// var bar = 100;
+	// $(".inventory").mouseenter(function(){
+	// 	var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
+	// 	var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
+	// 	var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
+	// 	$(".inven.food .bar").animate({width: foodBar});
+	// 	$(".inven.food .full-bar").animate({width: bar - foodBar});
+	// 	$(".inven.fuel .bar").animate({width: fuelBar});
+	// 	$(".inven.fuel .full-bar").animate({width: bar - fuelBar});
+	// 	$(".inven.ammo .bar").animate({width: ammoBar});
+	// 	$(".inven.ammo .full-bar").animate({width: bar - ammoBar});
+	// 	// $(".inventory span").animate({opacity: 0});
+	// })
 
-	$(".inventory").mouseleave(function(){
-		$(".inven.food .bar").animate({width: 0});
-		$(".inven.food .full-bar").animate({width: 0});
-		$(".inven.fuel .bar").animate({width: 0});
-		$(".inven.fuel .full-bar").animate({width: 0});
-		$(".inven.ammo .bar").animate({width: 0});
-		$(".inven.ammo .full-bar").animate({width: 0});
-		// $(".inventory span").animate({opacity: 1});
-	})
+	// $(".inventory").mouseleave(function(){
+	// 	$(".inven.food .bar").animate({width: 0});
+	// 	$(".inven.food .full-bar").animate({width: 0});
+	// 	$(".inven.fuel .bar").animate({width: 0});
+	// 	$(".inven.fuel .full-bar").animate({width: 0});
+	// 	$(".inven.ammo .bar").animate({width: 0});
+	// 	$(".inven.ammo .full-bar").animate({width: 0});
+	// 	// $(".inventory span").animate({opacity: 1});
+	// })
 
 //trading
 	var tradeNoTrade = "Trade was attempted."
@@ -1234,9 +1234,47 @@ $(function(){
 
 	$("span.health").text(health);
 
+
+
+captain['job'] = "moneybags";
 //end
 	$(".land").on('click', function(){
 		togClass('.spaceScreen-container', ".home-container");
+		$("span.captain-name").text(captain['name']);
+
+		crewHealth();
+
+		var pFood = (gameobj["food"] / 10);
+		var pAmmo = gameobj["ammo"];
+		var pFuel = gameobj['fuel'] / 10;
+		var pMoney = Math.floor(gameobj["money"] / 5);
+		var pHealth = (totalHealth / 4) * 200;
+
+		var pSubtotal = pFood + pAmmo + pFuel + pMoney + pHealth;
+		var JobBenefit = 0;
+
+		c("food points: " + pFood);
+		c("ammo points: " + pAmmo);
+		c("fuel points: " + pFuel);
+		c("money points: " + pMoney);
+		c("health points: " + pHealth);
+
+		c("subtotal points: " + pSubtotal);
+
+		if(captain['job'] == "farmer"){
+			JobBenefit = 3;
+		} else if(captain['job'] == "engineer"){
+			JobBenefit = 2;
+		} else if(captain['job'] == "moneybags"){
+			JobBenefit = 1;
+		}
+
+		c("job JobBenefit: " + JobBenefit)
+
+		var pTotal = Math.floor(pSubtotal * JobBenefit);
+		c(pTotal);
+
+		$("span.end-points").text(pTotal);
 	})
 	
 })
