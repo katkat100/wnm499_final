@@ -1171,6 +1171,38 @@ input[name=captain] {
     float: right;
     margin-left: 10px; }
 
+.blackHole {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -60%); }
+  .blackHole-container {
+    position: relative;
+    top: 190px;
+    height: calc(100vh - 190px); }
+  .blackHole p {
+    margin-top: 0;
+    text-align: center; }
+  .blackHole .item {
+    position: relative;
+    padding-bottom: 30px; }
+    .blackHole .item img {
+      width: 30%;
+      margin-left: 35%; }
+    .blackHole .item-title {
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 0; }
+    .blackHole .item-cost {
+      text-align: center; }
+    .blackHole .item-buy {
+      text-align: center; }
+    .blackHole .item input {
+      margin-top: 0;
+      display: inline-block;
+      width: 40px; }
+
 .planetX {
   position: relative;
   top: 190px;

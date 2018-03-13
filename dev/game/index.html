@@ -26,7 +26,7 @@
 			display: none;
 		}
 /* */
-		.bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
+		.blackHole-container, .bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
 			display: none;
 		}
 	</style>
@@ -427,6 +427,39 @@
 				</div>
 			</div>
 
+			<div class="blackHole-container">
+				<div class="blackHole">
+					<div class="container">
+						<p>You can try to throw away items or risk it for the bisquit and fight your way out of the gravitational pull. Be warned, fighting your way out may cause injuries to your crew.</p>
+						<div class="row gutters flex">
+							<ul class="col-xs-12 col-sm-7 col-md-9 row gutters">
+								<li class="col-xs-12 col-md-6 item">
+									<div class="item-top">
+										<img src="../images/sidebar_food.svg">
+										<p class="item-title">Food</p>
+									</div>
+									<p class="item-cost">10 meals weighs 10lbs</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-food" min="0" maxlength="20" value="0"> meal(s)</p>
+								</li>
+								<li class="col-xs-12 col-md-6 item">
+									<div class="item-top">
+										<img src="../images/sidebar_fuel.svg">
+										<p class="item-title">Fuel</p>
+									</div>
+									<p class="item-cost">10 fuel pods weigh 50lbs</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-fuel" min="0" maxlength="20" value="0"> pod(s)</p>
+								</li>
+							</ul>
+							<div class="col-xs-12 col-sm-5 col-md-3 receipt">
+								<p>Needs to be thrown away: <span class="to-throw"></span> lbs</p>
+								<p>Being thrown away: <span class="throw-total"></span> lbs</p>
+								<p>Remaining left: <span class="throw-left"></span> lbs</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="travel-options">
 				<div class="container">
 					<div class="screen-width">
@@ -438,12 +471,12 @@
 								<div class="option trade">Trade</div>
 							</div>
 						</div>
-						<div class="trade-options row gutters">
+						<div class="trade-options row gutters hide">
 							<div class="offset-xs-3 col-xs-6">
 								<div class="option no-trade">Back</div>
 							</div>
 						</div>
-						<div class="trade-options-planetX row gutters">
+						<div class="trade-options-planetX row gutters hide">
 							<div class="offset-xs-3 col-xs-6">
 								<div class="option no-trade">Back</div>
 							</div>
@@ -454,6 +487,14 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="option giveUp">Give In</div>
+							</div>
+						</div>
+						<div class="blackHole-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option throw-away">Throw Away</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option giveIn">Give In to the Pull</div>
 							</div>
 						</div>
 						<div class="pirate-bluff-options row gutters hide">

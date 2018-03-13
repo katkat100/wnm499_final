@@ -333,6 +333,9 @@ $(function(){
 		}		
 	}
 
+	var toBeThrow = 0;
+	var throwTotal = 0;
+	var throwRemain = 0;
 	var thiefFood = 100;
 	function encounterSituations(){
 		var conDay = month + " " + day + ": ";
@@ -395,7 +398,22 @@ $(function(){
 				}
 			break;
 			case 3://black hole
-				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You mut shed some weight to escape.");
+				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You must shed some weight to escape unscathed.");
+				hideMain();
+				$(".blackHole-container").show();
+				togClass(".basic-options", ".blackHole-options")
+
+				$(".blackHole-options .throw-away").css({
+					"pointerEvents" : "none", "opacity" : "0.5"
+				})
+
+				toBeThrow = (Math.floor(Math.random() * 50) + 1) * 10;
+				c(toBeThrow);
+				throwRemain = toBeThrow;
+
+				$("span.to-throw").text(toBeThrow);
+				$("span.throw-total").text(throwTotal);
+				$("span.throw-left").text(throwRemain);
 			break;
 			case 4://pigeon
 				addToConsole(conDay + "Oh No! Space Pigeons were found in your food bay and they ate EVERYTHING! Now all you have to eat is pigeon meat.");
@@ -459,6 +477,48 @@ $(function(){
 		}
 
 		encounter = 0;
+	}
+
+	function blackHoleObjects(){
+		foodInput = $("input[name = 'throw-food']").val();
+		fuelInput = $("input[name = 'throw-fuel']").val();
+
+		foodThrown = foodInput * 10;
+		fuelThrown = fuelInput * 50;
+
+		if(foodThrown > gameobj['food']){
+			addToConsole("You don't have enough food for that.");
+			$("input[name = 'throw-food']").val(0);
+			foodInput = $("input[name = 'throw-food']").val()
+			foodThrown = foodInput * 10;
+		}
+
+		if(fuelThrown > gameobj['fuel']){
+			addToConsole("You don't have enough fuel pods for that.");
+			$("input[name = 'throw-fuel']").val(0);
+			fuelInput = $("input[name = 'throw-fuel']").val()
+			fuelThrown = fuelInput * 50;
+		}
+
+		throwTotal = foodThrown + fuelThrown;
+		throwRemain = toBeThrow - throwTotal;
+
+		if(throwRemain < 0){
+			throwRemain = 0;
+		}
+
+		$("span.throw-total").text(throwTotal);
+		$("span.throw-left").text(throwRemain);
+
+		if(throwRemain == 0){
+			$(".throw-away").css({
+				"pointerEvents" : "auto", "opacity" : "1"
+			})
+		} else {
+			$(".throw-away").css({
+				"pointerEvents" : "none", "opacity" : "0.5"
+			})
+		}
 	}
 
 	function location(){
@@ -913,7 +973,6 @@ $(function(){
 		togClass(".pirate-options", ".basic-options");
 	})
 
-
 //thief
 	$(".shoot").on('click', function(){
 		if(gameobj['ammo'] > 0){
@@ -940,6 +999,66 @@ $(function(){
 		gameobj['food'] -= thiefFood;
 		gameSpans('food');
 		togClass(".thief-options", '.basic-options');
+	})
+
+//blackhole
+	$("input[name = 'throw-food']").on('input',function(){
+		blackHoleObjects();
+	});
+
+	$("input[name = 'throw-fuel']").on('input',function(){
+		blackHoleObjects();
+	});
+
+	$(".throw-away").on('click', function(){
+		gameobj['food'] -= foodInput * 10;
+		gameobj['fuel'] -= fuelInput * 10;
+
+		c("food: " + gameobj['food']);
+		c("fuel: " + gameobj['fuel']);
+
+		gameSpans('food');
+		gameSpans('fuel');
+
+		c("food: " + gameobj['food']);
+		c("fuel: " + gameobj['fuel']);
+
+		addToConsole("You were able to escape the pull of gravity!");
+
+		togClass(".blackHole-options", ".basic-options");
+		showMain();
+		$(".blackHole-container").hide();
+
+		//reset
+		$("input[name = 'throw-food']").val(0);
+		$("input[name = 'throw-fuel']").val(0);
+		throwTotal = 0;
+		throwRemain = 100;
+	})
+
+	$(".giveIn").on("click", function(){
+		DiceRoll();
+		if(diceOne >= 8){
+			addToConsole("You made it out of the gravitational pull alive with a little hard work and a lot of luck.");
+		} else {
+			painHappens();
+			addWarning(crew[victimRoll]['name'] + " was hurt in the attempt to get out of the gravitational pull.");
+			if(crew[victimRoll]["status"] == "dead"){
+				addWarning(conDay + crew[victimRoll]["name"] + " died.");
+				addToConsole("Well that's one way of losing some weight");
+			}
+
+			togClass(".blackHole-options", ".basic-options");
+			showMain();
+			$(".blackHole-container").hide();
+
+			//reset
+			$("input[name = 'throw-food']").val(0);
+			$("input[name = 'throw-fuel']").val(0);
+			throwTotal = 0;
+			throwRemain = 100;
+
+		}
 	})
 
 //Planet X
@@ -1059,14 +1178,15 @@ $(function(){
 			}
 		}
 		
-
+c("firstfood: " + gameobj['food']);
+		c("firstfuel: " + gameobj['fuel']);
 		
 		c("encounter: " + encounter);
 		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
 			addWarning("everyone is dead");
 		} else{
 			
-			encounter = 7;
+			encounter = 3;
 			// encounterSituations();
 			location();
 		}
