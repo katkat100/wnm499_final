@@ -260,6 +260,7 @@ $(function(){
 	function updatePace(){
 		if(doubleFuel){
 			extraFuel = 2;
+			c("double Fuel!");
 		} else if (!doubleFuel){
 			extraFuel = 1;
 		}
@@ -463,15 +464,18 @@ $(function(){
 
 				togClass(".locationOne-options",".planetX");
 			})
-
-			
 		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
 			c("yayayayayay local two")
+
+			addEmphasis(month + " " + day + ": " + "You have neared Nebula Y which is known for being a pirate hangout. Going around will use double the amount of fuel but will be much safer. What will you do?");
+			togClass(".basic-options", ".locationTwo-options");
 
 			pastLocation = 2
 			presentLocation = 55;
 		} else if(presentLocation >= stopLocations[2] && pastLocation == 2){
 			c("yayayayayay local three")
+			doubleFuel = false;
+			addEmphasis(month + " " + day + ": " + "You have reached the end of the nebula. Things seem to have returned to normal. You can feel that THX-11 is close.");
 
 			pastLocation = 3
 			presentLocation = 70;
@@ -890,6 +894,17 @@ $(function(){
 		}
 	})
 
+	//Nebula Y
+	$(".go-through").on('click', function(){
+		togClass(".locationTwo-options", ".basic-options");
+		addToConsole("You decide to brave the Nebula and its pirates.")
+	})
+	$(".go-around").on('click', function(){
+		doubleFuel = true;
+		togClass(".locationTwo-options", ".basic-options");
+		addToConsole("You decide to take a safer route and go around the dangerous Nebula.");
+	})
+
 //travel
 	$(".travel").on('click', function(){
 		upadateTime();
@@ -905,7 +920,14 @@ $(function(){
 		trade("tradeThree");
 		
 
-		
+		if(pastLocation == 2 && !doubleFuel){
+			c("pirates?");
+			DiceRoll();
+			if(diceOne > 6){
+				encounter = 1;
+				c("encounter: " + encounter);
+			}
+		}
 		
 
 		
@@ -946,8 +968,8 @@ $(function(){
 
 
 
-	gameobj['food'] = 200;
-	gameobj['fuel'] = 200;
+	gameobj['food'] = 2000;
+	gameobj['fuel'] = 2000;
 	gameobj['ammo'] = 10;
 	gameobj['money'] = 2000;
 	gameSpans('food');
