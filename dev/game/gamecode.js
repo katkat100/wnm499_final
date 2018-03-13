@@ -12,6 +12,7 @@ $(function(){
 	};
 
 	var health = 100;
+	var totalHealth = 0;
 	var ration = "filling";
 	var pace = "quick";
 	var blorpTravel = {
@@ -67,6 +68,24 @@ $(function(){
 	var pastLocation = 0;
 	var encounter = 0;
 
+	var traderTitle = ["Space Voyager", "Hitchhiker", "Galaxy Vagabond", "Ex-Pirate", "Regional Space Liason", "Technician", "Dynamic Space Wanderer", "Lost"];
+	var traderName = ["Bobbert", "Baltazar", "Hosanna", "Huxley", "Ivar", "Nevin", "Caess", "Sourdrop", "Aut", "Ophelia", "Titania", "Astrid", "Urman", "Nani", "Jata", "Quinn"];
+	var tradeItems = [
+		{one:'10 meals', two:'§50', add:'10', to:'food', minus:'50', from:'money'},
+		{one:'20 meals', two:'§60', add:'20', to:'food', minus:'60', from:'money'},
+		{one:'20 meals', two:'§70', add:'20', to:'food', minus:'70', from:'money'},
+		{one:'30 meals', two:'§70', add:'30', to:'food', minus:'70', from:'money'},
+
+		{one:'100 fuel pods', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
+		{one:'200 fuel pods', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
+		{one:'300 fuel pods', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+
+		{one:'2 energy shots', two:'20 meals', add:'2', to:'ammo', minus:'20', from:'food'},
+		{one:'5 energy shots', two:'30 meals', add:'5', to:'ammo', minus:'30', from:'food'},
+		{one:'3 energy shots', two:'§220', add:'3', to:'ammo', minus:'220', from:'money'},
+	]
+	var barName = ['Uemyrea', 'Linola', 'Hystise', 'Airiene', 'Pela', 'Voloya', 'Jozane', 'Boozyad', 'Ukhgahr', 'Squxuoss', 'Kuarcax', 'Algaxath', 'Kruogg', 'Baeff', 'Vizzag', 'Wriz', 'Hues', 'Pydh'];
+
 //shortcut functions
 	function c(print){
 		console.log(print);
@@ -102,6 +121,18 @@ $(function(){
 		$(s).show();
 	}
 
+	function hideMain(){
+		$(".sidebar-left").hide();
+		$(".sidebar-right").hide();
+		$(".displayWindow").hide();
+	}
+
+	function showMain(){
+		$(".sidebar-left").show();
+		$(".sidebar-right").show();
+		$(".displayWindow").show();
+	}
+
 //functions
 	function gameSpans(object){
 		$("span." + object).text(gameobj[object]);
@@ -124,7 +155,7 @@ $(function(){
 	}
 
 	function crewHealth(){
-		var totalHealth = 0;
+		totalHealth = 0;
 		for(var i = 0; i < crew.length; i++){
 			if(crew[i]['health'] <= 0 && crew[i]["status"] == "alive"){
 				theReaper(i);
@@ -178,7 +209,7 @@ $(function(){
 		} else if(month == "January" && day > 31){
 			month = "Febuary";
 			day = 1;
-		} else if(month == "Febuary" && day > 28){
+		} else if(month == "February" && day > 28){
 			month = "March";
 			day = 1;
 		} else if(month == "March" && day > 31){
@@ -186,10 +217,81 @@ $(function(){
 			day = 1;
 		}
 
+
 		// c(day);
 		// c(month);
 		$("span.month").text(month);
 		$("span.day").text(day);
+	}
+
+	function updateRation(){
+		var ffp = 0;
+		if(ration == "bare"){
+			fpp = 1;
+		} else if(ration == "meager"){
+			fpp = 2;
+		} else if(ration == "filling"){
+			fpp = 4;
+		}
+		gameobj['food'] -= fpp * totalHealth;
+		gameSpans('food');
+
+		if(gameobj['food'] <= (ffp * health) && gameobj['food'] > 0){
+			addToConsole("A crew member warns you that food is getting low. It's advisable to trade for food.");
+		} else if(gameobj['food'] <= 0){
+			gameobj['food'] = 0;
+			$("span.food").text(gameobj['food']);
+			addWarning("Warning! You have run out of food. If you continue to travel without food your crew members may die.");
+			var hungryDice = Math.ceil( ( Math.random() * 10) );
+			c("hungry: " + hungryDice)
+			if(hungryDice == 5 || hungryDice == 3){
+				painHappens();
+				addWarning(month + " " + day + ": " + crew[victimRoll]['name'] + " gets hurt from hunger. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
+				encounter = 20;
+			}
+		}
+	}
+
+	var doubleFuel = false;
+	var extraFuel = 1;
+	function updatePace(){
+		if(doubleFuel){
+			extraFuel = 2;
+		} else if (!doubleFuel){
+			extraFuel = 1;
+		}
+
+		if(pace == "slow"){
+			fuelUsage = 5 * extraFuel;
+		} else if(pace == "moderate"){
+			fuelUsage = 12 * extraFuel;
+		} else if(pace == "quick"){
+			fuelUsage = 24 * extraFuel;
+		} else if(pace == "fast"){
+			fuelUsage = 36 * extraFuel;
+		}
+		gameobj['fuel'] -= fuelUsage;
+		gameSpans('fuel');
+
+		presentLocation = presentLocation + parseInt(blorpTravel[pace]);
+
+		if(gameobj['fuel'] < (fuelUsage * 2) && gameobj['fuel'] > fuelUsage){
+			addToConsole("Fuel is getting low try trading for more fuel or adjusting your pace.")
+
+		} else if(gameobj['fuel'] <= fuelUsage && gameobj['fuel'] > 0){
+			addWarning("You are running very low on fuel.");
+		} else if(gameobj['fuel'] <=0){
+			gameobj['fuel'] = 0;
+			$("span.fuel").text(gameobj['fuel']);
+			addWarning("Warning! You have run out of fuel. Attempt to trade for fuel or drift helplessly through space.");
+			$(".travel").css({'pointerEvents':'none','opacity':'.5'});
+			encounter = 20;
+
+		}
+
 	}
 
 
@@ -240,8 +342,10 @@ $(function(){
 			break;
 			case 2://time warp
 				addToConsole(conDay + "A disgruntled Spacetime Lord warps you back 3 days!");
-				day -= 4;
-				presentLocation -= blorpTravel['pace'];
+				day = parseInt(day - 4);
+				// c(blorpTravel[pace]);
+				presentLocation = parseInt(presentLocation - blorpTravel[pace]);
+				// c(presentLocation);
 				if(day < 1){
 					if(month == 'April'){
 						month = 'March';
@@ -344,6 +448,10 @@ $(function(){
 
 			$(".pass").on('click', function(){
 				togClass(".locationOne-options",".basic-options");
+				addToConsole("You have decided to not touch down at this location.")
+
+				pastLocation = 1
+				presentLocation = 25;
 			})
 
 			$(".touchDown").on('click', function(){
@@ -376,6 +484,116 @@ $(function(){
 			encounterSituations();
 		}
 	}
+
+	function barPerson(barPerson){
+		nameNum = (Math.floor((Math.random() * $(barName).length + 1))) - 1;
+		$("span" + barPerson + "-name").text(barName[nameNum]);
+		// $(".img-" + barPerson).css({"backgroundImage" : "../images/" + "you" + ".svg"})
+		$(barPerson).data({
+			name: nameNum,
+			image : "you",
+
+		})
+	}
+
+	function barTalk(){//work on this do something like 3 options: order food, listen to gossip, talk to somebody. Ordering food is kind of expensive but will add to your total food. Listening in will create a risk of getting caught and people not sitting next to you to hear more gossip and will raise the talking risk. Everytime you talk to somebody you raise the risk of offending someone. If reach "10" then no one talks to you and when you leave the bar you cant go back.
+		DiceRoll();
+
+		if(diceOne == 1){
+			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
+		} else if(diceOne == 2){
+			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 lbs of food");
+			gameobj['food'] += 50;
+			$("span.food").text(gameobj['food']);
+		} else if(diceOne == 3){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You won! They give you §100 as your winnings.");
+			gameobj['money'] += 100;
+			$("span.money").text(gameobj['money']);
+		} else if(diceOne == 4){
+			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
+			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
+			gameobj['money'] -= 100;
+			$("span.money").text(gameobj['money']);
+		} else if(diceOne == 5){
+			addToConsole("You buy your new friend a drink and local bar food.");
+			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
+			gameobj['money'] -= 10;
+			$("span.money").text(gameobj['money']);
+		} else if(diceOne == 6){
+			painHappens();
+			addWarning(crew[victimRoll]['name'] + " offends " + $(this).data('name') + "and gets punched. They lose 2 health.");
+			if(crew[victimRoll]["status"] == "dead"){
+				addWarning(conDay + crew[victimRoll]["name"] + " died.")
+			}
+			$("span.money").text(gameobj['money']);
+		} else if(diceOne == 7){
+			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
+		} else if(diceOne == 8){
+			addToConsole("You get along well with this random stranger you've sat down with.");
+		} else if(diceOne == 9 || diceOne == 10){
+			addToConsole("You find out that " + $(this).data("name") + " knows Aunt Frale. What a small world!");
+		} else{
+			// addToConsole($(this).data("name") + " seems like a good person. You wonder if they would join you on your journey.");
+			// if(crew.length < 4){
+			// 	addToConsole($(this).data("name") + " agrees to join you on your journey.");
+
+			// 	var newMember = {
+			// 		name : $(this).data("name"),
+			// 		image : $(this).data("image"),
+			// 		death : $(this).data("death"),
+			// 		health : 4,
+			// 		status : "alive"
+			// 	}
+
+			// 	$(crew).merge(crew, newMember);
+
+			// 	// crewHealth();
+			// 	c(crew);
+			// 	health = $(crew).length;
+			// 	$("span.health").text(health);
+
+			// } else if(crew.length >= 4){
+			// 	addToConsole("Too bad there's no room in your ship for another person.");
+			// }
+		}
+	}
+
+	function trade(traderNum){
+		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
+		nameNum = (Math.floor((Math.random() * $(traderName).length + 1))) - 1;
+		itemNum = (Math.floor((Math.random() * $(tradeItems).length + 1))) - 1;
+		$("." + traderNum + " .trader-title").text(traderTitle[titleNum]);
+		$("." + traderNum + " .trader-name").text(traderName[nameNum]);
+		$("." + traderNum + " .first-item").text(tradeItems[itemNum].one);
+		$("." + traderNum + " .second-item").text(tradeItems[itemNum].two);
+
+		$("." + traderNum).data({
+			add: tradeItems[itemNum].add,
+			minus: tradeItems[itemNum].minus,
+			addTo: tradeItems[itemNum].to,
+			minusFrom: tradeItems[itemNum].from
+		})
+	}
+
+	function tradeItem(traderNum){
+		c($(traderNum).data("minusFrom"));
+		c(gameobj[$(traderNum).data("minusFrom")]);
+		c($(traderNum).data("minus"));
+		if(gameobj[$(traderNum).data("minusFrom")] >= $(traderNum).data("minus") ) {
+			gameobj[$(traderNum).data("addTo")] += parseInt($(traderNum).data("add"));
+			gameobj[$(traderNum).data("minusFrom")] -= parseInt($(traderNum).data("minus"));
+			$("span." + $(traderNum).data("addTo")).text(gameobj[$(traderNum).data("addTo")]);
+			$("span." + $(traderNum).data("minusFrom")).text(gameobj[$(traderNum).data("minusFrom")]);
+		} else if(gameobj[$(traderNum).data("minusFrom")] < $(traderNum).data("minus")){
+			c("trade unavailable");
+			$(traderNum).addClass("overpriced");
+		}else{
+			c("uhhh");
+		}
+	}
+
+
 
 
 
@@ -522,6 +740,11 @@ $(function(){
 		setUpEnd = true;
 		setUpMove();
 
+		trade("tradeOne");
+		trade("tradeTwo");
+		trade("tradeThree");
+
+		crewHealth();
 	})
 
 	//game
@@ -531,11 +754,11 @@ $(function(){
 		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
 		var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
 		$(".inven.food .bar").animate({width: foodBar});
-		$(".inven.food .full-bar").animate({width: 200 - foodBar});
+		$(".inven.food .full-bar").animate({width: bar - foodBar});
 		$(".inven.fuel .bar").animate({width: fuelBar});
-		$(".inven.fuel .full-bar").animate({width: 200 - fuelBar});
+		$(".inven.fuel .full-bar").animate({width: bar - fuelBar});
 		$(".inven.ammo .bar").animate({width: ammoBar});
-		$(".inven.ammo .full-bar").animate({width: 200 - ammoBar});
+		$(".inven.ammo .full-bar").animate({width: bar - ammoBar});
 		// $(".inventory span").animate({opacity: 0});
 	})
 
@@ -549,8 +772,43 @@ $(function(){
 		// $(".inventory span").animate({opacity: 1});
 	})
 
+//trading
+	var tradeNoTrade = "Trade was attempted."
+	$(".option.trade").on('click',function(){
+		hideMain();
+		$(".basic-options").hide();
+		togClass(".progressConsole-container", ".trade-options");
+		$('.trade-container').show();
+	})
+	$(".tradeOne").on("click",function(){
+		tradeItem(this);
 
-	//Planet X
+		tradeNoTrade = "Trade was made."
+	});
+	$(".tradeTwo").on("click",function(){
+		tradeItem(this);
+
+		tradeNoTrade = "Trade was made."
+	});
+	$(".tradeThree").on("click",function(){
+		tradeItem(this);
+
+		tradeNoTrade = "Trade was made."
+	});
+
+	$(".trade-options .no-trade").on('click', function(){
+		showMain();
+		$(".basic-options").show();
+		togClass(".trade-options", ".progressConsole-container");
+		$('.trade-container').hide();
+		upadateTime();
+		addToConsole(month + " " + day + ": " + tradeNoTrade);
+
+		tradeNoTrade = "Trading was attempted."
+	})
+
+
+//Planet X
 	$(".planetX .takeOff").on("click", function(){
 		upadateTime();
 
@@ -563,23 +821,91 @@ $(function(){
 
 		pastLocation = 1
 		presentLocation = 25;
-		c(pastLocation);
-		c(presentLocation);
+		c("past location: " + pastLocation);
+		c("present location: " + presentLocation);
 
 	});
 
-	$(".planetX .bar"){
-		
-	}
+	$(".planetX .bar").on('click', function(){
+		togClass(".planetX", ".bar-container");
+		$(".bar-options").show();
+		upadateTime();
+		addToConsole(month + " " + day + ": " + "You enter the local bar.");
+		barPerson(".barOne");
+		barPerson(".barTwo");
+		barPerson(".barThree");
+		//when change get rid of people and do three options order food, listen in, and talk
 
+	})
+	
+
+
+	$(".planetX .trade").on('click', function(){
+		togClass(".progressConsole-container", ".trade-options-planetX");
+		togClass(".planetX", ".trade-container");
+	})
+
+	$(".trade-options-planetX .no-trade").on('click', function(){
+		togClass(".trade-options-planetX", ".progressConsole-container");
+		togClass(".trade-container", ".planetX");
+
+		upadateTime();
+		addToConsole(month + " " + day + ": " + tradeNoTrade);
+
+		tradeNoTrade = "Trading was attempted."
+	})
+
+//bar
+	var barCount = 0;
+	$(".barOne").on('click', function(){
+		barCount++;
+		if(barCount < 5){
+			barTalk();
+		} else {
+			addToConsole("Looks like no one else wants to talk to you.")
+		}
+	})
+	$(".barTwo").on('click', function(){
+		barCount++;
+		if(barCount < 5){
+			barTalk();
+		} else {
+			addToConsole("Looks like no one else wants to talk to you.")
+		}
+	})
+	$(".barThree").on('click', function(){
+		barCount++;
+		if(barCount < 5){
+			barTalk();
+		} else {
+			addToConsole("Looks like no one else wants to talk to you.")
+		}
+	})
+
+	$(".leave-bar").on('click', function(){
+		togClass(".bar-container", ".planetX");
+		$(".bar-options").hide();
+		if(gameobj['fuel'] > fuelUsage){
+			$(".travel").css({'pointerEvents':'initial','opacity':1})
+		}
+	})
 
 //travel
 	$(".travel").on('click', function(){
 		upadateTime();
 		encounterDice();
+
+
+		updateRation();
+		updatePace();
+
+		//trade updates daily
+		trade("tradeOne");
+		trade("tradeTwo");
+		trade("tradeThree");
 		
 
-		presentLocation = presentLocation + blorpTravel[pace];
+		
 		
 
 		
@@ -595,8 +921,9 @@ $(function(){
 		// for(var i = 0; i < crew.length; i++){
 		// 	c(crew[i]["name"] + ": " + crew[i]["health"]);
 		// }
-		// c(presentLocation);
-		// c(stopLocations)
+		// c(blorpTravel[pace]);
+		c("present location: " + presentLocation);
+		// c(pastLocation)
 	});
 
 	

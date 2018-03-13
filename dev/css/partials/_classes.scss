@@ -50,6 +50,10 @@
 	padding: 0;
 }
 
+.p-relative{
+	position: relative;
+}
+
 
 
 
@@ -61,6 +65,10 @@
 
 .emphasis{
 	color: $color-highlight;
+}
+
+.content{
+	margin-top: -7px;
 }
 
 .card{
@@ -482,7 +490,7 @@ input[name=captain]{
 	.activities-container{
 		position: relative;
 		top: 50%;
-		transform: translate(0, -50%);
+		transform: translate(0, -60%);
 	}
 	.act{
 		border: 3px solid $color-tri;
@@ -501,6 +509,90 @@ input[name=captain]{
 		&-desc{
 			text-align: center;
 		}
+	}
+}
+
+.trade{
+	&s{
+		@extend %center-vertically;
+	}
+	&-container{
+		position: relative;
+		height:calc(100vh - 82px);
+	}
+
+	h2{
+		margin-bottom: 20px;
+	}
+
+	&able{
+		margin-top: 20px;
+		&-items{
+			text-align: center;
+		}
+		img{
+			width: 30px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		span{
+			vertical-align: middle;
+			text-align: center;
+		}
+	}
+}
+
+.overpriced{
+	.trader{
+		border: 3px solid $color-warning;
+		pointer-events: none;
+
+	}
+}
+
+.trader{
+	border: 3px solid $color-tri;
+	padding: .5em;
+	padding-bottom: 1em;
+	cursor: pointer;
+	transition: border 0.3s;
+	height: 100%;
+
+	&:hover{
+		border-color: $color-prime;
+		color: $color-prime;
+	}
+
+	&-price, .trader-info{
+		vertical-align: bottom;
+		text-align: center;
+	}
+}
+
+.bar{
+	&s{
+		position: relative;
+		top: 50%;
+		transform: translate(0, -60%);
+	}
+	
+	&-container{
+		height: calc(100vh - 190px);
+		position: relative;
+		top: 190px;
+	}
+
+	&-person{
+		border: 3px solid $color-tri;
+		padding: .5em;
+		cursor: pointer;
+		&:hover{
+			border-color: $color-prime;
+			color: $color-prime;
+		}
+	}
+	&-name{
+		text-align: center;
 	}
 }
 

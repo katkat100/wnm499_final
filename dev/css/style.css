@@ -889,11 +889,17 @@ ul {
 .noPadding {
   padding: 0; }
 
+.p-relative {
+  position: relative; }
+
 .warning {
   color: #FF555D; }
 
 .emphasis {
   color: #FFE387; }
+
+.content {
+  margin-top: -7px; }
 
 .card {
   position: relative;
@@ -1172,7 +1178,7 @@ input[name=captain] {
   .planetX .activities-container {
     position: relative;
     top: 50%;
-    transform: translate(0, -50%); }
+    transform: translate(0, -60%); }
   .planetX .act {
     border: 3px solid #EEFFFC;
     padding: .5em;
@@ -1185,6 +1191,59 @@ input[name=captain] {
         color: #2DF5D0; }
     .planetX .act-desc {
       text-align: center; }
+
+.trade-container {
+  position: relative;
+  height: calc(100vh - 82px); }
+.trade h2 {
+  margin-bottom: 20px; }
+.tradeable {
+  margin-top: 20px; }
+  .tradeable-items {
+    text-align: center; }
+  .tradeable img {
+    width: 30px;
+    vertical-align: middle;
+    text-align: center; }
+  .tradeable span {
+    vertical-align: middle;
+    text-align: center; }
+
+.overpriced .trader {
+  border: 3px solid #FF555D;
+  pointer-events: none; }
+
+.trader {
+  border: 3px solid #EEFFFC;
+  padding: .5em;
+  padding-bottom: 1em;
+  cursor: pointer;
+  transition: border 0.3s;
+  height: 100%; }
+  .trader:hover {
+    border-color: #2DF5D0;
+    color: #2DF5D0; }
+  .trader-price, .trader .trader-info {
+    vertical-align: bottom;
+    text-align: center; }
+
+.bars {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -60%); }
+.bar-container {
+  height: calc(100vh - 190px);
+  position: relative;
+  top: 190px; }
+.bar-person {
+  border: 3px solid #EEFFFC;
+  padding: .5em;
+  cursor: pointer; }
+  .bar-person:hover {
+    border-color: #2DF5D0;
+    color: #2DF5D0; }
+.bar-name {
+  text-align: center; }
 
 @media (min-width: 480px) and (max-width: 639px) {
   #setUp-shop .item {
@@ -1332,6 +1391,11 @@ input[name=captain] {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0); }
+
+.trades {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%); }
 
 .setUp-container .img-captain, .setUp-container .img-crewOne, .setUp-container .img-crewTwo, .setUp-container .img-crewThree, .setUp-container .img-crewFour, .display-captain, .display-obstacle {
   background-size: contain;

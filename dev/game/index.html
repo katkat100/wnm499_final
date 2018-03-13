@@ -16,6 +16,17 @@
 		}
 
 		.sidebar-left, .sidebar-right, .displayWindow, .basic-options{
+			/*display: none;*/
+		}
+
+		.progressConsole-container{
+			/*display: none;*/
+		}
+		.planetX{
+			display: none;
+		}
+/* */
+		.bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
 			display: none;
 		}
 	</style>
@@ -173,8 +184,8 @@
 											<img src="../images/sidebar_ammo.svg">
 											<p class="item-title">Ammo</p>
 										</div>
-										<p class="item-cost">§20 per cartridge (5 shots)</p>
-										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> cartridge(s)</p>
+										<p class="item-cost">§20 per magazine (5 shots)</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> magazine(s)</p>
 									</li>
 								</ul>
 								<div class="col-xs-12 col-sm-5 col-md-3 receipt">
@@ -249,7 +260,7 @@
 				<ul class="paceRation">
 					<li class="para ration">
 						<div class="info">
-							<span class="ration">Full</span>
+							<span class="ration">Filling</span>
 							<img src="../images/sidebar_food.svg">
 						</div>
 					</li>
@@ -278,6 +289,7 @@
 
 			<div class="planetX">
 				<div class="activities-container">
+					<h2>Planet X</h2>
 					<div class="container">
 						<ul class="row gutters">
 							<li class="col-xs-4">
@@ -309,6 +321,112 @@
 				</div>
 			</div>
 
+			<div class="bar-container">
+				<div class="bars">
+					<h2>Salutations, new friend!</h2>
+					<div class="container">
+						<div class="row gutters flex">
+							<div class="col-xs-4">
+								<div class="bar-person barOne">
+									<div class="image1to1">
+										<div class="img-barOne"></div>
+									</div>
+									<div class="bar-name">
+										<span class="barOne-name">Georgey Porgey</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="bar-person barTwo">
+									<div class="image1to1">
+										<div class="img-barTwo"></div>
+									</div>
+									<div class="bar-name"><span class="barTwo-name">Georgey Porgey</span></div>
+								</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="bar-person barThree">
+									<div class="image1to1">
+										<div class="img-barThree"></div>
+									</div>
+									<div class="bar-name"><span class="barThree-name">Georgey Porgey</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="trade-container">
+				<div class="trades">
+					<h2>Space Bazar</h2>
+					<div class="container">
+						<ul class="row gutters flex p-relative">
+							<li class="col-xs-4 tradeOne">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderOne"></div>
+									</div>
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+							<li class="col-xs-4 tradeTwo">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderTwo"></div>
+									</div>
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+							<li class="col-xs-4 tradeThree">
+								<div class="trader">
+									<div class="image1to1">
+										<div class="img-traderThree"></div>
+									</div>
+
+									<div class="trader-info">
+										<span class="trader-title"></span> <span class="trader-name"></span>
+									</div>
+									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+								</div>
+							</li>
+						</ul>
+						<ul class="row gutters tradeable">
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_money.svg">
+									<span class="money"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_ammo.svg">
+									<span class="ammo"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_food.svg">
+									<span class="food"></span>
+								</p>
+							</li>
+							<li class="col-xs-3">
+								<p class="tradeable-items">
+									<img src="../images/sidebar_fuel.svg">
+									<span class="fuel"></span>
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
 			<div class="travel-options">
 				<div class="container">
 					<div class="screen-width">
@@ -320,12 +438,35 @@
 								<div class="option trade">Trade</div>
 							</div>
 						</div>
+						<div class="trade-options row gutters">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option no-trade">Back</div>
+							</div>
+						</div>
+						<div class="trade-options-planetX row gutters">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option no-trade">Back</div>
+							</div>
+						</div>
+						<div class="bar-options">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option leave-bar">Leave Bar</div>
+							</div>
+						</div>
 						<div class="locationOne-options row gutters hide">
 							<div class="col-xs-6">
 								<div class="option pass">Keep Traveling</div>
 							</div>
 							<div class="col-xs-6">
 								<div class="option touchDown">Touch Down</div>
+							</div>
+						</div>
+						<div class="locationTwo-options row gutters hide">
+							<div class="col-xs-6">
+								<div class="option pass">Go Through</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="option touchDown">Go Around</div>
 							</div>
 						</div>
 					</div>
