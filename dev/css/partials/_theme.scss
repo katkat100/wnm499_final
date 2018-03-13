@@ -41,8 +41,8 @@
 	font-family: $font;
 	font-weight: 400;
 	font-size: 150%;
-	color: $color-prime;
-	border:3px solid $color-prime;
+	color: $color-tri;
+	border:3px solid $color-tri;
 	padding: .25em .5em;
 	text-transform: uppercase;
 	display: inline-block;
@@ -52,6 +52,7 @@
 	&:hover {
 		box-shadow: 0 0 5px $color-prime;
 		text-shadow: 0 0 5px $color-prime;
+		border-color: $color-prime;
 		color: $color-prime;
 	}
 }

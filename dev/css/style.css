@@ -1377,8 +1377,8 @@ input[name=captain] {
   font-family: "Source Code Pro", monospace, sans-serif;
   font-weight: 400;
   font-size: 150%;
-  color: #2DF5D0;
-  border: 3px solid #2DF5D0;
+  color: #EEFFFC;
+  border: 3px solid #EEFFFC;
   padding: .25em .5em;
   text-transform: uppercase;
   display: inline-block;
@@ -1387,6 +1387,7 @@ input[name=captain] {
   .button:hover {
     box-shadow: 0 0 5px #2DF5D0;
     text-shadow: 0 0 5px #2DF5D0;
+    border-color: #2DF5D0;
     color: #2DF5D0; }
 
 #game .content {
