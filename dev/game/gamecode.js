@@ -333,6 +333,7 @@ $(function(){
 		}		
 	}
 
+	var thiefFood = 100;
 	function encounterSituations(){
 		var conDay = month + " " + day + ": ";
 		switch(encounter){
@@ -340,7 +341,8 @@ $(function(){
 				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 			break;
 			case 1://pirates
-				addToConsole(conDay + "encounter 1");
+				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §500 or else! What shall you do Captain " + captain['name'] + "!?");
+				togClass(".basic-options", '.pirate-options');
 			break;
 			case 2://time warp
 				addToConsole(conDay + "A disgruntled Spacetime Lord warps you back 3 days!");
@@ -393,7 +395,7 @@ $(function(){
 				}
 			break;
 			case 3://black hole
-				addToConsole(conDay + "encounter 3");
+				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You mut shed some weight to escape.");
 			break;
 			case 4://pigeon
 				addToConsole(conDay + "Oh No! Space Pigeons were found in your food bay and they ate EVERYTHING! Now all you have to eat is pigeon meat.");
@@ -419,18 +421,35 @@ $(function(){
 					
 			break;
 			case 7://thief
-				addToConsole(conDay + "encounter 7");
+				if(gameobj['food'] >= 100){
+					thiefFood = 100;
+				} else {
+					thiefFood = gameobj['food'];
+				}
+				addToConsole(conDay + "A thief has been found trying to make off with " + thiefFood + " meals.");
+				addToConsole("Captain " + captain['name'] + ", will you stop this thief?");
+				togClass('.basic-options', '.thief-options');
 			break;
 			case 8://broken body part
-				addToConsole(conDay + "encounter 8");
+				painHappens();
+				addToConsole(conDay + crew[victimRoll]['name'] + "broke a bone. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
 			break;
 			case 9://sickness
 				painHappens();
 				addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
 			break;
 			case 10://sickness
 				painHappens();
 				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
 			break;
 				
 		}
@@ -769,16 +788,6 @@ $(function(){
 		// $(".inventory span").animate({opacity: 0});
 	})
 
-var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
-		var fuelBar = bar*(gameobj['fuel']/gameobjLimit['fuel']);
-		var ammoBar = bar*(gameobj['ammo']/gameobjLimit['ammo']);
-		$(".inven.food .bar").animate({width: foodBar});
-		$(".inven.food .full-bar").animate({width: bar - foodBar});
-		$(".inven.fuel .bar").animate({width: fuelBar});
-		$(".inven.fuel .full-bar").animate({width: bar - fuelBar});
-		$(".inven.ammo .bar").animate({width: ammoBar});
-		$(".inven.ammo .full-bar").animate({width: bar - ammoBar});
-		// $(".inventory span").animate({opacity: 0});
 	$(".inventory").mouseleave(function(){
 		$(".inven.food .bar").animate({width: 0});
 		$(".inven.food .full-bar").animate({width: 0});
@@ -824,6 +833,114 @@ var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
 		tradeNoTrade = "Trading was attempted."
 	})
 
+//pirates
+	$("body").on('click', '.attack', function(){
+		var attackChance = 6;
+
+		if(ration == 'bare'){
+			attackChance = 9;
+		} else {
+			attackChance = 6;
+		}
+		if(gameobj['ammo'] > 0){
+			DiceRoll();
+			if(diceOne >= attackChance){
+				addToConsole("Their gunslinging was no match for yours! The defeated pirates run back to their ship.");
+				gameobj['ammo']--;
+				$("span.ammo").text(gameobj['ammo']);
+				togClass(".pirate-options", ".basic-options");
+			} else {
+				if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
+					gameobj['money'] -= 500;
+					gameobj['food'] -= 50;
+					gameSpans('food');
+					gameSpans('money');
+				} else if(gameobj['money'] < 500 && gameobj['food'] < 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and food.");
+					gameobj['money'] = 0;
+					gameobj['food'] = 0;
+					gameSpans('food');
+					gameSpans('money');
+				} else if(gameobj['money'] < 500 && gameobj['food'] >= 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50lbs of food.");
+					gameobj['money'] = 0;
+					gameobj['food'] -= 50;
+					gameSpans('food');
+					gameSpans('money');
+				} else if(gameobj['money'] >= 500 && gameobj['food'] < 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and all of your food.");
+					gameobj['money'] -= 500;
+					gameobj['food'] = 0;
+					gameSpans('food');
+					gameSpans('money');
+				}
+				togClass(".pirate-options", ".basic-options");
+			}
+		} else{
+			addToConsole("You have no ammo! Are you going to bluff your way through or give in.");
+			togClass('.pirate-options','.pirate-bluff-options');
+		}
+	})//end of attack
+	$('.bluff').on('click', function(){
+		DiceRoll();
+		if(diceOne >= 7){
+			addToConsole("The pirates believed your bluff and cautiously return to their ship.");
+			togClass(".pirate-bluff-options", '.basic-options');
+		} else {
+			if(gameobj['money'] >= 700){
+				addToConsole("The pirates see through your bluff and take §700");
+				gameobj['money'] -= 700;
+				gameSpans('money');
+			} else {
+				addToConsole("The pirates see through your bluff and take all your money");
+				gameobj['money'] = 0;
+				gameSpans('money');
+			}
+			togClass(".pirate-bluff-options", '.basic-options');
+		}
+	})//end of bluff
+
+	$('.giveUp').click('on', function(){
+		if(gameobj['money'] >= 500){
+			addToConsole("You give in to their demands and they take §500.");
+			gameobj['money'] -= 500;
+		} else{
+			addToConsole("You give in to their demands and they take all your money.");
+			gameobj['money'] = 0;
+		}
+		gameSpans('money');
+		togClass(".pirate-options", ".basic-options");
+	})
+
+
+//thief
+	$(".shoot").on('click', function(){
+		if(gameobj['ammo'] > 0){
+			DiceRoll();
+			if(diceOne > 5){
+				addToConsole("You successfully scared off the thief.");
+				gameobj['ammo']--;
+				gameSpans('ammo');
+			} else {
+				addToConsole("You missed the thief and they got off the ship with " + thiefFood + " meals.");
+				gameobj['food'] -= thiefFood;
+				gameSpans('food');
+			}
+		} else {
+			addToConsole("You have no ammo so the thief made off with " + thiefFood + " meals.");
+			gameobj['food'] -= thiefFood;
+			gameSpans('food');
+		}
+		togClass(".thief-options", '.basic-options');
+	})
+	$(".no-shoot").on('click', function(){
+		addToConsole("You let the thief go with " + thiefFood + " meals. Maybe this will give you good karma but probably not.");
+
+		gameobj['food'] -= thiefFood;
+		gameSpans('food');
+		togClass(".thief-options", '.basic-options');
+	})
 
 //Planet X
 	$(".planetX .takeOff").on("click", function(){
@@ -949,7 +1066,7 @@ var foodBar = bar*(gameobj['food']/gameobjLimit['food']);
 			addWarning("everyone is dead");
 		} else{
 			
-			// encounter = 5;
+			encounter = 7;
 			// encounterSituations();
 			location();
 		}
