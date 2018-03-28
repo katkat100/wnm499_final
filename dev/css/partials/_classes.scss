@@ -112,6 +112,7 @@
 	}
 	input[type="text"]{
 		color: #acb7b5;
+		border-bottom-color: $color-highlight;
 	}
 }
 
@@ -218,12 +219,10 @@
 
 			input{
 				margin-top: 0;
-				// position: absolute;
-				// bottom: 0;
-				// width: 90%;
-				// left:5%;
 				display: inline-block;
 				width: 40px;
+				border-bottom-color: $color-highlight;
+				color: $color-highlight;
 			}
 		}
 

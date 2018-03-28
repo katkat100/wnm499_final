@@ -756,7 +756,7 @@ $(function(){
 
 //name
 	$("input[name=captain]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("#setUp-name .setUp-button").on('click',function(){
 		captain['name'] = $("input[name=captain]").val();
@@ -771,16 +771,16 @@ $(function(){
 
 //crew
 	$("input[name=crewOne]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewTwo]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewThree]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewFour]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewOne]").on('click',function(){
 		if( $(this).val() == "Clemence" ){

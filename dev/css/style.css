@@ -922,7 +922,8 @@ ul {
   .setUp-container .img-crewFour {
     background-image: url(../images/crew4.svg); }
   .setUp-container input[type="text"] {
-    color: #acb7b5; }
+    color: #acb7b5;
+    border-bottom-color: #FFE387; }
 
 #setUp-profession .job {
   border: 3px solid #EEFFFC;
@@ -983,7 +984,9 @@ ul {
   #setUp-shop .item input {
     margin-top: 0;
     display: inline-block;
-    width: 40px; }
+    width: 40px;
+    border-bottom-color: #FFE387;
+    color: #FFE387; }
 #setUp-shop .receipt {
   vertical-align: middle; }
 
