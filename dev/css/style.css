@@ -912,7 +912,7 @@ ul {
   height: 100vh;
   overflow: hidden; }
   .setUp-container .img-captain {
-    background-image: url(../images/you.svg); }
+    background-image: url(../images/captain-normal.svg); }
   .setUp-container .img-crewOne {
     background-image: url(../images/crew1.svg); }
   .setUp-container .img-crewTwo {
@@ -959,6 +959,8 @@ ul {
 #setUp-month .active .month-choice {
   color: #2DF5D0;
   border-color: #2DF5D0; }
+#setUp-shop .shop-inventory {
+  margin-top: 50px; }
 #setUp-shop .overSpent {
   display: none;
   text-align: center; }
@@ -1279,6 +1281,8 @@ input[name=captain] {
 .end-points {
   color: #2DF5D0; }
 
+.home-container {
+  height: 100vh; }
 .home p {
   text-align: center; }
 
@@ -1428,7 +1432,7 @@ input[name=captain] {
   left: 50%;
   transform: translate(-50%, 0); }
 
-.trades {
+.trades, .home {
   position: relative;
   top: 50%;
   transform: translate(0, -50%); }

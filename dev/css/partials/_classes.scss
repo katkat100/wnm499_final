@@ -95,7 +95,7 @@
 	}
 	.img-{
 		&captain{
-			background-image: url(../images/you.svg);
+			background-image: url(../images/captain-normal.svg);
 		}
 		&crewOne{
 			background-image: url(../images/crew1.svg);
@@ -185,6 +185,9 @@
 	}
 
 	&-shop{
+		.shop-inventory{
+			margin-top: 50px;
+		}
 		.overSpent{
 			display: none;
 			text-align: center;
@@ -656,6 +659,10 @@ input[name=captain]{
 }
 
 .home{
+	@extend %center-vertically;
+	&-container{
+		height: 100vh;
+	}
 
 	p{
 		text-align: center;

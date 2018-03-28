@@ -14,17 +14,16 @@ $(function(){
 	var health = 100;
 	var totalHealth = 0;
 	var ration = "filling";
-	var pace = "quick";
+	var pace = "steady";
 	var blorpTravel = {
 		slow : 1,
-		moderate : 2,
-		quick : 4,
-		fast : 7
+		steady : 2,
+		fast : 4
 	}
 
 	var captain = {
 		job : "",
-		name : "Rodger",
+		name : "",
 		image : "",
 	};
 
@@ -764,6 +763,11 @@ $(function(){
 		c("captain " + captain['name']);
 		setUpMove();
 	});
+	$("input[name=captain]").on('click', function(){
+		if($("input[name=captain]").val() == "Capitano"){
+			$("input[name=captain]").val("");
+		}
+	})
 
 //crew
 	$("input[name=crewOne]").on('input',function(){
@@ -777,6 +781,26 @@ $(function(){
 	})
 	$("input[name=crewFour]").on('input',function(){
 		$(this).css({"color": "#EEFFFC"});
+	})
+	$("input[name=crewOne]").on('click',function(){
+		if( $(this).val() == "Clemence" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewTwo]").on('click',function(){
+		if( $(this).val() == "Parnell" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewThree]").on('click',function(){
+		if( $(this).val() == "Oswyn" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewFour]").on('click',function(){
+		if( $(this).val() == "Gilbert" ){
+			$(this).val("");
+		}
 	})
 	$("#setUp-crew .setUp-button").on('click',function(){
 		crew[0]["name"] = $("input[name=crewOne]").val();
@@ -1278,6 +1302,10 @@ $(function(){
 	gameobj['fuel'] = 2000;
 	gameobj['ammo'] = 10;
 	gameobj['money'] = 2000;
+	// gameobj['food'] = 280;
+	// gameobj['fuel'] = 1148;
+	// gameobj['ammo'] = 21;
+	// gameobj['money'] = 0;
 	gameSpans('food');
 	gameSpans('fuel');
 	gameSpans('ammo');
@@ -1290,8 +1318,8 @@ $(function(){
 	$("span.health").text(health);
 
 
-
-captain['job'] = "moneybags";
+// captain['name'] = 'Rodger';
+// captain['job'] = "moneybags";
 //end
 	$(".land").on('click', function(){
 		togClass('.spaceScreen-container', ".home-container");
@@ -1299,10 +1327,12 @@ captain['job'] = "moneybags";
 
 		crewHealth();
 
-		var pFood = (gameobj["food"] / 10);
-		var pAmmo = gameobj["ammo"];
+		// totalHealth = 1;
+
+		var pFood = gameobj["food"] / 10;
+		var pAmmo = gameobj["ammo"] / 2;
 		var pFuel = gameobj['fuel'] / 10;
-		var pMoney = Math.floor(gameobj["money"] / 5);
+		var pMoney = gameobj["money"] / 5;
 		var pHealth = (totalHealth / 4) * 200;
 
 		var pSubtotal = pFood + pAmmo + pFuel + pMoney + pHealth;
