@@ -989,6 +989,8 @@ ul {
     color: #FFE387; }
 #setUp-shop .receipt {
   vertical-align: middle; }
+  #setUp-shop .receipt h4 {
+    text-align: left; }
 
 input[name=captain] {
   width: 100%; }
