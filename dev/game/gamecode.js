@@ -834,36 +834,22 @@ $(function(){
 	})
 	c("month: " + month);
 
-	// $("#setUp-month .setUp-button").on('click', function(){
-	// 	if($("#setUp-month .active").children(".month-choice").hasClass("april")){
-	// 		month = "April";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("may")){
-	// 		month = "May";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("june")){
-	// 		month = "June";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("july")){
-	// 		month = "July";
-	// 		setUpMove();
-	// 	} else {
-
-	// 	}
-	// 	c("month: " + month);
-	// });
-
 //shop
-
-	$("#setUp-b4Shop .setUp-button").on('click', function(){
-		setUpMove();
-	})
 
 	var numFood = 0; numFuel = 0; numAmmo = 0;
 	var shopBill = 0;
 	var budget = 0;
 	// var budget = 2000;
 	var shopTotal = 0;
+
+	$("#setUp-b4Shop .setUp-button").on('click', function(){
+		setUpMove();
+		shopTotal = gameobj['money'];
+		$("span.bill").text(shopBill);
+		$("span.total").text(shopTotal);
+	})
+
+	
 
 	function updateBill(){
 		shopBill = (10 * numFood) + (20 * numFuel) + (20 * numAmmo);
@@ -919,6 +905,8 @@ $(function(){
 		trade("tradeThree");
 
 		crewHealth();
+
+		$(".")
 	})
 
 //game

@@ -1068,8 +1068,7 @@ input[name=captain] {
 
 .display-obstacle {
   content: "";
-  height: 100%;
-  background-image: url("../images/pirate.svg"); }
+  height: 100%; }
 
 .monthDay {
   position: absolute;
