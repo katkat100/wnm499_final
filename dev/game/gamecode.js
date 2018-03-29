@@ -133,6 +133,14 @@ $(function(){
 		$(".displayWindow").show();
 	}
 
+	function changeImages(d, link){
+		if(d == "o"){
+			$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
+		} else if(d == "c"){
+			$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
+		}
+	}
+
 //functions
 	function gameSpans(object){
 		$("span." + object).text(gameobj[object]);
@@ -906,7 +914,10 @@ $(function(){
 
 		crewHealth();
 
-		$(".")
+		changeImages("o", 'ship-' + captain["job"])
+
+		
+			
 	})
 
 //game
@@ -1307,7 +1318,7 @@ $(function(){
 
 
 // captain['name'] = 'Rodger';
-// captain['job'] = "moneybags";
+captain['job'] = "moneybags";
 //end
 	$(".land").on('click', function(){
 		togClass('.spaceScreen-container', ".home-container");
