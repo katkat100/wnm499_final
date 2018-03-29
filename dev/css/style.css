@@ -1064,7 +1064,7 @@ input[name=captain] {
 .display-captain {
   content: "";
   height: 100%;
-  background-image: url("../images/you.svg"); }
+  background-image: url("../images/captain-normal.svg"); }
 
 .display-obstacle {
   content: "";
