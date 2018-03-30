@@ -133,8 +133,8 @@ $(function(){
 		$(".display-captain").css('background-image', 'url(../images/' + linkOne + '.svg)');
 		$(".display-obstacle").css('background-image', 'url(../images/' + linkTwo + '.svg)');
 
-		c(linkOne);
-		c(linkTwo);
+		// c(linkOne);
+		// c(linkTwo);
 
 		// if(d == "o"){
 		// 	$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
@@ -948,7 +948,7 @@ $(function(){
 
 		crewHealth();
 
-		changeImages("o", 'ship-' + captain["job"])
+		changeImages("captain-normal", 'ship-' + captain["job"])
 
 		$("span.ration").text(ration);
 		$("span.pace").text(pace);

@@ -932,7 +932,11 @@ ul {
   cursor: pointer;
   transition: border 0.3s; }
   #setUp-profession .job .img-farmer {
-    background-color: #0B4574; }
+    background-image: url("../images/ship-farmer.svg"); }
+  #setUp-profession .job .img-engineer {
+    background-image: url("../images/ship-engineer.svg"); }
+  #setUp-profession .job .img-moneybags {
+    background-image: url("../images/ship-moneybags.svg"); }
   #setUp-profession .job .setUp-desc {
     transition: color 0.3s; }
   #setUp-profession .job:hover {
