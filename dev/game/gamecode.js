@@ -14,17 +14,16 @@ $(function(){
 	var health = 100;
 	var totalHealth = 0;
 	var ration = "filling";
-	var pace = "quick";
+	var pace = "steady";
 	var blorpTravel = {
 		slow : 1,
-		moderate : 2,
-		quick : 4,
-		fast : 7
+		steady : 2,
+		fast : 4
 	}
 
 	var captain = {
 		job : "",
-		name : "Rodger",
+		name : "",
 		image : "",
 	};
 
@@ -75,11 +74,11 @@ $(function(){
 		{one:'10 meals', two:'§50', add:'10', to:'food', minus:'50', from:'money'},
 		{one:'20 meals', two:'§60', add:'20', to:'food', minus:'60', from:'money'},
 		{one:'20 meals', two:'§70', add:'20', to:'food', minus:'70', from:'money'},
-		{one:'30 meals', two:'§70', add:'30', to:'food', minus:'70', from:'money'},
+		{one:'30 meals', two:'70 fuel pods', add:'30', to:'food', minus:'70', from:'fuel'},
 
 		{one:'100 fuel pods', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
 		{one:'200 fuel pods', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
-		{one:'300 fuel pods', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+		{one:'300 fuel pods', two:'120 meals', add:'300', to:'fuel', minus:'120', from:'food'},
 
 		{one:'2 energy shots', two:'20 meals', add:'2', to:'ammo', minus:'20', from:'food'},
 		{one:'5 energy shots', two:'30 meals', add:'5', to:'ammo', minus:'30', from:'food'},
@@ -132,6 +131,14 @@ $(function(){
 		$(".sidebar-left").show();
 		$(".sidebar-right").show();
 		$(".displayWindow").show();
+	}
+
+	function changeImages(d, link){
+		if(d == "o"){
+			$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
+		} else if(d == "c"){
+			$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
+		}
 	}
 
 //functions
@@ -464,14 +471,14 @@ $(function(){
 			break;
 			case 9://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
 			break;
 			case 10://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]["name"] + " gets Nasty Feeling Disease. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
@@ -757,26 +764,51 @@ $(function(){
 
 //name
 	$("input[name=captain]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("#setUp-name .setUp-button").on('click',function(){
 		captain['name'] = $("input[name=captain]").val();
 		c("captain " + captain['name']);
 		setUpMove();
 	});
+	$("input[name=captain]").on('click', function(){
+		if($("input[name=captain]").val() == "Capitano"){
+			$("input[name=captain]").val("");
+		}
+	})
 
 //crew
 	$("input[name=crewOne]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewTwo]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewThree]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
 	})
 	$("input[name=crewFour]").on('input',function(){
-		$(this).css({"color": "#EEFFFC"});
+		$(this).css({"color": "#FFE387"});
+	})
+	$("input[name=crewOne]").on('click',function(){
+		if( $(this).val() == "Clemence" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewTwo]").on('click',function(){
+		if( $(this).val() == "Parnell" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewThree]").on('click',function(){
+		if( $(this).val() == "Oswyn" ){
+			$(this).val("");
+		}
+	})
+	$("input[name=crewFour]").on('click',function(){
+		if( $(this).val() == "Gilbert" ){
+			$(this).val("");
+		}
 	})
 	$("#setUp-crew .setUp-button").on('click',function(){
 		crew[0]["name"] = $("input[name=crewOne]").val();
@@ -810,36 +842,22 @@ $(function(){
 	})
 	c("month: " + month);
 
-	// $("#setUp-month .setUp-button").on('click', function(){
-	// 	if($("#setUp-month .active").children(".month-choice").hasClass("april")){
-	// 		month = "April";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("may")){
-	// 		month = "May";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("june")){
-	// 		month = "June";
-	// 		setUpMove();
-	// 	} else if($("#setUp-month .active").children(".month-choice").hasClass("july")){
-	// 		month = "July";
-	// 		setUpMove();
-	// 	} else {
-
-	// 	}
-	// 	c("month: " + month);
-	// });
-
 //shop
-
-	$("#setUp-b4Shop .setUp-button").on('click', function(){
-		setUpMove();
-	})
 
 	var numFood = 0; numFuel = 0; numAmmo = 0;
 	var shopBill = 0;
 	var budget = 0;
 	// var budget = 2000;
 	var shopTotal = 0;
+
+	$("#setUp-b4Shop .setUp-button").on('click', function(){
+		setUpMove();
+		shopTotal = gameobj['money'];
+		$("span.bill").text(shopBill);
+		$("span.total").text(shopTotal);
+	})
+
+	
 
 	function updateBill(){
 		shopBill = (10 * numFood) + (20 * numFuel) + (20 * numAmmo);
@@ -895,6 +913,11 @@ $(function(){
 		trade("tradeThree");
 
 		crewHealth();
+
+		changeImages("o", 'ship-' + captain["job"])
+
+		
+			
 	})
 
 //game
@@ -1278,6 +1301,10 @@ $(function(){
 	gameobj['fuel'] = 2000;
 	gameobj['ammo'] = 10;
 	gameobj['money'] = 2000;
+	// gameobj['food'] = 280;
+	// gameobj['fuel'] = 1148;
+	// gameobj['ammo'] = 21;
+	// gameobj['money'] = 0;
 	gameSpans('food');
 	gameSpans('fuel');
 	gameSpans('ammo');
@@ -1290,7 +1317,7 @@ $(function(){
 	$("span.health").text(health);
 
 
-
+// captain['name'] = 'Rodger';
 captain['job'] = "moneybags";
 //end
 	$(".land").on('click', function(){
@@ -1299,10 +1326,12 @@ captain['job'] = "moneybags";
 
 		crewHealth();
 
-		var pFood = (gameobj["food"] / 10);
-		var pAmmo = gameobj["ammo"];
+		// totalHealth = 1;
+
+		var pFood = gameobj["food"] / 10;
+		var pAmmo = gameobj["ammo"] / 2;
 		var pFuel = gameobj['fuel'] / 10;
-		var pMoney = Math.floor(gameobj["money"] / 5);
+		var pMoney = gameobj["money"] / 5;
 		var pHealth = (totalHealth / 4) * 200;
 
 		var pSubtotal = pFood + pAmmo + pFuel + pMoney + pHealth;

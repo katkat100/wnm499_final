@@ -912,7 +912,7 @@ ul {
   height: 100vh;
   overflow: hidden; }
   .setUp-container .img-captain {
-    background-image: url(../images/you.svg); }
+    background-image: url(../images/captain-normal.svg); }
   .setUp-container .img-crewOne {
     background-image: url(../images/crew1.svg); }
   .setUp-container .img-crewTwo {
@@ -922,7 +922,8 @@ ul {
   .setUp-container .img-crewFour {
     background-image: url(../images/crew4.svg); }
   .setUp-container input[type="text"] {
-    color: #acb7b5; }
+    color: #acb7b5;
+    border-bottom-color: #FFE387; }
 
 #setUp-profession .job {
   border: 3px solid #EEFFFC;
@@ -959,6 +960,8 @@ ul {
 #setUp-month .active .month-choice {
   color: #2DF5D0;
   border-color: #2DF5D0; }
+#setUp-shop .shop-inventory {
+  margin-top: 50px; }
 #setUp-shop .overSpent {
   display: none;
   text-align: center; }
@@ -981,9 +984,13 @@ ul {
   #setUp-shop .item input {
     margin-top: 0;
     display: inline-block;
-    width: 40px; }
+    width: 40px;
+    border-bottom-color: #FFE387;
+    color: #FFE387; }
 #setUp-shop .receipt {
   vertical-align: middle; }
+  #setUp-shop .receipt h4 {
+    text-align: left; }
 
 input[name=captain] {
   width: 100%; }
@@ -1057,12 +1064,11 @@ input[name=captain] {
 .display-captain {
   content: "";
   height: 100%;
-  background-image: url("../images/you.svg"); }
+  background-image: url("../images/captain-normal.svg"); }
 
 .display-obstacle {
   content: "";
-  height: 100%;
-  background-image: url("../images/pirate.svg"); }
+  height: 100%; }
 
 .monthDay {
   position: absolute;
@@ -1279,6 +1285,8 @@ input[name=captain] {
 .end-points {
   color: #2DF5D0; }
 
+.home-container {
+  height: 100vh; }
 .home p {
   text-align: center; }
 
@@ -1428,7 +1436,7 @@ input[name=captain] {
   left: 50%;
   transform: translate(-50%, 0); }
 
-.trades {
+.trades, .home {
   position: relative;
   top: 50%;
   transform: translate(0, -50%); }

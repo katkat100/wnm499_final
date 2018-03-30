@@ -95,7 +95,7 @@
 	}
 	.img-{
 		&captain{
-			background-image: url(../images/you.svg);
+			background-image: url(../images/captain-normal.svg);
 		}
 		&crewOne{
 			background-image: url(../images/crew1.svg);
@@ -112,6 +112,7 @@
 	}
 	input[type="text"]{
 		color: #acb7b5;
+		border-bottom-color: $color-highlight;
 	}
 }
 
@@ -185,6 +186,9 @@
 	}
 
 	&-shop{
+		.shop-inventory{
+			margin-top: 50px;
+		}
 		.overSpent{
 			display: none;
 			text-align: center;
@@ -215,17 +219,20 @@
 
 			input{
 				margin-top: 0;
-				// position: absolute;
-				// bottom: 0;
-				// width: 90%;
-				// left:5%;
 				display: inline-block;
 				width: 40px;
+				border-bottom-color: $color-highlight;
+				color: $color-highlight;
 			}
 		}
 
 		.receipt{
 			vertical-align: middle;
+
+			h4{
+				text-align: left;
+			}
+			
 		}
 	}
 
@@ -335,14 +342,14 @@ input[name=captain]{
 	content: "";
 	height: 100%;
 	@extend %background-image-basic;
-	background-image: url("../images/you.svg");
+	background-image: url("../images/captain-normal.svg");
 }
 
 .display-obstacle{
 	content: "";
 	height: 100%;
 	@extend %background-image-basic;
-	background-image: url("../images/pirate.svg");
+	// background-image: url("../images/pirate.svg");
 }
 
 .monthDay{
@@ -656,6 +663,10 @@ input[name=captain]{
 }
 
 .home{
+	@extend %center-vertically;
+	&-container{
+		height: 100vh;
+	}
 
 	p{
 		text-align: center;

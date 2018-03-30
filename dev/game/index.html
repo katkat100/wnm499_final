@@ -13,6 +13,9 @@
 	<!-- <script src="code.js"></script> -->
 	<script src="gamecode.js"></script>
 	<style>
+		.setUp-container{
+			/*display: none;*/
+		}
 		.spaceScreen-container{
 			/*display: block;*/
 		}
@@ -52,6 +55,7 @@
 				<div class="card-container">
 					<div class="card" id="setUp-profession">
 						<h2>Choose a Profession</h2>
+						<p class="setUp-desc">Your profession determines the amount of money you get and how well you score if you reach the end.</p>
 						<ul class="row gutters">
 							<li class="col-xs-4 job-farmer">
 								<div class="job">
@@ -78,7 +82,6 @@
 								</div>
 							</li>
 						</ul>
-						<!-- <h4 class="setUp-button">This is my profession</h4> -->
 					</div>
 				</div>
 
@@ -147,7 +150,6 @@
 								<p class="month-choice july">July</p>
 							</li>
 						</ul>
-						<!-- <h4 class="setUp-button">We leave on this month</h4> -->
 					</div>
 				</div>
 				
@@ -162,9 +164,13 @@
 				<div class="card-container">
 					<div class="card" id="setUp-shop">
 						<h2>Welcome to Singrid's One-Stop Shop!</h2>
-						<p class="setUp-desc">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
-
-						<p class="warning overSpent">It doesn't look like you have enough money to buy these items. Please change the amount of items you want to buy in order to leave the store.</p>
+						<div class="row">
+							<p class="setUp-desc col-xs-12 col-md-8 offset-md-2">Be sure to stock up on food for all your crew members, fuel to get you where you're going, and ammo to fend off those pesky space pirates. You won't find deals this good anywhere else in the galaxy!</p>
+						</div>
+						<div class="row">
+							<p class="col-xs-12 col-md-8 offset-md-2 warning overSpent">It doesn't look like you have enough money to buy these items. Please change the amount of items you want to buy in order to leave the store.</p>
+						</div>
+						
 
 						<div class="shop-inventory">
 							<div class="row gutters flex">
@@ -174,30 +180,43 @@
 											<img src="../images/sidebar_food.svg">
 											<p class="item-title">Food</p>
 										</div>
-										<p class="item-cost">§10 for a food crate (20 meals)</p>
-										<p class="item-buy">Buy: <input type="number" name="shop-food" min="0" maxlength="20" value="0"> crate(s)</p>
+										<p class="item-cost">§10 for 20 meals</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-food" min="0" maxlength="20" value="0"> X 20 meals</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
 										<div class="item-top">
 											<img src="../images/sidebar_fuel.svg">
 											<p class="item-title">Fuel</p>
 										</div>
-										<p class="item-cost">§20 for a carton (60 fuel pods)</p>
-										<p class="item-buy">Buy: <input type="number" name="shop-fuel" min="0" maxlength="20" value="0"> carton(s)</p>
+										<p class="item-cost">§20 for 60 fuel pods</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-fuel" min="0" maxlength="20" value="0"> X 60 fuel pods</p>
 									</li>
 									<li class="col-xs-12 col-md-4 item">
 										<div class="item-top">
 											<img src="../images/sidebar_ammo.svg">
 											<p class="item-title">Ammo</p>
 										</div>
-										<p class="item-cost">§20 per magazine (5 shots)</p>
-										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> magazine(s)</p>
+										<p class="item-cost">§20 for 5 shots</p>
+										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> X 5 shots</p>
 									</li>
 								</ul>
 								<div class="col-xs-12 col-sm-5 col-md-3 receipt">
-									<p>Amount you have: §<span class="money"></span></p>
-									<p>Bill so far: §<span class="bill"></span></p>
-									<p>Ending amount: §<span class="total"></span></p>
+									<h4>Reciept</h4>
+									<div class="row">
+										<p class="col-xs-6">Starting Amount:</p>
+										<p class="col-xs-6">&nbsp §<span class="money"></span></p>
+									</div>
+										
+									<div class="row">
+										<p class="col-xs-6">Total Bill:</p>
+										<p class="col-xs-6">- §<span class="bill"></span></p>
+									</div>
+										
+									<div class="row">
+										<p class="col-xs-6">Ending Amount:</p>
+										<p class="col-xs-6">&nbsp §<span class="total"></span></p>
+									</div>
+										
 								</div>
 							</div>
 								
@@ -281,6 +300,7 @@
 			<div class="progressConsole-container">
 				<div class="progressConsole">
 					<p>Welcome to the Jungle! The Jungle of SPACE!</p>
+					<p class="emphasis">As the captain of this ship you control when to travel, speed of travel, and provisons. Clicking the Travel button down below moves you forward one day. Clicking the Trade button shows you who is trading near you for the day, trades change daily.</p>
 				</div>
 			</div>
 			<div class="displayWindow">
@@ -373,7 +393,7 @@
 									<div class="trader-info">
 										<span class="trader-title"></span> <span class="trader-name"></span>
 									</div>
-									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+									<div class="trader-price">will give <span class="first-item"></span> for your <span class="second-item"></span></div>
 								</div>
 							</li>
 							<li class="col-xs-4 tradeTwo">
@@ -384,7 +404,7 @@
 									<div class="trader-info">
 										<span class="trader-title"></span> <span class="trader-name"></span>
 									</div>
-									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+									<div class="trader-price">will give <span class="first-item"></span> for your <span class="second-item"></span></div>
 								</div>
 							</li>
 							<li class="col-xs-4 tradeThree">
@@ -396,7 +416,7 @@
 									<div class="trader-info">
 										<span class="trader-title"></span> <span class="trader-name"></span>
 									</div>
-									<div class="trader-price">wants to trade <span class="first-item"></span> for <span class="second-item"></span></div>
+									<div class="trader-price">will give <span class="first-item"></span> for your <span class="second-item"></span></div>
 								</div>
 							</li>
 						</ul>
