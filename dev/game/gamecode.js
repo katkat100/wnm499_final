@@ -74,11 +74,11 @@ $(function(){
 		{one:'10 meals', two:'§50', add:'10', to:'food', minus:'50', from:'money'},
 		{one:'20 meals', two:'§60', add:'20', to:'food', minus:'60', from:'money'},
 		{one:'20 meals', two:'§70', add:'20', to:'food', minus:'70', from:'money'},
-		{one:'30 meals', two:'§70', add:'30', to:'food', minus:'70', from:'money'},
+		{one:'30 meals', two:'70 fuel pods', add:'30', to:'food', minus:'70', from:'fuel'},
 
 		{one:'100 fuel pods', two:'§60', add:'100', to:'fuel', minus:'60', from:'money'},
 		{one:'200 fuel pods', two:'§100', add:'200', to:'fuel', minus:'100', from:'money'},
-		{one:'300 fuel pods', two:'§120', add:'300', to:'fuel', minus:'120', from:'money'},
+		{one:'300 fuel pods', two:'120 meals', add:'300', to:'fuel', minus:'120', from:'food'},
 
 		{one:'2 energy shots', two:'20 meals', add:'2', to:'ammo', minus:'20', from:'food'},
 		{one:'5 energy shots', two:'30 meals', add:'5', to:'ammo', minus:'30', from:'food'},
@@ -471,14 +471,14 @@ $(function(){
 			break;
 			case 9://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets the rumbly tummy. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
 			break;
 			case 10://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+				addWarning(conDay + crew[victimRoll]["name"] + " gets Nasty Feeling Disease. They lose 2 health.");
 				if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died.")
 				}
