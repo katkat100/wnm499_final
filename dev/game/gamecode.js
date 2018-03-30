@@ -133,12 +133,18 @@ $(function(){
 		$(".displayWindow").show();
 	}
 
-	function changeImages(d, link){
-		if(d == "o"){
-			$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
-		} else if(d == "c"){
-			$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
-		}
+	function changeImages(linkOne, linkTwo){
+		$(".display-captain").css('background-image', 'url(../images/' + linkOne + '.svg)');
+		$(".display-obstacle").css('background-image', 'url(../images/' + linkTwo + '.svg)');
+
+		c(linkOne);
+		c(linkTwo);
+
+		// if(d == "o"){
+		// 	$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
+		// } else if(d == "c"){
+		// 	$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
+		// }
 	}
 
 //functions
@@ -271,6 +277,7 @@ $(function(){
 
 	var doubleFuel = false;
 	var extraFuel = 1;
+	var fuelUsage;
 	function updatePace(){
 		if(doubleFuel){
 			extraFuel = 2;
@@ -281,12 +288,10 @@ $(function(){
 
 		if(pace == "slow"){
 			fuelUsage = 5 * extraFuel;
-		} else if(pace == "moderate"){
+		} else if(pace == "steady"){
 			fuelUsage = 12 * extraFuel;
-		} else if(pace == "quick"){
-			fuelUsage = 24 * extraFuel;
 		} else if(pace == "fast"){
-			fuelUsage = 36 * extraFuel;
+			fuelUsage = 24 * extraFuel;
 		}
 		gameobj['fuel'] -= fuelUsage;
 		gameSpans('fuel');
@@ -356,6 +361,7 @@ $(function(){
 		switch(encounter){
 			case 0:
 				addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+				changeImages("captain-normal","ship-" + captain['job']);
 			break;
 			case 1://pirates
 				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §500 or else! What shall you do Captain " + captain['name'] + "!?");
@@ -449,6 +455,7 @@ $(function(){
 					addWarning(conDay + crew[victimRoll]["name"] + " get attcked by the resident hitchhiking weasel! They lose 2 health.");
 				} else {
 					addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
+					changeImages("captain-normal","ship-" + captain['job']);
 				}
 					
 			break;
@@ -917,7 +924,8 @@ $(function(){
 
 		changeImages("o", 'ship-' + captain["job"])
 
-		
+		$("span.ration").text(ration);
+		$("span.pace").text(pace);
 			
 	})
 
@@ -1234,6 +1242,29 @@ $(function(){
 		doubleFuel = true;
 		togClass(".locationTwo-options", ".basic-options");
 		addToConsole("You decide to take a safer route and go around the dangerous Nebula.");
+	})
+
+//pace and ration
+	$(".para.ration").on("click", function(){
+		if(ration == "filling"){
+			ration = "meager";
+		} else if(ration == "meager"){
+			ration = "bare";
+		} else if(ration == "bare"){
+			ration = "filling";
+		}
+		$("span.ration").text(ration);
+	})
+
+	$(".para.pace").on('click', function(){
+		if(pace == "fast"){
+			pace = "steady";
+		} else if(pace == "steady"){
+			pace = "slow";
+		} else if(pace == "slow"){
+			pace = "fast";
+		}
+		$("span.pace").text(pace);
 	})
 
 //travel
