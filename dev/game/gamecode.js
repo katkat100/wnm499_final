@@ -33,28 +33,24 @@ $(function(){
 		{
 			name : "mem1",
 			image : "crew1",
-			death : "crewDeath1",
 			health : 4,
 			status : "alive"
 		},
 		{
 			name : "mem2",
 			image : "crew2",
-			death : "crewDeath2",
 			health : 4,
 			status : "alive"
 		},
 		{
 			name : "mem3",
 			image : "crew3",
-			death : "crewDeath3",
 			health : 4,
 			status : "alive"
 		},
 		{
 			name : "mem4",
 			image : "crew4",
-			death : "crewDeath4",
 			health : 4,
 			status : "alive"
 		}
@@ -266,9 +262,13 @@ $(function(){
 			c("hungry: " + hungryDice)
 			if(hungryDice == 5 || hungryDice == 3){
 				painHappens();
-				addWarning(month + " " + day + ": " + crew[victimRoll]['name'] + " gets hurt from hunger. They lose 2 health.");
-				if(crew[victimRoll]["status"] == "dead"){
+				if(crew[victimRoll]["status"] == "alive"){
+					addWarning(month + " " + day + ": " + crew[victimRoll]['name'] + " gets hurt from hunger. They lose 2 health.");
+
+					changeImages("captain-unhappy", crew[victimRoll]['image'] + "-hurt");
+				}else if(crew[victimRoll]["status"] == "dead"){
 					addWarning(month + " " + day + ": " +  crew[victimRoll]["name"] + " died.")
+					changeImages("captain-unhappy", crew[victimRoll]['image'] + "-death");
 				}
 				encounter = 20;
 			}
@@ -366,6 +366,7 @@ $(function(){
 			case 1://pirates
 				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §500 or else! What shall you do Captain " + captain['name'] + "!?");
 				togClass(".basic-options", '.pirate-options');
+				changeImages("captain-shock", "pirate");
 			break;
 			case 2://time warp
 				addToConsole(conDay + "A disgruntled Spacetime Lord warps you back 3 days!");
@@ -416,6 +417,7 @@ $(function(){
 					$("span.month").text(month);
 					$("span.day").text(day);
 				}
+				changeImages("captain-sick", "");
 			break;
 			case 3://black hole
 				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You must shed some weight to escape unscathed.");
@@ -439,20 +441,33 @@ $(function(){
 				addToConsole(conDay + "Oh No! Space Pigeons were found in your food bay and they ate EVERYTHING! Now all you have to eat is pigeon meat.");
 				gameobj['food'] = 100;
 				gameSpans('food');
+
+				changeImages("captain-angry", "pigeons");
+
 				//change food icon to pigeon for funsies
 			break;
 			case 5://sickness
 				painHappens();
 
-				addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
-				if(crew[victimRoll]["status"] == "dead"){
-					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				if(crew[victimRoll]["status"] == "alive"){
+					addWarning(conDay + crew[victimRoll]["name"] + " gets Icky-Sicky Disease. They lose 2 health.");
+					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-sick");
+				}else if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died of Icky-Sicky Disease.")
+					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
+
 			break;
 			case 6://weasels
 				if(captain['job'] != "moneybags"){
 					painHappens();
-					addWarning(conDay + crew[victimRoll]["name"] + " get attcked by the resident hitchhiking weasel! They lose 2 health.");
+					if(crew[victimRoll]["status"] == "alive"){
+						addWarning(conDay + crew[victimRoll]["name"] + " get attcked by the resident hitchhiking weasel! They lose 2 health.");
+						changeImages("captain-unhappy", crew[victimRoll]["image"] + "-hurt");
+					}else if(crew[victimRoll]["status"] == "dead"){
+						addWarning(conDay + crew[victimRoll]["name"] + " died from a weasel attack.")
+						changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
+					}
 				} else {
 					addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 					changeImages("captain-normal","ship-" + captain['job']);
@@ -468,26 +483,37 @@ $(function(){
 				addToConsole(conDay + "A thief has been found trying to make off with " + thiefFood + " meals.");
 				addToConsole("Captain " + captain['name'] + ", will you stop this thief?");
 				togClass('.basic-options', '.thief-options');
+				changeImages("captain-angry", "thief");
 			break;
 			case 8://broken body part
 				painHappens();
-				addWarning(conDay + crew[victimRoll]['name'] + " broke a bone. They lose 2 health.");
-				if(crew[victimRoll]["status"] == "dead"){
-					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				if(crew[victimRoll]["status"] == "alive"){
+					addWarning(conDay + crew[victimRoll]['name'] + " broke a bone. They lose 2 health.");
+					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-hurt");
+				}else if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died from a broken bone.")
+					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
+				
 			break;
 			case 9://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
-				if(crew[victimRoll]["status"] == "dead"){
-					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				if(crew[victimRoll]["status"] == "alive"){
+					addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
+					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-sick");
+				}else if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died from a rumbly tummy.")
+					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
 			break;
 			case 10://sickness
 				painHappens();
-				addWarning(conDay + crew[victimRoll]["name"] + " gets Nasty Feeling Disease. They lose 2 health.");
-				if(crew[victimRoll]["status"] == "dead"){
-					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				if(crew[victimRoll]["status"] == "alive"){
+					addWarning(conDay + crew[victimRoll]["name"] + " gets Nasty Feeling Disease. They lose 2 health.");
+					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-sick");
+				}else if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died froma Nasty Feeling Disease.")
+					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
 			break;
 				
@@ -1005,6 +1031,7 @@ $(function(){
 				gameobj['ammo']--;
 				$("span.ammo").text(gameobj['ammo']);
 				togClass(".pirate-options", ".basic-options");
+				changeImages("captain-happy", "pirate-scared");
 			} else {
 				if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
 					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
@@ -1043,6 +1070,7 @@ $(function(){
 		if(diceOne >= 7){
 			addToConsole("The pirates believed your bluff and cautiously return to their ship.");
 			togClass(".pirate-bluff-options", '.basic-options');
+			changeImages("captain-happy", "pirate-scared");
 		} else {
 			if(gameobj['money'] >= 700){
 				addToConsole("The pirates see through your bluff and take §700");
@@ -1077,15 +1105,18 @@ $(function(){
 				addToConsole("You successfully scared off the thief.");
 				gameobj['ammo']--;
 				gameSpans('ammo');
+				changeImages("captain-happy", "thief-fail");
 			} else {
 				addToConsole("You missed the thief and they got off the ship with " + thiefFood + " meals.");
 				gameobj['food'] -= thiefFood;
 				gameSpans('food');
+				changeImages("captain-unhappy", "thief-success");
 			}
 		} else {
 			addToConsole("You have no ammo so the thief made off with " + thiefFood + " meals.");
 			gameobj['food'] -= thiefFood;
 			gameSpans('food');
+			changeImages("captain-unhappy", "thief-success");
 		}
 		togClass(".thief-options", '.basic-options');
 	})
@@ -1095,6 +1126,8 @@ $(function(){
 		gameobj['food'] -= thiefFood;
 		gameSpans('food');
 		togClass(".thief-options", '.basic-options');
+		changeImages("captain-normal", "thief-success");
+
 	})
 
 //blackhole
@@ -1130,25 +1163,29 @@ $(function(){
 		DiceRoll();
 		if(diceOne >= 8){
 			addToConsole("You made it out of the gravitational pull alive with a little hard work and a lot of luck.");
+			changeImages("captain-happy", "ship-" + captain['job']);
+
 		} else {
 			painHappens();
-			addWarning(crew[victimRoll]['name'] + " was hurt in the attempt to get out of the gravitational pull.");
-			if(crew[victimRoll]["status"] == "dead"){
-				addWarning(conDay + crew[victimRoll]["name"] + " died.");
-				addToConsole("Well that's one way of losing some weight");
+			if(crew[victimRoll]["status"] == "alive"){
+				addWarning(crew[victimRoll]['name'] + " was hurt in the attempt to get out of the gravitational pull.");
+				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-hurt");
+			}else if(crew[victimRoll]["status"] == "dead"){
+				addWarning(conDay + crew[victimRoll]["name"] + " died in the struggle.");
+				addToConsole("Well that's one way of losing some weight.");
+				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-death");
 			}
-
-			togClass(".blackHole-options", ".basic-options");
-			showMain();
-			$(".blackHole-container").hide();
-
-			//reset
-			$("input[name = 'throw-food']").val(0);
-			$("input[name = 'throw-fuel']").val(0);
-			throwTotal = 0;
-			throwRemain = 100;
-
 		}
+
+		togClass(".blackHole-options", ".basic-options");
+			showMain();
+		$(".blackHole-container").hide();
+
+		//reset
+		$("input[name = 'throw-food']").val(0);
+		$("input[name = 'throw-fuel']").val(0);
+		throwTotal = 0;
+		throwRemain = 100;
 	})
 
 //Planet X
@@ -1350,7 +1387,7 @@ $(function(){
 
 
 // captain['name'] = 'Rodger';
-captain['job'] = "moneybags";
+captain['job'] = "farmer";
 //end
 	$(".land").on('click', function(){
 		togClass('.spaceScreen-container', ".home-container");

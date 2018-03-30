@@ -1056,8 +1056,8 @@ input[name=captain] {
   height: calc(100% - 235px);
   content: "";
   top: 170px;
-  left: 70px;
-  right: 70px; }
+  left: 100px;
+  right: 100px; }
   .displayWindow > div {
     height: 100%; }
 
@@ -1174,7 +1174,8 @@ input[name=captain] {
     border: 2px solid #EEFFFC;
     text-transform: capitalize;
     cursor: pointer;
-    width: 118px; }
+    width: 110px;
+    font-size: 80%; }
     .paceRation .para:hover {
       border-color: #bffcf1;
       color: #bffcf1; }

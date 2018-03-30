@@ -330,8 +330,8 @@ input[name=captain]{
 	height: calc(100% - 235px);
 	content: "";
 	top: 170px;
-	left: 70px;
-	right: 70px;
+	left: 100px;
+	right: 100px;
 
 	&>div{
 		height: 100%;
@@ -483,7 +483,8 @@ input[name=captain]{
 		border: 2px solid $color-tri;
 		text-transform: capitalize;
 		cursor: pointer;
-		width: 118px;
+		width: 110px;
+		font-size: 80%;
 
 		&:hover{
 			border-color: lighten($color-prime, 30%);
