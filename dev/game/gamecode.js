@@ -855,6 +855,7 @@ $(function(){
 		shopTotal = gameobj['money'];
 		$("span.bill").text(shopBill);
 		$("span.total").text(shopTotal);
+		gameSpans('money');
 	})
 
 	
