@@ -128,7 +128,13 @@
 			transition: border 0.3s;
 
 			.img-farmer{
-				background-color: $color-sec;
+				background-image: url("../images/ship-farmer.svg");
+			}
+			.img-engineer{
+				background-image: url("../images/ship-engineer.svg");
+			}
+			.img-moneybags{
+				background-image: url("../images/ship-moneybags.svg");
 			}
 
 			.setUp-desc{
