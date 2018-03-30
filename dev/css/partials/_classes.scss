@@ -330,8 +330,8 @@ input[name=captain]{
 	height: calc(100% - 235px);
 	content: "";
 	top: 170px;
-	left: 70px;
-	right: 70px;
+	left: 100px;
+	right: 100px;
 
 	&>div{
 		height: 100%;
@@ -478,7 +478,18 @@ input[name=captain]{
 	padding-top: 11px;
 
 	.para{
-		padding-bottom: 19px;
+		margin-bottom: 15px;
+		padding: .2em .5em;
+		border: 2px solid $color-tri;
+		text-transform: capitalize;
+		cursor: pointer;
+		width: 110px;
+		font-size: 80%;
+
+		&:hover{
+			border-color: lighten($color-prime, 30%);
+			color: lighten($color-prime, 30%);
+		}
 	}
 	img{
 		width: 20px;
