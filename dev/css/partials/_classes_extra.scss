@@ -289,6 +289,10 @@
 	background-position: right;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
+	&.content > section{
+		height: calc(100vh - 40px);
+	}
 	
 	.info{
 		width: 55%;

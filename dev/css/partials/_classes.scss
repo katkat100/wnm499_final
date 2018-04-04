@@ -759,46 +759,98 @@ input[name=captain]{
 //xs
 @media (max-width: 479px){
 	#setUp-shop{
-		.item{
-			padding: 0 5px;
-			p{
-				margin-bottom: 10px;
-				margin-top: 10px;
-			}
+		.shop-inventory{
+			margin-top: 10px;
+		}
 
-			&-top{
-				width: 25%;
+		.item{
+			// border: 2px solid lighten($color-tri,30%);
+			padding: 5px;
+			margin: 5px 0px;
+
+			&-title{
+				display: none;
 			}
 			img{
-				display: inline-block;
-				width: 20%;
 				margin-left: 0;
+				width:100%;
+			}
+			&-top{
+				width: 30px;
 				vertical-align: middle;
 			}
-			&-title{
-				display: inline-block;
-				vertical-align: middle;
-				margin-bottom: 0;
-				width: 70%;
-			}
+
 			&-cost{
-				width: 33.5%;
-				vertical-align: middle;
+				width:calc(50% - 25px);
 				display: inline-block;
+				margin-top: 0;
+				margin-bottom: 0;
+				vertical-align: middle;
 			}
+
 			&-buy{
-				width: 33%;
-				vertical-align: middle;
+				width:calc(50% - 25px);
 				display: inline-block;
+				margin-top: 0;
+				margin-bottom: 0;
+				vertical-align: middle;
 			}
 		}
+
 		.receipt{
-			padding-top: 0;
+
+			&.big{
+				display: none;
+			}
+			&.hide{
+				display: block;
+			}
+
 			p{
-				margin-bottom: 10px;
-				margin-top: 10px;
-				text-align: center;
+				margin-bottom: 0;
+				margin-top: 0;
 			}
 		}
+		// .item{
+		// 	padding: 0 5px;
+		// 	p{
+		// 		margin-bottom: 10px;
+		// 		margin-top: 10px;
+		// 	}
+
+		// 	&-top{
+		// 		width: 25%;
+		// 	}
+		// 	img{
+		// 		display: inline-block;
+		// 		width: 20%;
+		// 		margin-left: 0;
+		// 		vertical-align: middle;
+		// 	}
+		// 	&-title{
+		// 		display: inline-block;
+		// 		vertical-align: middle;
+		// 		margin-bottom: 0;
+		// 		width: 70%;
+		// 	}
+		// 	&-cost{
+		// 		width: 33.5%;
+		// 		vertical-align: middle;
+		// 		display: inline-block;
+		// 	}
+		// 	&-buy{
+		// 		width: 33%;
+		// 		vertical-align: middle;
+		// 		display: inline-block;
+		// 	}
+		// }
+		// .receipt{
+		// 	padding-top: 0;
+		// 	p{
+		// 		margin-bottom: 10px;
+		// 		margin-top: 10px;
+		// 		text-align: center;
+		// 	}
+		// }
 	}
 }

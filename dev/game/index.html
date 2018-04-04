@@ -10,7 +10,6 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="jquery-3.3.1.min.js"></script>
 
-	<!-- <script src="code.js"></script> -->
 	<script src="gamecode.js"></script>
 	<style>
 		.setUp-container{
@@ -200,7 +199,7 @@
 										<p class="item-buy">Buy: <input type="number" name="shop-ammo" min="0" maxlength="20" value="0"> X 5 shots</p>
 									</li>
 								</ul>
-								<div class="col-xs-12 col-sm-5 col-md-3 receipt">
+								<div class="col-xs-12 col-sm-5 col-md-3 big receipt">
 									<h4>Reciept</h4>
 									<div class="row">
 										<p class="col-xs-6">Starting Amount:</p>
@@ -210,6 +209,19 @@
 									<div class="row">
 										<p class="col-xs-6">Total Bill:</p>
 										<p class="col-xs-6">- §<span class="bill"></span></p>
+									</div>
+										
+									<div class="row">
+										<p class="col-xs-6">Ending Amount:</p>
+										<p class="col-xs-6">&nbsp §<span class="total"></span></p>
+									</div>
+										
+								</div>
+								<div class="col-xs-12 col-sm-5 col-md-3 hide receipt">
+									<h4>Reciept</h4>
+									<div class="row">
+										<p class="col-xs-6">Bill:</p>
+										<p class="col-xs-6">&nbsp §<span class="money"></span> - §<span class="bill"></span></p>
 									</div>
 										
 									<div class="row">
@@ -462,8 +474,8 @@
 										<img src="../images/sidebar_food.svg">
 										<p class="item-title">Food</p>
 									</div>
-									<p class="item-cost">10 meals weighs 10lbs</p>
-									<p class="item-buy">Throw away: <input type="number" name="throw-food" min="0" maxlength="20" value="0"> meal(s)</p>
+									<p class="item-cost">10 meals weigh 10lbs</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-food" min="0" maxlength="20" value="0"> X 10 meals</p>
 								</li>
 								<li class="col-xs-12 col-md-6 item">
 									<div class="item-top">
@@ -471,7 +483,7 @@
 										<p class="item-title">Fuel</p>
 									</div>
 									<p class="item-cost">10 fuel pods weigh 50lbs</p>
-									<p class="item-buy">Throw away: <input type="number" name="throw-fuel" min="0" maxlength="20" value="0"> pod(s)</p>
+									<p class="item-buy">Throw away: <input type="number" name="throw-fuel" min="0" maxlength="20" value="0"> X 10 fuel pods</p>
 								</li>
 							</ul>
 							<div class="col-xs-12 col-sm-5 col-md-3 receipt">

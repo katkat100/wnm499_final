@@ -748,7 +748,7 @@ $(function(){
 	})
 
 	$(".job-moneybags").on('click', function(){
-		captain["job"] = "moneybag";
+		captain["job"] = "moneybags";
 		gameobj["money"] = 2000;
 		budget = gameobj["money"];
 		setUpMove();
@@ -783,7 +783,7 @@ $(function(){
 	// 		budget = gameobj["money"];
 	// 		setUpMove();
 	// 	} else if($("#setUp-profession .active").hasClass("job-moneybags")){
-	// 		captain["job"] = "moneybag";
+	// 		captain["job"] = "moneybags";
 	// 		gameobj["money"] = 2000;
 	// 		budget = gameobj["money"];
 	// 		setUpMove();

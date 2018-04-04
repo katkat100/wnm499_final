@@ -114,14 +114,11 @@ input[type=number]::-webkit-outer-spin-button {
   #month ul li {
     width: 100%; }
 
-nav {
-  position: fixed;
-  top: 0; }
-  nav ul {
-    padding-left: 0; }
-  nav li {
-    display: inline-block;
-    padding: .75em .5em; }
+nav ul {
+  padding-left: 0; }
+nav li {
+  display: inline-block;
+  padding: .75em .5em; }
 
 ul {
   list-style: none;
@@ -1335,37 +1332,38 @@ input[name=captain] {
   .progressConsole-container {
     width: calc(100% - 40px); } }
 @media (max-width: 479px) {
+  #setUp-shop .shop-inventory {
+    margin-top: 10px; }
   #setUp-shop .item {
-    padding: 0 5px; }
-    #setUp-shop .item p {
-      margin-bottom: 10px;
-      margin-top: 10px; }
-    #setUp-shop .item-top {
-      width: 25%; }
-    #setUp-shop .item img {
-      display: inline-block;
-      width: 20%;
-      margin-left: 0;
-      vertical-align: middle; }
+    padding: 5px;
+    margin: 5px 0px; }
     #setUp-shop .item-title {
-      display: inline-block;
-      vertical-align: middle;
-      margin-bottom: 0;
-      width: 70%; }
+      display: none; }
+    #setUp-shop .item img {
+      margin-left: 0;
+      width: 100%; }
+    #setUp-shop .item-top {
+      width: 30px;
+      vertical-align: middle; }
     #setUp-shop .item-cost {
-      width: 33.5%;
-      vertical-align: middle;
-      display: inline-block; }
+      width: calc(50% - 25px);
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle; }
     #setUp-shop .item-buy {
-      width: 33%;
-      vertical-align: middle;
-      display: inline-block; }
-  #setUp-shop .receipt {
-    padding-top: 0; }
-    #setUp-shop .receipt p {
-      margin-bottom: 10px;
-      margin-top: 10px;
-      text-align: center; } }
+      width: calc(50% - 25px);
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle; }
+  #setUp-shop .receipt.big {
+    display: none; }
+  #setUp-shop .receipt.hide {
+    display: block; }
+  #setUp-shop .receipt p {
+    margin-bottom: 0;
+    margin-top: 0; } }
 .well {
   padding: 10px;
   background-color: #eee;
@@ -1412,6 +1410,9 @@ input[name=captain] {
     text-shadow: 0 0 5px #2DF5D0;
     border-color: #2DF5D0;
     color: #2DF5D0; }
+
+#title.content > section {
+  height: calc(100vh - 40px); }
 
 #game .content {
   position: relative; }
