@@ -13,10 +13,10 @@
 	<script src="gamecode.js"></script>
 	<style>
 		.setUp-container{
-			/*display: none;*/
+			display: none;
 		}
 		.spaceScreen-container{
-			/*display: block;*/
+			display: block;
 		}
 
 		.sidebar-left, .sidebar-right, .displayWindow, .basic-options{
@@ -49,7 +49,7 @@
 	</nav> -->
 
 	<div class="content">
-		<div class="setUp-container">
+		<!-- <div class="setUp-container">
 			<div class="container">
 				<div class="card-container">
 					<div class="card" id="setUp-profession">
@@ -248,7 +248,7 @@
 
 
 			</div>
-		</div>
+		</div> -->
 		<div class="spaceScreen-container">
 			<div class="displayWindow">
 				<div class="row">
@@ -310,9 +310,58 @@
 					<li class="para pace">
 						<div class="info">
 							<span class="pace">Steady</span>
-							<img src="../images/sidebar_food.svg">
+							<img src="../images/sidebar_fuel.svg">
 						</div>
 					</li>
+				</ul>
+			</div>
+
+			<div class="hide sidebar-mobile container">
+				<ul class="mobile-paceRat row gutters">
+					<li class="col-xs-6 ration">
+						<div class="info">
+							<img src="../images/sidebar_food.svg">
+							<span class="ration">Filling</span>
+						</div>
+					</li>
+					<li class="col-xs-6 pace">
+						<div class="info">
+							<img src="../images/sidebar_fuel.svg">
+							<span class="pace">Steady</span>
+						</div>
+					</li>
+				</ul>
+				<ul class="mobile-inven row gutters">
+				  <li class="col-xs-1fifth food">
+				    <div class="info">
+				      <img src="../images/sidebar_food.svg">
+				      <span class="food"></span>
+				    </div>
+				  </li>
+				  <li class="col-xs-1fifth fuel">
+				    <div class="info">
+				      <img src="../images/sidebar_fuel.svg">
+				      <span class="fuel"></span>
+				    </div>
+				  </li>
+				  <li class="col-xs-1fifth ammo">
+				    <div class="info">
+				      <img src="../images/sidebar_ammo.svg">
+				      <span class="ammo"></span>
+				    </div>
+				  </li>
+				  <li class="col-xs-1fifth health">
+				    <div class="info">
+				      <img src="../images/sidebar_health.svg">
+				      <span class="health"></span>%
+				    </div>
+				  </li>
+				  <li class="col-xs-1fifth money">
+				    <div class="info">
+				      <img src="../images/sidebar_money.svg">
+				      <span class="money"></span>
+				    </div>
+				  </li>
 				</ul>
 			</div>
 			<div class="progressConsole-container">

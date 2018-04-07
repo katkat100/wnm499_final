@@ -485,12 +485,12 @@ input[name=captain]{
 
 	.para{
 		margin-bottom: 15px;
-		padding: .2em .5em;
+		padding: .5em .5em;
 		border: 2px solid $color-tri;
 		text-transform: capitalize;
 		cursor: pointer;
 		width: 110px;
-		font-size: 80%;
+		font-size: 90%;
 
 		&:hover{
 			border-color: lighten($color-prime, 30%);
@@ -502,6 +502,7 @@ input[name=captain]{
 		height: 20px;
 		float: right;
 		margin-left: 10px;
+		margin-top: -2px;
 	}
 	li{
 		
@@ -811,46 +812,47 @@ input[name=captain]{
 				margin-top: 0;
 			}
 		}
-		// .item{
-		// 	padding: 0 5px;
-		// 	p{
-		// 		margin-bottom: 10px;
-		// 		margin-top: 10px;
-		// 	}
+	}
 
-		// 	&-top{
-		// 		width: 25%;
-		// 	}
-		// 	img{
-		// 		display: inline-block;
-		// 		width: 20%;
-		// 		margin-left: 0;
-		// 		vertical-align: middle;
-		// 	}
-		// 	&-title{
-		// 		display: inline-block;
-		// 		vertical-align: middle;
-		// 		margin-bottom: 0;
-		// 		width: 70%;
-		// 	}
-		// 	&-cost{
-		// 		width: 33.5%;
-		// 		vertical-align: middle;
-		// 		display: inline-block;
-		// 	}
-		// 	&-buy{
-		// 		width: 33%;
-		// 		vertical-align: middle;
-		// 		display: inline-block;
-		// 	}
-		// }
-		// .receipt{
-		// 	padding-top: 0;
-		// 	p{
-		// 		margin-bottom: 10px;
-		// 		margin-top: 10px;
-		// 		text-align: center;
-		// 	}
-		// }
+	.displayWindow{
+		left: 0;
+	}
+	.sidebar-left, .sidebar-right{
+		display: none;
+	}
+	.sidebar-mobile{
+		display: block;
+		position: absolute;
+		bottom: 80px;
+		width: 100%;
+		.mobile-inven{
+			img{
+				width: 20px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			span{
+				vertical-align: middle;
+			}
+		}
+		ul{
+			width: 100%;
+			height: 20px;
+		}
+		li{
+			display: inline-block;
+			text-align: center;
+		}
+	}
+
+	.mobile-paceRat{
+		img{
+			width:20px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		span{
+			vertical-align: middle;
+		}
 	}
 }
