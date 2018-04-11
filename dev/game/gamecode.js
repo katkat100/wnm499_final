@@ -11,7 +11,7 @@ $(function(){
 		ammo : 50
 	};
 
-	var health = 100;
+	var health = 4;
 	var totalHealth = 0;
 	var ration = "filling";
 	var pace = "steady";
@@ -164,18 +164,26 @@ $(function(){
 		})
 	}
 
+	function deadCrew(){
+		addWarning("Everyone has died. What is a captain without a crew at their side?");
+		addToConsole("Shall we try again?");
+		togClass(".basic-options", ".restart");
+	}
+
 	function crewHealth(){
 		totalHealth = 0;
+		health = 0;
 		for(var i = 0; i < crew.length; i++){
 			if(crew[i]['health'] <= 0 && crew[i]["status"] == "alive"){
 				theReaper(i);
 			}
 			if(crew[i]['status'] == "alive"){
 				totalHealth += crew[i]["health"];
+				health++;
 			}
 		}
 
-		health = (totalHealth / 16)*100;
+		// health = (totalHealth / 4);
 		$("span.health").text(health);
 
 		// c(health);
@@ -184,10 +192,21 @@ $(function(){
 	function theReaper(vic){
 		crew[vic]["status"] = "dead";
 		c(crew[vic]["name"] + " is dead");
+
+		var deadCrewMem
+
+		for(var i = 0; i < crew.length; i++){
+			if(crew[i]['status'] == "dead"){
+				deadCrewMem++;
+			}
+		}
+		if(deadCrewMem >= crew.length){
+			deadCrew();
+		}
 		
 	}
 
-	function upadateTime(){
+	function updateTime(){
 		day++;
 		if(month == "April" && day > 30){
 			month = "May";
@@ -364,7 +383,7 @@ $(function(){
 				changeImages("captain-normal","ship-" + captain['job']);
 			break;
 			case 1://pirates
-				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §500 or else! What shall you do Captain " + captain['name'] + "!?");
+				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §100 or else! What shall you do Captain " + captain['name'] + "!?");
 				togClass(".basic-options", '.pirate-options');
 				changeImages("captain-shock", "pirate");
 			break;
@@ -472,7 +491,6 @@ $(function(){
 					addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 					changeImages("captain-normal","ship-" + captain['job']);
 				}
-					
 			break;
 			case 7://thief
 				if(gameobj['food'] >= 100){
@@ -494,12 +512,11 @@ $(function(){
 					addWarning(conDay + crew[victimRoll]["name"] + " died from a broken bone.")
 					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
-				
 			break;
 			case 9://sickness
 				painHappens();
 				if(crew[victimRoll]["status"] == "alive"){
-					addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
+					addWarning(conDay + crew[victimRoll]["name"] + " gets the Rumbly Tum Tum Sickness. They lose 2 health.");
 					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-sick");
 				}else if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died from a rumbly tummy.")
@@ -1009,7 +1026,7 @@ $(function(){
 		$(".basic-options").show();
 		togClass(".trade-options", ".progressConsole-container");
 		$('.trade-container').hide();
-		upadateTime();
+		updateTime();
 		addToConsole(month + " " + day + ": " + tradeNoTrade);
 
 		tradeNoTrade = "Trading was attempted."
@@ -1033,27 +1050,27 @@ $(function(){
 				togClass(".pirate-options", ".basic-options");
 				changeImages("captain-happy", "pirate-scared");
 			} else {
-				if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
-					gameobj['money'] -= 500;
+				if(gameobj['money'] >= 100 && gameobj['food'] >= 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and 50lbs of food.");
+					gameobj['money'] -= 100;
 					gameobj['food'] -= 50;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] < 500 && gameobj['food'] < 50){
+				} else if(gameobj['money'] < 100 && gameobj['food'] < 50){
 					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and food.");
 					gameobj['money'] = 0;
 					gameobj['food'] = 0;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] < 500 && gameobj['food'] >= 50){
+				} else if(gameobj['money'] < 100 && gameobj['food'] >= 50){
 					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50lbs of food.");
 					gameobj['money'] = 0;
 					gameobj['food'] -= 50;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] >= 500 && gameobj['food'] < 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and all of your food.");
-					gameobj['money'] -= 500;
+				} else if(gameobj['money'] >= 100 && gameobj['food'] < 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and all of your food.");
+					gameobj['money'] -= 100;
 					gameobj['food'] = 0;
 					gameSpans('food');
 					gameSpans('money');
@@ -1086,9 +1103,9 @@ $(function(){
 	})//end of bluff
 
 	$('.giveUp').click('on', function(){
-		if(gameobj['money'] >= 500){
+		if(gameobj['money'] >= 100){
 			addToConsole("You give in to their demands and they take §500.");
-			gameobj['money'] -= 500;
+			gameobj['money'] -= 100;
 		} else{
 			addToConsole("You give in to their demands and they take all your money.");
 			gameobj['money'] = 0;
@@ -1171,7 +1188,7 @@ $(function(){
 				addWarning(crew[victimRoll]['name'] + " was hurt in the attempt to get out of the gravitational pull.");
 				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-hurt");
 			}else if(crew[victimRoll]["status"] == "dead"){
-				addWarning(conDay + crew[victimRoll]["name"] + " died in the struggle.");
+				addWarning(month + " " + day + ": " + crew[victimRoll]["name"] + " died in the struggle.");
 				addToConsole("Well that's one way of losing some weight.");
 				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-death");
 			}
@@ -1190,7 +1207,7 @@ $(function(){
 
 //Planet X
 	$(".planetX .takeOff").on("click", function(){
-		upadateTime();
+		updateTime();
 
 		addToConsole(month + " " + day + ": " + "Leaving the planet X.");
 		$(".sidebar-left").show();
@@ -1209,7 +1226,7 @@ $(function(){
 	$(".planetX .bar").on('click', function(){
 		togClass(".planetX", ".bar-container");
 		$(".bar-options").show();
-		upadateTime();
+		updateTime();
 		addToConsole(month + " " + day + ": " + "You enter the local bar.");
 		barPerson(".barOne");
 		barPerson(".barTwo");
@@ -1229,7 +1246,7 @@ $(function(){
 		togClass(".trade-options-planetX", ".progressConsole-container");
 		togClass(".trade-container", ".planetX");
 
-		upadateTime();
+		updateTime();
 		addToConsole(month + " " + day + ": " + tradeNoTrade);
 
 		tradeNoTrade = "Trading was attempted."
@@ -1306,7 +1323,7 @@ $(function(){
 
 //travel
 	$(".travel").on('click', function(){
-		upadateTime();
+		updateTime();
 		encounterDice();
 
 
@@ -1331,7 +1348,7 @@ $(function(){
 		
 		c("encounter: " + encounter);
 		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
-			addWarning("everyone is dead");
+			deadCrew();
 		} else{
 			
 			// encounter = 3;
@@ -1347,7 +1364,11 @@ $(function(){
 	});
 
 	
+	
 
+	$(".restartGame").on('click', function(){
+		location.reload();
+	})
 
 
 

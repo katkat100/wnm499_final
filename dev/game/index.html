@@ -20,14 +20,14 @@
 		}
 
 		.sidebar-left, .sidebar-right, .displayWindow, .basic-options{
-			/*display: none;*/
+			display: none;
 		}
 
 		.progressConsole-container{
 			/*display: none;*/
 		}
 		.planetX{
-			display: none;
+			/*display: none;*/
 		}
 /* */
 		.blackHole-container, .bar-container, .bar-options, .trade-options-planetX, .trade-options, .trade-container{
@@ -288,13 +288,13 @@
 				  <li class="stat health">
 				    <div class="info">
 				      <img src="../images/sidebar_health.svg">
-				      <span class="health"></span>%
+				      <span class="health"></span>/4
 				    </div>
 				  </li>
 				  <li class="stat money">
 				    <div class="info">
 				      <img src="../images/sidebar_money.svg">
-				      <span class="money"></span>
+				      §<span class="money"></span>
 				    </div>
 				  </li>
 				</ul>
@@ -359,7 +359,7 @@
 				  <li class="col-xs-1fifth money">
 				    <div class="info">
 				      <img src="../images/sidebar_money.svg">
-				      <span class="money"></span>
+				      §<span class="money"></span>
 				    </div>
 				  </li>
 				</ul>
@@ -412,29 +412,21 @@
 					<div class="container">
 						<div class="row gutters flex">
 							<div class="col-xs-4">
-								<div class="bar-person barOne">
-									<div class="image1to1">
-										<div class="img-barOne"></div>
-									</div>
-									<div class="bar-name">
-										<span class="barOne-name">Georgey Porgey</span>
-									</div>
+								<div class="bar-action bar-food">
+									<div class="bar-action-title">Order Food</div>
+									<div class="bar-action-desc">Order some local food to take back to your ship. It's expensive food but at least it's something different. You can order 1 meal for §10.</div>
 								</div>
 							</div>
 							<div class="col-xs-4">
-								<div class="bar-person barTwo">
-									<div class="image1to1">
-										<div class="img-barTwo"></div>
-									</div>
-									<div class="bar-name"><span class="barTwo-name">Georgey Porgey</span></div>
+								<div class="bar-action bar-gossip">
+									<div class="bar-action-title">Eavesdrop</div>
+									<div class="bar-action-desc">Eavsdropping on the people around you will inform you on the local gossip. But be warned, the longer you eavesdrop the bigger the chance you get caught and anger people.</div>
 								</div>
 							</div>
 							<div class="col-xs-4">
-								<div class="bar-person barThree">
-									<div class="image1to1">
-										<div class="img-barThree"></div>
-									</div>
-									<div class="bar-name"><span class="barThree-name">Georgey Porgey</span></div>
+								<div class="bar-action bar-talk">
+									<div class="bar-action-title">Talk to a Local</div>
+									<div class="bar-action-desc">Talking to your new bar mates can cover things like current events or even betting on the flounder races.</div>
 								</div>
 							</div>
 						</div>
@@ -579,7 +571,7 @@
 								<div class="option throw-away">Throw Away</div>
 							</div>
 							<div class="col-xs-6">
-								<div class="option giveIn">Give In to the Pull</div>
+								<div class="option giveIn">Fight the Pull</div>
 							</div>
 						</div>
 						<div class="pirate-bluff-options row gutters hide">
@@ -619,8 +611,13 @@
 								<div class="option go-around">Go Around</div>
 							</div>
 						</div>
+						<div class="restart row gutters hide">
+							<div class="offset-xs-3 col-xs-6">
+								<div class="option restartGame">Restart</div>
+							</div>
+						</div>
 						<div class="locationEnd-options row gutters hide">
-							<div class="offset-xs-6 col-xs-6">
+							<div class="offset-xs-3 col-xs-6">
 								<div class="option land">Land on My New Home</div>
 							</div>
 						</div>
