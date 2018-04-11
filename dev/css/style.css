@@ -1292,6 +1292,15 @@ input[name=captain] {
     color: #2DF5D0; }
 .bar-name {
   text-align: center; }
+.bar-inventory {
+  margin-top: 20px; }
+  .bar-inventory img {
+    width: 20px;
+    vertical-align: middle; }
+  .bar-inventory span {
+    vertical-align: middle; }
+  .bar-inventory .info {
+    text-align: center; }
 
 .end-points {
   color: #2DF5D0; }

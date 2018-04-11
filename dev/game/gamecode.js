@@ -1192,7 +1192,6 @@ $(function(){
 	var barAnnoyance = 0;
 
 	$(".bar-food").on('click', function(){
-		barFoodCount++;
 		switch(barFoodCount){
 			case 0:
 			addToConsole("You order some food handing over §10 to pay.");
@@ -1205,7 +1204,7 @@ $(function(){
 			gameobj['food'] += 1;
 			break;
 			case 2:
-			addToConsole("As you order your third meal set you can see that the bartender is getting annoyed at you for ordering three seperate meals.");
+			addToConsole("As you order your third meal you can see that the bartender is getting annoyed at you for ordering, Three. Seperate. Meals.");
 			gameobj['money'] -= 10;
 			gameobj['food'] += 1;
 			break;
@@ -1215,9 +1214,19 @@ $(function(){
 			gameobj['food'] += 1;
 			barAnnoyance ++;
 			break;
+			case 4:
+			addToConsole("Your fifth meal comes with a slam on the table and a sudden price increase.");
+			gameobj['money'] -= 20;
+			gameobj['food'] += 1;
+			barAnnoyance++;
+			$("span.barFood-cost").text("20")
+			break;
 		}
 		gameSpans("money");
 		gameSpans("food");
+
+
+		barFoodCount++;
 	});
 
 	$(".bar-gossip").on('click', function(){

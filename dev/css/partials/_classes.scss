@@ -673,6 +673,20 @@ input[name=captain]{
 	&-name{
 		text-align: center;
 	}
+
+	&-inventory{
+		margin-top: 20px;
+		img{
+			width: 20px;
+			vertical-align: middle;
+		}
+		span{
+			vertical-align: middle;
+		}
+		.info{
+			text-align: center;
+		}
+	}
 	
 }
 
