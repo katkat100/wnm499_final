@@ -1278,16 +1278,16 @@ input[name=captain] {
 .bars {
   position: relative;
   top: 50%;
-  transform: translate(0, -60%); }
+  transform: translate(0, -50%); }
 .bar-container {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 270px);
   position: relative;
   top: 190px; }
-.bar-person {
+.bar-action {
   border: 3px solid #EEFFFC;
   padding: .5em;
   cursor: pointer; }
-  .bar-person:hover {
+  .bar-action:hover {
     border-color: #2DF5D0;
     color: #2DF5D0; }
 .bar-name {

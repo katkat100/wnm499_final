@@ -652,16 +652,16 @@ input[name=captain]{
 	&s{
 		position: relative;
 		top: 50%;
-		transform: translate(0, -70%);
+		transform: translate(0, -50%);
 	}
 	
 	&-container{
-		height: calc(100vh - 190px);
+		height: calc(100vh - 270px);
 		position: relative;
 		top: 190px;
 	}
 
-	&-person{
+	&-action{
 		border: 3px solid $color-tri;
 		padding: .5em;
 		cursor: pointer;
@@ -673,6 +673,7 @@ input[name=captain]{
 	&-name{
 		text-align: center;
 	}
+	
 }
 
 //end
