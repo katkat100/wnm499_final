@@ -1188,8 +1188,36 @@ $(function(){
 	})
 
 //bar
+	var barFoodCount = 0;
+	var barAnnoyance = 0;
+
 	$(".bar-food").on('click', function(){
-		c("order food");
+		barFoodCount++;
+		switch(barFoodCount){
+			case 0:
+			addToConsole("You order some food handing over §10 to pay.");
+			gameobj["money"] -= 10;
+			gameobj['food'] += 1;
+			break;
+			case 1:
+			addToConsole("You order another meal set for §10.");
+			gameobj['money']-= 10;
+			gameobj['food'] += 1;
+			break;
+			case 2:
+			addToConsole("As you order your third meal set you can see that the bartender is getting annoyed at you for ordering three seperate meals.");
+			gameobj['money'] -= 10;
+			gameobj['food'] += 1;
+			break;
+			case 3:
+			addToConsole("You order your fourth meal and it is delivered to you with much annoyance.");
+			gameobj['money'] -= 10;
+			gameobj['food'] += 1;
+			barAnnoyance ++;
+			break;
+		}
+		gameSpans("money");
+		gameSpans("food");
 	});
 
 	$(".bar-gossip").on('click', function(){
