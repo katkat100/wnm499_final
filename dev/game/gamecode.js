@@ -891,7 +891,7 @@ $(function(){
 	// })
 
 //trading
-	var tradeNoTrade = "Trade was attempted."
+	var tradeNoTrade = "No trade made."
 	$(".option.trade").on('click',function(){
 		hideMain();
 		$(".basic-options").hide();
@@ -922,7 +922,7 @@ $(function(){
 		updateTime();
 		addToConsole(month + " " + day + ": " + tradeNoTrade);
 
-		tradeNoTrade = "Trading was attempted."
+		tradeNoTrade = "No trade made."
 	})
 
 //pirates
@@ -1129,6 +1129,13 @@ $(function(){
 	$(".planetX .trade").on('click', function(){
 		togClass(".progressConsole-container", ".trade-options-planetX");
 		togClass(".planetX", ".trade-container");
+		updateTime();
+		addToConsole(month + " " + day + ": " + "You enter the local market.");
+
+		trade("tradeOne");
+		trade("tradeTwo");
+		trade("tradeThree");
+
 	})
 
 	$(".trade-options-planetX .no-trade").on('click', function(){
@@ -1231,85 +1238,54 @@ $(function(){
 
 	$(".bar-talk").on('click', function(){
 		barTalkAnnoyCount = barTalkCount + barAnnoyance;
-		switch(barTalkAnnoyCount){
-			case 0:
-				addToConsole("You make small talk with your bar mate.");
-				bar
-			break;
-
+		if(barTalkAnnoyCount < 5){
+			switch(barTalkAnnoyCount){
+				case 0:
+					addToConsole("You make small talk with your bar mate.");
+				break;
+				case 1:
+				addToConsole("You make small talk with your bar mate about current problems in their workplace.");
+				break;
+				case 2:
+				addToConsole("You make a bet with a stranger on the flounder races.");
+				DiceRoll();
+				if(diceOne >= 6){
+					addToConsole("You lost the bet and fork over §25 to the winner");
+				} else {
+					addToConsole("You win the bet and take §25 from the loser. They accuse you of cheating.");
+					barAnnoyance++;
+				}
+				break;
+				case 3:
+				case 4:
+				painHappens();
+				addWarning(crew[victimRoll]['name'] + " offends someone and gets punched. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
+				barAnnoyance++;
+				break;
+			}
+			barTalkCount++;
+		} else {
+			addToConsole("Everyone seems to be ignoring you. They don't want to talk to you at all.");
+			$(".bar-talk").addClass("void");
 		}
 	});
 
 	$(".leave-bar").on('click', function(){
 		togClass(".bar-container", ".planetX");
+		addToConsole("You leave the bar.");
 		$(".bar-options").hide();
 		if(gameobj['fuel'] > fuelUsage){
 			$(".travel").css({'pointerEvents':'initial','opacity':1})
 		}
-	});
 
-	function barTalk(){//work on this do something like 3 options: order food, listen to gossip, talk to somebody. Ordering food is kind of expensive but will add to your total food. Listening in will create a risk of getting caught and people not sitting next to you to hear more gossip and will raise the talking risk. Everytime you talk to somebody you raise the risk of offending someone. If reach "10" then no one talks to you and when you leave the bar you cant go back.
-		DiceRoll();
-
-		if(diceOne == 1){
-			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
-		} else if(diceOne == 2){
-			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 meals");
-			gameobj['food'] += 50;
-			$("span.food").text(gameobj['food']);
-		} else if(diceOne == 3){
-			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
-			addToConsole("You won! They give you §100 as your winnings.");
-			gameobj['money'] += 100;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 4){
-			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
-			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
-			gameobj['money'] -= 100;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 5){
-			addToConsole("You buy your new friend a drink and local bar food.");
-			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
-			gameobj['money'] -= 10;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 6){
-			painHappens();
-			addWarning(crew[victimRoll]['name'] + " offends " + $(this).data('name') + "and gets punched. They lose 2 health.");
-			if(crew[victimRoll]["status"] == "dead"){
-				addWarning(conDay + crew[victimRoll]["name"] + " died.")
-			}
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 7){
-			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
-		} else if(diceOne == 8){
-			addToConsole("You get along well with this random stranger you've sat down with.");
-		} else if(diceOne == 9 || diceOne == 10){
-			addToConsole("You find out that " + $(this).data("name") + " knows Aunt Frale. What a small world!");
-		} else{
-			// addToConsole($(this).data("name") + " seems like a good person. You wonder if they would join you on your journey.");
-			// if(crew.length < 4){
-			// 	addToConsole($(this).data("name") + " agrees to join you on your journey.");
-
-			// 	var newMember = {
-			// 		name : $(this).data("name"),
-			// 		image : $(this).data("image"),
-			// 		death : $(this).data("death"),
-			// 		health : 4,
-			// 		status : "alive"
-			// 	}
-
-			// 	$(crew).merge(crew, newMember);
-
-			// 	// crewHealth();
-			// 	c(crew);
-			// 	health = $(crew).length;
-			// 	$("span.health").text(health);
-
-			// } else if(crew.length >= 4){
-			// 	addToConsole("Too bad there's no room in your ship for another person.");
-			// }
+		if($(".bar-food").hasClass("void") && $(".bar-talk").hasClass("void") && $(".bar-gossip").hasClass("void")){
+			addEmphasis("You are no longer allowed back to the bar.");
+			$(".planetX .bar").addClass("void");
 		}
-	}
+	});
 
 //Nebula Y
 	$(".go-through").on('click', function(){
