@@ -132,15 +132,6 @@ $(function(){
 	function changeImages(linkOne, linkTwo){
 		$(".display-captain").css('background-image', 'url(../images/' + linkOne + '.svg)');
 		$(".display-obstacle").css('background-image', 'url(../images/' + linkTwo + '.svg)');
-
-		// c(linkOne);
-		// c(linkTwo);
-
-		// if(d == "o"){
-		// 	$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
-		// } else if(d == "c"){
-		// 	$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
-		// }
 	}
 
 //functions
@@ -193,7 +184,7 @@ $(function(){
 		crew[vic]["status"] = "dead";
 		c(crew[vic]["name"] + " is dead");
 
-		var deadCrewMem
+		var deadCrewMem;
 
 		for(var i = 0; i < crew.length; i++){
 			if(crew[i]['status'] == "dead"){
@@ -714,43 +705,6 @@ $(function(){
 	c("money " + gameobj["money"]);
 	$("span.money").text(gameobj["money"]);
 
-	
-	// $(".job-farmer").on('click',function(){
-	// 	toggleClasses(this, "active");
-	// })
-
-	// $(".job-engineer").on('click', function(){
-	// 	toggleClasses(this, "active");
-	// })
-
-	// $(".job-moneybags").on('click', function(){
-	// 	toggleClasses(this, 'active');
-	// })
-
-	// $("#setUp-profession .setUp-button").on('click',function(){
-	// 	if($("#setUp-profession .active").hasClass("job-farmer")){
-	// 		captain["job"] = "farmer";
-	// 		gameobj["money"] = 1000;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else if($("#setUp-profession .active").hasClass("job-engineer")){
-	// 		captain["job"] = "engineer";
-	// 		gameobj["money"] = 1500;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else if($("#setUp-profession .active").hasClass("job-moneybags")){
-	// 		captain["job"] = "moneybags";
-	// 		gameobj["money"] = 2000;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else {
-
-	// 	}
-	// 	c("job " + captain["job"]);
-	// 	c("money " + gameobj["money"]);
-	// 	$("span.money").text(gameobj["money"]);
-	// })
-
 //name
 	$("input[name=captain]").on('input',function(){
 		$(this).css({"color": "#FFE387"});
@@ -990,7 +944,7 @@ $(function(){
 				changeImages("captain-happy", "pirate-scared");
 			} else {
 				if(gameobj['money'] >= 100 && gameobj['food'] >= 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and 50lbs of food.");
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and 50 meals.");
 					gameobj['money'] -= 100;
 					gameobj['food'] -= 50;
 					gameSpans('food');
@@ -1002,7 +956,7 @@ $(function(){
 					gameSpans('food');
 					gameSpans('money');
 				} else if(gameobj['money'] < 100 && gameobj['food'] >= 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50lbs of food.");
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50 meals.");
 					gameobj['money'] = 0;
 					gameobj['food'] -= 50;
 					gameSpans('food');
@@ -1028,9 +982,9 @@ $(function(){
 			togClass(".pirate-bluff-options", '.basic-options');
 			changeImages("captain-happy", "pirate-scared");
 		} else {
-			if(gameobj['money'] >= 700){
-				addToConsole("The pirates see through your bluff and take §700");
-				gameobj['money'] -= 700;
+			if(gameobj['money'] >= 200){
+				addToConsole("The pirates see through your bluff and take §200");
+				gameobj['money'] -= 200;
 				gameSpans('money');
 			} else {
 				addToConsole("The pirates see through your bluff and take all your money");
@@ -1043,7 +997,7 @@ $(function(){
 
 	$('.giveUp').click('on', function(){
 		if(gameobj['money'] >= 100){
-			addToConsole("You give in to their demands and they take §500.");
+			addToConsole("You give in to their demands and they take §100.");
 			gameobj['money'] -= 100;
 		} else{
 			addToConsole("You give in to their demands and they take all your money.");
@@ -1077,7 +1031,7 @@ $(function(){
 		togClass(".thief-options", '.basic-options');
 	})
 	$(".no-shoot").on('click', function(){
-		addToConsole("You let the thief go with " + thiefFood + " meals. Maybe this will give you good karma but probably not.");
+		addToConsole("You let the thief go with " + thiefFood + " meals. Maybe this will give you good karma for later on.");
 
 		gameobj['food'] -= thiefFood;
 		gameSpans('food');
@@ -1189,9 +1143,13 @@ $(function(){
 
 //bar
 	var barFoodCount = 0;
+	var barFoodAnnoyCount, barTalkAnnoyCount;
+	var barGossipCount = 0;
 	var barAnnoyance = 0;
+	var barTalkCount = 0;
 
 	$(".bar-food").on('click', function(){
+
 		switch(barFoodCount){
 			case 0:
 			addToConsole("You order some food handing over §10 to pay.");
@@ -1221,20 +1179,65 @@ $(function(){
 			barAnnoyance++;
 			$("span.barFood-cost").text("20")
 			break;
+			case 5:
+			addToConsole("You try to order a sixth meal but the bartender says they will no longer serve you.");
+			$(".bar-food").addClass("void");
+
+			barAnnoyance += 2;
+			break;
 		}
 		gameSpans("money");
 		gameSpans("food");
 
 
 		barFoodCount++;
+		c(barAnnoyance);
 	});
 
 	$(".bar-gossip").on('click', function(){
-		c("listen into gossip");
+		c("hello");
+		barGossipAnnoyCount = barGossipCount + barAnnoyance;
+		c(barGossipAnnoyCount);
+		c(barAnnoyance);
+		c(barGossipCount);
+		if(barGossipAnnoyCount < 4){
+			switch(barGossipAnnoyCount){
+				case 0:
+				addToConsole("You listen in on your bar mates as they talk about their job.");
+				break;
+				case 1:
+				addToConsole("You lean in close to get a better listen on your bar mates conversation but you see them lean a bit away. You can still here them complaining about their job.");
+				barAnnoyance++;
+				break;
+				case 2:
+				addToConsole("You lean very close to your bar mates and they notice you eavesdropping. They leave and snitch on you to the hostess.");
+				barAnnoyance +=2;
+				break;
+				case 3:
+				addToConsole("There is no one around you to eavesdrop on.");
+
+				$(".bar-gossip").addClass("void");
+				break;
+			}
+		} else {
+			addToConsole("No one wants to sit next to you. It seems you have annoyed the whole bar.");
+			if(!$(".bar-gossip").hasClass("void")){
+				$(".bar-gossip").addClass("void");
+			}
+		}
+
+		barGossipCount++;
 	});
 
 	$(".bar-talk").on('click', function(){
-		c("talk at bar");
+		barTalkAnnoyCount = barTalkCount + barAnnoyance;
+		switch(barTalkAnnoyCount){
+			case 0:
+				addToConsole("You make small talk with your bar mate.");
+				bar
+			break;
+
+		}
 	});
 
 	$(".leave-bar").on('click', function(){
