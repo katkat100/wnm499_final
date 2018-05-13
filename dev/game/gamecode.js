@@ -597,7 +597,10 @@ $(function(){
 				$(".sidebar-right").hide();
 				$(".displayWindow").hide();
 
+
 				togClass(".locationOne-options",".planetX");
+
+				$(".img-takeOff").css({"backgroundImage" : "url('../images/ship-" + captain["job"] + "')"})
 			})
 		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
 			c("yayayayayay local two")
@@ -1467,5 +1470,7 @@ captain['job'] = "farmer";
 
 		$("span.end-points").text(pTotal);
 	})
+	$(".img-takeOff").css({"backgroundImage" : "url('../images/ship-" + captain['job'] + ".svg')"})
 	
 })
+
