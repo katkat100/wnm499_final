@@ -619,6 +619,11 @@ input[name=captain]{
 			text-align: center;
 		}
 	}
+
+	&d{
+		opacity: .5;
+		pointer-events: none;
+	}
 }
 
 .overpriced{
@@ -665,9 +670,16 @@ input[name=captain]{
 		border: 3px solid $color-tri;
 		padding: .5em;
 		cursor: pointer;
+		height: 100%;
 		&:hover{
 			border-color: $color-prime;
 			color: $color-prime;
+		}
+
+		&-title{
+			text-transform: uppercase;
+			text-align: center;
+			margin-bottom: 10px;
 		}
 	}
 	&-name{
@@ -688,6 +700,11 @@ input[name=captain]{
 		}
 	}
 	
+}
+
+.void{
+	pointer-events: none;
+	opacity: .5;
 }
 
 //end

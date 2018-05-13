@@ -656,9 +656,11 @@ $(function(){
 			addTo: tradeItems[itemNum].to,
 			minusFrom: tradeItems[itemNum].from
 		})
+		traderImg(traderNum);
 	}
 
 	function tradeItem(traderNum){
+		
 		c($(traderNum).data("minusFrom"));
 		c(gameobj[$(traderNum).data("minusFrom")]);
 		c($(traderNum).data("minus"));
@@ -673,6 +675,11 @@ $(function(){
 		}else{
 			c("uhhh");
 		}
+	}
+
+	function traderImg(traderNum){
+		var traderPic = Math.floor(Math.random() * 4) + 1;
+		$(".img-" + traderNum).css({"backgroundImage" : "url('../images/extra" + traderPic + ".svg')"});
 	}
 
 
@@ -902,25 +909,31 @@ $(function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 	$(".tradeTwo").on("click",function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 	$(".tradeThree").on("click",function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 
 	$(".trade-options .no-trade").on('click', function(){
 		showMain();
+		$(".tradeOne").removeClass("traded");
+		$(".tradeTwo").removeClass("traded");
+		$(".tradeThree").removeClass("traded");
 		$(".basic-options").show();
 		togClass(".trade-options", ".progressConsole-container");
 		$('.trade-container').hide();
 		updateTime();
-		addToConsole(month + " " + day + ": " + tradeNoTrade);
+		addToConsole(tradeNoTrade);
 
 		tradeNoTrade = "No trade made."
 	})
@@ -1143,9 +1156,13 @@ $(function(){
 		togClass(".trade-container", ".planetX");
 
 		updateTime();
-		addToConsole(month + " " + day + ": " + tradeNoTrade);
+		addToConsole(tradeNoTrade);
 
-		tradeNoTrade = "Trading was attempted."
+		tradeNoTrade = "No trade made."
+
+		$(".tradeOne").removeClass("traded");
+		$(".tradeTwo").removeClass("traded");
+		$(".tradeThree").removeClass("traded");
 	})
 
 //bar

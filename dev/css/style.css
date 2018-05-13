@@ -1256,6 +1256,9 @@ input[name=captain] {
   .tradeable span {
     vertical-align: middle;
     text-align: center; }
+.traded {
+  opacity: .5;
+  pointer-events: none; }
 
 .overpriced .trader {
   border: 3px solid #FF555D;
@@ -1286,10 +1289,15 @@ input[name=captain] {
 .bar-action {
   border: 3px solid #EEFFFC;
   padding: .5em;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 100%; }
   .bar-action:hover {
     border-color: #2DF5D0;
     color: #2DF5D0; }
+  .bar-action-title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px; }
 .bar-name {
   text-align: center; }
 .bar-inventory {
@@ -1301,6 +1309,10 @@ input[name=captain] {
     vertical-align: middle; }
   .bar-inventory .info {
     text-align: center; }
+
+.void {
+  pointer-events: none;
+  opacity: .5; }
 
 .end-points {
   color: #2DF5D0; }
