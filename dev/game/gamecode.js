@@ -11,7 +11,7 @@ $(function(){
 		ammo : 50
 	};
 
-	var health = 100;
+	var health = 4;
 	var totalHealth = 0;
 	var ration = "filling";
 	var pace = "steady";
@@ -132,15 +132,6 @@ $(function(){
 	function changeImages(linkOne, linkTwo){
 		$(".display-captain").css('background-image', 'url(../images/' + linkOne + '.svg)');
 		$(".display-obstacle").css('background-image', 'url(../images/' + linkTwo + '.svg)');
-
-		// c(linkOne);
-		// c(linkTwo);
-
-		// if(d == "o"){
-		// 	$(".display-obstacle").css('background-image', 'url(../images/' + link + '.svg)');
-		// } else if(d == "c"){
-		// 	$(".display-captain").css('background-image', 'url(../images/' + link + '.svg)');
-		// }
 	}
 
 //functions
@@ -164,18 +155,26 @@ $(function(){
 		})
 	}
 
+	function deadCrew(){
+		addWarning("Everyone has died. What is a captain without a crew at their side?");
+		addToConsole("Shall we try again?");
+		togClass(".basic-options", ".restart");
+	}
+
 	function crewHealth(){
 		totalHealth = 0;
+		health = 0;
 		for(var i = 0; i < crew.length; i++){
 			if(crew[i]['health'] <= 0 && crew[i]["status"] == "alive"){
 				theReaper(i);
 			}
 			if(crew[i]['status'] == "alive"){
 				totalHealth += crew[i]["health"];
+				health++;
 			}
 		}
 
-		health = (totalHealth / 16)*100;
+		// health = (totalHealth / 4);
 		$("span.health").text(health);
 
 		// c(health);
@@ -184,10 +183,21 @@ $(function(){
 	function theReaper(vic){
 		crew[vic]["status"] = "dead";
 		c(crew[vic]["name"] + " is dead");
+
+		var deadCrewMem;
+
+		for(var i = 0; i < crew.length; i++){
+			if(crew[i]['status'] == "dead"){
+				deadCrewMem++;
+			}
+		}
+		if(deadCrewMem >= crew.length){
+			deadCrew();
+		}
 		
 	}
 
-	function upadateTime(){
+	function updateTime(){
 		day++;
 		if(month == "April" && day > 30){
 			month = "May";
@@ -364,7 +374,7 @@ $(function(){
 				changeImages("captain-normal","ship-" + captain['job']);
 			break;
 			case 1://pirates
-				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §500 or else! What shall you do Captain " + captain['name'] + "!?");
+				addWarning(conDay + "ARRRRRRRGH! Pirates have stormed the ship! They demand §100 or else! What shall you do Captain " + captain['name'] + "!?");
 				togClass(".basic-options", '.pirate-options');
 				changeImages("captain-shock", "pirate");
 			break;
@@ -417,7 +427,7 @@ $(function(){
 					$("span.month").text(month);
 					$("span.day").text(day);
 				}
-				changeImages("captain-sick", "");
+				changeImages("captain-sick", "spacelord");
 			break;
 			case 3://black hole
 				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You must shed some weight to escape unscathed.");
@@ -472,7 +482,6 @@ $(function(){
 					addToConsole(conDay + "You travel " + blorpTravel[pace] + " blorps.");
 					changeImages("captain-normal","ship-" + captain['job']);
 				}
-					
 			break;
 			case 7://thief
 				if(gameobj['food'] >= 100){
@@ -494,12 +503,11 @@ $(function(){
 					addWarning(conDay + crew[victimRoll]["name"] + " died from a broken bone.")
 					changeImages("captain-sad", crew[victimRoll]["image"] + "-death");
 				}
-				
 			break;
 			case 9://sickness
 				painHappens();
 				if(crew[victimRoll]["status"] == "alive"){
-					addWarning(conDay + crew[victimRoll]["name"] + " gets the a rumbly tummy. They lose 2 health.");
+					addWarning(conDay + crew[victimRoll]["name"] + " gets the Rumbly Tum Tum Sickness. They lose 2 health.");
 					changeImages("captain-unhappy", crew[victimRoll]["image"] + "-sick");
 				}else if(crew[victimRoll]["status"] == "dead"){
 					addWarning(conDay + crew[victimRoll]["name"] + " died from a rumbly tummy.")
@@ -583,18 +591,21 @@ $(function(){
 			})
 
 			$(".touchDown").on('click', function(){
-				addToConsole(month + " " + day + ": " + "Touched down on the planet X.");
+				addToConsole(month + " " + day + ": " + "Touched down on the Fandalin.");
 				addToConsole("What would you like to do while here?");
 				$(".sidebar-left").hide();
 				$(".sidebar-right").hide();
 				$(".displayWindow").hide();
 
+
 				togClass(".locationOne-options",".planetX");
+
+				$(".img-takeOff").css({"backgroundImage" : "url('../images/ship-" + captain["job"] + "')"})
 			})
 		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
 			c("yayayayayay local two")
 
-			addEmphasis(month + " " + day + ": " + "You have neared Nebula Y which is known for being a pirate hangout. Going around the nebula will use double the amount of fuel but will be much safer. Captain " + captain['name'] + " what will you do?");
+			addEmphasis(month + " " + day + ": " + "You have neared the nebula Nonova Prime which is known for being a pirate hangout. Going around the nebula will use double the amount of fuel but will be much safer. Captain " + captain['name'] + " what will you do?");
 			togClass(".basic-options", ".locationTwo-options");
 
 			pastLocation = 2
@@ -631,68 +642,7 @@ $(function(){
 		})
 	}
 
-	function barTalk(){//work on this do something like 3 options: order food, listen to gossip, talk to somebody. Ordering food is kind of expensive but will add to your total food. Listening in will create a risk of getting caught and people not sitting next to you to hear more gossip and will raise the talking risk. Everytime you talk to somebody you raise the risk of offending someone. If reach "10" then no one talks to you and when you leave the bar you cant go back.
-		DiceRoll();
-
-		if(diceOne == 1){
-			addToConsole("Your new friend tells you a great joke and you bond together over other jokes.");
-		} else if(diceOne == 2){
-			addToConsole("They talk about their days problems and after their rant they thank you for listening by giving you 50 lbs of food");
-			gameobj['food'] += 50;
-			$("span.food").text(gameobj['food']);
-		} else if(diceOne == 3){
-			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
-			addToConsole("You won! They give you §100 as your winnings.");
-			gameobj['money'] += 100;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 4){
-			addToConsole("You dare them to make a bet with you on the outcome of the flounder races.");
-			addToConsole("You lost! That's embarassing! You give them §100 as their winnings.");
-			gameobj['money'] -= 100;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 5){
-			addToConsole("You buy your new friend a drink and local bar food.");
-			addToConsole("The Barkeep slides your drinks and a spongy purple substance, that you assume to be local grub, towards you.")
-			gameobj['money'] -= 10;
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 6){
-			painHappens();
-			addWarning(crew[victimRoll]['name'] + " offends " + $(this).data('name') + "and gets punched. They lose 2 health.");
-			if(crew[victimRoll]["status"] == "dead"){
-				addWarning(conDay + crew[victimRoll]["name"] + " died.")
-			}
-			$("span.money").text(gameobj['money']);
-		} else if(diceOne == 7){
-			addToConsole("After a few minutes the conversation trails off and you sit in a stew of uncomfortable silence");
-		} else if(diceOne == 8){
-			addToConsole("You get along well with this random stranger you've sat down with.");
-		} else if(diceOne == 9 || diceOne == 10){
-			addToConsole("You find out that " + $(this).data("name") + " knows Aunt Frale. What a small world!");
-		} else{
-			// addToConsole($(this).data("name") + " seems like a good person. You wonder if they would join you on your journey.");
-			// if(crew.length < 4){
-			// 	addToConsole($(this).data("name") + " agrees to join you on your journey.");
-
-			// 	var newMember = {
-			// 		name : $(this).data("name"),
-			// 		image : $(this).data("image"),
-			// 		death : $(this).data("death"),
-			// 		health : 4,
-			// 		status : "alive"
-			// 	}
-
-			// 	$(crew).merge(crew, newMember);
-
-			// 	// crewHealth();
-			// 	c(crew);
-			// 	health = $(crew).length;
-			// 	$("span.health").text(health);
-
-			// } else if(crew.length >= 4){
-			// 	addToConsole("Too bad there's no room in your ship for another person.");
-			// }
-		}
-	}
+	
 
 	function trade(traderNum){
 		titleNum = (Math.floor((Math.random() * $(traderTitle).length + 1))) - 1;
@@ -709,9 +659,11 @@ $(function(){
 			addTo: tradeItems[itemNum].to,
 			minusFrom: tradeItems[itemNum].from
 		})
+		traderImg(traderNum);
 	}
 
 	function tradeItem(traderNum){
+		
 		c($(traderNum).data("minusFrom"));
 		c(gameobj[$(traderNum).data("minusFrom")]);
 		c($(traderNum).data("minus"));
@@ -728,6 +680,11 @@ $(function(){
 		}
 	}
 
+	function traderImg(traderNum){
+		var traderPic = Math.floor(Math.random() * 4) + 1;
+		$(".img-" + traderNum).css({"backgroundImage" : "url('../images/extra" + traderPic + ".svg')"});
+	}
+
 
 
 
@@ -738,6 +695,7 @@ $(function(){
 		gameobj["money"] = 1000;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	$(".job-engineer").on('click', function(){
@@ -745,55 +703,20 @@ $(function(){
 		gameobj["money"] = 1500;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	$(".job-moneybags").on('click', function(){
-		captain["job"] = "moneybag";
+		captain["job"] = "moneybags";
 		gameobj["money"] = 2000;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	c("job " + captain["job"]);
 	c("money " + gameobj["money"]);
 	$("span.money").text(gameobj["money"]);
-
-	
-	// $(".job-farmer").on('click',function(){
-	// 	toggleClasses(this, "active");
-	// })
-
-	// $(".job-engineer").on('click', function(){
-	// 	toggleClasses(this, "active");
-	// })
-
-	// $(".job-moneybags").on('click', function(){
-	// 	toggleClasses(this, 'active');
-	// })
-
-	// $("#setUp-profession .setUp-button").on('click',function(){
-	// 	if($("#setUp-profession .active").hasClass("job-farmer")){
-	// 		captain["job"] = "farmer";
-	// 		gameobj["money"] = 1000;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else if($("#setUp-profession .active").hasClass("job-engineer")){
-	// 		captain["job"] = "engineer";
-	// 		gameobj["money"] = 1500;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else if($("#setUp-profession .active").hasClass("job-moneybags")){
-	// 		captain["job"] = "moneybag";
-	// 		gameobj["money"] = 2000;
-	// 		budget = gameobj["money"];
-	// 		setUpMove();
-	// 	} else {
-
-	// 	}
-	// 	c("job " + captain["job"]);
-	// 	c("money " + gameobj["money"]);
-	// 	$("span.money").text(gameobj["money"]);
-	// })
 
 //name
 	$("input[name=captain]").on('input',function(){
@@ -981,7 +904,7 @@ $(function(){
 	// })
 
 //trading
-	var tradeNoTrade = "Trade was attempted."
+	var tradeNoTrade = "No trade made."
 	$(".option.trade").on('click',function(){
 		hideMain();
 		$(".basic-options").hide();
@@ -992,27 +915,33 @@ $(function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 	$(".tradeTwo").on("click",function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 	$(".tradeThree").on("click",function(){
 		tradeItem(this);
 
 		tradeNoTrade = "Trade was made."
+		$(this).addClass("traded");
 	});
 
 	$(".trade-options .no-trade").on('click', function(){
 		showMain();
+		$(".tradeOne").removeClass("traded");
+		$(".tradeTwo").removeClass("traded");
+		$(".tradeThree").removeClass("traded");
 		$(".basic-options").show();
 		togClass(".trade-options", ".progressConsole-container");
 		$('.trade-container').hide();
-		upadateTime();
-		addToConsole(month + " " + day + ": " + tradeNoTrade);
+		updateTime();
+		addToConsole(tradeNoTrade);
 
-		tradeNoTrade = "Trading was attempted."
+		tradeNoTrade = "No trade made."
 	})
 
 //pirates
@@ -1033,27 +962,27 @@ $(function(){
 				togClass(".pirate-options", ".basic-options");
 				changeImages("captain-happy", "pirate-scared");
 			} else {
-				if(gameobj['money'] >= 500 && gameobj['food'] >= 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and 50lbs of food.");
-					gameobj['money'] -= 500;
+				if(gameobj['money'] >= 100 && gameobj['food'] >= 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and 50 meals.");
+					gameobj['money'] -= 100;
 					gameobj['food'] -= 50;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] < 500 && gameobj['food'] < 50){
+				} else if(gameobj['money'] < 100 && gameobj['food'] < 50){
 					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and food.");
 					gameobj['money'] = 0;
 					gameobj['food'] = 0;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] < 500 && gameobj['food'] >= 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50lbs of food.");
+				} else if(gameobj['money'] < 100 && gameobj['food'] >= 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take all your money and 50 meals.");
 					gameobj['money'] = 0;
 					gameobj['food'] -= 50;
 					gameSpans('food');
 					gameSpans('money');
-				} else if(gameobj['money'] >= 500 && gameobj['food'] < 50){
-					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §500 and all of your food.");
-					gameobj['money'] -= 500;
+				} else if(gameobj['money'] >= 100 && gameobj['food'] < 50){
+					addToConsole("You fumble as you try to draw your gun. The pirates don't appreciate you trying to fight back and take §100 and all of your food.");
+					gameobj['money'] -= 100;
 					gameobj['food'] = 0;
 					gameSpans('food');
 					gameSpans('money');
@@ -1072,9 +1001,9 @@ $(function(){
 			togClass(".pirate-bluff-options", '.basic-options');
 			changeImages("captain-happy", "pirate-scared");
 		} else {
-			if(gameobj['money'] >= 700){
-				addToConsole("The pirates see through your bluff and take §700");
-				gameobj['money'] -= 700;
+			if(gameobj['money'] >= 200){
+				addToConsole("The pirates see through your bluff and take §200");
+				gameobj['money'] -= 200;
 				gameSpans('money');
 			} else {
 				addToConsole("The pirates see through your bluff and take all your money");
@@ -1086,9 +1015,9 @@ $(function(){
 	})//end of bluff
 
 	$('.giveUp').click('on', function(){
-		if(gameobj['money'] >= 500){
-			addToConsole("You give in to their demands and they take §500.");
-			gameobj['money'] -= 500;
+		if(gameobj['money'] >= 100){
+			addToConsole("You give in to their demands and they take §100.");
+			gameobj['money'] -= 100;
 		} else{
 			addToConsole("You give in to their demands and they take all your money.");
 			gameobj['money'] = 0;
@@ -1121,7 +1050,7 @@ $(function(){
 		togClass(".thief-options", '.basic-options');
 	})
 	$(".no-shoot").on('click', function(){
-		addToConsole("You let the thief go with " + thiefFood + " meals. Maybe this will give you good karma but probably not.");
+		addToConsole("You let the thief go with " + thiefFood + " meals. Maybe this will give you good karma for later on.");
 
 		gameobj['food'] -= thiefFood;
 		gameSpans('food');
@@ -1171,7 +1100,7 @@ $(function(){
 				addWarning(crew[victimRoll]['name'] + " was hurt in the attempt to get out of the gravitational pull.");
 				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-hurt");
 			}else if(crew[victimRoll]["status"] == "dead"){
-				addWarning(conDay + crew[victimRoll]["name"] + " died in the struggle.");
+				addWarning(month + " " + day + ": " + crew[victimRoll]["name"] + " died in the struggle.");
 				addToConsole("Well that's one way of losing some weight.");
 				changeImages("captain-unhappy", crew[victimRoll]['image'] + "-death");
 			}
@@ -1190,9 +1119,9 @@ $(function(){
 
 //Planet X
 	$(".planetX .takeOff").on("click", function(){
-		upadateTime();
+		updateTime();
 
-		addToConsole(month + " " + day + ": " + "Leaving the planet X.");
+		addToConsole(month + " " + day + ": " + "Leaving Fandalin.");
 		$(".sidebar-left").show();
 		$(".sidebar-right").show();
 		$(".displayWindow").show();
@@ -1209,12 +1138,8 @@ $(function(){
 	$(".planetX .bar").on('click', function(){
 		togClass(".planetX", ".bar-container");
 		$(".bar-options").show();
-		upadateTime();
+		updateTime();
 		addToConsole(month + " " + day + ": " + "You enter the local bar.");
-		barPerson(".barOne");
-		barPerson(".barTwo");
-		barPerson(".barThree");
-		//when change get rid of people and do three options order food, listen in, and talk
 
 	})
 	
@@ -1223,62 +1148,177 @@ $(function(){
 	$(".planetX .trade").on('click', function(){
 		togClass(".progressConsole-container", ".trade-options-planetX");
 		togClass(".planetX", ".trade-container");
+		updateTime();
+		addToConsole(month + " " + day + ": " + "You enter the local market.");
+
+		trade("tradeOne");
+		trade("tradeTwo");
+		trade("tradeThree");
+
 	})
 
 	$(".trade-options-planetX .no-trade").on('click', function(){
 		togClass(".trade-options-planetX", ".progressConsole-container");
 		togClass(".trade-container", ".planetX");
 
-		upadateTime();
-		addToConsole(month + " " + day + ": " + tradeNoTrade);
+		updateTime();
+		addToConsole(tradeNoTrade);
 
-		tradeNoTrade = "Trading was attempted."
+		tradeNoTrade = "No trade made."
+
+		$(".tradeOne").removeClass("traded");
+		$(".tradeTwo").removeClass("traded");
+		$(".tradeThree").removeClass("traded");
 	})
 
 //bar
-	var barCount = 0;
-	$(".barOne").on('click', function(){
-		barCount++;
-		if(barCount < 5){
-			barTalk();
-		} else {
-			addToConsole("Looks like no one else wants to talk to you.")
+	var barFoodCount = 0;
+	var barFoodAnnoyCount, barTalkAnnoyCount;
+	var barGossipCount = 0;
+	var barAnnoyance = 0;
+	var barTalkCount = 0;
+
+	$(".bar-food").on('click', function(){
+
+		switch(barFoodCount){
+			case 0:
+			addToConsole("You order some food handing over §10 to pay.");
+			gameobj["money"] -= 10;
+			gameobj['food'] += 1;
+			break;
+			case 1:
+			addToConsole("You order another meal set for §10.");
+			gameobj['money']-= 10;
+			gameobj['food'] += 1;
+			break;
+			case 2:
+			addToConsole("As you order your third meal you can see that the bartender is getting annoyed at you for ordering, Three. Seperate. Meals.");
+			gameobj['money'] -= 10;
+			gameobj['food'] += 1;
+			break;
+			case 3:
+			addToConsole("You order your fourth meal and it is delivered to you with much annoyance.");
+			gameobj['money'] -= 10;
+			gameobj['food'] += 1;
+			barAnnoyance ++;
+			break;
+			case 4:
+			addToConsole("Your fifth meal comes with a slam on the table and a sudden price increase.");
+			gameobj['money'] -= 20;
+			gameobj['food'] += 1;
+			barAnnoyance++;
+			$("span.barFood-cost").text("20")
+			break;
+			case 5:
+			addToConsole("You try to order a sixth meal but the bartender says they will no longer serve you.");
+			$(".bar-food").addClass("void");
+
+			barAnnoyance += 2;
+			break;
 		}
-	})
-	$(".barTwo").on('click', function(){
-		barCount++;
-		if(barCount < 5){
-			barTalk();
+		gameSpans("money");
+		gameSpans("food");
+
+
+		barFoodCount++;
+		c(barAnnoyance);
+	});
+
+	$(".bar-gossip").on('click', function(){
+		c("hello");
+		barGossipAnnoyCount = barGossipCount + barAnnoyance;
+		c(barGossipAnnoyCount);
+		c(barAnnoyance);
+		c(barGossipCount);
+		if(barGossipAnnoyCount < 4){
+			switch(barGossipAnnoyCount){
+				case 0:
+				addToConsole("You listen in on your bar mates as they talk about their job.");
+				break;
+				case 1:
+				addToConsole("You lean in close to get a better listen on your bar mates conversation but you see them lean a bit away. You can still here them complaining about their job.");
+				barAnnoyance++;
+				break;
+				case 2:
+				addToConsole("You lean very close to your bar mates and they notice you eavesdropping. They leave and snitch on you to the hostess.");
+				barAnnoyance +=2;
+				break;
+				case 3:
+				addToConsole("There is no one around you to eavesdrop on.");
+
+				$(".bar-gossip").addClass("void");
+				break;
+			}
 		} else {
-			addToConsole("Looks like no one else wants to talk to you.")
+			addToConsole("No one wants to sit next to you. It seems you have annoyed the whole bar.");
+			if(!$(".bar-gossip").hasClass("void")){
+				$(".bar-gossip").addClass("void");
+			}
 		}
-	})
-	$(".barThree").on('click', function(){
-		barCount++;
-		if(barCount < 5){
-			barTalk();
+
+		barGossipCount++;
+	});
+
+	$(".bar-talk").on('click', function(){
+		barTalkAnnoyCount = barTalkCount + barAnnoyance;
+		if(barTalkAnnoyCount < 5){
+			switch(barTalkAnnoyCount){
+				case 0:
+					addToConsole("You make small talk with your bar mate.");
+				break;
+				case 1:
+				addToConsole("You make small talk with your bar mate about current problems in their workplace.");
+				break;
+				case 2:
+				addToConsole("You make a bet with a stranger on the flounder races.");
+				DiceRoll();
+				if(diceOne >= 6){
+					addToConsole("You lost the bet and fork over §25 to the winner");
+				} else {
+					addToConsole("You win the bet and take §25 from the loser. They accuse you of cheating.");
+					barAnnoyance++;
+				}
+				break;
+				case 3:
+				case 4:
+				painHappens();
+				addWarning(crew[victimRoll]['name'] + " offends someone and gets punched. They lose 2 health.");
+				if(crew[victimRoll]["status"] == "dead"){
+					addWarning(conDay + crew[victimRoll]["name"] + " died.")
+				}
+				barAnnoyance++;
+				break;
+			}
+			barTalkCount++;
 		} else {
-			addToConsole("Looks like no one else wants to talk to you.")
+			addToConsole("Everyone seems to be ignoring you. They don't want to talk to you at all.");
+			$(".bar-talk").addClass("void");
 		}
-	})
+	});
 
 	$(".leave-bar").on('click', function(){
 		togClass(".bar-container", ".planetX");
+		addToConsole("You leave the bar.");
 		$(".bar-options").hide();
 		if(gameobj['fuel'] > fuelUsage){
 			$(".travel").css({'pointerEvents':'initial','opacity':1})
 		}
-	})
 
-	//Nebula Y
+		if($(".bar-food").hasClass("void") && $(".bar-talk").hasClass("void") && $(".bar-gossip").hasClass("void")){
+			addEmphasis("You are no longer allowed back to the bar.");
+			$(".planetX .bar").addClass("void");
+		}
+	});
+
+//Nebula Y
 	$(".go-through").on('click', function(){
 		togClass(".locationTwo-options", ".basic-options");
-		addToConsole("You decide to brave the Nebula and its pirates.")
+		addToConsole("You decide to brave Nonova Prime and its pirates.")
 	})
 	$(".go-around").on('click', function(){
 		doubleFuel = true;
 		togClass(".locationTwo-options", ".basic-options");
-		addToConsole("You decide to take a safer route and go around the dangerous Nebula.");
+		addToConsole("You decide to take a safer route and go around the dangerous nebula.");
 	})
 
 //pace and ration
@@ -1306,7 +1346,7 @@ $(function(){
 
 //travel
 	$(".travel").on('click', function(){
-		upadateTime();
+		updateTime();
 		encounterDice();
 
 
@@ -1331,7 +1371,7 @@ $(function(){
 		
 		c("encounter: " + encounter);
 		if(crew[0]["status"] == "dead" && crew[1]["status"] == "dead" && crew[2]["status"] == "dead"  && crew[3]["status"] == "dead"){
-			addWarning("everyone is dead");
+			deadCrew();
 		} else{
 			
 			// encounter = 3;
@@ -1347,7 +1387,11 @@ $(function(){
 	});
 
 	
+	
 
+	$(".restartGame").on('click', function(){
+		location.reload();
+	})
 
 
 
@@ -1429,5 +1473,7 @@ captain['job'] = "farmer";
 
 		$("span.end-points").text(pTotal);
 	})
+	$(".img-takeOff").css({"backgroundImage" : "url('../images/ship-" + captain['job'] + ".svg')"})
 	
 })
+

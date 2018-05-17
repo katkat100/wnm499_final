@@ -485,12 +485,12 @@ input[name=captain]{
 
 	.para{
 		margin-bottom: 15px;
-		padding: .2em .5em;
+		padding: .5em .5em;
 		border: 2px solid $color-tri;
 		text-transform: capitalize;
 		cursor: pointer;
 		width: 110px;
-		font-size: 80%;
+		font-size: 90%;
 
 		&:hover{
 			border-color: lighten($color-prime, 30%);
@@ -502,6 +502,7 @@ input[name=captain]{
 		height: 20px;
 		float: right;
 		margin-left: 10px;
+		margin-top: -2px;
 	}
 	li{
 		
@@ -618,6 +619,11 @@ input[name=captain]{
 			text-align: center;
 		}
 	}
+
+	&d{
+		opacity: .5;
+		pointer-events: none;
+	}
 }
 
 .overpriced{
@@ -651,27 +657,54 @@ input[name=captain]{
 	&s{
 		position: relative;
 		top: 50%;
-		transform: translate(0, -60%);
+		transform: translate(0, -50%);
 	}
 	
 	&-container{
-		height: calc(100vh - 190px);
+		height: calc(100vh - 270px);
 		position: relative;
 		top: 190px;
 	}
 
-	&-person{
+	&-action{
 		border: 3px solid $color-tri;
 		padding: .5em;
 		cursor: pointer;
+		height: 100%;
 		&:hover{
 			border-color: $color-prime;
 			color: $color-prime;
+		}
+
+		&-title{
+			text-transform: uppercase;
+			text-align: center;
+			margin-bottom: 10px;
 		}
 	}
 	&-name{
 		text-align: center;
 	}
+
+	&-inventory{
+		margin-top: 20px;
+		img{
+			width: 20px;
+			vertical-align: middle;
+		}
+		span{
+			vertical-align: middle;
+		}
+		.info{
+			text-align: center;
+		}
+	}
+	
+}
+
+.void{
+	pointer-events: none;
+	opacity: .5;
 }
 
 //end
@@ -759,45 +792,115 @@ input[name=captain]{
 //xs
 @media (max-width: 479px){
 	#setUp-shop{
-		.item{
-			padding: 0 5px;
-			p{
-				margin-bottom: 10px;
-				margin-top: 10px;
-			}
+		.shop-inventory{
+			margin-top: 10px;
+		}
 
-			&-top{
-				width: 25%;
+		.item{
+			// border: 2px solid lighten($color-tri,30%);
+			padding: 5px;
+			margin: 5px 0px;
+
+			&-title{
+				display: none;
 			}
 			img{
-				display: inline-block;
-				width: 20%;
 				margin-left: 0;
+				width:100%;
+			}
+			&-top{
+				width: 30px;
 				vertical-align: middle;
 			}
-			&-title{
-				display: inline-block;
-				vertical-align: middle;
-				margin-bottom: 0;
-				width: 70%;
-			}
+
 			&-cost{
-				width: 33.5%;
-				vertical-align: middle;
+				width:calc(50% - 25px);
 				display: inline-block;
+				margin-top: 0;
+				margin-bottom: 0;
+				vertical-align: middle;
 			}
+
 			&-buy{
-				width: 33%;
-				vertical-align: middle;
+				width:calc(50% - 25px);
 				display: inline-block;
+				margin-top: 0;
+				margin-bottom: 0;
+				vertical-align: middle;
 			}
 		}
+
 		.receipt{
-			padding-top: 0;
+
+			&.big{
+				display: none;
+			}
+			&.hide{
+				display: block;
+			}
+
 			p{
-				margin-bottom: 10px;
-				margin-top: 10px;
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+		}
+	}
+
+	.displayWindow{
+		left: 0;
+		right: 0;
+		height: 250px;
+	}
+
+	.sidebar-left, .sidebar-right{
+		width: 60%;
+		left: 5px;
+		top:initial;
+		bottom: 60px;
+		transform:translate(0,0);
+	}
+	.sidebar-left{
+		bottom: 80px;
+		.inventory{
+			position: static;
+			padding-top: 0;
+			width: 100%;
+			display: inline-block;
+			li{
+				margin-bottom: initial;
+				width: 30%;
+				display: inline-block;
 				text-align: center;
+
+				span{
+					display: block;
+				}
+			}
+
+			.info{
+				position: static;
+			}
+		}
+		.stats{
+			position: static;
+			width: 100%;
+			margin-top: 10px;
+			li{
+				margin-bottom: 0;
+				display: inline-block;
+				width: 47%;
+				text-align: center;
+			}
+		}
+	}
+	.sidebar-right{
+		width: 35%;
+		right: 5px;
+		left: initial;
+		.paceRation{
+			padding-top: initial;
+			.para{
+				width: 100%;
 			}
 		}
 	}

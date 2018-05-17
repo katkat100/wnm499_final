@@ -114,14 +114,11 @@ input[type=number]::-webkit-outer-spin-button {
   #month ul li {
     width: 100%; }
 
-nav {
-  position: fixed;
-  top: 0; }
-  nav ul {
-    padding-left: 0; }
-  nav li {
-    display: inline-block;
-    padding: .75em .5em; }
+nav ul {
+  padding-left: 0; }
+nav li {
+  display: inline-block;
+  padding: .75em .5em; }
 
 ul {
   list-style: none;
@@ -1174,12 +1171,12 @@ input[name=captain] {
   padding-top: 11px; }
   .paceRation .para {
     margin-bottom: 15px;
-    padding: .2em .5em;
+    padding: .5em .5em;
     border: 2px solid #EEFFFC;
     text-transform: capitalize;
     cursor: pointer;
     width: 110px;
-    font-size: 80%; }
+    font-size: 90%; }
     .paceRation .para:hover {
       border-color: #bffcf1;
       color: #bffcf1; }
@@ -1187,7 +1184,8 @@ input[name=captain] {
     width: 20px;
     height: 20px;
     float: right;
-    margin-left: 10px; }
+    margin-left: 10px;
+    margin-top: -2px; }
 
 .blackHole {
   position: relative;
@@ -1258,6 +1256,9 @@ input[name=captain] {
   .tradeable span {
     vertical-align: middle;
     text-align: center; }
+.traded {
+  opacity: .5;
+  pointer-events: none; }
 
 .overpriced .trader {
   border: 3px solid #FF555D;
@@ -1280,20 +1281,38 @@ input[name=captain] {
 .bars {
   position: relative;
   top: 50%;
-  transform: translate(0, -60%); }
+  transform: translate(0, -50%); }
 .bar-container {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 270px);
   position: relative;
   top: 190px; }
-.bar-person {
+.bar-action {
   border: 3px solid #EEFFFC;
   padding: .5em;
-  cursor: pointer; }
-  .bar-person:hover {
+  cursor: pointer;
+  height: 100%; }
+  .bar-action:hover {
     border-color: #2DF5D0;
     color: #2DF5D0; }
+  .bar-action-title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px; }
 .bar-name {
   text-align: center; }
+.bar-inventory {
+  margin-top: 20px; }
+  .bar-inventory img {
+    width: 20px;
+    vertical-align: middle; }
+  .bar-inventory span {
+    vertical-align: middle; }
+  .bar-inventory .info {
+    text-align: center; }
+
+.void {
+  pointer-events: none;
+  opacity: .5; }
 
 .end-points {
   color: #2DF5D0; }
@@ -1335,37 +1354,85 @@ input[name=captain] {
   .progressConsole-container {
     width: calc(100% - 40px); } }
 @media (max-width: 479px) {
+  #setUp-shop .shop-inventory {
+    margin-top: 10px; }
   #setUp-shop .item {
-    padding: 0 5px; }
-    #setUp-shop .item p {
-      margin-bottom: 10px;
-      margin-top: 10px; }
-    #setUp-shop .item-top {
-      width: 25%; }
-    #setUp-shop .item img {
-      display: inline-block;
-      width: 20%;
-      margin-left: 0;
-      vertical-align: middle; }
+    padding: 5px;
+    margin: 5px 0px; }
     #setUp-shop .item-title {
-      display: inline-block;
-      vertical-align: middle;
-      margin-bottom: 0;
-      width: 70%; }
+      display: none; }
+    #setUp-shop .item img {
+      margin-left: 0;
+      width: 100%; }
+    #setUp-shop .item-top {
+      width: 30px;
+      vertical-align: middle; }
     #setUp-shop .item-cost {
-      width: 33.5%;
-      vertical-align: middle;
-      display: inline-block; }
+      width: calc(50% - 25px);
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle; }
     #setUp-shop .item-buy {
-      width: 33%;
-      vertical-align: middle;
+      width: calc(50% - 25px);
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle; }
+  #setUp-shop .receipt.big {
+    display: none; }
+  #setUp-shop .receipt.hide {
+    display: block; }
+  #setUp-shop .receipt p {
+    margin-bottom: 0;
+    margin-top: 0; }
+
+  .displayWindow {
+    left: 0;
+    right: 0;
+    height: 250px; }
+
+  .sidebar-left, .sidebar-right {
+    width: 60%;
+    left: 5px;
+    top: initial;
+    bottom: 60px;
+    transform: translate(0, 0); }
+
+  .sidebar-left {
+    bottom: 80px; }
+    .sidebar-left .inventory {
+      position: static;
+      padding-top: 0;
+      width: 100%;
       display: inline-block; }
-  #setUp-shop .receipt {
-    padding-top: 0; }
-    #setUp-shop .receipt p {
-      margin-bottom: 10px;
-      margin-top: 10px;
-      text-align: center; } }
+      .sidebar-left .inventory li {
+        margin-bottom: initial;
+        width: 30%;
+        display: inline-block;
+        text-align: center; }
+        .sidebar-left .inventory li span {
+          display: block; }
+      .sidebar-left .inventory .info {
+        position: static; }
+    .sidebar-left .stats {
+      position: static;
+      width: 100%;
+      margin-top: 10px; }
+      .sidebar-left .stats li {
+        margin-bottom: 0;
+        display: inline-block;
+        width: 47%;
+        text-align: center; }
+
+  .sidebar-right {
+    width: 35%;
+    right: 5px;
+    left: initial; }
+    .sidebar-right .paceRation {
+      padding-top: initial; }
+      .sidebar-right .paceRation .para {
+        width: 100%; } }
 .well {
   padding: 10px;
   background-color: #eee;
@@ -1412,6 +1479,9 @@ input[name=captain] {
     text-shadow: 0 0 5px #2DF5D0;
     border-color: #2DF5D0;
     color: #2DF5D0; }
+
+#title.content > section {
+  height: calc(100vh - 40px); }
 
 #game .content {
   position: relative; }

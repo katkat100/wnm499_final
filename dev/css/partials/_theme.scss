@@ -57,6 +57,12 @@
 	}
 }
 
+#title{
+	&.content > section{
+		height: calc(100vh - 40px);
+	}
+}
+
 #game{
 	.content{
 		position: relative;
