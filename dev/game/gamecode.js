@@ -427,7 +427,7 @@ $(function(){
 					$("span.month").text(month);
 					$("span.day").text(day);
 				}
-				changeImages("captain-sick", "");
+				changeImages("captain-sick", "spacelord");
 			break;
 			case 3://black hole
 				addToConsole(conDay + "Your ship has been caught in a black holes' gravitational pull! You must shed some weight to escape unscathed.");
@@ -591,7 +591,7 @@ $(function(){
 			})
 
 			$(".touchDown").on('click', function(){
-				addToConsole(month + " " + day + ": " + "Touched down on the planet X.");
+				addToConsole(month + " " + day + ": " + "Touched down on the Fandalin.");
 				addToConsole("What would you like to do while here?");
 				$(".sidebar-left").hide();
 				$(".sidebar-right").hide();
@@ -605,7 +605,7 @@ $(function(){
 		} else if(presentLocation >= stopLocations[1] && pastLocation == 1){
 			c("yayayayayay local two")
 
-			addEmphasis(month + " " + day + ": " + "You have neared Nebula Y which is known for being a pirate hangout. Going around the nebula will use double the amount of fuel but will be much safer. Captain " + captain['name'] + " what will you do?");
+			addEmphasis(month + " " + day + ": " + "You have neared the nebula Nonova Prime which is known for being a pirate hangout. Going around the nebula will use double the amount of fuel but will be much safer. Captain " + captain['name'] + " what will you do?");
 			togClass(".basic-options", ".locationTwo-options");
 
 			pastLocation = 2
@@ -695,6 +695,7 @@ $(function(){
 		gameobj["money"] = 1000;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	$(".job-engineer").on('click', function(){
@@ -702,6 +703,7 @@ $(function(){
 		gameobj["money"] = 1500;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	$(".job-moneybags").on('click', function(){
@@ -709,6 +711,7 @@ $(function(){
 		gameobj["money"] = 2000;
 		budget = gameobj["money"];
 		setUpMove();
+	$("span.money").text(gameobj["money"]);
 	})
 
 	c("job " + captain["job"]);
@@ -1118,7 +1121,7 @@ $(function(){
 	$(".planetX .takeOff").on("click", function(){
 		updateTime();
 
-		addToConsole(month + " " + day + ": " + "Leaving the planet X.");
+		addToConsole(month + " " + day + ": " + "Leaving Fandalin.");
 		$(".sidebar-left").show();
 		$(".sidebar-right").show();
 		$(".displayWindow").show();
@@ -1310,12 +1313,12 @@ $(function(){
 //Nebula Y
 	$(".go-through").on('click', function(){
 		togClass(".locationTwo-options", ".basic-options");
-		addToConsole("You decide to brave the Nebula and its pirates.")
+		addToConsole("You decide to brave Nonova Prime and its pirates.")
 	})
 	$(".go-around").on('click', function(){
 		doubleFuel = true;
 		togClass(".locationTwo-options", ".basic-options");
-		addToConsole("You decide to take a safer route and go around the dangerous Nebula.");
+		addToConsole("You decide to take a safer route and go around the dangerous nebula.");
 	})
 
 //pace and ration
